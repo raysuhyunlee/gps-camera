@@ -1,0 +1,15 @@
+# Misc
+.DS_Store
+*.swp
+*.log
+
+# Obsidian
+.obsidian
+
+# Env
+.env*
+!.env.example
+
+# Keystore
+android/key.properties
+
