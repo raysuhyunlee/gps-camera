@@ -39,6 +39,13 @@ Default section order:
 - The user have no time. Be concise when answering or reporting
 - Follow the format. If you need to break the format, explain why
 - Prefer direct bullets with explicit names
+- DO NOT use unicode characters that are not in the keyboard
+
+Bad example:
+> SettingsStore persists key → Value. Each domain reads its typed settings through a thin accessor over the store; the store is the single runtime source of truth that overlay/camera/filename read from.
+
+Good example:
+> SettingsStore contain typed settings for each domain
 
 ## User Preferences
 
