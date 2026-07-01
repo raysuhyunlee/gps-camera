@@ -1,0 +1,55 @@
+project   := "gpscamera.xcodeproj"
+scheme    := "gpscamera"
+bundle_id := "com.raysuhyunlee.gpscamera"
+
+# list recipes
+default:
+    @just --list
+
+# build for the simulator
+build:
+    xcodebuild -project {{project}} -scheme {{scheme}} \
+      -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' \
+      -configuration Debug build CODE_SIGNING_ALLOWED=NO
+
+# build for a physical device (needs signing + device; required to test GPS/compass)
+build-device:
+    xcodebuild -project {{project}} -scheme {{scheme}} \
+      -destination 'generic/platform=iOS' -configuration Debug build
+
+# build, install, and launch on the first connected physical device
+run-device:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    json=$(mktemp)
+    xcrun devicectl list devices --json-output "$json" >/dev/null
+    udid=$(python3 - "$json" <<'PY'
+    import json, sys
+    devs = json.load(open(sys.argv[1]))["result"]["devices"]
+    def ios(x): return x.get("hardwareProperties", {}).get("platform") == "iOS"
+    def connected(x): return x.get("connectionProperties", {}).get("tunnelState") == "connected"
+    cand = [x for x in devs if ios(x) and connected(x)] or [x for x in devs if ios(x)]
+    if not cand:
+        sys.exit("no physical iOS device found")
+    print(cand[0]["hardwareProperties"]["udid"])
+    PY
+    )
+    echo "Using device $udid"
+    xcodebuild -project {{project}} -scheme {{scheme}} \
+      -destination "id=$udid" -configuration Debug -derivedDataPath build build
+    xcrun devicectl device install app --device "$udid" \
+      build/Build/Products/Debug-iphoneos/{{scheme}}.app
+    xcrun devicectl device process launch --device "$udid" {{bundle_id}}
+
+# clean build artifacts
+clean:
+    xcodebuild -project {{project}} -scheme {{scheme}} clean
+
+# list available run destinations
+devices:
+    xcodebuild -project {{project}} -scheme {{scheme}} -showdestinations
+
+# generate buildServer.json for sourcekit-lsp (neovim), then build once to fill the index
+lsp:
+    xcode-build-server config -project {{project}} -scheme {{scheme}}
+    @just build

@@ -2,6 +2,7 @@
 
 ## Status
 
+- 2026-07-01: iOS module implemented (`ios/gpscamera/Domains/Location`).
 - 2026-06-30: Initial spec.
 
 ## Domain Definition

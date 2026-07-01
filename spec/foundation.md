@@ -2,6 +2,7 @@
 
 ## Status
 
+- 2026-07-01: iOS `PermissionStatus` added (`ios/gpscamera/Foundation`).
 - 2026-06-30: Initial spec.
 
 ## Domain Definition
@@ -83,6 +84,10 @@ SettingsProviding {      // the seam each domain conforms to
   its own `key`
 
 #### Permission-coupled settings
+
+- `PermissionStatus` is the shared authorization enum for every OS permission
+  (location, camera, photos, ...): `notDetermined` / `denied` / `authorized`.
+  Each provider collapses platform-specific statuses into these.
 
 An item with `requiresPermission` checks the permission every time it is read.
 * on && granted -> effective
