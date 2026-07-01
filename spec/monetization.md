@@ -43,6 +43,10 @@ A shared widget (`Control.custom`) with two states:
 - Free users only. Interstitial shown every **10 photos**; counter resets per
   session.
 - Driven by the foundation usage-metrics bus (photo count). Removed for `.pro`.
+- **Timing**: never at app launch, and never during/blocking an in-progress or
+  queued capture. Fires only after a capture has saved, while the user is idle.
+- **Format**: only standard, always-dismissible interstitials. No deceptive,
+  fake-system, or unclosable creatives — enforced via ad-network/format choice.
 
 ### In-App Review 
 

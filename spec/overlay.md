@@ -37,6 +37,7 @@ Supported items:
 * note 
 * weather (TODO)
 * watermark
+* logo / custom image (TODO) — user-supplied, distinct from the app watermark
 
 ### Position & scale editor
 

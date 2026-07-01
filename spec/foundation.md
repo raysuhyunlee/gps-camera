@@ -36,32 +36,42 @@
 
 The Settings screen renders registered sections generically and knows no domain.
 
-Language-neutral schema (each platform mirrors it in its own types).
+```
+Control = one of:
+    toggle                  // booleans
+    select(options)         // resolution, format, fps, font, formats, unit
+    stepper(range, step)    // font size
+    slider(range)           // opacity
+    color                   // text / background color
+    text                    // prefix, suffix, note
+    orderList               // drag-reorder of opaque labeled items
+    navigation(sectionRef)  // push a sub-section
+    action(actionRef)       // restore purchase, send feedback
+    custom(controlRef)      // domain-supplied view (overlay preview, position
+                            //   editor) — keeps foundation generic
 
-**Control** — one of:
+SettingItem {
+    key                  // stable, namespaced, e.g. "camera.photo.format"
+    titleKey             // l10n
+    footnoteKey?         // l10n
+    control              // one of Control (above)
+    defaultValue
+    gate                 // free | pro
+    visibleWhen?         // predicate over another setting's value
+    requiresPermission?  // OS permission the item depends on (add-only photo, location, …)
+}
 
-| Control | Use |
-|---|---|
-| `toggle` | booleans |
-| `select(options)` | resolution, format, fps, font, formats, unit |
-| `stepper(range, step)` | font size |
-| `slider(range)` | opacity |
-| `color` | text / background color |
-| `text` | prefix, suffix, note |
-| `orderList` | drag-reorder of opaque labeled items |
-| `navigation(sectionRef)` | push a sub-section |
-| `action(actionRef)` | restore purchase, send feedback |
-| `custom(controlRef)` | domain-supplied view (overlay preview, position editor) — keeps foundation generic |
+SettingsSection {
+    id
+    titleKey             // l10n
+    order                // assigned by the composition root (see overview.md)
+    items                // list of SettingItem
+}
 
-**SettingItem** — `key` (stable, namespaced, e.g. `camera.photo.format`),
-`titleKey` (l10n), `footnoteKey?` (l10n), `control`, `defaultValue`,
-`gate` (`free` | `pro`), `visibleWhen?` (predicate over another setting's value).
-
-**SettingsSection** — `id`, `titleKey` (l10n), `order` (assigned by the
-composition root, see overview.md), `items` (list of `SettingItem`).
-
-**SettingsProviding** — the seam each domain conforms to: exposes its
-`settingsSections`.
+SettingsProviding {      // the seam each domain conforms to
+    settingsSections     // -> list of SettingsSection
+}
+```
 
 - `SettingsRegistry` collects all `SettingsProviding` domains (explicitly
   injected by the composition root, not auto-discovered), sorts sections by
@@ -71,6 +81,29 @@ composition root, see overview.md), `items` (list of `SettingItem`).
   paywall on tap (entitlement from `monetization`).
 - **`custom` controls**: the providing domain supplies the view and binds it to
   its own `key`
+
+#### Permission-coupled settings
+
+An item with `requiresPermission` checks the permission every time it is read.
+* on && granted -> effective
+* on && !granted -> mismatch popup
+
+Acquiring permission
+* enabling the item requests the permission if not granted yet
+* if the user denies, the item goes back into disabled state
+
+Mismatch Popup
+* if the item is enabled, it checks the permission every time it's read
+* when the permission is denied (e.g., revoked by the user), it shows a mismatch popup
+* show popup the first time the mismatch is detected
+* non-blocking (the action still proceeds with the feature skipped)
+* popup dialog has two buttons
+	* Close - dismiss
+	* Go to Settings - navigate to the Settings page holding the item and highlight that row
+* The framework should support deep-linking to a `SettingItem` by `key` and transiently
+highlighting it
+
+Note: Mismatch popup only shows when the user had granted the permission and revoked at some point. When the user denies the permission right when he toggles the item, the item will be disabled immediately and the popup will not be shown.
 
 ### Usage Metrics
 

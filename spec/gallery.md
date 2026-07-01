@@ -14,7 +14,9 @@
 - Built-in gallery (in-app), not the system photo library picker.
 - Grid of captured photos/videos; tap to view full screen.
 - Per-item actions: share, delete.
-- Reads from where camera saves captures.
+- Reads the capture store as defined in camera.md (Android: own `MediaStore`
+  entries; iOS: app-private store) — never the full system library, no read
+  permission.
 
 ## Settings
 
