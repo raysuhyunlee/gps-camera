@@ -1,6 +1,7 @@
 project   := "gpscamera.xcodeproj"
 scheme    := "gpscamera"
 bundle_id := "com.raysuhyunlee.gpscamera"
+sim       := "iPhone 17"
 
 # list recipes
 default:
@@ -40,6 +41,12 @@ run-device:
     xcrun devicectl device install app --device "$udid" \
       build/Build/Products/Debug-iphoneos/{{scheme}}.app
     xcrun devicectl device process launch --device "$udid" {{bundle_id}}
+
+# run unit tests on the simulator (override sim: just sim='iPhone 17 Pro' test)
+test:
+    xcodebuild -project {{project}} -scheme {{scheme}} \
+      -sdk iphonesimulator -destination 'platform=iOS Simulator,name={{sim}}' \
+      test CODE_SIGNING_ALLOWED=NO
 
 # clean build artifacts
 clean:

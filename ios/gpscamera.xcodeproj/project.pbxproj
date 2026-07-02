@@ -6,8 +6,19 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		AB000000000000000000000B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71F74BB82FF3C65C002FDBC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71F74BBF2FF3C65C002FDBC2;
+			remoteInfo = gpscamera;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		71F74BC02FF3C65C002FDBC2 /* gpscamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gpscamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0000000000000000000002 /* gpscameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gpscameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,10 +27,22 @@
 			path = gpscamera;
 			sourceTree = "<group>";
 		};
+		AB0000000000000000000006 /* gpscameraTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = gpscameraTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		71F74BBD2FF3C65C002FDBC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB0000000000000000000004 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				71F74BC22FF3C65C002FDBC2 /* gpscamera */,
+				AB0000000000000000000006 /* gpscameraTests */,
 				71F74BC12FF3C65C002FDBC2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				71F74BC02FF3C65C002FDBC2 /* gpscamera.app */,
+				AB0000000000000000000002 /* gpscameraTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +95,29 @@
 			productReference = 71F74BC02FF3C65C002FDBC2 /* gpscamera.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AB0000000000000000000001 /* gpscameraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB0000000000000000000009 /* Build configuration list for PBXNativeTarget "gpscameraTests" */;
+			buildPhases = (
+				AB0000000000000000000003 /* Sources */,
+				AB0000000000000000000004 /* Frameworks */,
+				AB0000000000000000000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB000000000000000000000A /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AB0000000000000000000006 /* gpscameraTests */,
+			);
+			name = gpscameraTests;
+			packageProductDependencies = (
+			);
+			productName = gpscameraTests;
+			productReference = AB0000000000000000000002 /* gpscameraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -82,6 +130,10 @@
 				TargetAttributes = {
 					71F74BBF2FF3C65C002FDBC2 = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					AB0000000000000000000001 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 71F74BBF2FF3C65C002FDBC2;
 					};
 				};
 			};
@@ -100,12 +152,20 @@
 			projectRoot = "";
 			targets = (
 				71F74BBF2FF3C65C002FDBC2 /* gpscamera */,
+				AB0000000000000000000001 /* gpscameraTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		71F74BBE2FF3C65C002FDBC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB0000000000000000000005 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +182,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AB0000000000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AB000000000000000000000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71F74BBF2FF3C65C002FDBC2 /* gpscamera */;
+			targetProxy = AB000000000000000000000B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		71F74BC92FF3C65D002FDBC2 /* Debug */ = {
@@ -312,6 +387,48 @@
 			};
 			name = Release;
 		};
+		AB0000000000000000000007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JT6WNXA7T8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raysuhyunlee.gpscameraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gpscamera.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/gpscamera";
+			};
+			name = Debug;
+		};
+		AB0000000000000000000008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JT6WNXA7T8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raysuhyunlee.gpscameraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/gpscamera.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/gpscamera";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -329,6 +446,15 @@
 			buildConfigurations = (
 				71F74BCC2FF3C65D002FDBC2 /* Debug */,
 				71F74BCD2FF3C65D002FDBC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB0000000000000000000009 /* Build configuration list for PBXNativeTarget "gpscameraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB0000000000000000000007 /* Debug */,
+				AB0000000000000000000008 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
