@@ -2,6 +2,10 @@
 
 ## Status
 
+- 2026-07-03: Minimal `DefaultFilenameProvider` seam added under
+  `ios/gpscamera/Domains/Camera` so camera can name outputs
+  (`IMG_<timestamp>` + auto-number). Template/prefix/suffix/dateFormat settings
+  and the real domain pending.
 - 2026-06-30: Initial spec.
 
 ## Domain Definition
@@ -49,4 +53,5 @@
 
 ## Revision History
 
+- 2026-07-03: Minimal `DefaultFilenameProvider` seam (camera consumer).
 - 2026-06-30: Initial filename spec.

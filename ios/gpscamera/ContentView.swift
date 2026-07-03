@@ -2,8 +2,9 @@
 //  ContentView.swift
 //  gpscamera
 //
-//  Temporary debug surface for the location module.
-//  Replaced by the Main screen (camera + overlay) once those domains land.
+//  Location debug surface. Retained for development inspection of the location
+//  module; not wired into the app (the Main screen is CameraView). Reachable
+//  again later behind a debug entry point.
 //
 
 import SwiftUI

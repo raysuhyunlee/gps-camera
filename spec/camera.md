@@ -2,6 +2,10 @@
 
 ## Status
 
+- 2026-07-03: iOS Main screen + photo pipeline implemented
+  (`ios/gpscamera/Domains/Camera`). Deferred: video mode + audio, capture
+  settings (settings framework), overlay burn (overlay domain), saveOriginal
+  duplication.
 - 2026-06-30: Initial spec.
 
 ## Domain Definition
