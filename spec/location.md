@@ -60,6 +60,21 @@ Publishes:
 * None. Location has no user-facing settings - it is a pure data provider. 
 * Coordinate format and unit are overlay style settings
 
+## Implementation
+
+### iOS
+
+```
+ios/gpscamera/Domains/Location/
+├── LocationSnapshot.swift  - published model + value types (Coordinate, Heading, AccuracyLevel, Cardinal)
+├── LocationProviding.swift - seam protocol
+└── LocationProvider.swift  - CoreLocation-backed provider (GPS, heading, reverse geocode)
+ios/gpscameraTests/
+└── LocationValueTests.swift - location value-type tests
+```
+
+Android: planned.
+
 ## Revision History
 
 - 2026-06-30: Initial location spec.

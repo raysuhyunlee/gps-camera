@@ -9,24 +9,7 @@ import AVFoundation
 import ImageIO
 @testable import gpscamera
 
-struct DefaultFilenameProviderTests {
-    let sut = DefaultFilenameProvider()
-    let date = Date(timeIntervalSince1970: 0)
-
-    @Test func noCollisionReturnsBase() {
-        let name = sut.makeName(for: date) { _ in false }
-        // IMG_<8 date digits>_<6 time digits>, no auto-number suffix.
-        #expect(name.wholeMatch(of: /IMG_\d{8}_\d{6}/) != nil)
-    }
-
-    @Test func collisionAppendsIncrementingNumber() {
-        let base = sut.makeName(for: date) { _ in false }
-        let taken: Set<String> = [base, "\(base)_1"]
-        #expect(sut.makeName(for: date) { taken.contains($0) } == "\(base)_2")
-    }
-}
-
-struct GPSMetadataTests {
+struct EXIFGPSMetadataTests {
     private func date(_ y: Int, _ mo: Int, _ d: Int, _ h: Int, _ mi: Int, _ s: Int) -> Date {
         var c = DateComponents()
         (c.year, c.month, c.day, c.hour, c.minute, c.second) = (y, mo, d, h, mi, s)

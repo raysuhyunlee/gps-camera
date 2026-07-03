@@ -127,6 +127,17 @@ Note: Mismatch popup only shows when the user had granted the permission and rev
 	- tos: www.raysuhyunlee.com/gpscamera/tos
 	- legal: www.raysuhyunlee.com/gpscamera/legal
 
+## Implementation
+
+### iOS
+
+```
+ios/gpscamera/Foundation/
+└── PermissionStatus.swift - shared authorization enum
+```
+
+Android: planned.
+
 ## Revision History
 
 - 2026-06-30: Initial foundation spec

@@ -134,7 +134,29 @@ Neither platform ever requests full photo-library **read** access.
   If location is denied/revoked, EXIF location is skipped and capture still
   succeeds — per the permission-coupled policy in foundation.md.
 
+## Implementation
+
+### iOS
+
+```
+ios/gpscamera/Domains/Camera/
+├── CameraView.swift          - Main screen: preview, GPS indicator, controls, orientation
+├── CameraController.swift    - ObservableObject; session + permission + shutter
+├── CameraSession.swift       - AVCaptureSession wrapper (facing, lens, flash, photo output)
+├── CameraPreview.swift       - AVCaptureVideoPreviewLayer host
+├── CameraAuthorization.swift - camera permission -> PermissionStatus
+├── PhotoCaptureService.swift - capture pipeline + CaptureStore (app-private + Camera Roll copy)
+└── GPSMetadata.swift         - LocationSnapshot -> EXIF GPS dictionary
+ios/gpscameraTests/
+└── CameraValueTests.swift    - camera value-type tests
+```
+
+Android: planned.
+
 ## Revision History
 
+- 2026-07-03: iOS Main screen (preview, GPS indicator, lens/flash/front-back
+  controls) + photo capture pipeline (EXIF GPS, app-private store, Camera Roll
+  add-only copy).
 - 2026-07-01: Define `_original` suffix for saveOriginal copies.
 - 2026-06-30: Initial camera spec.

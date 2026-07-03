@@ -29,6 +29,7 @@ Default section order:
 - Status: recent change, work-in-progess (if exists)
 - Domain Definition: interests and non-interests of this domain
 - Details: module structures and features of each module
+- Implementation: ascii tree of files and their roles for each platform (ios, android)
 - Revision history: bullets of date + one-liner
 
 ## Style
@@ -40,6 +41,7 @@ Default section order:
 - Follow the format. If you need to break the format, explain why
 - Prefer direct bullets with explicit names
 - DO NOT use unicode characters that are not in the keyboard
+	- Exception: file-structure trees may use box-drawing glyphs (`├──`, `└──`, `│`)
 
 Bad example:
 > SettingsStore persists key → Value. Each domain reads its typed settings through a thin accessor over the store; the store is the single runtime source of truth that overlay/camera/filename read from.

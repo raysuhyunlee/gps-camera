@@ -1,16 +1,7 @@
 import Foundation
 
-// TODO: filename domain — this is a minimal seam + default namer so camera can
-// name outputs today. When the `filename` domain lands (template, prefix,
-// suffix, dateFormat, auto-number as pro settings), move this to
-// `Domains/Filename/` and replace `DefaultFilenameProvider` with the real one.
-
-/// Names a captured file. Camera consumes this seam; it never builds names itself.
-protocol FilenameProviding {
-    /// Base name (no extension) for a capture at `date`, made unique via
-    /// `isTaken` (auto-number on collision).
-    nonisolated func makeName(for date: Date, isTaken: (String) -> Bool) -> String
-}
+// TODO: minimal namer until the full filename domain lands (template, prefix,
+// suffix, dateFormat, auto-number as pro settings — see filename.md).
 
 /// `IMG_<yyyyMMdd_HHmmss>`, auto-numbered on collision (`_1`, `_2`, ...).
 nonisolated struct DefaultFilenameProvider: FilenameProviding {

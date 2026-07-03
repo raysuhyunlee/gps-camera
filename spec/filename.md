@@ -2,10 +2,10 @@
 
 ## Status
 
-- 2026-07-03: Minimal `DefaultFilenameProvider` seam added under
-  `ios/gpscamera/Domains/Camera` so camera can name outputs
+- 2026-07-03: Minimal `DefaultFilenameProvider` seam
+  (`ios/gpscamera/Domains/Filename`) so camera can name outputs
   (`IMG_<timestamp>` + auto-number). Template/prefix/suffix/dateFormat settings
-  and the real domain pending.
+  pending.
 - 2026-06-30: Initial spec.
 
 ## Domain Definition
@@ -50,6 +50,23 @@
 
 - `filename.autoNumber` footnote: "Adds a number automatically when a file of the
   same name exists."
+
+## Implementation
+
+### iOS
+
+```
+ios/gpscamera/Domains/Filename/
+├── FilenameProviding.swift       - seam protocol
+└── DefaultFilenameProvider.swift - IMG_<timestamp> + auto-number
+ios/gpscameraTests/
+└── FilenameValueTests.swift      - filename value-type tests
+```
+
+- Stub for now: only `IMG_<timestamp>` + auto-number. Template/prefix/suffix/
+  dateFormat land with the settings framework.
+
+Android: planned.
 
 ## Revision History
 
