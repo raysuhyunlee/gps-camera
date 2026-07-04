@@ -29,6 +29,29 @@ nonisolated struct CaptureStore {
         try data.write(to: url, options: .atomic)
         return url
     }
+
+    /// Move a recorded file (e.g. a video temp) into the store under `name`.
+    func moveIn(from tempURL: URL, name: String, ext: String) throws -> URL {
+        let url = directory.appendingPathComponent("\(name).\(ext)")
+        try? FileManager.default.removeItem(at: url)
+        try FileManager.default.moveItem(at: tempURL, to: url)
+        return url
+    }
+}
+
+/// Add-only Camera Roll copy shared by photo + video capture. Revocation/denial
+/// skips silently; the capture already succeeded app-private (foundation
+/// permission-coupled policy).
+nonisolated enum CameraRoll {
+    static func copy(_ url: URL, as type: PHAssetResourceType) {
+        PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
+            guard status == .authorized else { return }
+            PHPhotoLibrary.shared().performChanges {
+                let request = PHAssetCreationRequest.forAsset()
+                request.addResource(with: type, fileURL: url, options: nil)
+            }
+        }
+    }
 }
 
 /// The photo capture pipeline (camera.md "Capture pipeline").
@@ -53,10 +76,11 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
     /// `snapshot` is captured by the caller at shutter time (nil = no fix / EXIF off).
     func capture(with session: CameraSession,
                  snapshot: LocationSnapshot?,
+                 shutterSound: Bool = true,
                  completion: @escaping (Result<URL, Error>) -> Void) {
         self.pendingSnapshot = snapshot
         self.completion = completion
-        session.capture(delegate: self)
+        session.capture(delegate: self, shutterSound: shutterSound)
     }
 
     // Runs on the capture session queue.
@@ -86,7 +110,7 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
         // saveOriginal is a no-op until overlay exists (original == overlaid).
 
         // 6. Copy to Camera Roll (add-only) when enabled.
-        if saveToPhotos { copyToCameraRoll(url) }
+        if saveToPhotos { CameraRoll.copy(url, as: .photo) }
 
         // 7. TODO: usage metrics (photo count) -> monetization interstitial.
 
@@ -109,18 +133,6 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
         CGImageDestinationAddImageFromSource(dest, src, 0, props as CFDictionary)
         guard CGImageDestinationFinalize(dest) else { return data }
         return out as Data
-    }
-
-    /// Add-only Camera Roll copy. Revocation/denial skips silently; the capture
-    /// already succeeded app-private (foundation permission-coupled policy).
-    private func copyToCameraRoll(_ url: URL) {
-        PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
-            guard status == .authorized else { return }
-            PHPhotoLibrary.shared().performChanges {
-                let request = PHAssetCreationRequest.forAsset()
-                request.addResource(with: .photo, fileURL: url, options: nil)
-            }
-        }
     }
 
     enum CaptureError: Error { case noData }

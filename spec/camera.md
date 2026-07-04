@@ -2,10 +2,15 @@
 
 ## Status
 
+- 2026-07-04: Camera view UI clarified + iOS aligned — top/bottom control
+  sections, GPS icon + tooltip, rotatable vs fixed controls (animated). Photo
+  gallery is a placeholder until the `gallery` domain lands.
+- 2026-07-04: iOS video mode + audio and orientation lock implemented.
+  Capture settings still hardcoded to defaults (`TODO: SettingsStore`). Deferred:
+  settings-framework wiring, overlay burn (overlay domain), saveOriginal
+  duplication (overlay domain), usage-metrics publish (monetization).
 - 2026-07-03: iOS Main screen + photo pipeline implemented
-  (`ios/gpscamera/Domains/Camera`). Deferred: video mode + audio, capture
-  settings (settings framework), overlay burn (overlay domain), saveOriginal
-  duplication.
+  (`ios/gpscamera/Domains/Camera`).
 - 2026-06-30: Initial spec.
 
 ## Domain Definition
@@ -30,18 +35,73 @@ Hosts, but does not own, the other domains' Main-screen pieces:
 - GPS accuracy indicator — from `location` (`accuracyLevel`)
 - Live overlay — from `overlay`
 - Pro banner — from `monetization`
+- Recent-capture thumbnail — from `gallery` (opens the gallery)
 
 ### Controls
 
-- Photo / video mode switch
+Three control types:
+
+- **Rotatable** — square (1:1); rotate in place to match device orientation with
+  an animated transition; freeze when `camera.orientationLock` is on, and while
+  recording (stay at the orientation recording started with). Members: GPS
+  status, flash (and future top-right controls), lens switch, photo gallery,
+  front/back switch.
+- **Fixed** — never rotate. Members: shutter, photo/video switch.
+- **Anchored** — keep a world-space anchor (e.g. top-middle): relocate to the
+  screen edge matching the device orientation and rotate upright, animated.
+  Freeze like rotatable controls (recording, `camera.orientationLock`).
+  Members: recording time.
+
+Individual controls:
+
+- GPS status — icon only, tinted by accuracy (green good / yellow normal /
+  red bad); tap shows a status tooltip (good / normal / bad). From `location`
+  `accuracyLevel`.
+- Photo/video switch
 - Lens / field-of-view switch (ultra-wide / wide / tele, as available)
 - Flash toggle
-- Front / back switch
+- Front/back switch
+- Photo gallery — recent-capture thumbnail; opens the gallery (`gallery` domain)
+- Shutter
+
+### Layout
+
+Portrait orientation. Two **control sections**, top and bottom, each a
+semi-transparent black bar so the preview shows through behind.
+
+- Top section
+	- GPS status — top left
+	- Other controls (flash, ...) — top right; grouped, but each rotates
+	  individually
+- Bottom section
+	- Photo gallery — bottom left
+	- Shutter — center
+	- Front/back switch — bottom right
+	- Photo/video switch — below the shutter
+- Lens selector — floats above the shutter, above (outside) the bottom section,
+  over the preview
+- Recording time — anchored at the world-space top-middle (portrait: inside the
+  top section; landscape: middle of the corresponding screen edge)
 
 ### Device Orientation
-- Controls and live overlay rotate based on current device orientation
-- When `camera.orientationLock` is on, rotation is frozen at the current
+
+- The interface is fixed in portrait; sections and fixed controls keep their
+  positions
+- Rotatable controls rotate in place to match device orientation (animated
+  transition); the live overlay rotates too (overlay domain)
+- While recording, all control rotation and the capture rotation freeze at the
+  orientation recording started with
+- When `camera.orientationLock` is on, rotation freezes at the current
   orientation (capture proceeds in the locked orientation)
+- Orientation changes never mutate the live capture graph; capture rotation is
+  applied at shutter / record start (mutating running connections flickers the
+  preview)
+
+### Preview Transitions
+
+- Lens / facing / photo-video switches freeze the last preview frame under a
+  blur until the new session graph is ready, then fade to live — the feed never
+  flickers to black (like the native camera app)
 
 ### Capture pipeline
 
@@ -78,6 +138,11 @@ Neither platform ever requests full photo-library **read** access.
   requested lazily on first video use.
 - Photo capture never configures the audio session
 	- the user's music/podcast keeps playing.
+- `camera.shutterSound` gates capture sounds: the photo shutter and the video
+  record start/stop sounds (system sounds, like the native camera).
+	- Photo shutter suppression is best-effort: some regions (e.g. JP/KR)
+	  force the sound at the OS level.
+	- TODO) Display a warning message under shutter sound setting item when the setting is off in this regions.
 
 ### Permissions
 
@@ -140,21 +205,31 @@ Neither platform ever requests full photo-library **read** access.
 
 ```
 ios/gpscamera/Domains/Camera/
-├── CameraView.swift          - Main screen: preview, GPS indicator, controls, orientation
-├── CameraController.swift    - ObservableObject; session + permission + shutter
-├── CameraSession.swift       - AVCaptureSession wrapper (facing, lens, flash, photo output)
-├── CameraPreview.swift       - AVCaptureVideoPreviewLayer host
-├── CameraAuthorization.swift - camera permission -> PermissionStatus
-├── PhotoCaptureService.swift - capture pipeline + CaptureStore (app-private + Camera Roll copy)
-└── GPSMetadata.swift         - LocationSnapshot -> EXIF GPS dictionary
+├── CameraView.swift              - Main screen: preview, GPS indicator, photo/video controls
+├── CameraController.swift        - ObservableObject; session + permissions + shutter/record
+├── CameraSession.swift           - AVCaptureSession wrapper (facing, lens, flash, mode, photo + movie + frame output)
+├── CameraPreview.swift           - AVCaptureVideoPreviewLayer host + freeze-blur transition
+├── CameraOrientation.swift       - device orientation -> control angle, capture rotation, anchor alignment
+├── CameraAuthorization.swift     - camera permission -> PermissionStatus
+├── MicrophoneAuthorization.swift - mic permission -> PermissionStatus (video only)
+├── PhotoCaptureService.swift     - photo pipeline + CaptureStore + CameraRoll (add-only copy)
+├── VideoCaptureService.swift     - video pipeline (movie output, ISO6709 GPS metadata)
+└── GPSMetadata.swift             - LocationSnapshot -> EXIF GPS dictionary
 ios/gpscameraTests/
-└── CameraValueTests.swift    - camera value-type tests
+└── CameraValueTests.swift        - camera value-type tests
 ```
 
 Android: planned.
 
 ## Revision History
 
+- 2026-07-04: Add anchored control type (recording time), freeze rotatables
+  while recording, freeze-blur preview transition on switches.
+- 2026-07-04: Clarify camera view UI (rotatable vs fixed controls, top/bottom
+  control sections, layout) + align iOS CameraView.
+- 2026-07-04: iOS video mode (movie output, lazy mic permission, ISO6709 GPS
+  metadata, PHOTO/VIDEO switch) + orientation lock (capture-rotation on the
+  output connections).
 - 2026-07-03: iOS Main screen (preview, GPS indicator, lens/flash/front-back
   controls) + photo capture pipeline (EXIF GPS, app-private store, Camera Roll
   add-only copy).

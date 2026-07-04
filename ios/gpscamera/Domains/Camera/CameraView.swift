@@ -1,12 +1,13 @@
 import SwiftUI
 
-/// The Main screen: live camera preview hosting the GPS indicator (from
-/// `location`) and the capture controls. Overlay + pro banner slot in later.
+/// The Main screen: live camera preview with the top/bottom control sections
+/// (camera.md "Layout"). Overlay + pro banner slot in later.
 struct CameraView: View {
     @ObservedObject var controller: CameraController
     @ObservedObject var location: LocationProvider
 
-    @State private var orientation = UIDevice.current.orientation
+    @State private var recordStart: Date?
+    @State private var showGPSTooltip = false
 
     var body: some View {
         ZStack {
@@ -14,8 +15,11 @@ struct CameraView: View {
 
             switch controller.authorization {
             case .authorized:
-                CameraPreview(session: controller.previewSession).ignoresSafeArea()
+                CameraPreview(session: controller.previewSession,
+                              freezeFrame: controller.freezeFrame)
+                    .ignoresSafeArea()
                 controls
+                if controller.isRecording { recordingIndicator }
             case .notDetermined:
                 ProgressView().tint(.white)
             case .denied:
@@ -23,60 +27,101 @@ struct CameraView: View {
             }
         }
         .onAppear {
+            // Interface is locked to portrait, so sections + fixed controls keep
+            // their positions; we track device orientation ourselves to rotate
+            // the rotatable controls in place (camera.md "Device Orientation").
+            UIDevice.current.beginGeneratingDeviceOrientationNotifications()
             controller.onAppear()
             location.requestPermission()
             location.start()
         }
-        .onDisappear { controller.onDisappear() }
+        .onDisappear {
+            controller.onDisappear()
+            UIDevice.current.endGeneratingDeviceOrientationNotifications()
+        }
+        .onChange(of: controller.isRecording) { _, recording in
+            recordStart = recording ? Date() : nil
+        }
         .onReceive(NotificationCenter.default.publisher(
             for: UIDevice.orientationDidChangeNotification)) { _ in
-            let o = UIDevice.current.orientation
-            if o.isValidInterfaceOrientation { orientation = o }
+            controller.deviceOrientationChanged(UIDevice.current.orientation)
         }
     }
 
-    // MARK: - Controls
+    // MARK: - Layout
 
     private var controls: some View {
-        VStack {
-            HStack {
-                gpsIndicator
-                Spacer()
-                flashButton
-            }
-            .padding(.horizontal)
-
+        VStack(spacing: 0) {
+            topSection
             Spacer()
-            if controller.availableLenses.count > 1 { lensSelector }
-            bottomBar
+            if controller.availableLenses.count > 1 {
+                lensSelector.padding(.bottom, 12)   // floats over the preview
+            }
+            bottomSection
         }
-        .padding(.vertical)
     }
 
-    private var gpsIndicator: some View {
+    private var topSection: some View {
+        HStack {
+            gpsStatus
+            Spacer()
+            otherControls
+        }
+        .padding(.horizontal, 12)
+        .padding(.bottom, 10)
+        .frame(maxWidth: .infinity)
+        .background(.black.opacity(0.4), ignoresSafeAreaEdges: .top)
+    }
+
+    private var bottomSection: some View {
+        VStack(spacing: 14) {
+            HStack {
+                galleryButton
+                Spacer()
+                shutterButton
+                Spacer()
+                facingButton
+            }
+            modeSwitch
+        }
+        .padding(.horizontal, 24)
+        .padding(.top, 16)
+        .frame(maxWidth: .infinity)
+        .background(.black.opacity(0.4), ignoresSafeAreaEdges: .bottom)
+    }
+
+    // MARK: - Rotatable controls (square, rotate with orientation)
+
+    private var gpsStatus: some View {
         let level = location.snapshot?.accuracyLevel
-        return Label {
-            Text(gpsText).font(.caption.monospacedDigit())
-        } icon: {
+        return Button { showGPSTooltip.toggle() } label: {
             Image(systemName: "location.fill")
+                .foregroundStyle(color(for: level))
+                .frame(width: 44, height: 44)
         }
-        .foregroundStyle(color(for: level))
-        .padding(.horizontal, 10).padding(.vertical, 6)
-        .background(.black.opacity(0.4), in: Capsule())
-        .rotationEffect(rotation)
+        .rotatable(rotation)
+        .popover(isPresented: $showGPSTooltip) {
+            Text(gpsStatusText(level))
+                .font(.caption)
+                .padding(8)
+                .presentationCompactAdaptation(.popover)
+        }
     }
 
-    private var gpsText: String {
-        guard let s = location.snapshot else { return "GPS --" }
-        return "GPS \(Int(s.accuracyMeters.rounded()))m"
+    /// Top-right group. Hypothetically grouped, but each rotates individually.
+    private var otherControls: some View {
+        HStack(spacing: 8) {
+            flashButton
+        }
     }
 
     private var flashButton: some View {
         Button { controller.toggleFlash() } label: {
             Image(systemName: controller.flashOn ? "bolt.fill" : "bolt.slash.fill")
-                .rotationEffect(rotation)
+                .foregroundStyle(.white)
+                .frame(width: 44, height: 44)
         }
-        .glyphStyle()
+        .rotatable(rotation)
     }
 
     private var lensSelector: some View {
@@ -88,41 +133,94 @@ struct CameraView: View {
                         .foregroundStyle(controller.lens == lens ? .yellow : .white)
                         .frame(width: 40, height: 40)
                         .background(.black.opacity(0.4), in: Circle())
-                        .rotationEffect(rotation)
                 }
+                .rotatable(rotation)
+                .disabled(controller.isRecording)
             }
         }
-        .padding(.bottom, 8)
     }
 
-    private var bottomBar: some View {
-        HStack {
-            // Mode switch — video disabled this increment.
-            Text("PHOTO").font(.caption.bold()).foregroundStyle(.yellow)
-                .rotationEffect(rotation)
-                .frame(width: 60)
-
-            Spacer()
-            shutterButton
-            Spacer()
-
-            Button { controller.toggleFacing() } label: {
-                Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
-                    .rotationEffect(rotation)
-            }
-            .glyphStyle()
-            .frame(width: 60)
+    // TODO: gallery domain — recent-capture thumbnail + open the gallery.
+    private var galleryButton: some View {
+        Button {} label: {
+            RoundedRectangle(cornerRadius: 8)
+                .fill(.white.opacity(0.15))
+                .frame(width: 44, height: 44)
+                .overlay(Image(systemName: "photo.on.rectangle").foregroundStyle(.white))
         }
-        .padding(.horizontal, 24)
+        .rotatable(rotation)
     }
+
+    private var facingButton: some View {
+        Button { controller.toggleFacing() } label: {
+            Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
+                .foregroundStyle(.white)
+                .frame(width: 44, height: 44)
+        }
+        .rotatable(rotation)
+        .disabled(controller.isRecording)
+    }
+
+    // MARK: - Anchored controls (world-space anchor: relocate + rotate)
+
+    /// Anchored to the world-space top-middle: relocates to the edge matching
+    /// the device orientation and rotates upright. Freezes while recording and
+    /// on orientation lock, like rotatable controls.
+    private var recordingIndicator: some View {
+        let orientation = controller.captureOrientation
+        return Label {
+            if let recordStart {
+                Text(timerInterval: recordStart...Date.distantFuture, countsDown: false)
+                    .font(.caption.monospacedDigit())
+            }
+        } icon: {
+            Circle().fill(.red).frame(width: 8, height: 8)
+        }
+        .foregroundStyle(.white)
+        .padding(.horizontal, 10).padding(.vertical, 6)
+        .background(.black.opacity(0.4), in: Capsule())
+        .rotationEffect(CameraOrientation.controlAngle(for: orientation))
+        .frame(maxWidth: .infinity, maxHeight: .infinity,
+               alignment: CameraOrientation.anchorAlignment(for: orientation))
+        .padding(8)
+        .animation(.easeInOut(duration: 0.25), value: orientation)
+    }
+
+    // MARK: - Fixed controls (never rotate)
 
     private var shutterButton: some View {
         Button { controller.shutter() } label: {
-            Circle().fill(.white).frame(width: 70, height: 70)
-                .overlay(Circle().stroke(.white, lineWidth: 4).padding(4))
-                .opacity(controller.isCapturing ? 0.5 : 1)
+            ZStack {
+                Circle().stroke(.white, lineWidth: 4).frame(width: 70, height: 70)
+                if controller.mode == .video {
+                    RoundedRectangle(cornerRadius: controller.isRecording ? 6 : 29)
+                        .fill(.red)
+                        .frame(width: controller.isRecording ? 32 : 58,
+                               height: controller.isRecording ? 32 : 58)
+                } else {
+                    Circle().fill(.white).frame(width: 58, height: 58)
+                        .opacity(controller.isCapturing ? 0.5 : 1)
+                }
+            }
         }
         .disabled(controller.isCapturing)
+        .animation(.easeInOut(duration: 0.2), value: controller.isRecording)
+    }
+
+    /// Liquid Glass segmented control (iOS 26 default for `.segmented`).
+    private var modeSwitch: some View {
+        Picker("Mode", selection: Binding(
+            get: { controller.mode },
+            set: { controller.setMode($0) }
+        )) {
+            ForEach([CameraMode.photo, .video], id: \.self) { mode in
+                Text(label(for: mode)).tag(mode)
+            }
+        }
+        .pickerStyle(.segmented)
+        .frame(width: 180)
+        .background(.gray.opacity(0.4), in: Capsule())   // keeps it legible over bright previews
+        .disabled(controller.isRecording)
     }
 
     private var deniedState: some View {
@@ -138,15 +236,10 @@ struct CameraView: View {
         .foregroundStyle(.white)
     }
 
-    // MARK: - Orientation
+    // MARK: - Helpers
 
     private var rotation: Angle {
-        switch orientation {
-        case .landscapeLeft:      return .degrees(90)
-        case .landscapeRight:     return .degrees(-90)
-        case .portraitUpsideDown: return .degrees(180)
-        default:                  return .degrees(0)
-        }
+        CameraOrientation.controlAngle(for: controller.captureOrientation)
     }
 
     private func color(for level: AccuracyLevel?) -> Color {
@@ -158,6 +251,15 @@ struct CameraView: View {
         }
     }
 
+    private func gpsStatusText(_ level: AccuracyLevel?) -> String {
+        switch level {
+        case .good:   return "Good"
+        case .normal: return "Normal"
+        case .bad:    return "Bad"
+        case nil:     return "No signal"
+        }
+    }
+
     private func label(for lens: Lens) -> String {
         switch lens {
         case .ultraWide: return ".5"
@@ -165,15 +267,19 @@ struct CameraView: View {
         case .tele:      return "2x"
         }
     }
+
+    private func label(for mode: CameraMode) -> String {
+        switch mode {
+        case .photo: return "PHOTO"
+        case .video: return "VIDEO"
+        }
+    }
 }
 
 private extension View {
-    /// Shared look for the round white control glyphs.
-    func glyphStyle() -> some View {
-        font(.title3)
-            .foregroundStyle(.white)
-            .frame(width: 44, height: 44)
-            .background(.black.opacity(0.4), in: Circle())
+    /// Rotatable control: rotates in place to match device orientation, animated.
+    func rotatable(_ angle: Angle) -> some View {
+        rotationEffect(angle).animation(.easeInOut(duration: 0.25), value: angle)
     }
 }
 
