@@ -18,13 +18,11 @@ struct OverlayLayer: View {
             }
             if settings.showWatermark {
                 Text("Geotagged with GPS Camera")
-                    .font(.system(size: settings.style.fontSize * 0.85,
-                                  design: settings.style.fontDesign.design).italic())
+                    .font(settings.style.textFont(settings.style.fontSize * 0.85).italic())
                     .opacity(0.7)
             }
         }
-        .font(.system(size: settings.style.fontSize, weight: .medium,
-                      design: settings.style.fontDesign.design).monospacedDigit())
+        .font(settings.style.textFont(settings.style.fontSize))
         .foregroundStyle(settings.style.textColor)
         .padding(.horizontal, 10)
         .padding(.vertical, 8)

@@ -6,6 +6,7 @@
 
 import Testing
 import Foundation
+import UIKit
 @testable import gpscamera
 
 private nonisolated struct StubProvider: SettingsProviding {
@@ -71,5 +72,21 @@ struct SettingsStoreTests {
         #expect(registry.path(to: "stub.flag") == ["root"])
         #expect(registry.path(to: "stub.choice") == ["root", "sub"])
         #expect(registry.path(to: "missing").isEmpty)
+    }
+}
+
+/// Every bundled font family must register and resolve, or the overlay font
+/// select silently falls back to the system face.
+struct BundledFontTests {
+    /// UIFont(name:) nil = the family did not register; the overlay font
+    /// select would silently fall back to the system face.
+    /// (UIFont.familyNames is unreliable here: some registered fonts, e.g.
+    /// Bebas Neue, resolve fine but never show up in that list.)
+    @Test func allCatalogFamiliesResolve() {
+        BundledFonts.registerAll()
+        for family in OverlayFontCatalog.families {
+            #expect(UIFont(name: family, size: 12) != nil,
+                    "missing font family: \(family)")
+        }
     }
 }

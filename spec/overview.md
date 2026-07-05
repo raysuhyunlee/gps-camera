@@ -99,7 +99,7 @@ Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,
 | ----- | ------------------------------ | -------------- |
 | 0     | Pro banner                     | `monetization` |
 | 10    | General → Language             | `foundation`   |
-| 20    | Capture → Photo / Video / EXIF | `camera`       |
+| 20    | Capture → Photo / Video        | `camera`       |
 | 30    | Overlay                        | `overlay`      |
 | 40    | Filename                       | `filename`     |
 | 90    | Restore purchase               | `monetization` |

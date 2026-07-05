@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // TODO: L10n framework — keys render as raw English until it lands.
 typealias L10nKey = String
@@ -17,6 +18,10 @@ nonisolated enum SettingPermission { case location, photoAddOnly }
 nonisolated struct SelectOption: Identifiable {
     let value: String
     let titleKey: L10nKey
+    /// Renders the option label in this font (e.g. a font picker previews
+    /// each choice in its own typeface). Selects with any previewed option
+    /// use the navigation-link style: menus strip custom fonts.
+    var previewFont: Font? = nil
     var id: String { value }
 }
 
@@ -50,6 +55,9 @@ nonisolated struct SettingItem: Identifiable {
     var defaultValue: SettingValue? = nil   // nil for navigation/action/custom
     var gate: SettingGate = .free
     var visibleWhen: ((SettingsStore) -> Bool)? = nil
+    /// False -> the row renders greyed-out and inert (e.g. a master switch is
+    /// off). Unlike `visibleWhen`, the row stays visible.
+    var enabledWhen: ((SettingsStore) -> Bool)? = nil
     var requiresPermission: SettingPermission? = nil
 
     var id: String { key }

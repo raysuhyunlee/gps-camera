@@ -82,10 +82,14 @@ struct CameraView: View {
             topSection
             // Live overlay layer — hosted, not owned (overlay domain): the
             // overlay anchors + drags itself within the area between the
-            // control sections, following the capture orientation.
-            overlay.liveLayer(snapshot: location.snapshot,
-                              orientation: controller.captureOrientation)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            // control sections, following the capture orientation. The ZStack
+            // keeps this flexible region expanded even when the overlay is
+            // off (liveLayer returns EmptyView, which vanishes from layout).
+            ZStack {
+                overlay.liveLayer(snapshot: location.snapshot,
+                                  orientation: controller.captureOrientation)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             if controller.availableLenses.count > 1 {
                 lensSelector.padding(.bottom, 12)   // floats over the preview
             }

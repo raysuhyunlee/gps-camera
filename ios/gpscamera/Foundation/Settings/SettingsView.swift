@@ -95,9 +95,10 @@ private struct SettingRow: View {
 
     var body: some View {
         let locked = item.gate == .pro && !entitled()
+        let dimmed = !(item.enabledWhen?(store) ?? true)
         let row = VStack(alignment: .leading, spacing: 4) {
             HStack {
-                control.disabled(locked)
+                control.disabled(locked || dimmed)
                 if locked {
                     Image(systemName: "lock.fill").foregroundStyle(.secondary)
                 }
@@ -106,7 +107,8 @@ private struct SettingRow: View {
                 Text(footnote).font(.footnote).foregroundStyle(.secondary)
             }
         }
-        if locked {
+        .opacity(dimmed ? 0.4 : 1)
+        if locked, !dimmed {
             row.contentShape(Rectangle())
                 .onTapGesture { onProLock(item.key) }   // -> paywall (monetization)
         } else {
@@ -120,8 +122,15 @@ private struct SettingRow: View {
         case .toggle:
             Toggle(item.titleKey, isOn: toggleBinding)
         case .select(let options):
-            Picker(item.titleKey, selection: stringBinding) {
-                ForEach(options) { Text($0.titleKey).tag($0.value) }
+            let picker = Picker(item.titleKey, selection: stringBinding) {
+                ForEach(options) {
+                    Text($0.titleKey).font($0.previewFont).tag($0.value)
+                }
+            }
+            if options.contains(where: { $0.previewFont != nil }) {
+                picker.pickerStyle(.navigationLink)
+            } else {
+                picker
             }
         case .stepper(let range, let step):
             Stepper(value: numberBinding, in: range, step: step) {
@@ -140,6 +149,8 @@ private struct SettingRow: View {
                     .multilineTextAlignment(.trailing)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
+                    .submitLabel(.done)   // renderer policy: settings text is
+                                          // always a one-line "done" entry
             }
         case .orderList(let options):
             NavigationLink {
@@ -214,6 +225,15 @@ private struct OrderListEditor: View {
     let options: [OrderListOption]
     @Binding var included: [String]
 
+    /// Distinct row identity per section. Included and excluded rows must never
+    /// share an id inside the one List: when an item switches sections, List
+    /// diffing would reuse the old row (a ghost without edit accessories whose
+    /// tap re-runs the include action, duplicating the item).
+    private struct ExcludedRow: Identifiable {
+        let option: OrderListOption
+        var id: String { "excluded." + option.value }
+    }
+
     var body: some View {
         List {
             Section("Included") {
@@ -224,20 +244,28 @@ private struct OrderListEditor: View {
                 .onDelete { included.remove(atOffsets: $0) }
             }
             let excluded = options.filter { !included.contains($0.value) }
+                .map(ExcludedRow.init)
             if !excluded.isEmpty {
                 Section("Excluded") {
-                    ForEach(excluded) { option in
+                    ForEach(excluded) { row in
                         Button {
-                            withAnimation { included.append(option.value) }
+                            withAnimation { include(row.option.value) }
                         } label: {
-                            Label(option.titleKey, systemImage: "plus.circle.fill")
+                            Label(row.option.titleKey, systemImage: "plus.circle.fill")
                         }
+                        .moveDisabled(true)
+                        .deleteDisabled(true)
                     }
                 }
             }
         }
         .environment(\.editMode, .constant(.active))
         .navigationTitle(title)
+    }
+
+    private func include(_ value: String) {
+        guard !included.contains(value) else { return }
+        included.append(value)
     }
 
     private func label(_ id: String) -> String {

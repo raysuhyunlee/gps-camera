@@ -75,7 +75,9 @@ Supported items:
 
 ### Styling
 
-- font 
+- font — 4 system designs (system / serif / rounded / mono) + 20 bundled
+  Google Fonts (OFL; files + licenses under `Resources/Fonts`, registered at
+  startup by foundation `BundledFonts`; catalog in `OverlayFontCatalog`)
 - font size 
 - text color 
 - background color 
@@ -87,6 +89,11 @@ Supported items:
 
 ## Settings
 
+- `overlay.enabled` is the **master switch**: while off, every other overlay
+  row (including the Display items navigation) is greyed-out and inert.
+- `overlay.item.*` toggles live in a **Display items** sub-section
+  (`Control.navigation` from the Overlay section).
+
 | key                         | title                               | control                  | default | gate                          |
 | --------------------------- | ----------------------------------- | ------------------------ | ------- | ----------------------------- |
 | `overlay.enabled`           | Include overlay in photo/video      | toggle                   | on      | free                          |
@@ -95,7 +102,7 @@ Supported items:
 | `overlay.item.*`            | Display items (one toggle per item) | toggle                   | on      | free                          |
 | `overlay.item.watermark`    | Watermark                           | toggle                   | on      | **pro** (free cannot disable) |
 | `overlay.style.font`        | Font                                | select                   | system  | **pro**                       |
-| `overlay.style.size`        | Font size                           | stepper                  | default | **pro**                       |
+| `overlay.style.size`        | Font size                           | stepper                  | 12 pt   | **pro**                       |
 | `overlay.style.textColor`   | Text color                          | color                    | —       | **pro**                       |
 | `overlay.style.bgColor`     | Background color                    | color                    | —       | **pro**                       |
 | `overlay.style.bgOpacity`   | Background opacity                  | slider                   | —       | **pro**                       |
@@ -124,6 +131,9 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-05: 20 bundled OFL Google Fonts added to the font select.
+- 2026-07-05: `overlay.enabled` made the master switch (greys out the rest);
+  item toggles moved to a Display items sub-section; default font size 12 pt.
 - 2026-07-05: Settings read from SettingsStore (items + style + persisted
   anchor); font design select added.
 - 2026-07-04: Icon + label item rows; 9-anchor world-space placement with

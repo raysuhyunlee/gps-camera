@@ -17,6 +17,7 @@ struct gpscameraApp: App {
     private let entitlement: EntitlementProviding = FixedEntitlement()
 
     init() {
+        BundledFonts.registerAll()   // before any UI renders
         // Registry before consumers: it registers every setting's default.
         // Section placement is owned here (overview.md "Settings").
         let store = SettingsStore()

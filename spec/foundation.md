@@ -38,6 +38,9 @@
 - The generic settings-control widgets (toggle, select, stepper, slider, color,
   text, orderList)
 	- follows the native ui elements by default
+- Bundled fonts: `Resources/Fonts` ships OFL-licensed families (+ license
+  texts); `BundledFonts.registerAll()` registers them at startup (runtime
+  CoreText registration, no Info.plist). Domains reference families by name.
 
 ### Settings Framework
 
@@ -46,7 +49,9 @@ The Settings screen renders registered sections generically and knows no domain.
 ```
 Control = one of:
     toggle                  // booleans
-    select(options)         // resolution, format, fps, font, formats, unit
+    select(options)         // resolution, format, fps, font, formats, unit;
+                            //   an option may carry a preview font (font picker
+                            //   rows render in their own typeface)
     stepper(range, step)    // font size
     slider(range)           // opacity
     color                   // text / background color
@@ -66,7 +71,9 @@ SettingItem {
     control              // one of Control (above)
     defaultValue
     gate                 // free | pro
-    visibleWhen?         // predicate over another setting's value
+    visibleWhen?         // predicate over another setting's value; hides the row
+    enabledWhen?         // predicate; false greys the row out but keeps it
+                         //   visible (e.g. a master switch is off)
     requiresPermission?  // OS permission the item depends on (add-only photo, location, …)
 }
 
@@ -90,6 +97,24 @@ SettingsProviding {      // the seam each domain conforms to
   paywall on tap (entitlement from `monetization`).
 - **`custom` controls**: the providing domain supplies the view and binds it to
   its own `key`
+
+#### UI interests vs config interests
+
+The schema carries **semantic config only**: keys, defaults, control kind +
+option values, gating, dependencies, permissions. Everything about how that
+config *looks or feels* belongs elsewhere:
+
+- **Renderer policy** (SettingsView): look-and-feel that applies uniformly —
+  keyboard submit key on text items, picker style choice, highlight timing.
+  Never a schema field; changing it touches only the renderer.
+- **Composition root** (overview.md): placement — section order.
+- **Presentation hints** (schema, exception): per-item look data only the
+  domain can supply (e.g. a font option previews in its own typeface). Optional
+  fields, named as presentation (`previewFont`), read by nothing but the
+  renderer.
+
+New need? Prefer renderer policy; add a hint field only when the renderer
+cannot know it.
 
 #### Permission-coupled settings
 
@@ -142,6 +167,7 @@ Note: Mismatch popup only shows when the user had granted the permission and rev
 ```
 ios/gpscamera/Foundation/
 ├── PermissionStatus.swift - shared authorization enum
+├── BundledFonts.swift     - runtime registration of Resources/Fonts
 └── Settings/
     ├── SettingsSchema.swift      - Control, SettingItem, SettingsSection, SettingsProviding
     ├── SettingValue.swift        - typed value (bool/string/number/stringList) <-> UserDefaults
@@ -156,6 +182,12 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-05: UI-vs-config boundary documented (renderer policy / root
+  placement / presentation hints); text items submit with a Done key.
+- 2026-07-05: Bundled-font registration (`BundledFonts`) for the OFL fonts
+  under `Resources/Fonts`.
+- 2026-07-05: `enabledWhen` added to `SettingItem` (grey-out under a master
+  switch). orderList editor: section-scoped row identity (fixes ghost rows).
 - 2026-07-05: iOS settings framework (schema, store, registry, renderer,
   permission coupling). orderList clarified: reorder + include/exclude.
 - 2026-06-30: Initial foundation spec

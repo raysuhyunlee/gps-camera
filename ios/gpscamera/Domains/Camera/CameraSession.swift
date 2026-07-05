@@ -62,7 +62,7 @@ nonisolated final class CameraSession {
     func configure(completion: (() -> Void)? = nil) {
         queue.async { [self] in
             session.beginConfiguration()
-            let preset = mode == .video ? quality.videoPreset : quality.photoPreset
+            let preset = mode == .video ? quality.videoPreset : .photo
             session.sessionPreset = session.canSetSessionPreset(preset) ? preset
                 : (mode == .video ? .high : .photo)
             if let videoInput { session.removeInput(videoInput) }
@@ -81,6 +81,7 @@ nonisolated final class CameraSession {
             configureAudio()
             configureMovieOutput()
             if let device { configureFrameRate(device) }
+            configurePhotoDimensions()
             configureFrameStyle()
             session.commitConfiguration()
             if let completion { DispatchQueue.main.async(execute: completion) }
@@ -138,6 +139,7 @@ nonisolated final class CameraSession {
             } else {
                 settings = AVCapturePhotoSettings()
             }
+            settings.maxPhotoDimensions = photoOutput.maxPhotoDimensions
             if photoOutput.supportedFlashModes.contains(flashMode) {
                 settings.flashMode = flashMode
             }
@@ -196,6 +198,23 @@ nonisolated final class CameraSession {
         frameOutput.alwaysDiscardsLateVideoFrames = true
         frameOutput.setSampleBufferDelegate(frameStore, queue: frameQueue)
         session.addOutput(frameOutput)
+    }
+
+    /// camera.photo.resolution: the largest supported size not exceeding the
+    /// chosen one (nil / device swap -> largest available). Must re-run every
+    /// configure: the active format owns the supported list.
+    private func configurePhotoDimensions() {
+        guard let device = videoInput?.device else { return }
+        let supported = device.activeFormat.supportedMaxPhotoDimensions
+            .sorted { Int64($0.width) * Int64($0.height) < Int64($1.width) * Int64($1.height) }
+        guard let largest = supported.last else { return }
+        if let target = quality.photo {
+            photoOutput.maxPhotoDimensions = supported.last {
+                Int64($0.width) * Int64($0.height) <= target.area
+            } ?? largest
+        } else {
+            photoOutput.maxPhotoDimensions = largest
+        }
     }
 
     /// camera.video.fps, best-effort: falls back to 30 when the active format

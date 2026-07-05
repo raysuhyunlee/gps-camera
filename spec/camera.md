@@ -173,16 +173,22 @@ Neither platform ever requests full photo-library **read** access.
 ## Settings
 
 ### General
-| key                     | title            | control | default | gate |
-| ----------------------- | ---------------- | ------- | ------- | ---- |
-| `camera.shutterSound`   | Shutter sound    | toggle  | on      | free |
-| `camera.orientationLock`| Orientation lock | toggle  | off     | free |
+| key                     | title                 | control | default | gate | requiresPermission |
+| ----------------------- | --------------------- | ------- | ------- | ---- | ------------------ |
+| `camera.shutterSound`   | Shutter sound         | toggle  | on      | free | —                  |
+| `camera.orientationLock`| Orientation lock      | toggle  | off     | free | —                  |
+| `camera.exif.location`  | Include EXIF location | toggle  | on      | free | location           |
+
+- `camera.exif.location` sits at the top level of the Capture section (not in a
+  sub-section). Footnote: "Includes location data in the photo file." If
+  location is denied/revoked, EXIF location is skipped and capture still
+  succeeds — per the permission-coupled policy in foundation.md.
 
 ### Photo
 
 | key                         | title                          | control | default | gate | requiresPermission   |
 | --------------------------- | ------------------------------ | ------- | ------- | ---- | -------------------- |
-| `camera.photo.resolution`   | Resolution                     | select  | max     | free | —                    |
+| `camera.photo.resolution`   | Resolution                     | select  | highest | free | —                    |
 | `camera.photo.format`       | Format                         | select  | JPG     | free | —                    |
 | `camera.photo.saveOriginal` | Also save original             | toggle  | on      | free | —                    |
 | `camera.saveToPhotos`       | Save to Camera Roll (iOS only) | toggle  | on      | free | add-only photo (iOS) |
@@ -195,18 +201,13 @@ Neither platform ever requests full photo-library **read** access.
 
 | key | title | control | default | gate |
 |---|---|---|---|---|
-| `camera.video.resolution` | Resolution | select | max | free |
+| `camera.video.resolution` | Resolution | select | highest | free |
 | `camera.video.fps` | FPS | select | 30 | free |
 
-### EXIF
-
-| key | title | control | default | gate | requiresPermission |
-|---|---|---|---|---|---|
-| `camera.exif.location` | Include EXIF location | toggle | on | free | location |
-
-- `camera.exif.location` footnote: "Includes location data in the photo file."
-  If location is denied/revoked, EXIF location is skipped and capture still
-  succeeds — per the permission-coupled policy in foundation.md.
+- Resolution options are concrete values read from the hardware (back wide
+  camera), never a literal "max": photo lists its 4:3 sizes as "N MP (WxH)",
+  video lists 4K/1080p/720p as supported. Default = highest available. At
+  capture, the session clamps to what the active format supports.
 
 ## Implementation
 
@@ -233,6 +234,10 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-05: EXIF location toggle moved to the top level of the Capture
+  section (EXIF sub-section removed).
+- 2026-07-05: Resolution selects list concrete hardware values; default is the
+  highest available.
 - 2026-07-05: Wire all capture settings to the settings framework; add the
   settings gear + mismatch popup to Main; HEIC format + resolution/fps applied
   to the session.
