@@ -16,7 +16,8 @@
 
 - Built-in gallery (in-app), not the system photo library picker.
 - Grid of captured photos/videos, newest first; tap to view full screen.
-- Full-screen viewer: horizontal paging, videos play inline.
+- Full-screen viewer: horizontal paging, videos play inline; filename shown as
+  the title (tap for the untruncated name).
 - Per-item actions: share (share sheet), delete (with confirmation).
 - Reads the capture store as defined in camera.md (Android: own `MediaStore`
   entries; iOS: app-private store) - never the full system library, no read

@@ -2,21 +2,44 @@ import AVKit
 import SwiftUI
 
 /// Full-screen pager over the gallery with per-item share + delete (gallery.md).
+/// Paging ScrollView, not TabView(.page): the toolbar title re-render mid-swipe
+/// left TabView transitions stuck between pages.
 struct GalleryDetailView: View {
     @ObservedObject var model: GalleryModel
-    @State var current: GalleryItem
     @Environment(\.dismiss) private var dismiss
+    @State private var currentID: URL?
     @State private var confirmDelete = false
+    @State private var showFullTitle = false
+    @State private var pagerWidth: CGFloat = 0
+
+    init(model: GalleryModel, current: GalleryItem) {
+        self.model = model
+        _currentID = State(initialValue: current.url)
+    }
+
+    private var current: GalleryItem? {
+        model.items.first { $0.url == currentID } ?? model.items.first
+    }
 
     var body: some View {
         NavigationStack {
-            TabView(selection: $current) {
-                ForEach(model.items) { item in
-                    page(for: item).tag(item)
+            ScrollView(.horizontal) {
+                LazyHStack(spacing: 0) {
+                    ForEach(model.items) { item in
+                        page(for: item)
+                            .containerRelativeFrame(.horizontal)
+                    }
                 }
+                .scrollTargetLayout()
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            .scrollTargetBehavior(.paging)
+            .scrollPosition(id: $currentID)
+            .scrollIndicators(.hidden)
             .background(.black)
+            // Screen width, so the title cap below scales with the device.
+            .onGeometryChange(for: CGFloat.self) { $0.size.width } action: {
+                pagerWidth = $0
+            }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -24,15 +47,33 @@ struct GalleryDetailView: View {
                 }
                 // Explicit principal item: a plain navigationTitle renders
                 // black-on-black over the transparent bar in light mode.
+                // Tap shows the untruncated name.
                 ToolbarItem(placement: .principal) {
-                    Text(current.url.lastPathComponent)
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                        .lineLimit(1)
+                    Button { showFullTitle = true } label: {
+                        Text(current?.url.lastPathComponent ?? "")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundStyle(.white)
+                            .lineLimit(1)
+                            // Cap the width so long names truncate instead of
+                            // overlapping the bar buttons: 45% of the screen
+                            // leaves room for the 3 buttons on any device.
+                            // Middle keeps the distinct tail visible; the full
+                            // name is in the popover.
+                            .truncationMode(.middle)
+                            .frame(maxWidth: max(120, pagerWidth * 0.45))
+                    }
+                    .popover(isPresented: $showFullTitle) {
+                        Text(current?.url.lastPathComponent ?? "")
+                            .font(.caption)
+                            .padding(8)
+                            .presentationCompactAdaptation(.popover)
+                    }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    ShareLink(item: current.url) {
-                        Image(systemName: "square.and.arrow.up")
+                    if let current {
+                        ShareLink(item: current.url) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
@@ -56,9 +97,10 @@ struct GalleryDetailView: View {
     }
 
     private func deleteCurrent() {
+        guard let current else { return }
         let next = model.items.nextSelection(afterDeleting: current)
         model.delete(current)
-        if let next { current = next } else { dismiss() }
+        if let next { currentID = next.url } else { dismiss() }
     }
 }
 
