@@ -6,6 +6,8 @@ struct CameraView: View {
     @ObservedObject var controller: CameraController
     @ObservedObject var location: LocationProvider
     let overlay: OverlayRendering
+    /// Gallery seam; the recent-capture thumbnail control (opens the gallery).
+    let gallery: GalleryProviding
     let settings: SettingsStore
     let registry: SettingsRegistry
     /// Monetization seam; gates pro settings rows (FixedEntitlement until IAP).
@@ -195,15 +197,11 @@ struct CameraView: View {
         }
     }
 
-    // TODO: gallery domain - recent-capture thumbnail + open the gallery.
+    /// Recent-capture thumbnail - hosted, not owned (gallery domain).
     private var galleryButton: some View {
-        Button {} label: {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(.white.opacity(0.15))
-                .frame(width: 44, height: 44)
-                .overlay(Image(systemName: "photo.on.rectangle").foregroundStyle(.white))
-        }
-        .rotatable(rotation)
+        gallery.thumbnailButton()
+            .rotatable(rotation)
+            .disabled(controller.isRecording)
     }
 
     private var facingButton: some View {
@@ -351,6 +349,7 @@ private extension View {
                                                    filename: DefaultFilenameProvider(store: store),
                                                    store: store),
                       location: location, overlay: overlay,
+                      gallery: Gallery(store: CaptureStore()),
                       settings: store, registry: registry,
                       entitlement: FixedEntitlement())
 }

@@ -12,6 +12,7 @@ struct gpscameraApp: App {
     @StateObject private var location: LocationProvider
     @StateObject private var camera: CameraController
     private let overlay: OverlayRenderer
+    private let gallery: GalleryProviding
     private let store: SettingsStore
     private let registry: SettingsRegistry
     private let entitlement: EntitlementProviding = FixedEntitlement()
@@ -31,6 +32,8 @@ struct gpscameraApp: App {
         self.store = store
         self.registry = registry
         self.overlay = overlay
+        // Gallery browses the same app-private store the capture services write.
+        self.gallery = Gallery(store: CaptureStore())
         _location = StateObject(wrappedValue: location)
         _camera = StateObject(wrappedValue: CameraController(
             location: location, overlay: overlay,
@@ -40,7 +43,7 @@ struct gpscameraApp: App {
     var body: some Scene {
         WindowGroup {
             CameraView(controller: camera, location: location, overlay: overlay,
-                       settings: store, registry: registry,
+                       gallery: gallery, settings: store, registry: registry,
                        entitlement: entitlement)
         }
     }

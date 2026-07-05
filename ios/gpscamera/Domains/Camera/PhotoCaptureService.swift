@@ -4,9 +4,10 @@ import Photos
 import UIKit
 import UniformTypeIdentifiers
 
-/// App-private capture store - the gallery's future source of truth (camera.md
+/// App-private capture store - the gallery's source of truth (camera.md
 /// "Storage"). Lives under Application Support; never touches the system library.
-nonisolated struct CaptureStore {
+/// Gallery reads it through the `CaptureStoreBrowsing` seam.
+nonisolated struct CaptureStore: Sendable {
     let directory: URL
 
     init() {
@@ -28,6 +29,7 @@ nonisolated struct CaptureStore {
     func write(_ data: Data, name: String, ext: String) throws -> URL {
         let url = directory.appendingPathComponent("\(name).\(ext)")
         try data.write(to: url, options: .atomic)
+        NotificationCenter.default.post(name: .captureStoreDidChange, object: nil)
         return url
     }
 
@@ -36,6 +38,7 @@ nonisolated struct CaptureStore {
         let url = directory.appendingPathComponent("\(name).\(ext)")
         try? FileManager.default.removeItem(at: url)
         try FileManager.default.moveItem(at: tempURL, to: url)
+        NotificationCenter.default.post(name: .captureStoreDidChange, object: nil)
         return url
     }
 }

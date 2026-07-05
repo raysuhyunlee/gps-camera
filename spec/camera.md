@@ -2,6 +2,9 @@
 
 ## Status
 
+- 2026-07-05: Gallery wired: Main hosts the recent-thumbnail control
+  (`GalleryProviding`); the capture store publishes `CaptureStoreBrowsing`
+  (list newest-first, delete) and posts `captureStoreDidChange` on write/delete.
 - 2026-07-05: Capture settings wired to the settings framework (no more
   hardcoded defaults): shutter sound, orientation lock, photo resolution +
   format (JPG/HEIC), save original, save to Camera Roll, video resolution +
@@ -169,7 +172,9 @@ Neither platform ever requests full photo-library **read** access.
 	- `LocationProviding`
 	- naming from `filename` domain
 	- `EntitlementProviding` (pro gating for the settings sheet)
+	- `GalleryProviding` (recent-thumbnail control hosted on Main)
 - publishes
+	- `CaptureStoreBrowsing` (gallery reads + deletes store entries)
 	- usage-metrics (photo count)
 
 ## Settings
@@ -225,6 +230,7 @@ ios/gpscamera/Domains/Camera/
 ├── CameraOrientation.swift       - device orientation -> control angle, capture rotation, anchor alignment
 ├── CameraAuthorization.swift     - camera permission -> PermissionStatus
 ├── MicrophoneAuthorization.swift - mic permission -> PermissionStatus (video only)
+├── CaptureStoreBrowsing.swift    - seam consumed by gallery: browse/delete + change notification
 ├── PhotoCaptureService.swift     - photo pipeline + CaptureStore + CameraRoll (add-only copy)
 ├── VideoCaptureService.swift     - video pipeline (movie output, ISO6709 GPS metadata)
 └── GPSMetadata.swift             - LocationSnapshot -> EXIF GPS dictionary
@@ -236,6 +242,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-05: Gallery button replaces the placeholder (hosted `GalleryProviding`
+  control); `CaptureStoreBrowsing` seam + `captureStoreDidChange` notification.
 - 2026-07-05: CameraView consumes `EntitlementProviding` directly (no closure
   default); dev backdoor to the location debug surface (long-press GPS icon).
 - 2026-07-05: EXIF location toggle moved to the top level of the Capture

@@ -5,6 +5,8 @@
 
 ## Status
 
+- 2026-07-05: Gallery domain live on iOS; camera/gallery seams added to the
+  wiring (`CaptureStoreBrowsing`, `GalleryProviding`).
 - 2026-07-05: Settings screen live on iOS (sheet from Main's gear control):
   registry-rendered sections for camera (20) / overlay (30) / filename (40).
   Pending sections: pro banner, General/Language, restore, feedback, about.
@@ -69,7 +71,12 @@ Only these cross-domain seams exist. Everything else is internal.
 	- renders an overlay layer.
 - **camera** 
 	- consumes `overlay` (render into capture), `location` (EXIF write),
-  `filename` (name the output), `monetization` (capture-count → ad trigger).
+  `filename` (name the output), `gallery` (recent-thumbnail control on Main),
+  `monetization` (capture-count → ad trigger).
+	- publishes the capture store (browse/delete), read by `gallery`.
+- **gallery**
+	- consumes the capture store; renders the grid, viewer, and the
+  recent-thumbnail control hosted on Main.
 - **filename** 
 	- consumes `LocationSnapshot` + its template settings
 	* output name.
@@ -78,7 +85,8 @@ Only these cross-domain seams exist. Everything else is internal.
 	- owns ads and the nudge orchestrator.
 
 Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,
-`EntitlementProviding`. Domains never import each other's UI.
+`CaptureStoreBrowsing`, `GalleryProviding`, `EntitlementProviding`. Domains
+never import each other's UI.
 
 ### SOLID (minimally)
 
@@ -108,6 +116,7 @@ Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,
 
 ## Revision History
 
+- 2026-07-05: Gallery domain wired (capture-store seam, Main thumbnail control).
 - 2026-07-05: Settings screen composed at the root (store, registry,
   entitlement stub); gear entry point on Main.
 - 2026-06-30: Initial overview and architecture. Foundation split to its own doc.
