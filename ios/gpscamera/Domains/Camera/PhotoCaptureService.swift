@@ -55,19 +55,23 @@ nonisolated enum CameraRoll {
     }
 }
 
+/// Settings snapshot for one capture, resolved by the controller at shutter
+/// time (permission-coupled values already effective — foundation.md).
+nonisolated struct PhotoCaptureOptions {
+    var exifLocation = true                        // camera.exif.location (effective)
+    var saveToPhotos = true                        // camera.saveToPhotos (effective)
+    var saveOriginal = true                        // camera.photo.saveOriginal
+    var format = CameraSettings.PhotoFormat.jpg    // camera.photo.format
+    var shutterSound = true                        // camera.shutterSound
+}
+
 /// The photo capture pipeline (camera.md "Capture pipeline").
 /// Steps not yet backed by a domain are stubbed with a marker.
 /// `nonisolated`: the photo delegate fires on the capture session queue.
 nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDelegate {
-    // Capture settings — hardcoded to spec defaults until the settings
-    // framework lands. TODO: read from SettingsStore.
-    var exifLocation = true   // camera.exif.location
-    var saveToPhotos = true   // camera.saveToPhotos
-    var saveOriginal = true   // camera.photo.saveOriginal
-
     private let filename: FilenameProviding
     private let store = CaptureStore()
-    private let ext = "jpg"   // TODO: camera.photo.format
+    private var options = PhotoCaptureOptions()
     private var pendingSnapshot: LocationSnapshot?
     private var pendingOverlay: RenderedOverlay?
     private var completion: ((Result<URL, Error>) -> Void)?
@@ -81,12 +85,14 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
     func capture(with session: CameraSession,
                  snapshot: LocationSnapshot?,
                  overlayLayer: RenderedOverlay? = nil,
-                 shutterSound: Bool = true,
+                 options: PhotoCaptureOptions = PhotoCaptureOptions(),
                  completion: @escaping (Result<URL, Error>) -> Void) {
         self.pendingSnapshot = snapshot
         self.pendingOverlay = overlayLayer
+        self.options = options
         self.completion = completion
-        session.capture(delegate: self, shutterSound: shutterSound)
+        session.capture(delegate: self, shutterSound: options.shutterSound,
+                        heic: options.format == .heic)
     }
 
     // Runs on the capture session queue.
@@ -101,12 +107,12 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
         // 2. Overlay burn; the pre-burn copy backs camera.photo.saveOriginal.
         var original: Data?
         if let layer = pendingOverlay {
-            if saveOriginal { original = data }
+            if options.saveOriginal { original = data }
             data = burn(layer, into: data)
         }
 
         // 3. EXIF location (the original keeps it too).
-        if exifLocation, let snapshot = pendingSnapshot {
+        if options.exifLocation, let snapshot = pendingSnapshot {
             let gps = GPSMetadata.dictionary(from: snapshot)
             data = merge(gps: gps, into: data)
             original = original.map { merge(gps: gps, into: $0) }
@@ -115,7 +121,10 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
         // 4. Name + 5. persist (app-private, atomic). The `_original` marker is
         // fixed, distinct from the user's filename.suffix (camera.md step 5);
         // the copy is best-effort and never fails the capture.
-        let name = filename.makeName(for: Date()) { store.existingBaseNames().contains($0) }
+        let ext = options.format.ext
+        let name = filename.makeName(for: Date(), snapshot: pendingSnapshot) {
+            store.existingBaseNames().contains($0)
+        }
         let url: URL
         do {
             url = try store.write(data, name: name, ext: ext)
@@ -127,7 +136,7 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
         }
 
         // 6. Copy to Camera Roll (add-only) when enabled.
-        if saveToPhotos { CameraRoll.copy(url, as: .photo) }
+        if options.saveToPhotos { CameraRoll.copy(url, as: .photo) }
 
         // 7. TODO: usage metrics (photo count) -> monetization interstitial.
 
@@ -159,7 +168,9 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
                 y: margin + anchor.y * (image.size.height - layer.height - 2 * margin),
                 width: layer.width, height: layer.height))
         }
-        guard let jpeg = burned.jpegData(compressionQuality: 0.95) else { return data }
+        let encoded = options.format == .heic ? burned.heicData()
+                                              : burned.jpegData(compressionQuality: 0.95)
+        guard let encoded else { return data }
         // The draw baked the pixels upright; drop the stale orientation + dims.
         var props = properties(of: data)
         props[kCGImagePropertyOrientation as String] = nil
@@ -169,7 +180,7 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
             tiff[kCGImagePropertyTIFFOrientation as String] = nil
             props[kCGImagePropertyTIFFDictionary as String] = tiff
         }
-        return reencode(jpeg, applying: props)
+        return reencode(encoded, applying: props)
     }
 
     private func merge(gps: [String: Any], into data: Data) -> Data {

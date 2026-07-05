@@ -4,7 +4,8 @@ import SwiftUI
 /// editor"). World-space: the anchor names a corner of the upright scene, so it
 /// is preserved across device rotation — a top-leading overlay stays at the
 /// world top-left when the phone turns to landscape. Pure, unit-testable.
-nonisolated enum OverlayAnchor: CaseIterable {
+/// String raw values back the persisted `overlay.layout` setting.
+nonisolated enum OverlayAnchor: String, CaseIterable {
     case topLeading, top, topTrailing
     case leading, center, trailing
     case bottomLeading, bottom, bottomTrailing

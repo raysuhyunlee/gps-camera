@@ -2,6 +2,10 @@
 
 ## Status
 
+- 2026-07-05: `Entitlement` + `EntitlementProviding` seam added
+  (`ios/gpscamera/Domains/Monetization`) with a `FixedEntitlement` dev stub
+  returning `.pro` so gated settings are testable. IAP, paywall, ads, nudges:
+  not started. Locked pro rows route nowhere until the paywall lands.
 - 2026-06-30: Initial spec.
 
 ## Domain Definition
@@ -70,6 +74,18 @@ Contributed sections (see overview.md ordering):
 | 0 | `monetization.proBanner` | Pro banner | custom | free |
 | 90 | `monetization.restore` | Restore purchase | action | free |
 
+## Implementation
+
+### iOS
+
+```
+ios/gpscamera/Domains/Monetization/
+└── Entitlement.swift - Entitlement enum, EntitlementProviding seam, FixedEntitlement dev stub
+```
+
+Android: planned.
+
 ## Revision History
 
+- 2026-07-05: Entitlement seam + dev stub (settings framework gating consumer).
 - 2026-06-30: Initial monetization spec (subscription, ads, nudge).

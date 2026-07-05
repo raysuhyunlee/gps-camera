@@ -6,9 +6,15 @@ struct CameraView: View {
     @ObservedObject var controller: CameraController
     @ObservedObject var location: LocationProvider
     let overlay: OverlayRendering
+    let settings: SettingsStore
+    let registry: SettingsRegistry
+    var entitled: () -> Bool = { true }
 
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false
+    @State private var showSettings = false
+    @State private var settingsHighlight: String?
+    @State private var mismatchKey: String?
 
     var body: some View {
         ZStack {
@@ -46,6 +52,26 @@ struct CameraView: View {
         .onReceive(NotificationCenter.default.publisher(
             for: UIDevice.orientationDidChangeNotification)) { _ in
             controller.deviceOrientationChanged(UIDevice.current.orientation)
+        }
+        .sheet(isPresented: $showSettings, onDismiss: { settingsHighlight = nil }) {
+            SettingsScreen(registry: registry, store: settings,
+                           entitled: entitled, highlightKey: settingsHighlight)
+        }
+        // Permission-coupled mismatch popup (foundation.md): non-blocking, the
+        // capture already proceeded with the feature skipped.
+        .onReceive(NotificationCenter.default.publisher(
+            for: .settingPermissionMismatch)) { note in
+            mismatchKey = note.userInfo?["key"] as? String
+        }
+        .alert("Permission is off", isPresented: .init(
+            get: { mismatchKey != nil }, set: { if !$0 { mismatchKey = nil } })) {
+            Button("Close", role: .cancel) {}
+            Button("Go to Settings") {
+                settingsHighlight = mismatchKey
+                showSettings = true
+            }
+        } message: {
+            Text("A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it.")
         }
     }
 
@@ -118,7 +144,17 @@ struct CameraView: View {
     private var otherControls: some View {
         HStack(spacing: 8) {
             flashButton
+            settingsButton
         }
+    }
+
+    private var settingsButton: some View {
+        Button { showSettings = true } label: {
+            Image(systemName: "gearshape.fill")
+                .foregroundStyle(.white)
+                .frame(width: 44, height: 44)
+        }
+        .rotatable(rotation)
     }
 
     private var flashButton: some View {
@@ -290,9 +326,17 @@ private extension View {
 }
 
 #Preview {
+    let store = SettingsStore()
+    let registry = SettingsRegistry(
+        providers: [CameraSettingsProvider(), OverlaySettingsProvider(),
+                    FilenameSettingsProvider()],
+        order: ["camera.capture": 20, "overlay": 30, "filename": 40],
+        store: store)
     let location = LocationProvider()
-    let overlay = OverlayRenderer()
-    return CameraView(controller: CameraController(location: location, overlay: overlay),
-                      location: location,
-                      overlay: overlay)
+    let overlay = OverlayRenderer(store: store)
+    return CameraView(controller: CameraController(location: location, overlay: overlay,
+                                                   filename: DefaultFilenameProvider(store: store),
+                                                   store: store),
+                      location: location, overlay: overlay,
+                      settings: store, registry: registry)
 }

@@ -4,10 +4,32 @@ import SwiftUI
 /// `OverlayRendering` backed by `OverlayLayer` + SwiftUI `ImageRenderer`.
 /// MainActor: ImageRenderer requires it; camera rasterizes at shutter time, so
 /// the burned layer shows shutter-time data (consistent with the EXIF snapshot).
-/// ObservableObject: the live view edits `settings.anchor` by drag.
+/// ObservableObject: the live view re-renders on settings edits + anchor drags.
 @MainActor final class OverlayRenderer: ObservableObject, OverlayRendering {
-    // TODO: read from SettingsStore once the settings framework lands.
-    @Published var settings = OverlaySettings()
+    @Published private(set) var settings: OverlaySettings
+    private let store: SettingsStore
+    private var storeChanges: AnyCancellable?
+
+    /// Construct after the registry has registered defaults into `store`.
+    init(store: SettingsStore) {
+        self.store = store
+        settings = OverlaySettings(from: store)
+        // main.async so the store value is already written when we re-read
+        // (objectWillChange fires pre-write).
+        storeChanges = store.objectWillChange.sink { [weak self] in
+            DispatchQueue.main.async {
+                guard let self else { return }
+                self.settings = OverlaySettings(from: self.store)
+            }
+        }
+    }
+
+    /// Drag-to-snap on Main (position editor v1). Synchronous settings update
+    /// so the snap animates; the store write persists the anchor.
+    func setAnchor(_ anchor: OverlayAnchor) {
+        settings.anchor = anchor
+        store.set(.string(anchor.rawValue), for: OverlaySettingKey.layout)
+    }
 
     func liveLayer(snapshot: LocationSnapshot?,
                    orientation: UIDeviceOrientation) -> AnyView {

@@ -2,6 +2,12 @@
 
 ## Status
 
+- 2026-07-05: iOS settings framework implemented (`Foundation/Settings`):
+  schema, thread-safe `SettingsStore` over UserDefaults, registry, generic
+  `SettingsScreen` renderer, permission-coupled toggles + mismatch popup +
+  deep-link highlight. Camera/overlay/filename sections wired. Deferred:
+  l10n (titles are raw English), General/Language + feedback/about sections,
+  `custom` control views, `action` handlers.
 - 2026-07-01: iOS `PermissionStatus` added (`ios/gpscamera/Foundation`).
 - 2026-06-30: Initial spec.
 
@@ -45,7 +51,9 @@ Control = one of:
     slider(range)           // opacity
     color                   // text / background color
     text                    // prefix, suffix, note
-    orderList               // drag-reorder of opaque labeled items
+    orderList               // ordered include-list of opaque labeled items:
+                            //   drag to reorder, include/exclude entries;
+                            //   value = ordered ids of included items
     navigation(sectionRef)  // push a sub-section
     action(actionRef)       // restore purchase, send feedback
     custom(controlRef)      // domain-supplied view (overlay preview, position
@@ -133,11 +141,21 @@ Note: Mismatch popup only shows when the user had granted the permission and rev
 
 ```
 ios/gpscamera/Foundation/
-└── PermissionStatus.swift - shared authorization enum
+├── PermissionStatus.swift - shared authorization enum
+└── Settings/
+    ├── SettingsSchema.swift      - Control, SettingItem, SettingsSection, SettingsProviding
+    ├── SettingValue.swift        - typed value (bool/string/number/stringList) <-> UserDefaults
+    ├── SettingsStore.swift       - thread-safe store; permission-coupled effective reads + mismatch notification
+    ├── SettingsRegistry.swift    - collects providers, root-assigned ordering, deep-link paths
+    ├── SettingsPermissions.swift - SettingPermission status/request (location, add-only photos)
+    ├── SettingsView.swift        - generic SettingsScreen renderer (controls, pro lock, highlight)
+    └── ColorHex.swift            - Color <-> #RRGGBBAA for Control.color
 ```
 
 Android: planned.
 
 ## Revision History
 
+- 2026-07-05: iOS settings framework (schema, store, registry, renderer,
+  permission coupling). orderList clarified: reorder + include/exclude.
 - 2026-06-30: Initial foundation spec

@@ -5,6 +5,9 @@
 
 ## Status
 
+- 2026-07-05: Settings screen live on iOS (sheet from Main's gear control):
+  registry-rendered sections for camera (20) / overlay (30) / filename (40).
+  Pending sections: pro banner, General/Language, restore, feedback, about.
 - 2026-06-30: Initial spec. Architecture and settings framework defined.
 
 ## Product
@@ -32,7 +35,7 @@ Screens are assemblies of domains. A domain is never split across docs.
 | Screen   | Composed of                                                                                                   |
 | -------- | ------------------------------------------------------------------------------------------------------------- |
 | Main     | `camera` + `location` + `overlay` + `monetization` (pro banner)                                               |
-| Settings | `monetization` (pro banner, restore) + per-domain `SettingsSection`s + foundation (language, feedback, about) |
+| Settings | `monetization` (pro banner, restore) + per-domain `SettingsSection`s + foundation (language, feedback, about); opened from Main's settings gear |
 | Gallery  | `gallery`                                                                                                     |
 | Paywall  | `monetization`                                                                                                |
 
@@ -105,4 +108,6 @@ Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,
 
 ## Revision History
 
+- 2026-07-05: Settings screen composed at the root (store, registry,
+  entitlement stub); gear entry point on Main.
 - 2026-06-30: Initial overview and architecture. Foundation split to its own doc.

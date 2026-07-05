@@ -61,7 +61,7 @@ struct OverlayLiveView: View {
                 let world = OverlayAnchor.worldUnit(fromScreen: screen,
                                                     orientation: orientation)
                 withAnimation(.easeInOut(duration: 0.25)) {
-                    renderer.settings.anchor = OverlayAnchor(nearest: world)
+                    renderer.setAnchor(OverlayAnchor(nearest: world))
                     dragOffset = .zero
                 }
             }

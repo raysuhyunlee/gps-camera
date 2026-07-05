@@ -12,18 +12,35 @@ struct gpscameraApp: App {
     @StateObject private var location: LocationProvider
     @StateObject private var camera: CameraController
     private let overlay: OverlayRenderer
+    private let store: SettingsStore
+    private let registry: SettingsRegistry
+    private let entitlement: EntitlementProviding = FixedEntitlement()
 
     init() {
+        // Registry before consumers: it registers every setting's default.
+        // Section placement is owned here (overview.md "Settings").
+        let store = SettingsStore()
+        let registry = SettingsRegistry(
+            providers: [CameraSettingsProvider(), OverlaySettingsProvider(),
+                        FilenameSettingsProvider()],
+            order: ["camera.capture": 20, "overlay": 30, "filename": 40],
+            store: store)
         let location = LocationProvider()
-        let overlay = OverlayRenderer()
+        let overlay = OverlayRenderer(store: store)
+        self.store = store
+        self.registry = registry
         self.overlay = overlay
         _location = StateObject(wrappedValue: location)
-        _camera = StateObject(wrappedValue: CameraController(location: location, overlay: overlay))
+        _camera = StateObject(wrappedValue: CameraController(
+            location: location, overlay: overlay,
+            filename: DefaultFilenameProvider(store: store), store: store))
     }
 
     var body: some Scene {
         WindowGroup {
-            CameraView(controller: camera, location: location, overlay: overlay)
+            CameraView(controller: camera, location: location, overlay: overlay,
+                       settings: store, registry: registry,
+                       entitled: { entitlement.entitlement == .pro })
         }
     }
 }

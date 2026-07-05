@@ -2,10 +2,12 @@
 
 ## Status
 
+- 2026-07-05: Templating implemented: token orderList (date, coordinates,
+  address, altitude) + prefix/suffix/dateFormat/autoNumber, all read from
+  SettingsStore per capture. Defaults reproduce the old stub
+  (`IMG_` + `yyyyMMdd_HHmmss`).
 - 2026-07-03: Minimal `DefaultFilenameProvider` seam
-  (`ios/gpscamera/Domains/Filename`) so camera can name outputs
-  (`IMG_<timestamp>` + auto-number). Template/prefix/suffix/dateFormat settings
-  pending.
+  (`ios/gpscamera/Domains/Filename`) so camera can name outputs.
 - 2026-06-30: Initial spec.
 
 ## Domain Definition
@@ -20,15 +22,18 @@
 
 ### Template
 
-- An ordered list of tokens
-	- User can reorder the tokens by drag-and-drop (`Control.orderList`).
+- An ordered list of tokens (`Control.orderList`)
+	- User reorders by drag-and-drop and includes/excludes tokens.
 - Tokens draw from the same fields overlay items use (date, coordinates,
   address, altitude, …), resolved per capture from `LocationSnapshot`.
+- A token whose data is unavailable (no fix, no address) is skipped.
 
 ### Composition
 
-- Final name = `prefix` + rendered template + `suffix`, with `dateFormat`
-  applied to date tokens.
+- Final name = `prefix` + rendered template (tokens joined by `_`) + `suffix`,
+  with `dateFormat` applied to date tokens.
+- Path-hostile characters (`/`, `:`, `\`) are replaced with `-`; an empty
+  result falls back to `IMG`.
 - **Auto-number**: on a name collision, append an incrementing number.
 
 ### Seam
@@ -57,18 +62,18 @@
 
 ```
 ios/gpscamera/Domains/Filename/
-├── FilenameProviding.swift       - seam protocol
-└── DefaultFilenameProvider.swift - IMG_<timestamp> + auto-number
+├── FilenameProviding.swift       - seam protocol (date + snapshot -> unique name)
+├── FilenameSettings.swift        - setting keys, tokens, typed read, SettingsProviding section
+└── DefaultFilenameProvider.swift - template renderer + sanitize + auto-number
 ios/gpscameraTests/
-└── FilenameValueTests.swift      - filename value-type tests
+└── FilenameValueTests.swift      - template/composition/auto-number tests
 ```
-
-- Stub for now: only `IMG_<timestamp>` + auto-number. Template/prefix/suffix/
-  dateFormat land with the settings framework.
 
 Android: planned.
 
 ## Revision History
 
+- 2026-07-05: Template tokens + prefix/suffix/dateFormat/autoNumber from
+  SettingsStore; seam gains the capture snapshot.
 - 2026-07-03: Minimal `DefaultFilenameProvider` seam (camera consumer).
 - 2026-06-30: Initial filename spec.

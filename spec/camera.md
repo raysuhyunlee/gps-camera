@@ -2,6 +2,12 @@
 
 ## Status
 
+- 2026-07-05: Capture settings wired to the settings framework (no more
+  hardcoded defaults): shutter sound, orientation lock, photo resolution +
+  format (JPG/HEIC), save original, save to Camera Roll, video resolution +
+  fps, EXIF location. Settings gear added to the top-right control group;
+  permission mismatch popup surfaces on Main. Still TODO: usage-metrics
+  publish (monetization), JP/KR shutter-sound warning.
 - 2026-07-04: Photo pipeline steps 2 (overlay burn) + 5 (`_original` copy)
   wired to the overlay domain; Main screen hosts the live overlay layer.
   Video burn deferred (frame compositing).
@@ -46,8 +52,8 @@ Three control types:
 - **Rotatable** — square (1:1); rotate in place to match device orientation with
   an animated transition; freeze when `camera.orientationLock` is on, and while
   recording (stay at the orientation recording started with). Members: GPS
-  status, flash (and future top-right controls), lens switch, photo gallery,
-  front/back switch.
+  status, flash, settings gear (and future top-right controls), lens switch,
+  photo gallery, front/back switch.
 - **Fixed** — never rotate. Members: shutter, photo/video switch.
 - **Anchored** — keep a world-space anchor (e.g. top-middle): relocate to the
   screen edge matching the device orientation and rotate upright, animated.
@@ -65,6 +71,7 @@ Individual controls:
 - Front/back switch
 - Photo gallery — recent-capture thumbnail; opens the gallery (`gallery` domain)
 - Shutter
+- Settings gear — opens the Settings screen (sheet)
 
 ### Layout
 
@@ -73,8 +80,8 @@ semi-transparent black bar so the preview shows through behind.
 
 - Top section
 	- GPS status — top left
-	- Other controls (flash, ...) — top right; grouped, but each rotates
-	  individually
+	- Other controls (flash, settings gear) — top right; grouped, but each
+	  rotates individually
 - Bottom section
 	- Photo gallery — bottom left
 	- Shutter — center
@@ -207,7 +214,8 @@ Neither platform ever requests full photo-library **read** access.
 
 ```
 ios/gpscamera/Domains/Camera/
-├── CameraView.swift              - Main screen: preview, GPS indicator, photo/video controls
+├── CameraSettings.swift          - setting keys, typed read, CaptureQuality, SettingsProviding sections
+├── CameraView.swift              - Main screen: preview, GPS indicator, photo/video controls, settings sheet + mismatch popup
 ├── CameraController.swift        - ObservableObject; session + permissions + shutter/record
 ├── CameraSession.swift           - AVCaptureSession wrapper (facing, lens, flash, mode, photo + movie + frame output)
 ├── CameraPreview.swift           - AVCaptureVideoPreviewLayer host + freeze-blur transition
@@ -225,6 +233,9 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-05: Wire all capture settings to the settings framework; add the
+  settings gear + mismatch popup to Main; HEIC format + resolution/fps applied
+  to the session.
 - 2026-07-04: Burn the overlay layer into photos + save the `_original` copy;
   host the live overlay on Main (overlay v1). Video burn deferred.
 - 2026-07-04: Add anchored control type (recording time), freeze rotatables

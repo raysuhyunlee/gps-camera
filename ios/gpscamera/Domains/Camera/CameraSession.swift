@@ -46,6 +46,7 @@ nonisolated final class CameraSession {
     private(set) var mode: CameraMode = .photo
     var flashMode: AVCaptureDevice.FlashMode = .off
     private var rotationAngle: CGFloat = 90   // portrait; updated per orientation
+    private var quality = CaptureQuality()    // from camera.*.resolution / fps
 
     /// Lenses physically present for a facing, in zoom order.
     func availableLenses(for facing: CameraFacing) -> [Lens] {
@@ -61,8 +62,9 @@ nonisolated final class CameraSession {
     func configure(completion: (() -> Void)? = nil) {
         queue.async { [self] in
             session.beginConfiguration()
-            // TODO: camera.video.resolution / camera.photo.resolution -> preset.
-            session.sessionPreset = mode == .video ? .high : .photo
+            let preset = mode == .video ? quality.videoPreset : quality.photoPreset
+            session.sessionPreset = session.canSetSessionPreset(preset) ? preset
+                : (mode == .video ? .high : .photo)
             if let videoInput { session.removeInput(videoInput) }
 
             let device = resolveDevice(facing: facing, lens: lens)
@@ -106,6 +108,12 @@ nonisolated final class CameraSession {
     /// is rebuilt, so switches never flicker to black.
     func latestFrame() -> UIImage? { frameStore.latestImage }
 
+    /// Resolution presets + fps from settings; takes effect on the next
+    /// `configure` (callers reconfigure when it changes).
+    func setQuality(_ quality: CaptureQuality) {
+        queue.async { [self] in self.quality = quality }
+    }
+
     /// Rotation the next capture bakes in (camera.md "Device Orientation").
     /// Stored only — connections are set lazily at capture/record time, because
     /// mutating a running connection stalls the pipeline and flickers the preview.
@@ -118,10 +126,18 @@ nonisolated final class CameraSession {
 
     /// `shutterSound: false` suppresses the system shutter sound where allowed
     /// (best-effort: some regions, e.g. JP/KR, force it).
-    func capture(delegate: AVCapturePhotoCaptureDelegate, shutterSound: Bool = true) {
+    /// `heic: true` captures HEVC/HEIC when the hardware supports it.
+    func capture(delegate: AVCapturePhotoCaptureDelegate,
+                 shutterSound: Bool = true,
+                 heic: Bool = false) {
         queue.async { [self] in
             apply(rotationAngle, to: photoOutput)
-            let settings = AVCapturePhotoSettings()
+            let settings: AVCapturePhotoSettings
+            if heic, photoOutput.availablePhotoCodecTypes.contains(.hevc) {
+                settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
+            } else {
+                settings = AVCapturePhotoSettings()
+            }
             if photoOutput.supportedFlashModes.contains(flashMode) {
                 settings.flashMode = flashMode
             }
@@ -182,10 +198,13 @@ nonisolated final class CameraSession {
         session.addOutput(frameOutput)
     }
 
-    // TODO: camera.video.fps — hardcoded 30 until the settings framework lands.
+    /// camera.video.fps, best-effort: falls back to 30 when the active format
+    /// cannot reach the requested rate.
     private func configureFrameRate(_ device: AVCaptureDevice) {
         guard mode == .video, (try? device.lockForConfiguration()) != nil else { return }
-        let fps = CMTime(value: 1, timescale: 30)
+        let supported = device.activeFormat.videoSupportedFrameRateRanges
+            .contains { Int($0.maxFrameRate) >= quality.fps }
+        let fps = CMTime(value: 1, timescale: CMTimeScale(supported ? quality.fps : 30))
         device.activeVideoMinFrameDuration = fps
         device.activeVideoMaxFrameDuration = fps
         device.unlockForConfiguration()

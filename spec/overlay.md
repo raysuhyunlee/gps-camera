@@ -2,6 +2,11 @@
 
 ## Status
 
+- 2026-07-05: Settings wired to the settings framework: enabled, item toggles,
+  watermark (pro), style (font design, size, colors, opacity, coord format,
+  unit — all pro). Dragged anchor persists via `overlay.layout`. Still
+  deferred: preview + position-editor widgets in Settings (`Control.custom`),
+  scale editing, `overlay.style.dateFormat` (per-locale default TBD).
 - 2026-07-04: Items render as icon + label + value rows. Layer placement moved
   to the 9-anchor model: world-space anchor preserved across device rotation,
   changed by dragging the layer on Main (position editor v1). Scale editing +
@@ -104,7 +109,7 @@ Supported items:
 
 ```
 ios/gpscamera/Domains/Overlay/
-├── OverlaySettings.swift  - settings value type (enabled, anchor, item toggles, style defaults)
+├── OverlaySettings.swift  - setting keys, typed read from SettingsStore, SettingsProviding section
 ├── OverlayAnchor.swift    - 9-grid world-space anchor + orientation mapping
 ├── OverlayFormatter.swift - LocationSnapshot -> item strings (coord format, unit, heading, time)
 ├── OverlayLayer.swift     - SwiftUI layer: icon + label + value rows, watermark
@@ -119,6 +124,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-05: Settings read from SettingsStore (items + style + persisted
+  anchor); font design select added.
 - 2026-07-04: Icon + label item rows; 9-anchor world-space placement with
   drag-to-snap (position editor v1).
 - 2026-07-04: iOS overlay v1 — live layer on Main + photo burn, default settings.

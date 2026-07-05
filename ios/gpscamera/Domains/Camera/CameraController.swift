@@ -20,29 +20,38 @@ final class CameraController: ObservableObject {
     /// (lens / facing / mode switch) so the feed never flickers to black.
     @Published private(set) var freezeFrame: UIImage?
     /// Drives rotatable + anchored controls and the capture rotation. Frozen
-    /// when `orientationLock` is on or while recording (camera.md "Device
-    /// Orientation").
+    /// when `camera.orientationLock` is on or while recording (camera.md
+    /// "Device Orientation").
     @Published private(set) var captureOrientation: UIDeviceOrientation = .portrait
-    // TODO: read from SettingsStore once the settings framework lands.
-    @Published var orientationLock = false   // camera.orientationLock
-    var shutterSound = true                  // camera.shutterSound
 
     let session = CameraSession()
+    private let store: SettingsStore
     private let location: LocationProviding
     private let overlay: OverlayRendering
     private let photo: PhotoCaptureService
     private let video: VideoCaptureService
     private var previewTransitions = 0   // overlapping switch reconfigures
+    private var appliedQuality = CaptureQuality()
+    private var storeChanges: AnyCancellable?
 
     init(location: LocationProviding,
          overlay: OverlayRendering,
-         filename: FilenameProviding = DefaultFilenameProvider()) {
+         filename: FilenameProviding,
+         store: SettingsStore) {
         self.location = location
         self.overlay = overlay
+        self.store = store
         photo = PhotoCaptureService(filename: filename)
         video = VideoCaptureService(filename: filename)
         authorization = CameraAuthorization.status
+        // Live-apply resolution/fps edits; main.async so the store value is
+        // already written when we read it (objectWillChange fires pre-write).
+        storeChanges = store.objectWillChange.sink { [weak self] in
+            DispatchQueue.main.async { self?.applyQualityIfChanged() }
+        }
     }
+
+    private var settings: CameraSettings { CameraSettings(from: store) }
 
     var previewSession: AVCaptureSession { session.session }
 
@@ -67,9 +76,22 @@ final class CameraController: ObservableObject {
 
     private func configureAndStart() {
         availableLenses = session.availableLenses(for: facing)
+        appliedQuality = settings.quality
+        session.setQuality(appliedQuality)
         session.configure()
         session.setCaptureRotation(CameraOrientation.videoRotationAngle(for: captureOrientation))
         session.start()
+    }
+
+    /// Resolution/fps edits rebuild the session graph (behind the freeze-blur).
+    private func applyQualityIfChanged() {
+        let quality = settings.quality
+        guard quality != appliedQuality, authorization == .authorized, !isRecording
+        else { return }
+        appliedQuality = quality
+        session.setQuality(quality)
+        beginPreviewTransition()
+        session.configure { [weak self] in self?.endPreviewTransition() }
     }
 
     func toggleFacing() {
@@ -134,12 +156,19 @@ final class CameraController: ObservableObject {
         case .photo:
             guard !isCapturing else { return }
             isCapturing = true
-            // Snapshot + overlay layer are fixed at shutter time so the burn
-            // and EXIF describe the same moment. Video burn: deferred.
+            // Snapshot, overlay layer, and settings are fixed at shutter time
+            // so the burn and EXIF describe the same moment. Video burn: deferred.
             let snapshot = location.snapshot
+            let settings = settings
+            let options = PhotoCaptureOptions(
+                exifLocation: CameraSettings.effectiveExifLocation(store),
+                saveToPhotos: CameraSettings.effectiveSaveToPhotos(store),
+                saveOriginal: settings.saveOriginal,
+                format: settings.photoFormat,
+                shutterSound: settings.shutterSound)
             photo.capture(with: session, snapshot: snapshot,
                           overlayLayer: overlay.renderedLayer(snapshot: snapshot),
-                          shutterSound: shutterSound) { [weak self] _ in
+                          options: options) { [weak self] _ in
                 self?.isCapturing = false
             }
         case .video:
@@ -148,9 +177,14 @@ final class CameraController: ObservableObject {
     }
 
     private func startRecording() {
+        let shutterSound = settings.shutterSound
         if shutterSound { AudioServicesPlaySystemSound(RecordingSound.begin) }
         isRecording = true
-        video.startRecording(with: session, snapshot: location.snapshot) { [weak self] _ in
+        let options = VideoCaptureService.Options(
+            exifLocation: CameraSettings.effectiveExifLocation(store),
+            saveToPhotos: CameraSettings.effectiveSaveToPhotos(store))
+        video.startRecording(with: session, snapshot: location.snapshot,
+                             options: options) { [weak self] _ in
             guard let self else { return }
             if shutterSound { AudioServicesPlaySystemSound(RecordingSound.end) }
             isRecording = false
@@ -173,7 +207,8 @@ final class CameraController: ObservableObject {
     /// capture rotation freeze while recording (at the orientation recording
     /// started with) and when `orientationLock` is on.
     func deviceOrientationChanged(_ orientation: UIDeviceOrientation) {
-        guard orientation.isValidInterfaceOrientation, !orientationLock, !isRecording
+        guard orientation.isValidInterfaceOrientation,
+              !store.bool(CameraSettingKey.orientationLock), !isRecording
         else { return }
         captureOrientation = orientation
         session.setCaptureRotation(CameraOrientation.videoRotationAngle(for: orientation))
