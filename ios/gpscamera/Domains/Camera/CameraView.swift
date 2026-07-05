@@ -1,10 +1,11 @@
 import SwiftUI
 
 /// The Main screen: live camera preview with the top/bottom control sections
-/// (camera.md "Layout"). Overlay + pro banner slot in later.
+/// (camera.md "Layout"). Hosts the live overlay layer; pro banner slots in later.
 struct CameraView: View {
     @ObservedObject var controller: CameraController
     @ObservedObject var location: LocationProvider
+    let overlay: OverlayRendering
 
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false
@@ -53,7 +54,12 @@ struct CameraView: View {
     private var controls: some View {
         VStack(spacing: 0) {
             topSection
-            Spacer()
+            // Live overlay layer — hosted, not owned (overlay domain): the
+            // overlay anchors + drags itself within the area between the
+            // control sections, following the capture orientation.
+            overlay.liveLayer(snapshot: location.snapshot,
+                              orientation: controller.captureOrientation)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             if controller.availableLenses.count > 1 {
                 lensSelector.padding(.bottom, 12)   // floats over the preview
             }
@@ -285,6 +291,8 @@ private extension View {
 
 #Preview {
     let location = LocationProvider()
-    return CameraView(controller: CameraController(location: location),
-                      location: location)
+    let overlay = OverlayRenderer()
+    return CameraView(controller: CameraController(location: location, overlay: overlay),
+                      location: location,
+                      overlay: overlay)
 }

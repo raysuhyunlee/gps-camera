@@ -5,7 +5,7 @@ import UIKit
 
 /// Orchestrates the Main-screen camera: owns the session + capture pipelines and
 /// exposes the state `CameraView` binds to. Consumes `location` for the GPS
-/// indicator and EXIF; `filename` for output names.
+/// indicator and EXIF; `filename` for output names; `overlay` for the burn.
 @MainActor
 final class CameraController: ObservableObject {
     @Published private(set) var authorization: PermissionStatus
@@ -29,13 +29,16 @@ final class CameraController: ObservableObject {
 
     let session = CameraSession()
     private let location: LocationProviding
+    private let overlay: OverlayRendering
     private let photo: PhotoCaptureService
     private let video: VideoCaptureService
     private var previewTransitions = 0   // overlapping switch reconfigures
 
     init(location: LocationProviding,
+         overlay: OverlayRendering,
          filename: FilenameProviding = DefaultFilenameProvider()) {
         self.location = location
+        self.overlay = overlay
         photo = PhotoCaptureService(filename: filename)
         video = VideoCaptureService(filename: filename)
         authorization = CameraAuthorization.status
@@ -131,7 +134,11 @@ final class CameraController: ObservableObject {
         case .photo:
             guard !isCapturing else { return }
             isCapturing = true
-            photo.capture(with: session, snapshot: location.snapshot,
+            // Snapshot + overlay layer are fixed at shutter time so the burn
+            // and EXIF describe the same moment. Video burn: deferred.
+            let snapshot = location.snapshot
+            photo.capture(with: session, snapshot: snapshot,
+                          overlayLayer: overlay.renderedLayer(snapshot: snapshot),
                           shutterSound: shutterSound) { [weak self] _ in
                 self?.isCapturing = false
             }

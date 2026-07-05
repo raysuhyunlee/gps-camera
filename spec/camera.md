@@ -2,13 +2,15 @@
 
 ## Status
 
+- 2026-07-04: Photo pipeline steps 2 (overlay burn) + 5 (`_original` copy)
+  wired to the overlay domain; Main screen hosts the live overlay layer.
+  Video burn deferred (frame compositing).
 - 2026-07-04: Camera view UI clarified + iOS aligned — top/bottom control
   sections, GPS icon + tooltip, rotatable vs fixed controls (animated). Photo
   gallery is a placeholder until the `gallery` domain lands.
 - 2026-07-04: iOS video mode + audio and orientation lock implemented.
   Capture settings still hardcoded to defaults (`TODO: SettingsStore`). Deferred:
-  settings-framework wiring, overlay burn (overlay domain), saveOriginal
-  duplication (overlay domain), usage-metrics publish (monetization).
+  settings-framework wiring, usage-metrics publish (monetization).
 - 2026-07-03: iOS Main screen + photo pipeline implemented
   (`ios/gpscamera/Domains/Camera`).
 - 2026-06-30: Initial spec.
@@ -88,7 +90,7 @@ semi-transparent black bar so the preview shows through behind.
 - The interface is fixed in portrait; sections and fixed controls keep their
   positions
 - Rotatable controls rotate in place to match device orientation (animated
-  transition); the live overlay rotates too (overlay domain)
+  transition); the live overlay keeps its world-space anchor (overlay domain)
 - While recording, all control rotation and the capture rotation freeze at the
   orientation recording started with
 - When `camera.orientationLock` is on, rotation freezes at the current
@@ -223,6 +225,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-04: Burn the overlay layer into photos + save the `_original` copy;
+  host the live overlay on Main (overlay v1). Video burn deferred.
 - 2026-07-04: Add anchored control type (recording time), freeze rotatables
   while recording, freeze-blur preview transition on switches.
 - 2026-07-04: Clarify camera view UI (rotatable vs fixed controls, top/bottom
