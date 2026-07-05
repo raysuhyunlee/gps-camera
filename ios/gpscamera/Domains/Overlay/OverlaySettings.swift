@@ -35,7 +35,7 @@ struct OverlaySettings {
 
     var style = Style()
 
-    /// overlay.style.* — all pro; defaults apply for free users.
+    /// overlay.style.* - all pro; defaults apply for free users.
     struct Style {
         var font = FontChoice.design(.system) // overlay.style.font
         var fontSize: CGFloat = 12            // overlay.style.size

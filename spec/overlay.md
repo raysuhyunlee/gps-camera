@@ -4,7 +4,7 @@
 
 - 2026-07-05: Settings wired to the settings framework: enabled, item toggles,
   watermark (pro), style (font design, size, colors, opacity, coord format,
-  unit — all pro). Dragged anchor persists via `overlay.layout`. Still
+  unit - all pro). Dragged anchor persists via `overlay.layout`. Still
   deferred: preview + position-editor widgets in Settings (`Control.custom`),
   scale editing, `overlay.style.dateFormat` (per-locale default TBD).
 - 2026-07-04: Items render as icon + label + value rows. Layer placement moved
@@ -52,13 +52,13 @@ Supported items:
 * note 
 * weather (TODO)
 * watermark
-* logo / custom image (TODO) — user-supplied, distinct from the app watermark
+* logo / custom image (TODO) - user-supplied, distinct from the app watermark
 
 ### Position & scale editor
 
 - The overlay card snaps to one of **9 anchors** (3x3: top/center/bottom x
   leading/center/trailing); default bottom-leading
-- Anchors are **world-space**: preserved across device rotation — a top-left
+- Anchors are **world-space**: preserved across device rotation - a top-left
   overlay stays at the world top-left in landscape (relocate + counter-rotate,
   animated, like camera's anchored controls)
 - The user changes the anchor by dragging the layer on the Main screen; on
@@ -75,14 +75,14 @@ Supported items:
 
 ### Styling
 
-- font — 4 system designs (system / serif / rounded / mono) + 20 bundled
+- font - 4 system designs (system / serif / rounded / mono) + 20 bundled
   Google Fonts (OFL; files + licenses under `Resources/Fonts`, registered at
   startup by foundation `BundledFonts`; catalog in `OverlayFontCatalog`)
 - font size 
 - text color 
 - background color 
 - background opacity
-- date/time format — defaults to the device locale's format; TODO: decide the
+- date/time format - defaults to the device locale's format; TODO: decide the
   per-locale default + user customization (`overlay.style.dateFormat`)
 - coordinate format (lat-lon / DMS) 
 - unit
@@ -97,16 +97,16 @@ Supported items:
 | key                         | title                               | control                  | default | gate                          |
 | --------------------------- | ----------------------------------- | ------------------------ | ------- | ----------------------------- |
 | `overlay.enabled`           | Include overlay in photo/video      | toggle                   | on      | free                          |
-| `overlay.preview`           | Preview                             | custom                   | —       | free                          |
-| `overlay.layout`            | Adjust position                     | custom (position editor) | —       | free                          |
+| `overlay.preview`           | Preview                             | custom                   | -       | free                          |
+| `overlay.layout`            | Adjust position                     | custom (position editor) | -       | free                          |
 | `overlay.item.*`            | Display items (one toggle per item) | toggle                   | on      | free                          |
 | `overlay.item.watermark`    | Watermark                           | toggle                   | on      | **pro** (free cannot disable) |
 | `overlay.style.font`        | Font                                | select                   | system  | **pro**                       |
 | `overlay.style.size`        | Font size                           | stepper                  | 12 pt   | **pro**                       |
-| `overlay.style.textColor`   | Text color                          | color                    | —       | **pro**                       |
-| `overlay.style.bgColor`     | Background color                    | color                    | —       | **pro**                       |
-| `overlay.style.bgOpacity`   | Background opacity                  | slider                   | —       | **pro**                       |
-| `overlay.style.dateFormat`  | Date/time format                    | select                   | —       | **pro**                       |
+| `overlay.style.textColor`   | Text color                          | color                    | -       | **pro**                       |
+| `overlay.style.bgColor`     | Background color                    | color                    | -       | **pro**                       |
+| `overlay.style.bgOpacity`   | Background opacity                  | slider                   | -       | **pro**                       |
+| `overlay.style.dateFormat`  | Date/time format                    | select                   | -       | **pro**                       |
 | `overlay.style.coordFormat` | Coordinate format                   | select (lat-lon / DMS)   | lat-lon | **pro**                       |
 | `overlay.style.unit`        | Unit                                | select                   | metric  | **pro**                       |
 
@@ -138,5 +138,5 @@ Android: planned.
   anchor); font design select added.
 - 2026-07-04: Icon + label item rows; 9-anchor world-space placement with
   drag-to-snap (position editor v1).
-- 2026-07-04: iOS overlay v1 — live layer on Main + photo burn, default settings.
+- 2026-07-04: iOS overlay v1 - live layer on Main + photo burn, default settings.
 - 2026-06-30: Initial overlay spec.

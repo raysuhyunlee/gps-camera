@@ -1,7 +1,7 @@
 import AVFoundation
 
 /// Collapses `AVCaptureDevice` audio authorization into the shared
-/// `PermissionStatus` and requests access. Used only in video mode — the mic is
+/// `PermissionStatus` and requests access. Used only in video mode - the mic is
 /// never touched during photo capture (camera.md "Audio").
 nonisolated enum MicrophoneAuthorization {
     static var status: PermissionStatus {

@@ -12,7 +12,7 @@
 
 - **Interests**: Pro subscription, IAP products, the paywall, feature gating
   (the `Entitlement`), interstitial ads, and the nudge orchestrator.
-- **Non-interests**: the gated features themselves — each domain reads
+- **Non-interests**: the gated features themselves - each domain reads
   `Entitlement` and gates its own settings/behavior.
 
 ## Details
@@ -50,7 +50,7 @@ A shared widget (`Control.custom`) with two states:
 - **Timing**: never at app launch, and never during/blocking an in-progress or
   queued capture. Fires only after a capture has saved, while the user is idle.
 - **Format**: only standard, always-dismissible interstitials. No deceptive,
-  fake-system, or unclosable creatives — enforced via ad-network/format choice.
+  fake-system, or unclosable creatives - enforced via ad-network/format choice.
 
 ### In-App Review 
 

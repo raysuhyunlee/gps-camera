@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Live overlay host: places the layer at its 9-grid anchor in world space,
 /// keeps it there across device rotation (relocate + counter-rotate, animated),
-/// and lets the user drag it to another anchor — the position editor v1
+/// and lets the user drag it to another anchor - the position editor v1
 /// (overlay.md "Position & scale editor"; free positioning/scaling deferred).
 struct OverlayLiveView: View {
     @ObservedObject var renderer: OverlayRenderer
@@ -12,7 +12,7 @@ struct OverlayLiveView: View {
     @State private var layerSize = CGSize.zero
     @State private var dragOffset = CGSize.zero
 
-    /// Stationary space for the drag — reading the gesture in the moving
+    /// Stationary space for the drag - reading the gesture in the moving
     /// layer's local space feeds its own translation back and shakes.
     private static let space = "overlay-live"
 
@@ -48,7 +48,7 @@ struct OverlayLiveView: View {
             y: m + footprint.height / 2 + u.y * (size.height - footprint.height - 2 * m))
     }
 
-    /// Follow the finger, then snap to the nearest of the 9 anchors — resolved
+    /// Follow the finger, then snap to the nearest of the 9 anchors - resolved
     /// in world space so the drag works the same at any device orientation.
     private func drag(in size: CGSize) -> some Gesture {
         DragGesture(coordinateSpace: .named(Self.space))

@@ -11,7 +11,7 @@
 - 2026-07-04: Photo pipeline steps 2 (overlay burn) + 5 (`_original` copy)
   wired to the overlay domain; Main screen hosts the live overlay layer.
   Video burn deferred (frame compositing).
-- 2026-07-04: Camera view UI clarified + iOS aligned — top/bottom control
+- 2026-07-04: Camera view UI clarified + iOS aligned - top/bottom control
   sections, GPS icon + tooltip, rotatable vs fixed controls (animated). Photo
   gallery is a placeholder until the `gallery` domain lands.
 - 2026-07-04: iOS video mode + audio and orientation lock implemented.
@@ -40,38 +40,39 @@
 Hosts, but does not own, the other domains' Main-screen pieces:
 
 - Camera preview (this domain)
-- GPS accuracy indicator — from `location` (`accuracyLevel`)
-- Live overlay — from `overlay`
-- Pro banner — from `monetization`
-- Recent-capture thumbnail — from `gallery` (opens the gallery)
+- GPS accuracy indicator - from `location` (`accuracyLevel`)
+- Live overlay - from `overlay`
+- Pro banner - from `monetization`
+- Recent-capture thumbnail - from `gallery` (opens the gallery)
 
 ### Controls
 
 Three control types:
 
-- **Rotatable** — square (1:1); rotate in place to match device orientation with
+- **Rotatable** - square (1:1); rotate in place to match device orientation with
   an animated transition; freeze when `camera.orientationLock` is on, and while
   recording (stay at the orientation recording started with). Members: GPS
   status, flash, settings gear (and future top-right controls), lens switch,
   photo gallery, front/back switch.
-- **Fixed** — never rotate. Members: shutter, photo/video switch.
-- **Anchored** — keep a world-space anchor (e.g. top-middle): relocate to the
+- **Fixed** - never rotate. Members: shutter, photo/video switch.
+- **Anchored** - keep a world-space anchor (e.g. top-middle): relocate to the
   screen edge matching the device orientation and rotate upright, animated.
   Freeze like rotatable controls (recording, `camera.orientationLock`).
   Members: recording time.
 
 Individual controls:
 
-- GPS status — icon only, tinted by accuracy (green good / yellow normal /
+- GPS status - icon only, tinted by accuracy (green good / yellow normal /
   red bad); tap shows a status tooltip (good / normal / bad). From `location`
-  `accuracyLevel`.
+  `accuracyLevel`. Dev backdoor: long-press (5s) opens the location debug
+  surface (`ContentView`); intentionally undiscoverable.
 - Photo/video switch
 - Lens / field-of-view switch (ultra-wide / wide / tele, as available)
 - Flash toggle
 - Front/back switch
-- Photo gallery — recent-capture thumbnail; opens the gallery (`gallery` domain)
+- Photo gallery - recent-capture thumbnail; opens the gallery (`gallery` domain)
 - Shutter
-- Settings gear — opens the Settings screen (sheet)
+- Settings gear - opens the Settings screen (sheet)
 
 ### Layout
 
@@ -79,17 +80,17 @@ Portrait orientation. Two **control sections**, top and bottom, each a
 semi-transparent black bar so the preview shows through behind.
 
 - Top section
-	- GPS status — top left
-	- Other controls (flash, settings gear) — top right; grouped, but each
+	- GPS status - top left
+	- Other controls (flash, settings gear) - top right; grouped, but each
 	  rotates individually
 - Bottom section
-	- Photo gallery — bottom left
-	- Shutter — center
-	- Front/back switch — bottom right
-	- Photo/video switch — below the shutter
-- Lens selector — floats above the shutter, above (outside) the bottom section,
+	- Photo gallery - bottom left
+	- Shutter - center
+	- Front/back switch - bottom right
+	- Photo/video switch - below the shutter
+- Lens selector - floats above the shutter, above (outside) the bottom section,
   over the preview
-- Recording time — anchored at the world-space top-middle (portrait: inside the
+- Recording time - anchored at the world-space top-middle (portrait: inside the
   top section; landscape: middle of the corresponding screen edge)
 
 ### Device Orientation
@@ -109,7 +110,7 @@ semi-transparent black bar so the preview shows through behind.
 ### Preview Transitions
 
 - Lens / facing / photo-video switches freeze the last preview frame under a
-  blur until the new session graph is ready, then fade to live — the feed never
+  blur until the new session graph is ready, then fade to live - the feed never
   flickers to black (like the native camera app)
 
 ### Capture pipeline
@@ -167,6 +168,7 @@ Neither platform ever requests full photo-library **read** access.
 	- `OverlayRendering`
 	- `LocationProviding`
 	- naming from `filename` domain
+	- `EntitlementProviding` (pro gating for the settings sheet)
 - publishes
 	- usage-metrics (photo count)
 
@@ -175,26 +177,26 @@ Neither platform ever requests full photo-library **read** access.
 ### General
 | key                     | title                 | control | default | gate | requiresPermission |
 | ----------------------- | --------------------- | ------- | ------- | ---- | ------------------ |
-| `camera.shutterSound`   | Shutter sound         | toggle  | on      | free | —                  |
-| `camera.orientationLock`| Orientation lock      | toggle  | off     | free | —                  |
+| `camera.shutterSound`   | Shutter sound         | toggle  | on      | free | -                  |
+| `camera.orientationLock`| Orientation lock      | toggle  | off     | free | -                  |
 | `camera.exif.location`  | Include EXIF location | toggle  | on      | free | location           |
 
 - `camera.exif.location` sits at the top level of the Capture section (not in a
   sub-section). Footnote: "Includes location data in the photo file." If
   location is denied/revoked, EXIF location is skipped and capture still
-  succeeds — per the permission-coupled policy in foundation.md.
+  succeeds - per the permission-coupled policy in foundation.md.
 
 ### Photo
 
 | key                         | title                          | control | default | gate | requiresPermission   |
 | --------------------------- | ------------------------------ | ------- | ------- | ---- | -------------------- |
-| `camera.photo.resolution`   | Resolution                     | select  | highest | free | —                    |
-| `camera.photo.format`       | Format                         | select  | JPG     | free | —                    |
-| `camera.photo.saveOriginal` | Also save original             | toggle  | on      | free | —                    |
+| `camera.photo.resolution`   | Resolution                     | select  | highest | free | -                    |
+| `camera.photo.format`       | Format                         | select  | JPG     | free | -                    |
+| `camera.photo.saveOriginal` | Also save original             | toggle  | on      | free | -                    |
 | `camera.saveToPhotos`       | Save to Camera Roll (iOS only) | toggle  | on      | free | add-only photo (iOS) |
 
 - `camera.saveToPhotos` is iOS-only (hidden on Android). Revocation skips the
-  Camera Roll copy (capture still succeeds app-private) and resumes on re-grant —
+  Camera Roll copy (capture still succeeds app-private) and resumes on re-grant -
   per the permission-coupled policy in foundation.md.
 
 ### Video
@@ -234,6 +236,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-05: CameraView consumes `EntitlementProviding` directly (no closure
+  default); dev backdoor to the location debug surface (long-press GPS icon).
 - 2026-07-05: EXIF location toggle moved to the top level of the Capture
   section (EXIF sub-section removed).
 - 2026-07-05: Resolution selects list concrete hardware values; default is the

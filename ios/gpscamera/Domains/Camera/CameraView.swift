@@ -8,13 +8,15 @@ struct CameraView: View {
     let overlay: OverlayRendering
     let settings: SettingsStore
     let registry: SettingsRegistry
-    var entitled: () -> Bool = { true }
+    /// Monetization seam; gates pro settings rows (FixedEntitlement until IAP).
+    let entitlement: EntitlementProviding
 
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false
     @State private var showSettings = false
     @State private var settingsHighlight: String?
     @State private var mismatchKey: String?
+    @State private var showLocationDebug = false
 
     var body: some View {
         ZStack {
@@ -55,7 +57,8 @@ struct CameraView: View {
         }
         .sheet(isPresented: $showSettings, onDismiss: { settingsHighlight = nil }) {
             SettingsScreen(registry: registry, store: settings,
-                           entitled: entitled, highlightKey: settingsHighlight)
+                           entitled: { entitlement.entitlement == .pro },
+                           highlightKey: settingsHighlight)
         }
         // Permission-coupled mismatch popup (foundation.md): non-blocking, the
         // capture already proceeded with the feature skipped.
@@ -80,7 +83,7 @@ struct CameraView: View {
     private var controls: some View {
         VStack(spacing: 0) {
             topSection
-            // Live overlay layer — hosted, not owned (overlay domain): the
+            // Live overlay layer - hosted, not owned (overlay domain): the
             // overlay anchors + drags itself within the area between the
             // control sections, following the capture orientation. The ZStack
             // keeps this flexible region expanded even when the overlay is
@@ -135,6 +138,12 @@ struct CameraView: View {
                 .foregroundStyle(color(for: level))
                 .frame(width: 44, height: 44)
         }
+        // Developer backdoor: long-press (5s) opens the location debug
+        // surface. Deliberately undiscoverable; a short tap still shows the
+        // accuracy tooltip.
+        .simultaneousGesture(LongPressGesture(minimumDuration: 5)
+            .onEnded { _ in showLocationDebug = true })
+        .sheet(isPresented: $showLocationDebug) { ContentView() }
         .rotatable(rotation)
         .popover(isPresented: $showGPSTooltip) {
             Text(gpsStatusText(level))
@@ -186,7 +195,7 @@ struct CameraView: View {
         }
     }
 
-    // TODO: gallery domain — recent-capture thumbnail + open the gallery.
+    // TODO: gallery domain - recent-capture thumbnail + open the gallery.
     private var galleryButton: some View {
         Button {} label: {
             RoundedRectangle(cornerRadius: 8)
@@ -342,5 +351,6 @@ private extension View {
                                                    filename: DefaultFilenameProvider(store: store),
                                                    store: store),
                       location: location, overlay: overlay,
-                      settings: store, registry: registry)
+                      settings: store, registry: registry,
+                      entitlement: FixedEntitlement())
 }

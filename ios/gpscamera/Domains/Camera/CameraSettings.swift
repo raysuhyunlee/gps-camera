@@ -18,7 +18,7 @@ nonisolated enum CameraSettingKey {
     static let exifLocation = "camera.exif.location"
 }
 
-/// Concrete capture capabilities of the back wide camera — the source of the
+/// Concrete capture capabilities of the back wide camera - the source of the
 /// resolution options offered in Settings. Falls back to nominal options when
 /// no camera is present (simulator).
 nonisolated enum CameraCapabilities {

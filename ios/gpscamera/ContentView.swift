@@ -2,9 +2,8 @@
 //  ContentView.swift
 //  gpscamera
 //
-//  Location debug surface. Retained for development inspection of the location
-//  module; not wired into the app (the Main screen is CameraView). Reachable
-//  again later behind a debug entry point.
+//  Location debug surface for development inspection of the location module.
+//  Backdoor entry: long-press (5s) the GPS status icon on Main.
 //
 
 import SwiftUI

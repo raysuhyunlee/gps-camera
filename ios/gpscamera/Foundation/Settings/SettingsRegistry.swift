@@ -33,7 +33,7 @@ nonisolated final class SettingsRegistry {
     func section(_ id: String) -> SettingsSection? { byID[id] }
 
     /// Navigation path (section ids, root first) to the section whose items
-    /// contain `key` — for deep-linking a SettingItem (foundation.md).
+    /// contain `key` - for deep-linking a SettingItem (foundation.md).
     func path(to key: String) -> [String] {
         for root in topLevel {
             if let path = find(key, in: root) { return path }

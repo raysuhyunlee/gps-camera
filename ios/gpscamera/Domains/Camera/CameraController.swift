@@ -44,11 +44,8 @@ final class CameraController: ObservableObject {
         photo = PhotoCaptureService(filename: filename)
         video = VideoCaptureService(filename: filename)
         authorization = CameraAuthorization.status
-        // Live-apply resolution/fps edits; main.async so the store value is
-        // already written when we read it (objectWillChange fires pre-write).
-        storeChanges = store.objectWillChange.sink { [weak self] in
-            DispatchQueue.main.async { self?.applyQualityIfChanged() }
-        }
+        // Live-apply resolution/fps edits.
+        storeChanges = store.onChange { [weak self] in self?.applyQualityIfChanged() }
     }
 
     private var settings: CameraSettings { CameraSettings(from: store) }

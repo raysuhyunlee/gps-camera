@@ -14,7 +14,7 @@ struct SettingsScreen: View {
     @ObservedObject var store: SettingsStore
     /// Pro entitlement (from monetization at the composition root).
     var entitled: () -> Bool = { false }
-    /// Locked pro row tapped — routes to the paywall once monetization lands.
+    /// Locked pro row tapped - routes to the paywall once monetization lands.
     var onProLock: (String) -> Void = { _ in }
     var highlightKey: String?
 
@@ -24,7 +24,7 @@ struct SettingsScreen: View {
 
     var body: some View {
         NavigationStack(path: $path) {
-            Form {
+            HighlightingForm(highlight: highlight) {
                 ForEach(registry.topLevel) { section in
                     SettingsSectionContent(section: section, store: store,
                                            entitled: entitled, onProLock: onProLock,
@@ -40,7 +40,7 @@ struct SettingsScreen: View {
             }
             .navigationDestination(for: String.self) { id in
                 if let section = registry.section(id) {
-                    Form {
+                    HighlightingForm(highlight: highlight) {
                         SettingsSectionContent(section: section, store: store,
                                                entitled: entitled, onProLock: onProLock,
                                                highlight: $highlight)
@@ -61,6 +61,25 @@ struct SettingsScreen: View {
     }
 }
 
+/// Form that scrolls the deep-linked row into view once layout settles
+/// (delay covers the sheet/push transition). Unknown ids are a no-op, so the
+/// root and a pushed sub-section can both host the same highlight key.
+private struct HighlightingForm<Content: View>: View {
+    let highlight: String?
+    @ViewBuilder let content: Content
+
+    var body: some View {
+        ScrollViewReader { proxy in
+            Form { content }
+                .task {
+                    guard let highlight else { return }
+                    try? await Task.sleep(for: .milliseconds(400))
+                    withAnimation { proxy.scrollTo(highlight, anchor: .center) }
+                }
+        }
+    }
+}
+
 /// One section's rows. Used inline on the root screen and as a pushed page.
 private struct SettingsSectionContent: View {
     let section: SettingsSection
@@ -74,6 +93,7 @@ private struct SettingsSectionContent: View {
             ForEach(visibleItems) { item in
                 SettingRow(item: item, store: store,
                            entitled: entitled, onProLock: onProLock)
+                    .id(item.key)   // scroll anchor for deep links
                     .listRowBackground(highlight == item.key
                                        ? Color.accentColor.opacity(0.25) : nil)
             }

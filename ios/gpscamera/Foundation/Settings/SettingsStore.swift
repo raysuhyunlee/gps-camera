@@ -48,6 +48,13 @@ nonisolated final class SettingsStore: ObservableObject {
         defaults.set(value.primitive, forKey: key)
     }
 
+    /// Runs `action` on the main queue after any setting write lands.
+    /// (objectWillChange fires pre-write; the queue hop defers delivery until
+    /// the new value is readable.) Retain the returned cancellable.
+    func onChange(_ action: @escaping () -> Void) -> AnyCancellable {
+        objectWillChange.sink { DispatchQueue.main.async(execute: action) }
+    }
+
     func bool(_ key: String) -> Bool { value(key).boolValue }
     func string(_ key: String) -> String { value(key).stringValue }
     func number(_ key: String) -> Double { value(key).numberValue }

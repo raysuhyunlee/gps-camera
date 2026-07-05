@@ -41,7 +41,7 @@ struct gpscameraApp: App {
         WindowGroup {
             CameraView(controller: camera, location: location, overlay: overlay,
                        settings: store, registry: registry,
-                       entitled: { entitlement.entitlement == .pro })
+                       entitlement: entitlement)
         }
     }
 }

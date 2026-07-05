@@ -62,7 +62,7 @@ Control = one of:
     navigation(sectionRef)  // push a sub-section
     action(actionRef)       // restore purchase, send feedback
     custom(controlRef)      // domain-supplied view (overlay preview, position
-                            //   editor) — keeps foundation generic
+                            //   editor) - keeps foundation generic
 
 SettingItem {
     key                  // stable, namespaced, e.g. "camera.photo.format"
@@ -104,10 +104,10 @@ The schema carries **semantic config only**: keys, defaults, control kind +
 option values, gating, dependencies, permissions. Everything about how that
 config *looks or feels* belongs elsewhere:
 
-- **Renderer policy** (SettingsView): look-and-feel that applies uniformly —
+- **Renderer policy** (SettingsView): look-and-feel that applies uniformly -
   keyboard submit key on text items, picker style choice, highlight timing.
   Never a schema field; changing it touches only the renderer.
-- **Composition root** (overview.md): placement — section order.
+- **Composition root** (overview.md): placement - section order.
 - **Presentation hints** (schema, exception): per-item look data only the
   domain can supply (e.g. a font option previews in its own typeface). Optional
   fields, named as presentation (`previewFont`), read by nothing but the
@@ -176,6 +176,9 @@ ios/gpscamera/Foundation/
     ├── SettingsPermissions.swift - SettingPermission status/request (location, add-only photos)
     ├── SettingsView.swift        - generic SettingsScreen renderer (controls, pro lock, highlight)
     └── ColorHex.swift            - Color <-> #RRGGBBAA for Control.color
+ios/gpscamera/Resources/Fonts/    - bundled OFL fonts + Licenses/*.txt
+ios/gpscameraTests/
+└── SettingsValueTests.swift      - store/registry/deep-link + bundled-font tests
 ```
 
 Android: planned.

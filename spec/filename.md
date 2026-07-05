@@ -47,10 +47,10 @@
 
 | key                   | title       | control   | default | gate |
 | --------------------- | ----------- | --------- | ------- | ---- |
-| `filename.template`   | Template    | orderList | —       | pro  |
-| `filename.prefix`     | Prefix      | text      | —       | pro  |
-| `filename.suffix`     | Suffix      | text      | —       | pro  |
-| `filename.dateFormat` | Date format | select    | —       | pro  |
+| `filename.template`   | Template    | orderList | date            | pro  |
+| `filename.prefix`     | Prefix      | text      | IMG_            | pro  |
+| `filename.suffix`     | Suffix      | text      | (empty)         | pro  |
+| `filename.dateFormat` | Date format | select    | yyyyMMdd_HHmmss | pro  |
 | `filename.autoNumber` | Auto-number | toggle    | on      | pro  |
 
 - `filename.autoNumber` footnote: "Adds a number automatically when a file of the

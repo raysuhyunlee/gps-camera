@@ -11,7 +11,7 @@ nonisolated struct DefaultFilenameProvider: FilenameProviding {
         settings = { FilenameSettings(from: store) }
     }
 
-    /// Fixed settings — defaults for previews/tests.
+    /// Fixed settings - defaults for previews/tests.
     init(fixed: FilenameSettings = FilenameSettings()) {
         settings = { fixed }
     }
@@ -29,7 +29,7 @@ nonisolated struct DefaultFilenameProvider: FilenameProviding {
         return "\(base)_\(n)"
     }
 
-    /// nil when the token's data is unavailable (no fix, no address) — the
+    /// nil when the token's data is unavailable (no fix, no address) - the
     /// token is skipped rather than rendering a placeholder.
     private func render(_ token: FilenameToken, date: Date,
                         snapshot: LocationSnapshot?, dateFormat: String) -> String? {

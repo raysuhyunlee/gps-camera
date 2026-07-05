@@ -105,7 +105,7 @@ nonisolated final class CameraSession {
         configure(completion: completion)
     }
 
-    /// Most recent preview frame — frozen (blurred) by the UI while the graph
+    /// Most recent preview frame - frozen (blurred) by the UI while the graph
     /// is rebuilt, so switches never flicker to black.
     func latestFrame() -> UIImage? { frameStore.latestImage }
 
@@ -116,7 +116,7 @@ nonisolated final class CameraSession {
     }
 
     /// Rotation the next capture bakes in (camera.md "Device Orientation").
-    /// Stored only — connections are set lazily at capture/record time, because
+    /// Stored only - connections are set lazily at capture/record time, because
     /// mutating a running connection stalls the pipeline and flickers the preview.
     func setCaptureRotation(_ angle: CGFloat) {
         queue.async { [self] in rotationAngle = angle }
@@ -168,7 +168,7 @@ nonisolated final class CameraSession {
 
     // MARK: - Graph helpers (all run on `queue`)
 
-    /// Mic attached only in video mode, and only when already authorized — a
+    /// Mic attached only in video mode, and only when already authorized - a
     /// denied mic still records silent video (camera.md permission-coupled policy).
     private func configureAudio() {
         if let audioInput { session.removeInput(audioInput); self.audioInput = nil }
@@ -236,7 +236,7 @@ nonisolated final class CameraSession {
     }
 
     /// The frozen frame mimics the preview layer, which is always portrait and
-    /// mirrors the front camera — independent of device orientation. Set only
+    /// mirrors the front camera - independent of device orientation. Set only
     /// here, inside begin/commitConfiguration, never on the live graph.
     private func configureFrameStyle() {
         apply(90, to: frameOutput)

@@ -82,10 +82,10 @@ Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,
 
 ### SOLID (minimally)
 
-- **SRP** — a domain owns only its own logic, UI, and settings.
-- **OCP** — new domain registers its `SettingsSection` and seams; no screen edits.
-- **LSP** — seams are one-purpose protocols (`LocationProviding`, …).
-- **DIP** — screens/domains depend on seam protocols, resolved at the composition root.
+- **SRP** - a domain owns only its own logic, UI, and settings.
+- **OCP** - new domain registers its `SettingsSection` and seams; no screen edits.
+- **LSP** - seams are one-purpose protocols (`LocationProviding`, …).
+- **DIP** - screens/domains depend on seam protocols, resolved at the composition root.
 - Keep simple: no DI container. The composition root constructs and injects.
 
 ## Settings (composition)

@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The 9-grid anchor the overlay layer snaps to (overlay.md "Position & scale
 /// editor"). World-space: the anchor names a corner of the upright scene, so it
-/// is preserved across device rotation — a top-leading overlay stays at the
+/// is preserved across device rotation - a top-leading overlay stays at the
 /// world top-left when the phone turns to landscape. Pure, unit-testable.
 /// String raw values back the persisted `overlay.layout` setting.
 nonisolated enum OverlayAnchor: String, CaseIterable {
@@ -45,7 +45,7 @@ nonisolated enum OverlayAnchor: String, CaseIterable {
         }
     }
 
-    /// Inverse of `screenUnit`: the world unit for a screen unit position —
+    /// Inverse of `screenUnit`: the world unit for a screen unit position -
     /// used to resolve where a drag (screen space) landed in world space.
     static func worldUnit(fromScreen s: CGPoint,
                           orientation: UIDeviceOrientation) -> CGPoint {

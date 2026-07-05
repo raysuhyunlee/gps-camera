@@ -14,13 +14,9 @@ import SwiftUI
     init(store: SettingsStore) {
         self.store = store
         settings = OverlaySettings(from: store)
-        // main.async so the store value is already written when we re-read
-        // (objectWillChange fires pre-write).
-        storeChanges = store.objectWillChange.sink { [weak self] in
-            DispatchQueue.main.async {
-                guard let self else { return }
-                self.settings = OverlaySettings(from: self.store)
-            }
+        storeChanges = store.onChange { [weak self] in
+            guard let self else { return }
+            self.settings = OverlaySettings(from: self.store)
         }
     }
 

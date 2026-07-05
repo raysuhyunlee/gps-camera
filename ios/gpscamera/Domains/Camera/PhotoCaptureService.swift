@@ -4,7 +4,7 @@ import Photos
 import UIKit
 import UniformTypeIdentifiers
 
-/// App-private capture store — the gallery's future source of truth (camera.md
+/// App-private capture store - the gallery's future source of truth (camera.md
 /// "Storage"). Lives under Application Support; never touches the system library.
 nonisolated struct CaptureStore {
     let directory: URL
@@ -17,7 +17,7 @@ nonisolated struct CaptureStore {
                                                  withIntermediateDirectories: true)
     }
 
-    /// Base names already in the store (extension stripped) — for auto-number.
+    /// Base names already in the store (extension stripped) - for auto-number.
     func existingBaseNames() -> Set<String> {
         let urls = (try? FileManager.default.contentsOfDirectory(
             at: directory, includingPropertiesForKeys: nil)) ?? []
@@ -56,7 +56,7 @@ nonisolated enum CameraRoll {
 }
 
 /// Settings snapshot for one capture, resolved by the controller at shutter
-/// time (permission-coupled values already effective — foundation.md).
+/// time (permission-coupled values already effective - foundation.md).
 nonisolated struct PhotoCaptureOptions {
     var exifLocation = true                        // camera.exif.location (effective)
     var saveToPhotos = true                        // camera.saveToPhotos (effective)
@@ -121,7 +121,7 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
         // 4. Name + 5. persist (app-private, atomic). The `_original` marker is
         // fixed, distinct from the user's filename.suffix (camera.md step 5);
         // the copy is best-effort and never fails the capture.
-        let ext = options.format.ext
+        let ext = fileExtension(of: data)
         let name = filename.makeName(for: Date(), snapshot: pendingSnapshot) {
             store.existingBaseNames().contains($0)
         }
@@ -147,6 +147,17 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
         let completion = completion
         self.completion = nil
         DispatchQueue.main.async { completion?(result) }
+    }
+
+    /// Extension matching the encoded bytes, not the requested format: a HEIC
+    /// request falls back to JPEG on hardware without HEVC, and the saved
+    /// name must match the data.
+    private func fileExtension(of data: Data) -> String {
+        guard let src = CGImageSourceCreateWithData(data as CFData, nil),
+              let uti = CGImageSourceGetType(src) as String? else {
+            return options.format.ext
+        }
+        return uti == UTType.heic.identifier ? "heic" : "jpg"
     }
 
     /// Draw the rendered overlay layer at its world-space anchor on the (already

@@ -15,7 +15,7 @@
 - Grid of captured photos/videos; tap to view full screen.
 - Per-item actions: share, delete.
 - Reads the capture store as defined in camera.md (Android: own `MediaStore`
-  entries; iOS: app-private store) — never the full system library, no read
+  entries; iOS: app-private store) - never the full system library, no read
   permission.
 
 ## Settings

@@ -7,7 +7,7 @@
 import Foundation
 import SwiftUI
 
-// TODO: L10n framework — keys render as raw English until it lands.
+// TODO: L10n framework - keys render as raw English until it lands.
 typealias L10nKey = String
 
 nonisolated enum SettingGate { case free, pro }
