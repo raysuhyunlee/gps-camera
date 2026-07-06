@@ -5,6 +5,9 @@
 
 ## Status
 
+- 2026-07-06: Restore purchase row live in Settings (order 90); overlay
+  enforces watermark force-on for free (entitlement wired into
+  `OverlayRenderer` at the root).
 - 2026-07-06: Event domain live on iOS (Firebase Analytics + Crashlytics);
   `EventTracking` wired into camera, gallery, monetization, and the settings
   store at the root. Pending: `GoogleService-Info.plist`.
@@ -17,7 +20,7 @@
   (thicker banner with CTA, section order 0).
 - 2026-07-05: Settings screen live on iOS (sheet from Main's gear control):
   registry-rendered sections for camera (20) / overlay (30) / filename (40).
-  Pending sections: General/Language, restore, feedback, about.
+  Pending sections: General/Language, feedback, about.
 - 2026-06-30: Initial spec. Architecture and settings framework defined.
 
 ## Product

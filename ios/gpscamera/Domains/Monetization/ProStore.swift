@@ -91,6 +91,13 @@ final class ProStore: ObservableObject, EntitlementProviding {
         }
     }
 
+    /// Debug: refetch customer info from RevenueCat, bypassing its cache.
+    func refresh() async {
+        guard let info = try? await Purchases.shared.customerInfo(
+            fetchPolicy: .fetchCurrent) else { return }
+        apply(info)
+    }
+
     /// Restore purchase: re-validates the entitlement with RevenueCat.
     /// True = pro is active; false = nothing to restore.
     func restore() async throws -> Bool {

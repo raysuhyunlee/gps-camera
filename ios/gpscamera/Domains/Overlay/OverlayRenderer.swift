@@ -8,16 +8,35 @@ import SwiftUI
 @MainActor final class OverlayRenderer: ObservableObject, OverlayRendering {
     @Published private(set) var settings: OverlaySettings
     private let store: SettingsStore
+    private let entitlement: EntitlementProviding
     private var storeChanges: AnyCancellable?
+    private var gatingChanges: AnyCancellable?
 
     /// Construct after the registry has registered defaults into `store`.
-    init(store: SettingsStore) {
+    init(store: SettingsStore, entitlement: EntitlementProviding = FixedEntitlement()) {
         self.store = store
+        self.entitlement = entitlement
         settings = OverlaySettings(from: store)
         storeChanges = store.onChange { [weak self] in
-            guard let self else { return }
-            self.settings = OverlaySettings(from: self.store)
+            self?.reload()
         }
+        // Purchase/expiry while running: re-apply the watermark rule.
+        gatingChanges = NotificationCenter.default
+            .publisher(for: .settingsGatingChanged)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.reload() }
+        reload()
+    }
+
+    private func reload() {
+        // Free cannot disable the watermark (overlay.md "Settings"). Flip the
+        // stored toggle back on - not just the render - so the Settings row
+        // shows the real state after a pro revocation.
+        if entitlement.entitlement == .free,
+           !store.bool(OverlaySettingKey.itemWatermark) {
+            store.set(.bool(true), for: OverlaySettingKey.itemWatermark)
+        }
+        settings = OverlaySettings(from: store)
     }
 
     /// Drag-to-snap on Main (position editor v1). Synchronous settings update

@@ -25,6 +25,12 @@ nonisolated struct SelectOption: Identifiable {
     var id: String { value }
 }
 
+/// Result alert of an `action` control.
+nonisolated struct ActionFeedback {
+    let titleKey: L10nKey
+    var messageKey: L10nKey? = nil
+}
+
 /// A labeled entry of an orderList control. The framework treats ids as opaque.
 nonisolated struct OrderListOption: Identifiable {
     let value: String
@@ -43,7 +49,10 @@ nonisolated enum Control {
     /// Value is the ordered list of included ids.
     case orderList([OrderListOption])
     case navigation(sectionRef: String)
-    case action(actionRef: String)
+    /// Domain-supplied handler (restore purchase, send feedback) - carried in
+    /// the case like `custom(view:)`. The row shows a spinner while it runs
+    /// and presents the returned feedback as an alert (nil = silent).
+    case action(perform: @MainActor () async -> ActionFeedback?)
     /// Domain-supplied row view (e.g. the pro banner) - keeps foundation generic.
     case custom(view: @MainActor () -> AnyView)
 }

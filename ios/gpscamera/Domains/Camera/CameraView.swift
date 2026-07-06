@@ -155,7 +155,9 @@ struct CameraView: View {
         // accuracy tooltip.
         .simultaneousGesture(LongPressGesture(minimumDuration: 5)
             .onEnded { _ in showLocationDebug = true })
-        .sheet(isPresented: $showLocationDebug) { ContentView() }
+        .sheet(isPresented: $showLocationDebug) {
+            ContentView(pro: entitlement as? ProStore)
+        }
         .rotatable(rotation)
         .popover(isPresented: $showGPSTooltip) {
             Text(gpsStatusText(level))

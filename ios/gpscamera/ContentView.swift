@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  gpscamera
 //
-//  Location debug surface for development inspection of the location module.
+//  Debug surface for development inspection (location module, pro status).
 //  Backdoor entry: long-press (5s) the GPS status icon on Main.
 //
 
@@ -10,9 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var location = LocationProvider()
+    /// Pro status inspection; nil (previews) hides the section.
+    var pro: ProStore?
 
     var body: some View {
         List {
+            if let pro { ProDebugSection(pro: pro) }
             Section("Authorization") {
                 Text(String(describing: location.authorization))
                 if location.authorization == .notDetermined {
@@ -47,6 +50,31 @@ struct ContentView: View {
             Text(label)
             Spacer()
             Text(value).foregroundStyle(.secondary)
+        }
+    }
+}
+
+/// Current entitlement + a button that refetches it from RevenueCat.
+private struct ProDebugSection: View {
+    @ObservedObject var pro: ProStore
+    @State private var refreshing = false
+
+    var body: some View {
+        Section("Pro") {
+            HStack {
+                Text("Entitlement")
+                Spacer()
+                Text(String(describing: pro.entitlement))
+                    .foregroundStyle(.secondary)
+            }
+            Button(refreshing ? "Refreshing..." : "Refresh pro status") {
+                Task {
+                    refreshing = true
+                    await pro.refresh()
+                    refreshing = false
+                }
+            }
+            .disabled(refreshing)
         }
     }
 }

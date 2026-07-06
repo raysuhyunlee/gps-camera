@@ -2,6 +2,10 @@
 
 ## Status
 
+- 2026-07-06: `action` controls implemented: the case carries the
+  domain-supplied handler (`action(perform:)`); the row runs it with a spinner
+  and presents the returned `ActionFeedback` as an alert. First consumer is
+  the monetization restore row.
 - 2026-07-06: `UsageMetrics` implemented on iOS (persisted counters; `isPro`
   bound by the root). `SettingsStore.onSet` write hook added (root binds it to
   analytics).
@@ -13,8 +17,7 @@
   schema, thread-safe `SettingsStore` over UserDefaults, registry, generic
   `SettingsScreen` renderer, permission-coupled toggles + mismatch popup +
   deep-link highlight. Camera/overlay/filename sections wired. Deferred:
-  l10n (titles are raw English), General/Language + feedback/about sections,
-  `action` handlers.
+  l10n (titles are raw English), General/Language + feedback/about sections.
 - 2026-07-01: iOS `PermissionStatus` added (`ios/gpscamera/Foundation`).
 - 2026-06-30: Initial spec.
 
@@ -67,7 +70,9 @@ Control = one of:
                             //   drag to reorder, include/exclude entries;
                             //   value = ordered ids of included items
     navigation(sectionRef)  // push a sub-section
-    action(actionRef)       // restore purchase, send feedback
+    action(perform)         // restore purchase, send feedback: domain-supplied
+                            //   async handler; the row shows a spinner while it
+                            //   runs and alerts the returned feedback (nil = silent)
     custom(view)            // domain-supplied view factory (pro banner, overlay
                             //   preview) - keeps foundation generic
 
@@ -203,6 +208,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: `action(perform:)` controls + `ActionFeedback` alert (first
+  consumer: restore purchase).
 - 2026-07-06: `UsageMetrics` + `SettingsStore.onSet` (analytics wiring).
 - 2026-07-06: `custom(view:)` controls + `.settingsGatingChanged` (first
   consumer: pro banner).

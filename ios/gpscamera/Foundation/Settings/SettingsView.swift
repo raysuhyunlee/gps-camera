@@ -189,9 +189,8 @@ private struct SettingRow: View {
             }
         case .navigation(let ref):
             NavigationLink(value: ref) { Text(item.titleKey) }
-        case .action:
-            Button(item.titleKey) {}   // handlers land with their features
-                .disabled(true)
+        case .action(let perform):
+            ActionRow(titleKey: item.titleKey, perform: perform)
         case .custom(let view):
             view()
         }
@@ -241,6 +240,39 @@ private struct SettingRow: View {
     private func summary(_ included: [String], _ options: [OrderListOption]) -> String {
         let titles = Dictionary(uniqueKeysWithValues: options.map { ($0.value, $0.titleKey) })
         return included.compactMap { titles[$0] }.joined(separator: ", ")
+    }
+}
+
+/// Action row: runs the domain handler with a trailing spinner, then presents
+/// the returned feedback as an alert.
+private struct ActionRow: View {
+    let titleKey: L10nKey
+    let perform: @MainActor () async -> ActionFeedback?
+    @State private var running = false
+    @State private var feedback: ActionFeedback?
+
+    var body: some View {
+        Button {
+            Task {
+                running = true
+                feedback = await perform()
+                running = false
+            }
+        } label: {
+            HStack {
+                Text(titleKey)
+                Spacer()
+                if running { ProgressView() }
+            }
+        }
+        .disabled(running)
+        .alert(feedback?.titleKey ?? "", isPresented: .init(
+            get: { feedback != nil },
+            set: { if !$0 { feedback = nil } })) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            if let message = feedback?.messageKey { Text(message) }
+        }
     }
 }
 

@@ -17,7 +17,8 @@ extension ProStore: ProBannerProviding {
     func mainBanner() -> AnyView { AnyView(MainProBanner(store: self)) }
 }
 
-/// Contributes the Settings pro-banner section (order assigned at the root).
+/// Contributes the Settings pro-banner and restore sections (order assigned
+/// at the root).
 struct MonetizationSettingsProvider: SettingsProviding {
     let store: ProStore
 
@@ -26,6 +27,19 @@ struct MonetizationSettingsProvider: SettingsProviding {
             SettingItem(key: "monetization.proBanner", titleKey: "GPS Camera Pro",
                         control: .custom(view: { [store] in
                             AnyView(SettingsProBanner(store: store))
+                        })),
+        ]),
+        SettingsSection(id: "monetization.restore", titleKey: "", items: [
+            SettingItem(key: "monetization.restore", titleKey: "Restore Purchase",
+                        control: .action(perform: { [store] in
+                            do {
+                                return try await store.restore()
+                                    ? ActionFeedback(titleKey: "Purchases Restored",
+                                                     messageKey: "GPS Camera Pro is active.")
+                                    : ActionFeedback(titleKey: "No previous purchase was found.")
+                            } catch {
+                                return ActionFeedback(titleKey: "Restore could not be completed. Please try again.")
+                            }
                         })),
         ])]
     }

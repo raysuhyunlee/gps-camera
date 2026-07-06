@@ -46,6 +46,38 @@ struct OverlayFormatterTests {
     }
 }
 
+/// overlay.md "Settings": free cannot disable the watermark; pro can.
+/// Revocation flips the stored toggle back on so Settings shows the real state.
+@MainActor struct OverlayGatingTests {
+    private func makeStore() -> SettingsStore {
+        let suite = "overlay-gating-tests-\(UUID().uuidString)"
+        let defaults = UserDefaults(suiteName: suite)!
+        defaults.removePersistentDomain(forName: suite)
+        let store = SettingsStore(defaults: defaults)
+        _ = SettingsRegistry(providers: [OverlaySettingsProvider()],
+                             order: [:], store: store)
+        return store
+    }
+
+    @Test func freeFlipsStoredWatermarkBackOn() {
+        let store = makeStore()
+        store.set(.bool(false), for: OverlaySettingKey.itemWatermark)
+        let renderer = OverlayRenderer(store: store,
+                                       entitlement: FixedEntitlement(entitlement: .free))
+        #expect(renderer.settings.showWatermark)
+        #expect(store.bool(OverlaySettingKey.itemWatermark))
+    }
+
+    @Test func proKeepsWatermarkOff() {
+        let store = makeStore()
+        store.set(.bool(false), for: OverlaySettingKey.itemWatermark)
+        let renderer = OverlayRenderer(store: store,
+                                       entitlement: FixedEntitlement(entitlement: .pro))
+        #expect(!renderer.settings.showWatermark)
+        #expect(!store.bool(OverlaySettingKey.itemWatermark))
+    }
+}
+
 struct OverlayAnchorTests {
     let orientations: [UIDeviceOrientation] =
         [.portrait, .landscapeLeft, .landscapeRight, .portraitUpsideDown]

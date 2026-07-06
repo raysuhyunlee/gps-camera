@@ -2,6 +2,10 @@
 
 ## Status
 
+- 2026-07-06: Watermark force-on for free implemented: `OverlayRenderer` reads
+  the entitlement seam; while `.free` it writes the stored watermark toggle
+  back on (Settings shows the real state, no hidden override). Re-applied on
+  `.settingsGatingChanged` (purchase/expiry while running).
 - 2026-07-05: Settings wired to the settings framework: enabled, item toggles,
   watermark (pro), style (font design, size, colors, opacity, coord format,
   unit - all pro). Dragged anchor persists via `overlay.layout`. Still
@@ -131,6 +135,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: Watermark force-on for free: revocation writes the stored
+  toggle back on (entitlement read in `OverlayRenderer`).
 - 2026-07-05: 20 bundled OFL Google Fonts added to the font select.
 - 2026-07-05: `overlay.enabled` made the master switch (greys out the rest);
   item toggles moved to a Display items sub-section; default font size 12 pt.

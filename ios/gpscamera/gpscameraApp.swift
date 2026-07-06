@@ -36,10 +36,10 @@ struct gpscameraApp: App {
                         CameraSettingsProvider(), OverlaySettingsProvider(),
                         FilenameSettingsProvider()],
             order: ["monetization": 0, "camera.capture": 20, "overlay": 30,
-                    "filename": 40],
+                    "filename": 40, "monetization.restore": 90],
             store: store)
         let location = LocationProvider()
-        let overlay = OverlayRenderer(store: store)
+        let overlay = OverlayRenderer(store: store, entitlement: pro)
         self.store = store
         self.registry = registry
         self.overlay = overlay

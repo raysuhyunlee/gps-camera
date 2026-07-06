@@ -2,16 +2,17 @@
 
 ## Status
 
+- 2026-07-06: Restore row in Settings implemented (section order 90,
+  `Control.action`) and watermark force-on for free implemented in overlay.
+  Still pending: ads, nudge orchestrator, in-app review, ad trigger.
 - 2026-07-06: Pro banner implemented on iOS, spec revised: thin tappable
   one-line banner on Main (no CTA), thicker banner with CTA in Settings
-  (`Control.custom` row). Restore row in Settings still pending.
+  (`Control.custom` row).
 - 2026-07-06: iOS paywall + IAP implemented on RevenueCat: `ProStore`
   (offerings, purchase, restore, live entitlement + offline cache) and
   `PaywallView`; locked pro settings rows open the paywall. TODO: create the
   gpscamera RevenueCat project and replace the placeholder API keys in
-  `ProStore.swift`. Still pending: restore row in Settings, ads, nudge
-  orchestrator, in-app review, domain-side gating behavior (watermark
-  force-on for free, ad trigger).
+  `ProStore.swift`.
 - 2026-07-05: `Entitlement` + `EntitlementProviding` seam added;
   `FixedEntitlement` stub kept for previews/tests.
 - 2026-06-30: Initial spec.
@@ -42,7 +43,9 @@
 - Store product IDs: `com.raysuhyunlee.gpscamera.pro.monthly`,
   `com.raysuhyunlee.gpscamera.pro.lifetime`.
 - Reference: competitor one-time ₩15,000.
-- **Restore purchase**: re-validates entitlement via RevenueCat.
+- **Restore purchase**: re-validates entitlement via RevenueCat. Reachable
+  from the paywall link row and the Settings restore row (result alert:
+  restored / nothing found / error).
 - Last known entitlement is persisted locally so pro survives offline launches.
 
 ### Paywall
@@ -123,6 +126,10 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: `ProStore.refresh()` (force customer-info refetch) for the debug
+  surface's pro status section (camera.md "Individual controls").
+- 2026-07-06: Settings restore row (`Control.action`, order 90); domain-side
+  watermark gating landed in overlay.
 - 2026-07-06: Pro banner spec revised (Main: thin tappable line; Settings:
   thicker + CTA) and implemented on iOS (`ProBanner.swift`).
 - 2026-07-06: IAP switched to RevenueCat (`purchases-ios-spm`); offerings
