@@ -23,6 +23,7 @@ struct PaywallView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: String?
     @State private var purchasing = false
+    @State private var failureMessage: String?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -40,6 +41,13 @@ struct PaywallView: View {
         }
         .background(Color(.systemBackground))
         .task { await store.loadOfferings() }
+        .alert("Purchase failed", isPresented: .init(
+            get: { failureMessage != nil },
+            set: { if !$0 { failureMessage = nil } })) {
+            Button("OK", role: .cancel) {}
+        } message: {
+            Text(failureMessage ?? "")
+        }
     }
 
     // MARK: - Sections
@@ -201,13 +209,26 @@ struct PaywallView: View {
         guard let package = selectedPackage else { return }
         purchasing = true
         defer { purchasing = false }
-        if await store.purchase(package) { dismiss() }
+        do {
+            if try await store.purchase(package) { dismiss() }
+            // false = user cancelled; no alert.
+        } catch {
+            failureMessage = "The purchase could not be completed. Please try again."
+        }
     }
 
     private func restore() async {
         purchasing = true
         defer { purchasing = false }
-        if await store.restore() { dismiss() }
+        do {
+            if try await store.restore() {
+                dismiss()
+            } else {
+                failureMessage = "No previous purchase was found."
+            }
+        } catch {
+            failureMessage = "Restore could not be completed. Please try again."
+        }
     }
 
     private func title(_ package: Package) -> String {

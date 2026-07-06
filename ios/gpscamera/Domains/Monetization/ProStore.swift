@@ -62,20 +62,26 @@ final class ProStore: ObservableObject, EntitlementProviding {
         loaded = true
     }
 
-    /// Returns true when the purchase ends in an active pro entitlement.
-    func purchase(_ package: Package) async -> Bool {
-        guard let result = try? await Purchases.shared.purchase(package: package),
-              !result.userCancelled else { return false }
+    /// A purchase or restore that completed without becoming pro. `inactive`
+    /// means the store transaction went through but the `pro` entitlement did
+    /// not activate - a product <-> entitlement mapping problem in the
+    /// RevenueCat dashboard.
+    nonisolated enum PurchaseError: Error { case inactive }
+
+    /// True = pro is active; false = the user cancelled. Throws on store
+    /// errors and on `inactive` (see above).
+    func purchase(_ package: Package) async throws -> Bool {
+        let result = try await Purchases.shared.purchase(package: package)
+        guard !result.userCancelled else { return false }
         apply(result.customerInfo)
-        return entitlement == .pro
+        guard entitlement == .pro else { throw PurchaseError.inactive }
+        return true
     }
 
     /// Restore purchase: re-validates the entitlement with RevenueCat.
-    func restore() async -> Bool {
-        guard let info = try? await Purchases.shared.restorePurchases() else {
-            return false
-        }
-        apply(info)
+    /// True = pro is active; false = nothing to restore.
+    func restore() async throws -> Bool {
+        apply(try await Purchases.shared.restorePurchases())
         return entitlement == .pro
     }
 
