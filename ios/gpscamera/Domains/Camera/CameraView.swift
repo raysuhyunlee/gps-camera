@@ -10,8 +10,10 @@ struct CameraView: View {
     let gallery: GalleryProviding
     let settings: SettingsStore
     let registry: SettingsRegistry
-    /// Monetization seam; gates pro settings rows (FixedEntitlement until IAP).
+    /// Monetization seams; gate pro settings rows and route locked rows to
+    /// the paywall.
     let entitlement: EntitlementProviding
+    let paywall: PaywallProviding
 
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false
@@ -19,6 +21,7 @@ struct CameraView: View {
     @State private var settingsHighlight: String?
     @State private var mismatchKey: String?
     @State private var showLocationDebug = false
+    @State private var showPaywall = false
 
     var body: some View {
         ZStack {
@@ -60,7 +63,9 @@ struct CameraView: View {
         .sheet(isPresented: $showSettings, onDismiss: { settingsHighlight = nil }) {
             SettingsScreen(registry: registry, store: settings,
                            entitled: { entitlement.entitlement == .pro },
+                           onProLock: { _ in showPaywall = true },
                            highlightKey: settingsHighlight)
+                .sheet(isPresented: $showPaywall) { paywall.paywallScreen() }
         }
         // Permission-coupled mismatch popup (foundation.md): non-blocking, the
         // capture already proceeded with the feature skipped.
@@ -351,5 +356,5 @@ private extension View {
                       location: location, overlay: overlay,
                       gallery: Gallery(store: CaptureStore()),
                       settings: store, registry: registry,
-                      entitlement: FixedEntitlement())
+                      entitlement: FixedEntitlement(), paywall: ProStore())
 }

@@ -16,6 +16,10 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXBuildFile section */
+		AB000000000000000000000C /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AB000000000000000000000E /* RevenueCat */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		71F74BC02FF3C65C002FDBC2 /* gpscamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gpscamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0000000000000000000002 /* gpscameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gpscameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB000000000000000000000C /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,7 @@
 			);
 			name = gpscamera;
 			packageProductDependencies = (
+				AB000000000000000000000E /* RevenueCat */,
 			);
 			productName = gpscamera;
 			productReference = 71F74BC02FF3C65C002FDBC2 /* gpscamera.app */;
@@ -146,6 +152,9 @@
 			);
 			mainGroup = 71F74BB72FF3C65C002FDBC2;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AB000000000000000000000D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 71F74BC12FF3C65C002FDBC2 /* Products */;
 			projectDirPath = "";
@@ -466,6 +475,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AB000000000000000000000D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.60.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AB000000000000000000000E /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB000000000000000000000D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 71F74BB82FF3C65C002FDBC2 /* Project object */;
 }

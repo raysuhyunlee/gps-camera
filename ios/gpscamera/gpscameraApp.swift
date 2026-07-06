@@ -15,7 +15,8 @@ struct gpscameraApp: App {
     private let gallery: GalleryProviding
     private let store: SettingsStore
     private let registry: SettingsRegistry
-    private let entitlement: EntitlementProviding = FixedEntitlement()
+    /// Live StoreKit entitlement + paywall (monetization).
+    private let pro = ProStore()
 
     init() {
         BundledFonts.registerAll()   // before any UI renders
@@ -44,7 +45,7 @@ struct gpscameraApp: App {
         WindowGroup {
             CameraView(controller: camera, location: location, overlay: overlay,
                        gallery: gallery, settings: store, registry: registry,
-                       entitlement: entitlement)
+                       entitlement: pro, paywall: pro)
         }
     }
 }

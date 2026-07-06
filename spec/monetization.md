@@ -2,10 +2,15 @@
 
 ## Status
 
-- 2026-07-05: `Entitlement` + `EntitlementProviding` seam added
-  (`ios/gpscamera/Domains/Monetization`) with a `FixedEntitlement` dev stub
-  returning `.pro` so gated settings are testable. IAP, paywall, ads, nudges:
-  not started. Locked pro rows route nowhere until the paywall lands.
+- 2026-07-06: iOS paywall + IAP implemented on RevenueCat: `ProStore`
+  (offerings, purchase, restore, live entitlement + offline cache) and
+  `PaywallView`; locked pro settings rows open the paywall. TODO: create the
+  gpscamera RevenueCat project and replace the placeholder API keys in
+  `ProStore.swift`. Still pending: pro banner + restore rows in Settings, ads,
+  nudge orchestrator, in-app review, domain-side gating behavior (watermark
+  force-on for free, ad trigger).
+- 2026-07-05: `Entitlement` + `EntitlementProviding` seam added;
+  `FixedEntitlement` stub kept for previews/tests.
 - 2026-06-30: Initial spec.
 
 ## Domain Definition
@@ -26,14 +31,27 @@
 
 ### Products & purchase
 
-- One-time **$12** (lifetime Pro) · monthly **$4**, sold through the platform's
-  in-app purchase/billing API (StoreKit on iOS, Play Billing on Android).
+- One-time **$12** (lifetime Pro) · monthly **$4**, sold through **RevenueCat**
+  (same setup as Travel English) on both platforms.
+- RevenueCat config: entitlement `pro`; current offering carries the monthly +
+  lifetime packages; debug builds use the Test Store key, release the platform
+  key (placeholders in `ProStore.swift` until the project is created).
+- Store product IDs: `com.raysuhyunlee.gpscamera.pro.monthly`,
+  `com.raysuhyunlee.gpscamera.pro.lifetime`.
 - Reference: competitor one-time ₩15,000.
-- **Restore purchase**: re-validates entitlement.
+- **Restore purchase**: re-validates entitlement via RevenueCat.
+- Last known entitlement is persisted locally so pro survives offline launches.
 
 ### Paywall
 
-- Reuses the Travel English paywall component; design restyled only, logic intact.
+- Layout borrowed from the Travel English paywall (close row, hero, feature
+  rows, selectable price cards, pinned CTA + restore/terms/legal links);
+  restyled to this app's native look (system colors, SF Symbols, light/dark).
+- Purchase and restore run through `ProStore` (RevenueCat packages).
+  Successful purchase or restore dismisses the paywall.
+- Opened by tapping a locked pro row in Settings (`PaywallProviding` seam,
+  presented by Main over the settings sheet). Always dismissible for now;
+  nudge-driven presentation lands with the orchestrator.
 
 ### Pro banner
 
@@ -80,12 +98,21 @@ Contributed sections (see overview.md ordering):
 
 ```
 ios/gpscamera/Domains/Monetization/
-└── Entitlement.swift - Entitlement enum, EntitlementProviding seam, FixedEntitlement dev stub
+├── Entitlement.swift - Entitlement enum, EntitlementProviding seam, FixedEntitlement (previews/tests)
+├── ProStore.swift    - RevenueCat: API keys, offerings, purchase/restore, live entitlement + offline cache
+└── PaywallView.swift - PaywallProviding seam + the paywall screen
+ios/gpscamera.storekit - StoreKit test config (local purchases with the Apple key; wired in the shared scheme)
 ```
+
+Dependency: `purchases-ios-spm` (RevenueCat, SPM).
 
 Android: planned.
 
 ## Revision History
 
+- 2026-07-06: IAP switched to RevenueCat (`purchases-ios-spm`); offerings
+  replace direct StoreKit products.
+- 2026-07-06: iOS paywall + IAP (`ProStore`, `PaywallView`, `PaywallProviding`);
+  composition root swaps `FixedEntitlement` for `ProStore`.
 - 2026-07-05: Entitlement seam + dev stub (settings framework gating consumer).
 - 2026-06-30: Initial monetization spec (subscription, ads, nudge).

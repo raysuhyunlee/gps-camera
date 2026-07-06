@@ -5,6 +5,9 @@
 
 ## Status
 
+- 2026-07-06: Paywall + RevenueCat IAP live on iOS (`ProStore` replaces the
+  entitlement stub at the root); locked pro rows open the paywall via the
+  `PaywallProviding` seam.
 - 2026-07-05: Gallery domain live on iOS; camera/gallery seams added to the
   wiring (`CaptureStoreBrowsing`, `GalleryProviding`).
 - 2026-07-05: Settings screen live on iOS (sheet from Main's gear control):
@@ -82,6 +85,8 @@ Only these cross-domain seams exist. Everything else is internal.
 	* output name.
 - **monetization** 
 	- publishes `Entitlement` (`.free` / `.pro`), read by every domain for gating
+	- publishes the paywall screen (`PaywallProviding`), presented by Main for
+	  locked pro settings rows
 	- owns ads and the nudge orchestrator.
 
 Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,
@@ -116,6 +121,7 @@ never import each other's UI.
 
 ## Revision History
 
+- 2026-07-06: Monetization wired at the root (`ProStore` entitlement + paywall).
 - 2026-07-05: Gallery domain wired (capture-store seam, Main thumbnail control).
 - 2026-07-05: Settings screen composed at the root (store, registry,
   entitlement stub); gear entry point on Main.
