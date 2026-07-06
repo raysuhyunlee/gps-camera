@@ -33,10 +33,14 @@ final class ProStore: ObservableObject, EntitlementProviding {
 
     private let cached: EntitlementBox
     private let cachedProKey = "monetization.cachedPro"
+    /// Fires paywall_shown / purchase events (event.md). Previews and tests
+    /// keep the no-op default; the root injects the real tracker.
+    let events: EventTracking
 
     nonisolated var entitlement: Entitlement { cached.value }
 
-    init() {
+    init(events: EventTracking = NoopTracker()) {
+        self.events = events
         // Last persisted entitlement until RevenueCat answers (offline reads).
         cached = EntitlementBox(
             UserDefaults.standard.bool(forKey: cachedProKey) ? .pro : .free)
@@ -71,11 +75,20 @@ final class ProStore: ObservableObject, EntitlementProviding {
     /// True = pro is active; false = the user cancelled. Throws on store
     /// errors and on `inactive` (see above).
     func purchase(_ package: Package) async throws -> Bool {
-        let result = try await Purchases.shared.purchase(package: package)
-        guard !result.userCancelled else { return false }
-        apply(result.customerInfo)
-        guard entitlement == .pro else { throw PurchaseError.inactive }
-        return true
+        let product = package.storeProduct.productIdentifier
+        do {
+            let result = try await Purchases.shared.purchase(package: package)
+            guard !result.userCancelled else { return false }
+            apply(result.customerInfo)
+            guard entitlement == .pro else { throw PurchaseError.inactive }
+            events.track(.purchaseCompleted(product: product))
+            return true
+        } catch {
+            events.track(.purchaseFailed(product: product,
+                                         reason: Event.reason(error)))
+            events.record(error, keys: ["product": product])
+            throw error
+        }
     }
 
     /// Restore purchase: re-validates the entitlement with RevenueCat.

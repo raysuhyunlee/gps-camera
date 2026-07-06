@@ -5,7 +5,9 @@
 
 ## Status
 
-- 2026-07-06: Event domain spec drafted (`spec/event.md`); no implementation yet.
+- 2026-07-06: Event domain live on iOS (Firebase Analytics + Crashlytics);
+  `EventTracking` wired into camera, gallery, monetization, and the settings
+  store at the root. Pending: `GoogleService-Info.plist`.
 - 2026-07-06: Paywall + RevenueCat IAP live on iOS (`ProStore` replaces the
   entitlement stub at the root); locked pro rows open the paywall via the
   `PaywallProviding` seam.
@@ -93,7 +95,7 @@ Only these cross-domain seams exist. Everything else is internal.
 	- publishes the Main pro banner (`ProBannerProviding`); the Settings banner
 	  ships as its `SettingsSection` (Control.custom)
 	- owns ads and the nudge orchestrator.
-- **event** (draft)
+- **event**
 	- publishes `EventTracking`, injected into any domain that fires analytics
 	  events or records non-fatals
 	- pure sink; depends on no other domain.
@@ -130,6 +132,7 @@ never import each other's UI.
 
 ## Revision History
 
+- 2026-07-06: Event domain implemented on iOS and wired at the root.
 - 2026-07-06: Event domain added to the architecture (spec draft only).
 - 2026-07-06: Monetization wired at the root (`ProStore` entitlement + paywall).
 - 2026-07-05: Gallery domain wired (capture-store seam, Main thumbnail control).

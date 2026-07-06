@@ -39,7 +39,10 @@ struct GalleryView: View {
         .fullScreenCover(item: $selected) { item in
             GalleryDetailView(model: model, current: item)
         }
-        .onAppear { model.refresh() }
+        .onAppear {
+            model.refresh()
+            model.events.track(.galleryOpened)
+        }
         .onReceive(NotificationCenter.default
             .publisher(for: .captureStoreDidChange)
             .receive(on: DispatchQueue.main)) { _ in model.refresh() }

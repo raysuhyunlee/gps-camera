@@ -8,11 +8,14 @@ import UIKit
 /// through here so the cache stays consistent.
 final class GalleryModel: ObservableObject {
     @Published private(set) var items: [GalleryItem] = []
+    /// Fires gallery_opened / shared from the views (event.md).
+    let events: EventTracking
     private let store: CaptureStoreBrowsing
     private let thumbnails = NSCache<NSURL, UIImage>()
 
-    init(store: CaptureStoreBrowsing) {
+    init(store: CaptureStoreBrowsing, events: EventTracking) {
         self.store = store
+        self.events = events
         refresh()
     }
 

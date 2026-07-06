@@ -28,6 +28,8 @@ final class CameraController: ObservableObject {
     private let store: SettingsStore
     private let location: LocationProviding
     private let overlay: OverlayRendering
+    private let events: EventTracking
+    private let metrics: UsageMetrics
     private let photo: PhotoCaptureService
     private let video: VideoCaptureService
     private var previewTransitions = 0   // overlapping switch reconfigures
@@ -37,10 +39,14 @@ final class CameraController: ObservableObject {
     init(location: LocationProviding,
          overlay: OverlayRendering,
          filename: FilenameProviding,
-         store: SettingsStore) {
+         store: SettingsStore,
+         events: EventTracking,
+         metrics: UsageMetrics) {
         self.location = location
         self.overlay = overlay
         self.store = store
+        self.events = events
+        self.metrics = metrics
         photo = PhotoCaptureService(filename: filename)
         video = VideoCaptureService(filename: filename)
         authorization = CameraAuthorization.status
@@ -165,8 +171,9 @@ final class CameraController: ObservableObject {
                 shutterSound: settings.shutterSound)
             photo.capture(with: session, snapshot: snapshot,
                           overlayLayer: overlay.renderedLayer(snapshot: snapshot),
-                          options: options) { [weak self] _ in
+                          options: options) { [weak self] result in
                 self?.isCapturing = false
+                self?.captureFinished(.photo, result: result)
             }
         case .video:
             isRecording ? stopRecording() : startRecording()
@@ -181,12 +188,25 @@ final class CameraController: ObservableObject {
             exifLocation: CameraSettings.effectiveExifLocation(store),
             saveToPhotos: CameraSettings.effectiveSaveToPhotos(store))
         video.startRecording(with: session, snapshot: location.snapshot,
-                             options: options) { [weak self] _ in
+                             options: options) { [weak self] result in
             guard let self else { return }
             if shutterSound { AudioServicesPlaySystemSound(RecordingSound.end) }
             isRecording = false
             // Controls resume tracking the live orientation.
             deviceOrientationChanged(UIDevice.current.orientation)
+            captureFinished(.video, result: result)
+        }
+    }
+
+    /// Analytics + usage counters for a finished capture (event.md).
+    private func captureFinished(_ kind: Event.CaptureKind, result: Result<URL, Error>) {
+        switch result {
+        case .success:
+            events.track(.captureCompleted(kind: kind))
+            kind == .photo ? metrics.recordPhotoCapture() : metrics.recordVideoCapture()
+        case .failure(let error):
+            events.track(.captureFailed(kind: kind, reason: Event.reason(error)))
+            events.record(error, keys: ["capture_kind": kind.rawValue])
         }
     }
 

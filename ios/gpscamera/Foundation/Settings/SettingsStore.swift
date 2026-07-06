@@ -20,6 +20,10 @@ extension Notification.Name {
 /// section schemas at composition time; typed reads fall back to them.
 /// Thread-safe: capture pipelines read settings off the main actor.
 nonisolated final class SettingsStore: ObservableObject {
+    /// Composition-root hook, delivered on the main queue after every write
+    /// (key, new value). Foundation stays domain-agnostic; the root binds it
+    /// to analytics (event.md settings_changed).
+    var onSet: ((String, SettingValue) -> Void)?
     private let defaults: UserDefaults
     private let lock = NSLock()
     private var registered: [String: SettingValue] = [:]
@@ -50,6 +54,7 @@ nonisolated final class SettingsStore: ObservableObject {
     func set(_ value: SettingValue, for key: String) {
         publishChange()
         defaults.set(value.primitive, forKey: key)
+        if let onSet { DispatchQueue.main.async { onSet(key, value) } }
     }
 
     /// Runs `action` on the main queue after any setting write lands.

@@ -10,8 +10,8 @@ protocol GalleryProviding {
 final class Gallery: GalleryProviding {
     private let model: GalleryModel
 
-    init(store: CaptureStoreBrowsing) {
-        model = GalleryModel(store: store)
+    init(store: CaptureStoreBrowsing, events: EventTracking) {
+        model = GalleryModel(store: store, events: events)
     }
 
     func thumbnailButton() -> AnyView {

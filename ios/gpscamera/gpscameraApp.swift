@@ -20,10 +20,17 @@ struct gpscameraApp: App {
 
     init() {
         BundledFonts.registerAll()   // before any UI renders
+        // Analytics first: consumers receive the tracker at construction
+        // (event.md). Session start lands before any event fires.
+        let metrics = UsageMetrics()
+        metrics.recordSessionStart()
+        let events = FirebaseTracker(metrics: metrics)
         // Registry before consumers: it registers every setting's default.
         // Section placement is owned here (overview.md "Settings").
         let store = SettingsStore()
-        let pro = ProStore()
+        store.onSet = { events.track(.settingsChanged(key: $0, value: "\($1.primitive)")) }
+        let pro = ProStore(events: events)
+        metrics.isPro = { pro.entitlement == .pro }
         let registry = SettingsRegistry(
             providers: [MonetizationSettingsProvider(store: pro),
                         CameraSettingsProvider(), OverlaySettingsProvider(),
@@ -38,11 +45,12 @@ struct gpscameraApp: App {
         self.overlay = overlay
         self.pro = pro
         // Gallery browses the same app-private store the capture services write.
-        self.gallery = Gallery(store: CaptureStore())
+        self.gallery = Gallery(store: CaptureStore(), events: events)
         _location = StateObject(wrappedValue: location)
         _camera = StateObject(wrappedValue: CameraController(
             location: location, overlay: overlay,
-            filename: DefaultFilenameProvider(store: store), store: store))
+            filename: DefaultFilenameProvider(store: store), store: store,
+            events: events, metrics: metrics))
     }
 
     var body: some Scene {

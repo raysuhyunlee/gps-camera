@@ -1,10 +1,10 @@
 # Event
 
-> Draft. Not implemented on any platform yet.
-
 ## Status
 
-- 2026-07-06: Initial draft spec. Backend choice and event catalog TBD.
+- 2026-07-06: Live on iOS. Backend confirmed: Firebase Analytics + Crashlytics.
+  `GoogleService-Info.plist` shipped; dSYM upload phase runs on install builds
+  only (Debug builds no dSYM, and local builds stay fast).
 
 ## Domain Definition
 
@@ -39,8 +39,10 @@ Event = enum, one case per event, typed parameters
 
 ### Backend
 
-- Firebase Analytics + Crashlytics (**TBD** - confirm before implementation)
+- Firebase Analytics + Crashlytics
 - No IDFA / ATT prompt; default SDK config only.
+- The adapter configures Firebase only when `GoogleService-Info.plist` is in
+  the bundle; otherwise every call is a no-op (builds and tests need no plist).
 
 ### Event Catalog
 
@@ -50,7 +52,7 @@ Event = enum, one case per event, typed parameters
 | `capture_failed`     | capture errors               | kind, reason    |
 | `gallery_opened`     | gallery screen shown         | -               |
 | `shared`             | shared media                 | -               |
-| `paywall_shown`      | paywall presented            | source          |
+| `paywall_shown`      | paywall presented            | source: main_banner, settings_banner, locked_setting |
 | `purchase_completed` | IAP purchase succeeds        | product         |
 | `purchase_failed`    | IAP purchase errors          | product, reason |
 | `settings_changed`   | a setting value changes      | key, value      |
@@ -64,25 +66,38 @@ videoCaptureCount: number
 isPro: bool
 ```
 
-- Crashlytics non-fatals
-	- capture pipeline errors
-	- store write failures
-	* purchase errors
+- Crashlytics non-fatals (keys)
+	- capture pipeline errors, incl. store write failures (capture_kind)
+	- purchase errors (product)
 
+### Firing points
+
+- camera: capture results (completed/failed + non-fatal), capture counters
+- gallery: screen appear (gallery_opened), share tap (shared)
+- monetization: paywall appear with source, purchase result in `ProStore`
+- settings_changed: `SettingsStore.onSet` hook, bound to the tracker at the root
+- failure reasons are compact `domain:code` (`Event.reason`)
 
 ## Implementation
 
-Not started. Planned shape:
+### iOS
 
 ```
 ios/gpscamera/Domains/Event/
-├── Event.swift          - the event catalog enum
-├── EventTracking.swift  - seam + no-op tracker
-└── FirebaseTracker.swift - backend adapter (TBD)
+├── Event.swift           - the event catalog enum + name/params mapping
+├── EventTracking.swift   - seam + NoopTracker (previews, tests)
+└── FirebaseTracker.swift - Firebase adapter; inert without the plist;
+                            merges global params from UsageMetrics
+ios/gpscameraTests/
+└── EventValueTests.swift - catalog mapping + UsageMetrics counters
 ```
+
+- Global params come from foundation's `UsageMetrics` (foundation.md).
+- SPM: `firebase-ios-sdk` (FirebaseAnalytics, FirebaseCrashlytics), app target only.
 
 Android: planned.
 
 ## Revision History
 
+- 2026-07-06: iOS implementation (catalog, seam, Firebase adapter, wiring).
 - 2026-07-06: Initial draft spec.

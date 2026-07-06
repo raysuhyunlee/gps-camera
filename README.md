@@ -22,4 +22,4 @@ Domain documents live under `/spec`. Each is the source-of-truth for its domain.
 | `spec/filename.md`     | Filename templating: tokens, prefix/suffix, date format, auto-number                         |
 | `spec/gallery.md`      | Built-in gallery                                                                             |
 | `spec/monetization.md` | Pro subscription, paywall, IAP products, gating, ads, nudge orchestrator                     |
-| `spec/event.md`        | Analytics event catalog, Crashlytics, backend dispatch (draft)                               |
+| `spec/event.md`        | Analytics event catalog, Crashlytics, Firebase dispatch                                      |

@@ -74,6 +74,11 @@ struct GalleryDetailView: View {
                         ShareLink(item: current.url) {
                             Image(systemName: "square.and.arrow.up")
                         }
+                        // ShareLink has no action hook; the tap that opens the
+                        // share sheet is the tracked moment.
+                        .simultaneousGesture(TapGesture().onEnded {
+                            model.events.track(.shared)
+                        })
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {

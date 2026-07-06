@@ -15,11 +15,15 @@ protocol PaywallProviding {
 }
 
 extension ProStore: PaywallProviding {
-    func paywallScreen() -> AnyView { AnyView(PaywallView(store: self)) }
+    func paywallScreen() -> AnyView {
+        AnyView(PaywallView(store: self, source: .lockedSetting))
+    }
 }
 
 struct PaywallView: View {
     @ObservedObject var store: ProStore
+    /// Where the paywall was opened from; fires paywall_shown (event.md).
+    let source: Event.PaywallSource
     @Environment(\.dismiss) private var dismiss
     @State private var selectedID: String?
     @State private var purchasing = false
@@ -40,6 +44,7 @@ struct PaywallView: View {
             ctaArea
         }
         .background(Color(.systemBackground))
+        .onAppear { store.events.track(.paywallShown(source: source)) }
         .task { await store.loadOfferings() }
         .alert("Purchase failed", isPresented: .init(
             get: { failureMessage != nil },
@@ -246,5 +251,5 @@ struct PaywallView: View {
 }
 
 #Preview {
-    PaywallView(store: ProStore())
+    PaywallView(store: ProStore(), source: .lockedSetting)
 }

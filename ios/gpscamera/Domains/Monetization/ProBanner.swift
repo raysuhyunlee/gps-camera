@@ -54,7 +54,9 @@ private struct MainProBanner: View {
                 .background(.black.opacity(0.4), in: Capsule())
             }
             .padding(.top, 8)
-            .sheet(isPresented: $showPaywall) { PaywallView(store: store) }
+            .sheet(isPresented: $showPaywall) {
+                PaywallView(store: store, source: .mainBanner)
+            }
         }
     }
 }
@@ -91,7 +93,9 @@ private struct SettingsProBanner: View {
             }
         }
         .padding(.vertical, 6)
-        .sheet(isPresented: $showPaywall) { PaywallView(store: store) }
+        .sheet(isPresented: $showPaywall) {
+            PaywallView(store: store, source: .settingsBanner)
+        }
     }
 
     private var pro: Bool { store.entitlement == .pro }

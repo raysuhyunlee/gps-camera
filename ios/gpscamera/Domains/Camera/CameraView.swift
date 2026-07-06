@@ -358,9 +358,11 @@ private extension View {
     let pro = ProStore()
     return CameraView(controller: CameraController(location: location, overlay: overlay,
                                                    filename: DefaultFilenameProvider(store: store),
-                                                   store: store),
+                                                   store: store,
+                                                   events: NoopTracker(),
+                                                   metrics: UsageMetrics()),
                       location: location, overlay: overlay,
-                      gallery: Gallery(store: CaptureStore()),
+                      gallery: Gallery(store: CaptureStore(), events: NoopTracker()),
                       settings: store, registry: registry,
                       entitlement: FixedEntitlement(), paywall: pro, banner: pro)
 }

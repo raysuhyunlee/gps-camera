@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71F754032FFB66A6002FDBC2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000010 /* FirebaseAnalytics */; };
+		71F754042FFB66A6002FDBC2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000011 /* FirebaseCrashlytics */; };
 		AB000000000000000000000C /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AB000000000000000000000E /* RevenueCat */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71F754042FFB66A6002FDBC2 /* FirebaseCrashlytics in Frameworks */,
+				71F754032FFB66A6002FDBC2 /* FirebaseAnalytics in Frameworks */,
 				AB000000000000000000000C /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +89,7 @@
 				71F74BBC2FF3C65C002FDBC2 /* Sources */,
 				71F74BBD2FF3C65C002FDBC2 /* Frameworks */,
 				71F74BBE2FF3C65C002FDBC2 /* Resources */,
+				71F754052FFB66A6002FDBC2 /* Upload Crashlytics dSYMs */,
 			);
 			buildRules = (
 			);
@@ -96,6 +101,8 @@
 			name = gpscamera;
 			packageProductDependencies = (
 				AB000000000000000000000E /* RevenueCat */,
+				AB0000000000000000000010 /* FirebaseAnalytics */,
+				AB0000000000000000000011 /* FirebaseCrashlytics */,
 			);
 			productName = gpscamera;
 			productReference = 71F74BC02FF3C65C002FDBC2 /* gpscamera.app */;
@@ -154,6 +161,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				AB000000000000000000000D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				AB000000000000000000000F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 71F74BC12FF3C65C002FDBC2 /* Products */;
@@ -182,6 +190,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		71F754052FFB66A6002FDBC2 /* Upload Crashlytics dSYMs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Upload Crashlytics dSYMs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		71F74BBC2FF3C65C002FDBC2 /* Sources */ = {
@@ -485,6 +515,14 @@
 				minimumVersion = 5.60.0;
 			};
 		};
+		AB000000000000000000000F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -492,6 +530,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AB000000000000000000000D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
 			productName = RevenueCat;
+		};
+		AB0000000000000000000010 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB000000000000000000000F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		AB0000000000000000000011 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB000000000000000000000F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

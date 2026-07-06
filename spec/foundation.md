@@ -2,6 +2,9 @@
 
 ## Status
 
+- 2026-07-06: `UsageMetrics` implemented on iOS (persisted counters; `isPro`
+  bound by the root). `SettingsStore.onSet` write hook added (root binds it to
+  analytics).
 - 2026-07-06: `custom` controls implemented: the case carries the
   domain-supplied view factory directly (`custom(view:)`); first consumer is
   the monetization pro banner. `.settingsGatingChanged` notification added so
@@ -151,9 +154,11 @@ Note: Mismatch popup only shows when the user had granted the permission and rev
 
 ### Usage Metrics
 
-- A lightweight bus publishing session count and usage metrics
-- Consumed by `monetization` for ad triggers and nudge rules. Resets per session.
- 
+- `UsageMetrics`: lifetime counters persisted in UserDefaults
+- Consumed by `event` (global params) and `monetization` (ad triggers, nudge rules)
+- Camera records capture counts; the root records session start
+- `isPro` is a root-bound closure (foundation never imports a domain)
+
 Metrics:
 	* firstInstalledAt: datetime
 	* sessionCount: number
@@ -180,6 +185,7 @@ Metrics:
 ios/gpscamera/Foundation/
 ├── PermissionStatus.swift - shared authorization enum
 ├── BundledFonts.swift     - runtime registration of Resources/Fonts
+├── UsageMetrics.swift     - persisted usage counters; isPro bound by the root
 └── Settings/
     ├── SettingsSchema.swift      - Control, SettingItem, SettingsSection, SettingsProviding
     ├── SettingValue.swift        - typed value (bool/string/number/stringList) <-> UserDefaults
@@ -197,6 +203,7 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: `UsageMetrics` + `SettingsStore.onSet` (analytics wiring).
 - 2026-07-06: `custom(view:)` controls + `.settingsGatingChanged` (first
   consumer: pro banner).
 - 2026-07-05: UI-vs-config boundary documented (renderer policy / root
