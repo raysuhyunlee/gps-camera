@@ -196,7 +196,7 @@ nonisolated struct OverlaySettingsProvider: SettingsProviding {
             // Hidden until the position-editor widget lands; registered so the
             // store knows its default.
             SettingItem(key: OverlaySettingKey.layout, titleKey: "Adjust position",
-                        control: .custom(controlRef: "overlay.layout"),
+                        control: .custom(view: { AnyView(EmptyView()) }),
                         defaultValue: .string(OverlayAnchor.bottomLeading.rawValue),
                         visibleWhen: { _ in false }),
         ]),

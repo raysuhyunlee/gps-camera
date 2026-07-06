@@ -44,7 +44,8 @@ nonisolated enum Control {
     case orderList([OrderListOption])
     case navigation(sectionRef: String)
     case action(actionRef: String)
-    case custom(controlRef: String)   // domain-supplied view
+    /// Domain-supplied row view (e.g. the pro banner) - keeps foundation generic.
+    case custom(view: @MainActor () -> AnyView)
 }
 
 nonisolated struct SettingItem: Identifiable {

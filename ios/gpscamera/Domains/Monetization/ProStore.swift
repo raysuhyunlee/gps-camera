@@ -27,6 +27,9 @@ final class ProStore: ObservableObject, EntitlementProviding {
     @Published private(set) var packages: [Package] = []
     /// True once an offerings load attempt finished (drives the loading state).
     @Published private(set) var loaded = false
+    /// Store page for managing an active subscription; nil when there is none
+    /// to manage (free, lifetime).
+    @Published private(set) var managementURL: URL?
 
     private let cached: EntitlementBox
     private let cachedProKey = "monetization.cachedPro"
@@ -77,11 +80,14 @@ final class ProStore: ObservableObject, EntitlementProviding {
     }
 
     private func apply(_ info: CustomerInfo) {
+        managementURL = info.managementURL
         let pro = info.entitlements[RevenueCatConfig.entitlementID]?.isActive == true
         UserDefaults.standard.set(pro, forKey: cachedProKey)
         if cached.value != (pro ? Entitlement.pro : .free) {
             cached.value = pro ? .pro : .free
             objectWillChange.send()
+            // An open Settings screen re-evaluates its gated rows (foundation).
+            NotificationCenter.default.post(name: .settingsGatingChanged, object: nil)
         }
     }
 }

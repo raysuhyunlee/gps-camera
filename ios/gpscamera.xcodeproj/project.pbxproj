@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AB000000000000000000000C /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AB000000000000000000000E /* RevenueCat */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		AB000000000000000000000B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -15,10 +19,6 @@
 			remoteInfo = gpscamera;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXBuildFile section */
-		AB000000000000000000000C /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AB000000000000000000000E /* RevenueCat */; };
-/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		71F74BC02FF3C65C002FDBC2 /* gpscamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gpscamera.app; sourceTree = BUILT_PRODUCTS_DIR; };

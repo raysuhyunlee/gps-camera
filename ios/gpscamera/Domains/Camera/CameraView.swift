@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// The Main screen: live camera preview with the top/bottom control sections
-/// (camera.md "Layout"). Hosts the live overlay layer; pro banner slots in later.
+/// (camera.md "Layout"). Hosts the live overlay layer and the pro banner.
 struct CameraView: View {
     @ObservedObject var controller: CameraController
     @ObservedObject var location: LocationProvider
@@ -10,10 +10,11 @@ struct CameraView: View {
     let gallery: GalleryProviding
     let settings: SettingsStore
     let registry: SettingsRegistry
-    /// Monetization seams; gate pro settings rows and route locked rows to
-    /// the paywall.
+    /// Monetization seams; gate pro settings rows, route locked rows to the
+    /// paywall, host the thin pro banner under the top controls.
     let entitlement: EntitlementProviding
     let paywall: PaywallProviding
+    let banner: ProBannerProviding
 
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false
@@ -90,6 +91,10 @@ struct CameraView: View {
     private var controls: some View {
         VStack(spacing: 0) {
             topSection
+            // Pro banner - hosted, not owned (monetization domain): a thin
+            // one-line strip that opens the paywall itself; hidden for pro.
+            banner.mainBanner()
+                .disabled(controller.isRecording)
             // Live overlay layer - hosted, not owned (overlay domain): the
             // overlay anchors + drags itself within the area between the
             // control sections, following the capture orientation. The ZStack
@@ -350,11 +355,12 @@ private extension View {
         store: store)
     let location = LocationProvider()
     let overlay = OverlayRenderer(store: store)
+    let pro = ProStore()
     return CameraView(controller: CameraController(location: location, overlay: overlay,
                                                    filename: DefaultFilenameProvider(store: store),
                                                    store: store),
                       location: location, overlay: overlay,
                       gallery: Gallery(store: CaptureStore()),
                       settings: store, registry: registry,
-                      entitlement: FixedEntitlement(), paywall: ProStore())
+                      entitlement: FixedEntitlement(), paywall: pro, banner: pro)
 }

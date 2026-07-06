@@ -15,24 +15,28 @@ struct gpscameraApp: App {
     private let gallery: GalleryProviding
     private let store: SettingsStore
     private let registry: SettingsRegistry
-    /// Live StoreKit entitlement + paywall (monetization).
-    private let pro = ProStore()
+    /// Live entitlement + paywall + banners (monetization).
+    private let pro: ProStore
 
     init() {
         BundledFonts.registerAll()   // before any UI renders
         // Registry before consumers: it registers every setting's default.
         // Section placement is owned here (overview.md "Settings").
         let store = SettingsStore()
+        let pro = ProStore()
         let registry = SettingsRegistry(
-            providers: [CameraSettingsProvider(), OverlaySettingsProvider(),
+            providers: [MonetizationSettingsProvider(store: pro),
+                        CameraSettingsProvider(), OverlaySettingsProvider(),
                         FilenameSettingsProvider()],
-            order: ["camera.capture": 20, "overlay": 30, "filename": 40],
+            order: ["monetization": 0, "camera.capture": 20, "overlay": 30,
+                    "filename": 40],
             store: store)
         let location = LocationProvider()
         let overlay = OverlayRenderer(store: store)
         self.store = store
         self.registry = registry
         self.overlay = overlay
+        self.pro = pro
         // Gallery browses the same app-private store the capture services write.
         self.gallery = Gallery(store: CaptureStore())
         _location = StateObject(wrappedValue: location)
@@ -45,7 +49,7 @@ struct gpscameraApp: App {
         WindowGroup {
             CameraView(controller: camera, location: location, overlay: overlay,
                        gallery: gallery, settings: store, registry: registry,
-                       entitlement: pro, paywall: pro)
+                       entitlement: pro, paywall: pro, banner: pro)
         }
     }
 }

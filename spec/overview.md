@@ -10,9 +10,11 @@
   `PaywallProviding` seam.
 - 2026-07-05: Gallery domain live on iOS; camera/gallery seams added to the
   wiring (`CaptureStoreBrowsing`, `GalleryProviding`).
+- 2026-07-06: Pro banner live on Main (thin tappable line) and in Settings
+  (thicker banner with CTA, section order 0).
 - 2026-07-05: Settings screen live on iOS (sheet from Main's gear control):
   registry-rendered sections for camera (20) / overlay (30) / filename (40).
-  Pending sections: pro banner, General/Language, restore, feedback, about.
+  Pending sections: General/Language, restore, feedback, about.
 - 2026-06-30: Initial spec. Architecture and settings framework defined.
 
 ## Product
@@ -87,6 +89,8 @@ Only these cross-domain seams exist. Everything else is internal.
 	- publishes `Entitlement` (`.free` / `.pro`), read by every domain for gating
 	- publishes the paywall screen (`PaywallProviding`), presented by Main for
 	  locked pro settings rows
+	- publishes the Main pro banner (`ProBannerProviding`); the Settings banner
+	  ships as its `SettingsSection` (Control.custom)
 	- owns ads and the nudge orchestrator.
 
 Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,

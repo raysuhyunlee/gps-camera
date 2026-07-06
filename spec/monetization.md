@@ -2,12 +2,15 @@
 
 ## Status
 
+- 2026-07-06: Pro banner implemented on iOS, spec revised: thin tappable
+  one-line banner on Main (no CTA), thicker banner with CTA in Settings
+  (`Control.custom` row). Restore row in Settings still pending.
 - 2026-07-06: iOS paywall + IAP implemented on RevenueCat: `ProStore`
   (offerings, purchase, restore, live entitlement + offline cache) and
   `PaywallView`; locked pro settings rows open the paywall. TODO: create the
   gpscamera RevenueCat project and replace the placeholder API keys in
-  `ProStore.swift`. Still pending: pro banner + restore rows in Settings, ads,
-  nudge orchestrator, in-app review, domain-side gating behavior (watermark
+  `ProStore.swift`. Still pending: restore row in Settings, ads, nudge
+  orchestrator, in-app review, domain-side gating behavior (watermark
   force-on for free, ad trigger).
 - 2026-07-05: `Entitlement` + `EntitlementProviding` seam added;
   `FixedEntitlement` stub kept for previews/tests.
@@ -55,10 +58,19 @@
 
 ### Pro banner
 
-A shared widget (`Control.custom`) with two states:
+Two variants, both owned by monetization; each opens the paywall itself so
+hosts stay monetization-unaware:
 
-- **Free** → nudging CTA to subscribe.
-- **Subscribed** → status display + manage-subscription CTA.
+- **Main**: thin one-line strip under the top controls, no CTA - the banner
+  itself is the button. Hidden for pro. Hosted via `ProBannerProviding`
+  (`mainBanner()`), disabled while recording.
+- **Settings**: thicker two-line banner row (`Control.custom`, section order 0)
+  with a CTA:
+	- Free → "Upgrade" (paywall).
+	- Subscribed → status + "Manage" (store management URL; hidden when there
+	  is none, e.g. lifetime).
+- A purchase while Settings is open posts `.settingsGatingChanged`
+  (foundation) so locked rows unlock in place.
 
 ### Ads
 
@@ -100,7 +112,8 @@ Contributed sections (see overview.md ordering):
 ios/gpscamera/Domains/Monetization/
 ├── Entitlement.swift - Entitlement enum, EntitlementProviding seam, FixedEntitlement (previews/tests)
 ├── ProStore.swift    - RevenueCat: API keys, offerings, purchase/restore, live entitlement + offline cache
-└── PaywallView.swift - PaywallProviding seam + the paywall screen
+├── PaywallView.swift - PaywallProviding seam + the paywall screen
+└── ProBanner.swift   - ProBannerProviding seam, Main + Settings banners, MonetizationSettingsProvider
 ios/gpscamera.storekit - StoreKit test config (local purchases with the Apple key; wired in the shared scheme)
 ```
 
@@ -110,6 +123,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: Pro banner spec revised (Main: thin tappable line; Settings:
+  thicker + CTA) and implemented on iOS (`ProBanner.swift`).
 - 2026-07-06: IAP switched to RevenueCat (`purchases-ios-spm`); offerings
   replace direct StoreKit products.
 - 2026-07-06: iOS paywall + IAP (`ProStore`, `PaywallView`, `PaywallProviding`);

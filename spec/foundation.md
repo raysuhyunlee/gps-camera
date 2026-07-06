@@ -2,12 +2,16 @@
 
 ## Status
 
+- 2026-07-06: `custom` controls implemented: the case carries the
+  domain-supplied view factory directly (`custom(view:)`); first consumer is
+  the monetization pro banner. `.settingsGatingChanged` notification added so
+  an open Settings screen re-evaluates gated rows on entitlement change.
 - 2026-07-05: iOS settings framework implemented (`Foundation/Settings`):
   schema, thread-safe `SettingsStore` over UserDefaults, registry, generic
   `SettingsScreen` renderer, permission-coupled toggles + mismatch popup +
   deep-link highlight. Camera/overlay/filename sections wired. Deferred:
   l10n (titles are raw English), General/Language + feedback/about sections,
-  `custom` control views, `action` handlers.
+  `action` handlers.
 - 2026-07-01: iOS `PermissionStatus` added (`ios/gpscamera/Foundation`).
 - 2026-06-30: Initial spec.
 
@@ -61,8 +65,8 @@ Control = one of:
                             //   value = ordered ids of included items
     navigation(sectionRef)  // push a sub-section
     action(actionRef)       // restore purchase, send feedback
-    custom(controlRef)      // domain-supplied view (overlay preview, position
-                            //   editor) - keeps foundation generic
+    custom(view)            // domain-supplied view factory (pro banner, overlay
+                            //   preview) - keeps foundation generic
 
 SettingItem {
     key                  // stable, namespaced, e.g. "camera.photo.format"
@@ -94,9 +98,11 @@ SettingsProviding {      // the seam each domain conforms to
   `order`, renders each `Control` generically.
 - `SettingsStore` contain typed settings for each domain
 - **Gating**: a `.pro` item shows a lock for `.free` users and routes to the
-  paywall on tap (entitlement from `monetization`).
-- **`custom` controls**: the providing domain supplies the view and binds it to
-  its own `key`
+  paywall on tap (entitlement from `monetization`). When the entitlement
+  changes while Settings is open, `.settingsGatingChanged` (posted by
+  monetization, declared here) re-evaluates the gated rows in place.
+- **`custom` controls**: the providing domain supplies the view factory in the
+  control case and binds it to its own `key`
 
 #### UI interests vs config interests
 
@@ -185,6 +191,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: `custom(view:)` controls + `.settingsGatingChanged` (first
+  consumer: pro banner).
 - 2026-07-05: UI-vs-config boundary documented (renderer policy / root
   placement / presentation hints); text items submit with a Done key.
 - 2026-07-05: Bundled-font registration (`BundledFonts`) for the OFL fonts

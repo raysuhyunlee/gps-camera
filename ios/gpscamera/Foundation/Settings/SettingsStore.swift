@@ -10,6 +10,10 @@ extension Notification.Name {
     /// Posted (main thread) the first time an enabled permission-coupled setting
     /// is read while its permission is revoked. userInfo: ["key": String].
     static let settingPermissionMismatch = Notification.Name("settingPermissionMismatch")
+    /// Posted (main thread) when the pro entitlement changes so an open
+    /// Settings screen re-evaluates its gated rows. Foundation declares the
+    /// contract; monetization posts it.
+    static let settingsGatingChanged = Notification.Name("settingsGatingChanged")
 }
 
 /// Key-value settings backed by UserDefaults. Defaults are registered from the

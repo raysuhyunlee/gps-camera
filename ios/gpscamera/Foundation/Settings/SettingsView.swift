@@ -21,6 +21,9 @@ struct SettingsScreen: View {
     @Environment(\.dismiss) private var dismiss
     @State private var path: [String] = []
     @State private var highlight: String?
+    /// Bumped on `.settingsGatingChanged` so gated rows re-read `entitled`
+    /// while the screen is open (e.g. a purchase through the pro banner).
+    @State private var gatingTick = 0
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -48,6 +51,10 @@ struct SettingsScreen: View {
                     .navigationTitle(section.titleKey)
                 }
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(
+            for: .settingsGatingChanged)) { _ in
+            gatingTick += 1
         }
         .onAppear {
             guard let key = highlightKey else { return }
@@ -185,9 +192,8 @@ private struct SettingRow: View {
         case .action:
             Button(item.titleKey) {}   // handlers land with their features
                 .disabled(true)
-        case .custom:
-            Text(item.titleKey)        // domain view slots in when provided
-                .foregroundStyle(.secondary)
+        case .custom(let view):
+            view()
         }
     }
 

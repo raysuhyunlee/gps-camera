@@ -173,6 +173,7 @@ Neither platform ever requests full photo-library **read** access.
 	- naming from `filename` domain
 	- `EntitlementProviding` (pro gating for the settings sheet)
 	- `PaywallProviding` (locked pro rows open the paywall sheet)
+	- `ProBannerProviding` (thin pro banner hosted under the top controls)
 	- `GalleryProviding` (recent-thumbnail control hosted on Main)
 - publishes
 	- `CaptureStoreBrowsing` (gallery reads + deletes store entries)
@@ -243,6 +244,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: Pro banner hosted under the top controls (`ProBannerProviding`;
+  disabled while recording).
 - 2026-07-06: Locked pro settings rows route to the paywall
   (`PaywallProviding` sheet over the settings sheet).
 - 2026-07-05: Gallery button replaces the placeholder (hosted `GalleryProviding`
