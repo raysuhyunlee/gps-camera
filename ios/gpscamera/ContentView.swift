@@ -75,6 +75,7 @@ private struct ProDebugSection: View {
                 }
             }
             .disabled(refreshing)
+            Button("Show success modal") { PurchaseSuccess.present() }
         }
     }
 }

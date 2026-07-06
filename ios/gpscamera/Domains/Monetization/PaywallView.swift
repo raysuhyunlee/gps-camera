@@ -215,7 +215,12 @@ struct PaywallView: View {
         purchasing = true
         defer { purchasing = false }
         do {
-            if try await store.purchase(package) { dismiss() }
+            // The success modal lives in its own window (PurchaseSuccess), so
+            // it survives this dismissal and any host teardown.
+            if try await store.purchase(package) {
+                PurchaseSuccess.present()
+                dismiss()
+            }
             // false = user cancelled; no alert.
         } catch {
             failureMessage = "The purchase could not be completed. Please try again."

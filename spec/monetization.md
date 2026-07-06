@@ -2,6 +2,9 @@
 
 ## Status
 
+- 2026-07-06: Purchase success modal implemented (`PurchaseSuccessView`,
+  lottie-ios). TODO: add the celebration animation as
+  `Domains/Monetization/PurchaseSuccess.json` (SF Symbol fallback until then).
 - 2026-07-06: Restore row in Settings implemented (section order 90,
   `Control.action`) and watermark force-on for free implemented in overlay.
   Still pending: ads, nudge orchestrator, in-app review, ad trigger.
@@ -54,7 +57,10 @@
   rows, selectable price cards, pinned CTA + restore/terms/legal links);
   restyled to this app's native look (system colors, SF Symbols, light/dark).
 - Purchase and restore run through `ProStore` (RevenueCat packages).
-  Successful purchase or restore dismisses the paywall.
+- Successful purchase or restore dismisses the paywall. Purchase additionally
+  shows the success modal (Lottie celebration, "Pro unlocked!" /
+  "Enjoy all features", Continue): `PurchaseSuccess.present()` opens it in its
+  own alert-level window, so it shows over any screen or sheet stack.
 - Opened by tapping a locked pro row in Settings (`PaywallProviding` seam,
   presented by Main over the settings sheet). Always dismissible for now;
   nudge-driven presentation lands with the orchestrator.
@@ -116,16 +122,20 @@ ios/gpscamera/Domains/Monetization/
 ├── Entitlement.swift - Entitlement enum, EntitlementProviding seam, FixedEntitlement (previews/tests)
 ├── ProStore.swift    - RevenueCat: API keys, offerings, purchase/restore, live entitlement + offline cache
 ├── PaywallView.swift - PaywallProviding seam + the paywall screen
+├── PurchaseSuccessView.swift - post-purchase success modal in its own window (Lottie; expects bundled PurchaseSuccess.json)
 └── ProBanner.swift   - ProBannerProviding seam, Main + Settings banners, MonetizationSettingsProvider
 ios/gpscamera.storekit - StoreKit test config (local purchases with the Apple key; wired in the shared scheme)
 ```
 
-Dependency: `purchases-ios-spm` (RevenueCat, SPM).
+Dependencies: `purchases-ios-spm` (RevenueCat, SPM), `lottie-ios` (SPM).
 
 Android: planned.
 
 ## Revision History
 
+- 2026-07-06: Purchase success modal (`PurchaseSuccessView`, lottie-ios dep);
+  presented window-level (`PurchaseSuccess.present()`) so it shows over any
+  screen; debug surface gains a show-modal button.
 - 2026-07-06: `ProStore.refresh()` (force customer-info refetch) for the debug
   surface's pro status section (camera.md "Individual controls").
 - 2026-07-06: Settings restore row (`Control.action`, order 90); domain-side
