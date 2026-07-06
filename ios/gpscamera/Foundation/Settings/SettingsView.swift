@@ -17,6 +17,9 @@ struct SettingsScreen: View {
     /// Locked pro row tapped - routes to the paywall once monetization lands.
     var onProLock: (String) -> Void = { _ in }
     var highlightKey: String?
+    /// Debug surface factory (composition root). Dev backdoor: 7 rapid taps on
+    /// the title present it; intentionally undiscoverable. nil disables it.
+    var debugScreen: (() -> AnyView)? = nil
 
     @Environment(\.dismiss) private var dismiss
     @State private var path: [String] = []
@@ -24,6 +27,9 @@ struct SettingsScreen: View {
     /// Bumped on `.settingsGatingChanged` so gated rows re-read `entitled`
     /// while the screen is open (e.g. a purchase through the pro banner).
     @State private var gatingTick = 0
+    @State private var titleTaps = 0
+    @State private var lastTitleTap = Date.distantPast
+    @State private var showDebug = false
 
     var body: some View {
         NavigationStack(path: $path) {
@@ -37,10 +43,17 @@ struct SettingsScreen: View {
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                // Tappable stand-in for the inline title (the system title
+                // itself takes no gestures); hosts the debug backdoor.
+                ToolbarItem(placement: .principal) {
+                    Text("Settings").font(.headline)
+                        .onTapGesture(perform: titleTapped)
+                }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Done") { dismiss() }
                 }
             }
+            .sheet(isPresented: $showDebug) { debugScreen?() }
             .navigationDestination(for: String.self) { id in
                 if let section = registry.section(id) {
                     HighlightingForm(highlight: highlight) {
@@ -64,6 +77,18 @@ struct SettingsScreen: View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
                 withAnimation { highlight = nil }
             }
+        }
+    }
+
+    /// Rapid = under 1s between taps; a slower tap restarts the count.
+    private func titleTapped() {
+        guard debugScreen != nil else { return }
+        let now = Date()
+        titleTaps = now.timeIntervalSince(lastTitleTap) < 1 ? titleTaps + 1 : 1
+        lastTitleTap = now
+        if titleTaps == 7 {
+            titleTaps = 0
+            showDebug = true
         }
     }
 }

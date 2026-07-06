@@ -3,7 +3,7 @@
 //  gpscamera
 //
 //  Debug surface for development inspection (location module, pro status).
-//  Backdoor entry: long-press (5s) the GPS status icon on Main.
+//  Backdoor entry: tap the Settings title 7 times rapidly.
 //
 
 import SwiftUI

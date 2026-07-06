@@ -9,6 +9,8 @@ import SwiftUI
     @Published private(set) var settings: OverlaySettings
     private let store: SettingsStore
     private let entitlement: EntitlementProviding
+    /// Last entitlement `reload()` saw; detects the free -> pro transition.
+    private var lastEntitlement: Entitlement
     private var storeChanges: AnyCancellable?
     private var gatingChanges: AnyCancellable?
 
@@ -16,6 +18,7 @@ import SwiftUI
     init(store: SettingsStore, entitlement: EntitlementProviding = FixedEntitlement()) {
         self.store = store
         self.entitlement = entitlement
+        lastEntitlement = entitlement.entitlement
         settings = OverlaySettings(from: store)
         storeChanges = store.onChange { [weak self] in
             self?.reload()
@@ -29,12 +32,19 @@ import SwiftUI
     }
 
     private func reload() {
+        let now = entitlement.entitlement
+        let was = lastEntitlement
+        lastEntitlement = now
         // Free cannot disable the watermark (overlay.md "Settings"). Flip the
         // stored toggle back on - not just the render - so the Settings row
         // shows the real state after a pro revocation.
-        if entitlement.entitlement == .free,
-           !store.bool(OverlaySettingKey.itemWatermark) {
+        if now == .free, !store.bool(OverlaySettingKey.itemWatermark) {
             store.set(.bool(true), for: OverlaySettingKey.itemWatermark)
+        }
+        // Becoming pro turns the watermark off once (the reverse of the
+        // revocation rule); the toggle stays user-editable afterwards.
+        if now == .pro, was == .free, store.bool(OverlaySettingKey.itemWatermark) {
+            store.set(.bool(false), for: OverlaySettingKey.itemWatermark)
         }
         settings = OverlaySettings(from: store)
     }

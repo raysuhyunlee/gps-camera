@@ -21,7 +21,6 @@ struct CameraView: View {
     @State private var showSettings = false
     @State private var settingsHighlight: String?
     @State private var mismatchKey: String?
-    @State private var showLocationDebug = false
     @State private var showPaywall = false
 
     var body: some View {
@@ -65,7 +64,8 @@ struct CameraView: View {
             SettingsScreen(registry: registry, store: settings,
                            entitled: { entitlement.entitlement == .pro },
                            onProLock: { _ in showPaywall = true },
-                           highlightKey: settingsHighlight)
+                           highlightKey: settingsHighlight,
+                           debugScreen: { AnyView(ContentView(pro: entitlement as? ProStore)) })
                 .sheet(isPresented: $showPaywall) { paywall.paywallScreen() }
         }
         // Permission-coupled mismatch popup (foundation.md): non-blocking, the
@@ -149,14 +149,6 @@ struct CameraView: View {
             Image(systemName: "location.fill")
                 .foregroundStyle(color(for: level))
                 .frame(width: 44, height: 44)
-        }
-        // Developer backdoor: long-press (5s) opens the location debug
-        // surface. Deliberately undiscoverable; a short tap still shows the
-        // accuracy tooltip.
-        .simultaneousGesture(LongPressGesture(minimumDuration: 5)
-            .onEnded { _ in showLocationDebug = true })
-        .sheet(isPresented: $showLocationDebug) {
-            ContentView(pro: entitlement as? ProStore)
         }
         .rotatable(rotation)
         .popover(isPresented: $showGPSTooltip) {

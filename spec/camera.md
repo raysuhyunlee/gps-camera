@@ -67,9 +67,7 @@ Individual controls:
 
 - GPS status - icon only, tinted by accuracy (green good / yellow normal /
   red bad); tap shows a status tooltip (good / normal / bad). From `location`
-  `accuracyLevel`. Dev backdoor: long-press (5s) opens the debug surface
-  (`ContentView`: location readouts + pro status refresh); intentionally
-  undiscoverable.
+  `accuracyLevel`.
 - Photo/video switch
 - Lens / field-of-view switch (ultra-wide / wide / tele, as available)
 - Flash toggle
@@ -245,6 +243,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: Debug surface backdoor moved off the GPS icon to the Settings
+  title (7 rapid taps; see foundation.md "Settings Framework").
 - 2026-07-06: Debug surface gains a pro status section (entitlement + refresh
   via `ProStore.refresh()`).
 - 2026-07-06: Pro banner hosted under the top controls (`ProBannerProviding`;

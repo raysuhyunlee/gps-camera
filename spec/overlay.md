@@ -2,6 +2,8 @@
 
 ## Status
 
+- 2026-07-06: Watermark auto-off on purchase: the free -> pro transition
+  writes the stored toggle off once; it stays user-editable afterwards.
 - 2026-07-06: Watermark force-on for free implemented: `OverlayRenderer` reads
   the entitlement seam; while `.free` it writes the stored watermark toggle
   back on (Settings shows the real state, no hidden override). Re-applied on
@@ -135,6 +137,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: Watermark auto-off on the free -> pro transition (reverse of
+  force-on); toggle stays user-editable afterwards.
 - 2026-07-06: Watermark force-on for free: revocation writes the stored
   toggle back on (entitlement read in `OverlayRenderer`).
 - 2026-07-05: 20 bundled OFL Google Fonts added to the font select.

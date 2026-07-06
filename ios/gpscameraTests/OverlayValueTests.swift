@@ -76,6 +76,32 @@ struct OverlayFormatterTests {
         #expect(!renderer.settings.showWatermark)
         #expect(!store.bool(OverlaySettingKey.itemWatermark))
     }
+
+    /// Purchase while running (free -> pro) turns the watermark off once.
+    @Test func becomingProTurnsWatermarkOff() async {
+        let store = makeStore()
+        let entitlement = MutableEntitlement(.free)
+        let renderer = OverlayRenderer(store: store, entitlement: entitlement)
+        #expect(renderer.settings.showWatermark)
+
+        entitlement.entitlement = .pro
+        NotificationCenter.default.post(name: .settingsGatingChanged, object: nil)
+        await Task.yield()   // gating sink delivers on the main queue
+
+        #expect(!renderer.settings.showWatermark)
+        #expect(!store.bool(OverlaySettingKey.itemWatermark))
+
+        // Stays user-editable afterwards: turning it back on sticks.
+        store.set(.bool(true), for: OverlaySettingKey.itemWatermark)
+        await Task.yield()   // store onChange also delivers on the main queue
+        #expect(renderer.settings.showWatermark)
+        #expect(store.bool(OverlaySettingKey.itemWatermark))
+    }
+}
+
+private final class MutableEntitlement: EntitlementProviding, @unchecked Sendable {
+    var entitlement: Entitlement
+    init(_ initial: Entitlement) { entitlement = initial }
 }
 
 struct OverlayAnchorTests {

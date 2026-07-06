@@ -2,6 +2,8 @@
 
 ## Status
 
+- 2026-07-06: Settings screen hosts the dev backdoor to the debug surface
+  (7 rapid taps on the title; `debugScreen` factory from the root).
 - 2026-07-06: `action` controls implemented: the case carries the
   domain-supplied handler (`action(perform:)`); the row runs it with a spinner
   and presents the returned `ActionFeedback` as an alert. First consumer is
@@ -109,6 +111,9 @@ SettingsProviding {      // the seam each domain conforms to
   paywall on tap (entitlement from `monetization`). When the entitlement
   changes while Settings is open, `.settingsGatingChanged` (posted by
   monetization, declared here) re-evaluates the gated rows in place.
+- **Dev backdoor**: 7 rapid taps (under 1s apart) on the Settings title present
+  the debug surface, supplied by the composition root as a view factory
+  (`debugScreen`); intentionally undiscoverable, nil disables it.
 - **`custom` controls**: the providing domain supplies the view factory in the
   control case and binds it to its own `key`
 
@@ -208,6 +213,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-06: Dev backdoor to the debug surface (7 rapid taps on the Settings
+  title, `debugScreen` factory); replaces the camera GPS-icon long-press.
 - 2026-07-06: `action(perform:)` controls + `ActionFeedback` alert (first
   consumer: restore purchase).
 - 2026-07-06: `UsageMetrics` + `SettingsStore.onSet` (analytics wiring).
