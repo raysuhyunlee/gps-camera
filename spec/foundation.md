@@ -151,9 +151,15 @@ Note: Mismatch popup only shows when the user had granted the permission and rev
 
 ### Usage Metrics
 
-- A lightweight bus publishing session-scoped counters (e.g. photo count,
-  session count).
+- A lightweight bus publishing session count and usage metrics
 - Consumed by `monetization` for ad triggers and nudge rules. Resets per session.
+ 
+Metrics:
+	* firstInstalledAt: datetime
+	* sessionCount: number
+	* photoCaptureCount: number
+	* videoCaptureCount: number
+	* isPro: bool
 
 ### Version
 - a source-of-truth for the current app version
