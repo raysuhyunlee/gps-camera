@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Setări";
+"Done" = "OK";
+"OK" = "OK";
+"Included" = "Incluse";
+"Excluded" = "Excluse";
+"General" = "General";
+"Language" = "Limbă";
+"System default" = "Implicit sistem";
+"Send Feedback" = "Trimite feedback";
+"About" = "Despre";
+"Version" = "Versiune";
+"Terms of Service" = "Termeni și condiții";
+"Legal Notices" = "Mențiuni legale";
+"Permission is off" = "Permisiunea este dezactivată";
+"Close" = "Închide";
+"Go to Settings" = "Mergi la setări";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "O setare care necesită o permisiune a rămas activată, dar permisiunea a fost revocată. Captura a continuat fără această funcție.";
+
+/* Camera */
+"Capture" = "Captură";
+"Shutter sound" = "Sunet obturator";
+"Orientation lock" = "Blocare orientare";
+"Include EXIF location" = "Include locația EXIF";
+"Includes location data in the photo file." = "Include date de localizare în fișierul foto.";
+"Photo" = "Fotografie";
+"Video" = "Video";
+"Resolution" = "Rezoluție";
+"Format" = "Format";
+"Also save original" = "Salvează și originalul";
+"Keeps a copy without the overlay." = "Păstrează o copie fără suprapunere.";
+"Save to Camera Roll" = "Salvează în Rola camerei";
+"Camera access is off." = "Accesul la cameră este dezactivat.";
+"Open Settings" = "Deschide setările";
+"Good" = "Bună";
+"Normal" = "Normală";
+"Bad" = "Slabă";
+"No signal" = "Fără semnal";
+"PHOTO" = "FOTO";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geocodificat cu GPS Camera";
+"Overlay" = "Suprapunere";
+"Include overlay in photo/video" = "Include suprapunere în foto/video";
+"Display items" = "Elemente afișate";
+"Font" = "Font";
+"Font size" = "Mărime font";
+"Text color" = "Culoarea textului";
+"Background color" = "Culoarea fundalului";
+"Background opacity" = "Opacitatea fundalului";
+"Coordinate format" = "Format coordonate";
+"Unit" = "Unitate";
+"Adjust position" = "Ajustare poziție";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metric";
+"Imperial" = "Imperial";
+"Coordinates" = "Coordonate";
+"Altitude" = "Altitudine";
+"Accuracy" = "Precizie";
+"Compass" = "Busolă";
+"Time" = "Oră";
+"Address" = "Adresă";
+"Watermark" = "Filigran";
+"System" = "Sistem";
+"Serif" = "Serif";
+"Rounded" = "Rotunjit";
+"Monospaced" = "Monospace";
+
+/* Filename */
+"Filename" = "Nume fișier";
+"Template" = "Șablon";
+"Prefix" = "Prefix";
+"Suffix" = "Sufix";
+"Date format" = "Format dată";
+"Auto-number" = "Numerotare automată";
+"Adds a number automatically when a file of the same name exists." = "Adaugă automat un număr când există deja un fișier cu același nume.";
+"Date" = "Dată";
+
+/* Gallery */
+"Gallery" = "Galerie";
+"No captures yet" = "Nicio captură încă";
+"Delete this item?" = "Ștergeți acest element?";
+"Delete" = "Șterge";
+
+/* Monetization */
+"Unlock every feature." = "Deblochează toate funcțiile.";
+"No ads" = "Fără reclame";
+"Remove watermark" = "Elimină filigranul";
+"Customize geotag" = "Personalizează geotag-ul";
+"Add logo and notes" = "Adaugă logo și note";
+"The store is unavailable right now." = "Magazinul este indisponibil acum.";
+"BEST VALUE" = "CEL MAI BUN RAPORT";
+"Continue" = "Continuă";
+"Restore Purchase" = "Restaurează achiziția";
+"Terms" = "Termeni";
+"Legal" = "Legal";
+"Purchase failed" = "Achiziție eșuată";
+"Lifetime" = "Pe viață";
+"Monthly" = "Lunar";
+"%@ / month" = "%@ / lună";
+"%@ once" = "%@ o singură dată";
+"Get GPS Camera Pro" = "Obțineți GPS Camera Pro";
+"All features available" = "Toate funcțiile disponibile";
+"No ads, every feature unlocked" = "Fără reclame, toate funcțiile deblocate";
+"Manage" = "Gestionează";
+"Upgrade" = "Actualizează";
+"Pro unlocked!" = "Pro deblocat!";
+"Enjoy all features" = "Bucurați-vă de toate funcțiile";
+"Purchases Restored" = "Achiziții restaurate";
+"GPS Camera Pro is active." = "GPS Camera Pro este activ.";
+"No previous purchase was found." = "Nu a fost găsită nicio achiziție anterioară.";
+"Restore could not be completed. Please try again." = "Restaurarea nu a putut fi finalizată. Vă rugăm încercați din nou.";
+"The purchase could not be completed. Please try again." = "Achiziția nu a putut fi finalizată. Vă rugăm încercați din nou.";

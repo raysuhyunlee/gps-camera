@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Asetukset";
+"Done" = "Valmis";
+"OK" = "OK";
+"Included" = "Mukana";
+"Excluded" = "Pois jätetty";
+"General" = "Yleiset";
+"Language" = "Kieli";
+"System default" = "Järjestelmän oletus";
+"Send Feedback" = "Lähetä palautetta";
+"About" = "Tietoja";
+"Version" = "Versio";
+"Terms of Service" = "Käyttöehdot";
+"Legal Notices" = "Oikeudelliset tiedot";
+"Permission is off" = "Käyttöoikeus on pois päältä";
+"Close" = "Sulje";
+"Go to Settings" = "Siirry asetuksiin";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Käyttöoikeutta vaativa asetus jäi päälle, mutta käyttöoikeus peruttiin. Kuvaus jatkui ilman tätä toimintoa.";
+
+/* Camera */
+"Capture" = "Kuvaus";
+"Shutter sound" = "Suljinääni";
+"Orientation lock" = "Suunnan lukitus";
+"Include EXIF location" = "Sisällytä EXIF-sijainti";
+"Includes location data in the photo file." = "Sisällyttää sijaintitiedot kuvatiedostoon.";
+"Photo" = "Kuva";
+"Video" = "Video";
+"Resolution" = "Resoluutio";
+"Format" = "Muoto";
+"Also save original" = "Tallenna myös alkuperäinen";
+"Keeps a copy without the overlay." = "Säilyttää kopion ilman peittokuvaa.";
+"Save to Camera Roll" = "Tallenna kuviin";
+"Camera access is off." = "Kameran käyttöoikeus on pois päältä.";
+"Open Settings" = "Avaa asetukset";
+"Good" = "Hyvä";
+"Normal" = "Normaali";
+"Bad" = "Huono";
+"No signal" = "Ei signaalia";
+"PHOTO" = "KUVA";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geotagattu GPS Cameralla";
+"Overlay" = "Overlay";
+"Include overlay in photo/video" = "Sisällytä overlay kuvaan/videoon";
+"Display items" = "Näytettävät kohteet";
+"Font" = "Fontti";
+"Font size" = "Fonttikoko";
+"Text color" = "Tekstin väri";
+"Background color" = "Taustaväri";
+"Background opacity" = "Taustan läpinäkymättömyys";
+"Coordinate format" = "Koordinaattimuoto";
+"Unit" = "Yksikkö";
+"Adjust position" = "Säädä sijaintia";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metrinen";
+"Imperial" = "Imperiaalinen";
+"Coordinates" = "Koordinaatit";
+"Altitude" = "Korkeus";
+"Accuracy" = "Tarkkuus";
+"Compass" = "Kompassi";
+"Time" = "Aika";
+"Address" = "Osoite";
+"Watermark" = "Vesileima";
+"System" = "Järjestelmä";
+"Serif" = "Serif";
+"Rounded" = "Pyöristetty";
+"Monospaced" = "Tasalevyinen";
+
+/* Filename */
+"Filename" = "Tiedostonimi";
+"Template" = "Malli";
+"Prefix" = "Etuliite";
+"Suffix" = "Jälkiliite";
+"Date format" = "Päivämäärämuoto";
+"Auto-number" = "Automaattinen numerointi";
+"Adds a number automatically when a file of the same name exists." = "Lisää numeron automaattisesti, kun samanniminen tiedosto on jo olemassa.";
+"Date" = "Päivämäärä";
+
+/* Gallery */
+"Gallery" = "Galleria";
+"No captures yet" = "Ei kuvauksia vielä";
+"Delete this item?" = "Poistetaanko tämä kohde?";
+"Delete" = "Poista";
+
+/* Monetization */
+"Unlock every feature." = "Avaa kaikki ominaisuudet.";
+"No ads" = "Ei mainoksia";
+"Remove watermark" = "Poista vesileima";
+"Customize geotag" = "Mukauta geotagi";
+"Add logo and notes" = "Lisää logo ja muistiinpanot";
+"The store is unavailable right now." = "Kauppa ei ole käytettävissä juuri nyt.";
+"BEST VALUE" = "PARAS ARVO";
+"Continue" = "Jatka";
+"Restore Purchase" = "Palauta ostos";
+"Terms" = "Ehdot";
+"Legal" = "Juridiset";
+"Purchase failed" = "Osto epäonnistui";
+"Lifetime" = "Ikuinen";
+"Monthly" = "Kuukausittain";
+"%@ / month" = "%@ / kk";
+"%@ once" = "%@ kerran";
+"Get GPS Camera Pro" = "Hanki GPS Camera Pro";
+"All features available" = "Kaikki ominaisuudet käytettävissä";
+"No ads, every feature unlocked" = "Ei mainoksia, kaikki ominaisuudet avattu";
+"Manage" = "Hallitse";
+"Upgrade" = "Päivitä";
+"Pro unlocked!" = "Pro avattu!";
+"Enjoy all features" = "Nauti kaikista ominaisuuksista";
+"Purchases Restored" = "Ostokset palautettu";
+"GPS Camera Pro is active." = "GPS Camera Pro on aktiivinen.";
+"No previous purchase was found." = "Aiempia ostoksia ei löydetty.";
+"Restore could not be completed. Please try again." = "Palautusta ei voitu suorittaa. Yritä uudelleen.";
+"The purchase could not be completed. Please try again." = "Ostoa ei voitu suorittaa. Yritä uudelleen.";

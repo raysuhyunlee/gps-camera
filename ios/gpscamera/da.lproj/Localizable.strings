@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Indstillinger";
+"Done" = "Færdig";
+"OK" = "OK";
+"Included" = "Inkluderet";
+"Excluded" = "Udeladt";
+"General" = "Generelt";
+"Language" = "Sprog";
+"System default" = "Systemstandard";
+"Send Feedback" = "Send feedback";
+"About" = "Om";
+"Version" = "Version";
+"Terms of Service" = "Servicevilkår";
+"Legal Notices" = "Juridiske oplysninger";
+"Permission is off" = "Tilladelsen er slået fra";
+"Close" = "Luk";
+"Go to Settings" = "Gå til indstillinger";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "En indstilling, der kræver en tilladelse, forblev slået til, men tilladelsen blev trukket tilbage. Optagelsen fortsatte uden funktionen.";
+
+/* Camera */
+"Capture" = "Optagelse";
+"Shutter sound" = "Lukkerlyd";
+"Orientation lock" = "Retningslås";
+"Include EXIF location" = "Inkluder EXIF-placering";
+"Includes location data in the photo file." = "Inkluderer placeringsdata i fotofilen.";
+"Photo" = "Foto";
+"Video" = "Video";
+"Resolution" = "Opløsning";
+"Format" = "Format";
+"Also save original" = "Gem også originalen";
+"Keeps a copy without the overlay." = "Beholder en kopi uden overlayet.";
+"Save to Camera Roll" = "Gem til kamerarulle";
+"Camera access is off." = "Kameraadgang er slået fra.";
+"Open Settings" = "Åbn indstillinger";
+"Good" = "God";
+"Normal" = "Normal";
+"Bad" = "Dårlig";
+"No signal" = "Intet signal";
+"PHOTO" = "FOTO";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geotagget med GPS Camera";
+"Overlay" = "Overlay";
+"Include overlay in photo/video" = "Inkluder overlay i foto/video";
+"Display items" = "Viste elementer";
+"Font" = "Skrifttype";
+"Font size" = "Skriftstørrelse";
+"Text color" = "Tekstfarve";
+"Background color" = "Baggrundsfarve";
+"Background opacity" = "Baggrundsopacitet";
+"Coordinate format" = "Koordinatformat";
+"Unit" = "Enhed";
+"Adjust position" = "Juster position";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metrisk";
+"Imperial" = "Imperialt";
+"Coordinates" = "Koordinater";
+"Altitude" = "Højde";
+"Accuracy" = "Nøjagtighed";
+"Compass" = "Kompas";
+"Time" = "Tid";
+"Address" = "Adresse";
+"Watermark" = "Vandmærke";
+"System" = "System";
+"Serif" = "Serif";
+"Rounded" = "Afrundet";
+"Monospaced" = "Monospace";
+
+/* Filename */
+"Filename" = "Filnavn";
+"Template" = "Skabelon";
+"Prefix" = "Præfiks";
+"Suffix" = "Suffiks";
+"Date format" = "Datoformat";
+"Auto-number" = "Autonummerering";
+"Adds a number automatically when a file of the same name exists." = "Tilføjer automatisk et nummer, når der allerede eksisterer en fil med samme navn.";
+"Date" = "Dato";
+
+/* Gallery */
+"Gallery" = "Galleri";
+"No captures yet" = "Ingen optagelser endnu";
+"Delete this item?" = "Slet dette element?";
+"Delete" = "Slet";
+
+/* Monetization */
+"Unlock every feature." = "Lås alle funktioner op.";
+"No ads" = "Ingen annoncer";
+"Remove watermark" = "Fjern vandmærke";
+"Customize geotag" = "Tilpas geotag";
+"Add logo and notes" = "Tilføj logo og noter";
+"The store is unavailable right now." = "Butikken er ikke tilgængelig lige nu.";
+"BEST VALUE" = "BEDSTE PRIS";
+"Continue" = "Fortsæt";
+"Restore Purchase" = "Gendan køb";
+"Terms" = "Vilkår";
+"Legal" = "Juridisk";
+"Purchase failed" = "Købet mislykkedes";
+"Lifetime" = "Livstid";
+"Monthly" = "Månedlig";
+"%@ / month" = "%@ / md.";
+"%@ once" = "%@ en gang";
+"Get GPS Camera Pro" = "Få GPS Camera Pro";
+"All features available" = "Alle funktioner tilgængelige";
+"No ads, every feature unlocked" = "Ingen annoncer, alle funktioner låst op";
+"Manage" = "Administrer";
+"Upgrade" = "Opgrader";
+"Pro unlocked!" = "Pro låst op!";
+"Enjoy all features" = "Nyd alle funktioner";
+"Purchases Restored" = "Køb gendannet";
+"GPS Camera Pro is active." = "GPS Camera Pro er aktiv.";
+"No previous purchase was found." = "Ingen tidligere køb fundet.";
+"Restore could not be completed. Please try again." = "Gendannelsen kunne ikke gennemføres. Prøv igen.";
+"The purchase could not be completed. Please try again." = "Købet kunne ikke gennemføres. Prøv igen.";

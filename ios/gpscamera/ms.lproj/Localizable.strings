@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Tetapan";
+"Done" = "Selesai";
+"OK" = "OK";
+"Included" = "Termasuk";
+"Excluded" = "Tidak termasuk";
+"General" = "Umum";
+"Language" = "Bahasa";
+"System default" = "Lalai sistem";
+"Send Feedback" = "Hantar maklum balas";
+"About" = "Perihal";
+"Version" = "Versi";
+"Terms of Service" = "Terma Perkhidmatan";
+"Legal Notices" = "Notis undang-undang";
+"Permission is off" = "Kebenaran dimatikan";
+"Close" = "Tutup";
+"Go to Settings" = "Pergi ke tetapan";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Tetapan yang memerlukan kebenaran kekal dihidupkan, tetapi kebenaran telah ditarik balik. Tangkapan diteruskan tanpa ciri ini.";
+
+/* Camera */
+"Capture" = "Tangkapan";
+"Shutter sound" = "Bunyi pengatup";
+"Orientation lock" = "Kunci orientasi";
+"Include EXIF location" = "Sertakan lokasi EXIF";
+"Includes location data in the photo file." = "Menyertakan data lokasi dalam fail foto.";
+"Photo" = "Foto";
+"Video" = "Video";
+"Resolution" = "Resolusi";
+"Format" = "Format";
+"Also save original" = "Simpan juga yang asal";
+"Keeps a copy without the overlay." = "Menyimpan salinan tanpa tindanan.";
+"Save to Camera Roll" = "Simpan ke Gulungan Kamera";
+"Camera access is off." = "Akses kamera dimatikan.";
+"Open Settings" = "Buka Tetapan";
+"Good" = "Baik";
+"Normal" = "Sederhana";
+"Bad" = "Lemah";
+"No signal" = "Tiada isyarat";
+"PHOTO" = "FOTO";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Digeotagkan dengan GPS Camera";
+"Overlay" = "Tindanan";
+"Include overlay in photo/video" = "Sertakan tindanan dalam foto/video";
+"Display items" = "Item yang dipaparkan";
+"Font" = "Fon";
+"Font size" = "Saiz fon";
+"Text color" = "Warna teks";
+"Background color" = "Warna latar belakang";
+"Background opacity" = "Kelegapan latar belakang";
+"Coordinate format" = "Format koordinat";
+"Unit" = "Unit";
+"Adjust position" = "Laraskan kedudukan";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metrik";
+"Imperial" = "Imperial";
+"Coordinates" = "Koordinat";
+"Altitude" = "Ketinggian";
+"Accuracy" = "Ketepatan";
+"Compass" = "Kompas";
+"Time" = "Masa";
+"Address" = "Alamat";
+"Watermark" = "Tera air";
+"System" = "Sistem";
+"Serif" = "Serif";
+"Rounded" = "Bulat";
+"Monospaced" = "Monospasi";
+
+/* Filename */
+"Filename" = "Nama fail";
+"Template" = "Templat";
+"Prefix" = "Awalan";
+"Suffix" = "Akhiran";
+"Date format" = "Format tarikh";
+"Auto-number" = "Penomboran automatik";
+"Adds a number automatically when a file of the same name exists." = "Menambah nombor secara automatik apabila fail dengan nama yang sama wujud.";
+"Date" = "Tarikh";
+
+/* Gallery */
+"Gallery" = "Galeri";
+"No captures yet" = "Belum ada tangkapan";
+"Delete this item?" = "Padam item ini?";
+"Delete" = "Padam";
+
+/* Monetization */
+"Unlock every feature." = "Buka kunci setiap ciri.";
+"No ads" = "Tiada iklan";
+"Remove watermark" = "Buang tera air";
+"Customize geotag" = "Sesuaikan geotag";
+"Add logo and notes" = "Tambah logo dan nota";
+"The store is unavailable right now." = "Kedai tidak tersedia sekarang.";
+"BEST VALUE" = "NILAI TERBAIK";
+"Continue" = "Teruskan";
+"Restore Purchase" = "Pulihkan Pembelian";
+"Terms" = "Terma";
+"Legal" = "Undang-undang";
+"Purchase failed" = "Pembelian gagal";
+"Lifetime" = "Seumur hidup";
+"Monthly" = "Bulanan";
+"%@ / month" = "%@ / bulan";
+"%@ once" = "%@ sekali";
+"Get GPS Camera Pro" = "Dapatkan GPS Camera Pro";
+"All features available" = "Semua ciri tersedia";
+"No ads, every feature unlocked" = "Tiada iklan, setiap ciri dibuka kuncinya";
+"Manage" = "Urus";
+"Upgrade" = "Naik taraf";
+"Pro unlocked!" = "Pro dibuka kunci!";
+"Enjoy all features" = "Nikmati semua ciri";
+"Purchases Restored" = "Pembelian dipulihkan";
+"GPS Camera Pro is active." = "GPS Camera Pro aktif.";
+"No previous purchase was found." = "Tiada pembelian sebelumnya ditemui.";
+"Restore could not be completed. Please try again." = "Pemulihan tidak dapat diselesaikan. Sila cuba lagi.";
+"The purchase could not be completed. Please try again." = "Pembelian tidak dapat diselesaikan. Sila cuba lagi.";

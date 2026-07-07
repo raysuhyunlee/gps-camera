@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Ρυθμίσεις";
+"Done" = "Τέλος";
+"OK" = "OK";
+"Included" = "Περιλαμβάνονται";
+"Excluded" = "Εξαιρούνται";
+"General" = "Γενικά";
+"Language" = "Γλώσσα";
+"System default" = "Προεπιλογή συστήματος";
+"Send Feedback" = "Αποστολή σχολίων";
+"About" = "Σχετικά";
+"Version" = "Έκδοση";
+"Terms of Service" = "Όροι χρήσης";
+"Legal Notices" = "Νομικές σημειώσεις";
+"Permission is off" = "Η άδεια είναι απενεργοποιημένη";
+"Close" = "Κλείσιμο";
+"Go to Settings" = "Μετάβαση στις ρυθμίσεις";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Μια ρύθμιση που απαιτεί άδεια παρέμεινε ενεργή, αλλά η άδεια ανακλήθηκε. Η λήψη συνεχίστηκε χωρίς αυτή τη λειτουργία.";
+
+/* Camera */
+"Capture" = "Λήψη";
+"Shutter sound" = "Ήχος κλείστρου";
+"Orientation lock" = "Κλείδωμα προσανατολισμού";
+"Include EXIF location" = "Συμπερίληψη τοποθεσίας EXIF";
+"Includes location data in the photo file." = "Περιλαμβάνει δεδομένα τοποθεσίας στο αρχείο φωτογραφίας.";
+"Photo" = "Φωτογραφία";
+"Video" = "Βίντεο";
+"Resolution" = "Ανάλυση";
+"Format" = "Μορφή";
+"Also save original" = "Αποθήκευση και του πρωτοτύπου";
+"Keeps a copy without the overlay." = "Διατηρεί ένα αντίγραφο χωρίς την επικάλυψη.";
+"Save to Camera Roll" = "Αποθήκευση στο Άλμπουμ κάμερας";
+"Camera access is off." = "Η πρόσβαση στην κάμερα είναι απενεργοποιημένη.";
+"Open Settings" = "Άνοιγμα ρυθμίσεων";
+"Good" = "Καλή";
+"Normal" = "Κανονική";
+"Bad" = "Κακή";
+"No signal" = "Χωρίς σήμα";
+"PHOTO" = "ΦΩΤΟ";
+"VIDEO" = "ΒΙΝΤΕΟ";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Γεω-σήμανση με GPS Camera";
+"Overlay" = "Επικάλυψη";
+"Include overlay in photo/video" = "Συμπερίληψη επικάλυψης σε φωτ./βίντεο";
+"Display items" = "Εμφανιζόμενα στοιχεία";
+"Font" = "Γραμματοσειρά";
+"Font size" = "Μέγεθος γραμματοσειράς";
+"Text color" = "Χρώμα κειμένου";
+"Background color" = "Χρώμα φόντου";
+"Background opacity" = "Αδιαφάνεια φόντου";
+"Coordinate format" = "Μορφή συντεταγμένων";
+"Unit" = "Μονάδα";
+"Adjust position" = "Ρύθμιση θέσης";
+"Lat, Lon" = "Γεωγρ. πλ., Γεωγρ. μ.";
+"Metric" = "Μετρικό";
+"Imperial" = "Αγγλοσαξονικό";
+"Coordinates" = "Συντεταγμένες";
+"Altitude" = "Υψόμετρο";
+"Accuracy" = "Ακρίβεια";
+"Compass" = "Πυξίδα";
+"Time" = "Ώρα";
+"Address" = "Διεύθυνση";
+"Watermark" = "Υδατόσημο";
+"System" = "Σύστημα";
+"Serif" = "Serif";
+"Rounded" = "Στρογγυλό";
+"Monospaced" = "Ισοπλατές";
+
+/* Filename */
+"Filename" = "Όνομα αρχείου";
+"Template" = "Πρότυπο";
+"Prefix" = "Πρόθεμα";
+"Suffix" = "Επίθημα";
+"Date format" = "Μορφή ημερομηνίας";
+"Auto-number" = "Αυτόματη αρίθμηση";
+"Adds a number automatically when a file of the same name exists." = "Προσθέτει αυτόματα έναν αριθμό όταν υπάρχει ήδη αρχείο με το ίδιο όνομα.";
+"Date" = "Ημερομηνία";
+
+/* Gallery */
+"Gallery" = "Συλλογή";
+"No captures yet" = "Δεν υπάρχουν λήψεις";
+"Delete this item?" = "Διαγραφή αυτού του στοιχείου;";
+"Delete" = "Διαγραφή";
+
+/* Monetization */
+"Unlock every feature." = "Ξεκλείδωμα κάθε λειτουργίας.";
+"No ads" = "Χωρίς διαφημίσεις";
+"Remove watermark" = "Αφαίρεση υδατοσήμου";
+"Customize geotag" = "Προσαρμογή γεωτικέτας";
+"Add logo and notes" = "Προσθήκη λογότυπου και σημειώσεων";
+"The store is unavailable right now." = "Το κατάστημα δεν είναι διαθέσιμο αυτή τη στιγμή.";
+"BEST VALUE" = "ΚΑΛΥΤΕΡΗ ΑΞΙΑ";
+"Continue" = "Συνέχεια";
+"Restore Purchase" = "Επαναφορά αγοράς";
+"Terms" = "Όροι";
+"Legal" = "Νομικά";
+"Purchase failed" = "Αποτυχία αγοράς";
+"Lifetime" = "Δια βίου";
+"Monthly" = "Μηνιαία";
+"%@ / month" = "%@ / μήνα";
+"%@ once" = "%@ εφάπαξ";
+"Get GPS Camera Pro" = "Αποκτήστε GPS Camera Pro";
+"All features available" = "Όλες οι δυνατότητες διαθέσιμες";
+"No ads, every feature unlocked" = "Χωρίς διαφημίσεις, κάθε λειτουργία ξεκλειδωμένη";
+"Manage" = "Διαχείριση";
+"Upgrade" = "Αναβάθμιση";
+"Pro unlocked!" = "Το Pro ξεκλειδώθηκε!";
+"Enjoy all features" = "Απολαύστε κάθε δυνατότητα";
+"Purchases Restored" = "Αγορές επαναφέρθηκαν";
+"GPS Camera Pro is active." = "Το GPS Camera Pro είναι ενεργό.";
+"No previous purchase was found." = "Δεν βρέθηκε προηγούμενη αγορά.";
+"Restore could not be completed. Please try again." = "Η επαναφορά δεν ήταν δυνατή. Παρακαλώ δοκιμάστε ξανά.";
+"The purchase could not be completed. Please try again." = "Η αγορά δεν ήταν δυνατή. Παρακαλώ δοκιμάστε ξανά.";

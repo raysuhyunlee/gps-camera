@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "الإعدادات";
+"Done" = "تم";
+"OK" = "حسنًا";
+"Included" = "مضمّن";
+"Excluded" = "مستبعد";
+"General" = "عام";
+"Language" = "اللغة";
+"System default" = "افتراضي النظام";
+"Send Feedback" = "إرسال ملاحظات";
+"About" = "حول";
+"Version" = "الإصدار";
+"Terms of Service" = "شروط الخدمة";
+"Legal Notices" = "إشعارات قانونية";
+"Permission is off" = "الإذن معطّل";
+"Close" = "إغلاق";
+"Go to Settings" = "الانتقال إلى الإعدادات";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "ظل أحد الإعدادات التي تتطلب إذنًا مفعّلًا، لكن الإذن تم إلغاؤه. استمر الالتقاط بدون هذه الميزة.";
+
+/* Camera */
+"Capture" = "الالتقاط";
+"Shutter sound" = "صوت الغالق";
+"Orientation lock" = "قفل الاتجاه";
+"Include EXIF location" = "تضمين موقع EXIF";
+"Includes location data in the photo file." = "يضمّن بيانات الموقع في ملف الصورة.";
+"Photo" = "صورة";
+"Video" = "فيديو";
+"Resolution" = "الدقة";
+"Format" = "التنسيق";
+"Also save original" = "حفظ النسخة الأصلية أيضًا";
+"Keeps a copy without the overlay." = "يحتفظ بنسخة بدون الطبقة.";
+"Save to Camera Roll" = "الحفظ في ألبوم الكاميرا";
+"Camera access is off." = "الوصول إلى الكاميرا معطّل.";
+"Open Settings" = "فتح الإعدادات";
+"Good" = "جيدة";
+"Normal" = "عادية";
+"Bad" = "ضعيفة";
+"No signal" = "لا توجد إشارة";
+"PHOTO" = "صورة";
+"VIDEO" = "فيديو";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "تم الترميز الجغرافي باستخدام GPS Camera";
+"Overlay" = "التراكب";
+"Include overlay in photo/video" = "تضمين التراكب في الصورة/الفيديو";
+"Display items" = "العناصر المعروضة";
+"Font" = "الخط";
+"Font size" = "حجم الخط";
+"Text color" = "لون النص";
+"Background color" = "لون الخلفية";
+"Background opacity" = "عتامة الخلفية";
+"Coordinate format" = "تنسيق الإحداثيات";
+"Unit" = "الوحدة";
+"Adjust position" = "ضبط الموضع";
+"Lat, Lon" = "خط العرض, خط الطول";
+"Metric" = "متري";
+"Imperial" = "إمبريالي";
+"Coordinates" = "الإحداثيات";
+"Altitude" = "الارتفاع";
+"Accuracy" = "الدقة";
+"Compass" = "البوصلة";
+"Time" = "الوقت";
+"Address" = "العنوان";
+"Watermark" = "العلامة المائية";
+"System" = "النظام";
+"Serif" = "سيريف";
+"Rounded" = "مدور";
+"Monospaced" = "أحادي المسافة";
+
+/* Filename */
+"Filename" = "اسم الملف";
+"Template" = "القالب";
+"Prefix" = "البادئة";
+"Suffix" = "اللاحقة";
+"Date format" = "تنسيق التاريخ";
+"Auto-number" = "ترقيم تلقائي";
+"Adds a number automatically when a file of the same name exists." = "يضيف رقمًا تلقائيًا عندما يوجد ملف بنفس الاسم.";
+"Date" = "التاريخ";
+
+/* Gallery */
+"Gallery" = "المعرض";
+"No captures yet" = "لا توجد لقطات بعد";
+"Delete this item?" = "هل تريد حذف هذا العنصر؟";
+"Delete" = "حذف";
+
+/* Monetization */
+"Unlock every feature." = "افتح كل الميزات.";
+"No ads" = "بلا إعلانات";
+"Remove watermark" = "إزالة العلامة المائية";
+"Customize geotag" = "تخصيص الترميز الجغرافي";
+"Add logo and notes" = "إضافة شعار وملاحظات";
+"The store is unavailable right now." = "المتجر غير متاح الآن.";
+"BEST VALUE" = "أفضل قيمة";
+"Continue" = "متابعة";
+"Restore Purchase" = "استعادة الشراء";
+"Terms" = "الشروط";
+"Legal" = "قانوني";
+"Purchase failed" = "فشل الشراء";
+"Lifetime" = "مدى الحياة";
+"Monthly" = "شهريًا";
+"%@ / month" = "%@ / شهر";
+"%@ once" = "%@ مرة واحدة";
+"Get GPS Camera Pro" = "احصل على GPS Camera Pro";
+"All features available" = "جميع الميزات متاحة";
+"No ads, every feature unlocked" = "بلا إعلانات، جميع الميزات مفتوحة";
+"Manage" = "إدارة";
+"Upgrade" = "ترقية";
+"Pro unlocked!" = "تم فتح Pro!";
+"Enjoy all features" = "استمتع بجميع الميزات";
+"Purchases Restored" = "تمت استعادة المشتريات";
+"GPS Camera Pro is active." = "GPS Camera Pro نشط.";
+"No previous purchase was found." = "لم يتم العثور على عمليات شراء سابقة.";
+"Restore could not be completed. Please try again." = "تعذّر إكمال الاستعادة. يرجى المحاولة مرة أخرى.";
+"The purchase could not be completed. Please try again." = "تعذّر إتمام عملية الشراء. يرجى المحاولة مرة أخرى.";

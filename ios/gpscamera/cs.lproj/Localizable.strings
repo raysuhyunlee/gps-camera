@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Nastavení";
+"Done" = "Hotovo";
+"OK" = "OK";
+"Included" = "Zahrnuto";
+"Excluded" = "Vyřazeno";
+"General" = "Obecné";
+"Language" = "Jazyk";
+"System default" = "Výchozí systémový";
+"Send Feedback" = "Odeslat zpětnou vazbu";
+"About" = "O aplikaci";
+"Version" = "Verze";
+"Terms of Service" = "Podmínky služby";
+"Legal Notices" = "Právní informace";
+"Permission is off" = "Oprávnění je vypnuté";
+"Close" = "Zavřít";
+"Go to Settings" = "Přejít do nastavení";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Nastavení vyžadující oprávnění zůstalo zapnuté, ale oprávnění bylo odvoláno. Snímání pokračovalo bez této funkce.";
+
+/* Camera */
+"Capture" = "Snímání";
+"Shutter sound" = "Zvuk závěrky";
+"Orientation lock" = "Zámek orientace";
+"Include EXIF location" = "Vložit polohu EXIF";
+"Includes location data in the photo file." = "Vloží údaje o poloze do souboru fotografie.";
+"Photo" = "Fotografie";
+"Video" = "Video";
+"Resolution" = "Rozlišení";
+"Format" = "Formát";
+"Also save original" = "Uložit také originál";
+"Keeps a copy without the overlay." = "Uchová kopii bez překryvu.";
+"Save to Camera Roll" = "Uložit do Fotoaparátu";
+"Camera access is off." = "Přístup k fotoaparátu je vypnutý.";
+"Open Settings" = "Otevřít nastavení";
+"Good" = "Dobrá";
+"Normal" = "Střední";
+"Bad" = "Špatná";
+"No signal" = "Žádný signál";
+"PHOTO" = "FOTO";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geotagováno pomocí GPS Camera";
+"Overlay" = "Překryv";
+"Include overlay in photo/video" = "Zahrnout překryv do fotografie/videa";
+"Display items" = "Zobrazené položky";
+"Font" = "Písmo";
+"Font size" = "Velikost písma";
+"Text color" = "Barva textu";
+"Background color" = "Barva pozadí";
+"Background opacity" = "Průhlednost pozadí";
+"Coordinate format" = "Formát souřadnic";
+"Unit" = "Jednotka";
+"Adjust position" = "Upravit polohu";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metrické";
+"Imperial" = "Imperiální";
+"Coordinates" = "Souřadnice";
+"Altitude" = "Nadmořská výška";
+"Accuracy" = "Přesnost";
+"Compass" = "Kompas";
+"Time" = "Čas";
+"Address" = "Adresa";
+"Watermark" = "Vodoznak";
+"System" = "Systémové";
+"Serif" = "Serif";
+"Rounded" = "Zaoblený";
+"Monospaced" = "Neproporcionální";
+
+/* Filename */
+"Filename" = "Název souboru";
+"Template" = "Šablona";
+"Prefix" = "Předpona";
+"Suffix" = "Přípona";
+"Date format" = "Formát data";
+"Auto-number" = "Automatické číslování";
+"Adds a number automatically when a file of the same name exists." = "Automaticky přidá číslo, pokud soubor se stejným názvem již existuje.";
+"Date" = "Datum";
+
+/* Gallery */
+"Gallery" = "Galerie";
+"No captures yet" = "Žádné záznamy";
+"Delete this item?" = "Smazat tuto položku?";
+"Delete" = "Smazat";
+
+/* Monetization */
+"Unlock every feature." = "Odemkněte všechny funkce.";
+"No ads" = "Žádné reklamy";
+"Remove watermark" = "Odstranit vodoznak";
+"Customize geotag" = "Přizpůsobit geotag";
+"Add logo and notes" = "Přidat logo a poznámky";
+"The store is unavailable right now." = "Obchod je momentálně nedostupný.";
+"BEST VALUE" = "NEJLEPŠÍ HODNOTA";
+"Continue" = "Pokračovat";
+"Restore Purchase" = "Obnovit nákup";
+"Terms" = "Podmínky";
+"Legal" = "Právní";
+"Purchase failed" = "Nákup se nezdařil";
+"Lifetime" = "Doživotní";
+"Monthly" = "Měsíčně";
+"%@ / month" = "%@ / měsíc";
+"%@ once" = "%@ jednorázově";
+"Get GPS Camera Pro" = "Získejte GPS Camera Pro";
+"All features available" = "Všechny funkce k dispozici";
+"No ads, every feature unlocked" = "Žádné reklamy, všechny funkce odemčeny";
+"Manage" = "Spravovat";
+"Upgrade" = "Upgradovat";
+"Pro unlocked!" = "Pro odemčeno!";
+"Enjoy all features" = "Užijte si všechny funkce";
+"Purchases Restored" = "Nákupy obnoveny";
+"GPS Camera Pro is active." = "GPS Camera Pro je aktivní.";
+"No previous purchase was found." = "Žádný předchozí nákup nebyl nalezen.";
+"Restore could not be completed. Please try again." = "Obnovení se nepodařilo dokončit. Zkuste to znovu.";
+"The purchase could not be completed. Please try again." = "Nákup se nepodařilo dokončit. Zkuste to znovu.";

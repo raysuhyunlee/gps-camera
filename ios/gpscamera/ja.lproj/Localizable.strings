@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "設定";
+"Done" = "完了";
+"OK" = "OK";
+"Included" = "含む";
+"Excluded" = "除外";
+"General" = "一般";
+"Language" = "言語";
+"System default" = "システムのデフォルト";
+"Send Feedback" = "フィードバックを送信";
+"About" = "このアプリについて";
+"Version" = "バージョン";
+"Terms of Service" = "利用規約";
+"Legal Notices" = "法的情報";
+"Permission is off" = "権限がオフです";
+"Close" = "閉じる";
+"Go to Settings" = "設定へ移動";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "権限が必要な設定がオンのままですが、権限が取り消されました。その機能なしで撮影を続行しました。";
+
+/* Camera */
+"Capture" = "撮影";
+"Shutter sound" = "シャッター音";
+"Orientation lock" = "画面の向きをロック";
+"Include EXIF location" = "EXIF位置情報を含める";
+"Includes location data in the photo file." = "写真ファイルに位置データを含めます。";
+"Photo" = "写真";
+"Video" = "ビデオ";
+"Resolution" = "解像度";
+"Format" = "フォーマット";
+"Also save original" = "オリジナルも保存";
+"Keeps a copy without the overlay." = "オーバーレイなしのコピーを保存します。";
+"Save to Camera Roll" = "カメラロールに保存";
+"Camera access is off." = "カメラへのアクセスがオフです。";
+"Open Settings" = "設定を開く";
+"Good" = "良好";
+"Normal" = "普通";
+"Bad" = "不良";
+"No signal" = "信号なし";
+"PHOTO" = "写真";
+"VIDEO" = "ビデオ";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "GPS Cameraでジオタグ付け";
+"Overlay" = "オーバーレイ";
+"Include overlay in photo/video" = "写真/ビデオにオーバーレイを含める";
+"Display items" = "表示項目";
+"Font" = "フォント";
+"Font size" = "フォントサイズ";
+"Text color" = "テキストの色";
+"Background color" = "背景色";
+"Background opacity" = "背景の不透明度";
+"Coordinate format" = "座標フォーマット";
+"Unit" = "単位";
+"Adjust position" = "位置を調整";
+"Lat, Lon" = "緯度, 経度";
+"Metric" = "メートル法";
+"Imperial" = "ヤード・ポンド法";
+"Coordinates" = "座標";
+"Altitude" = "高度";
+"Accuracy" = "精度";
+"Compass" = "コンパス";
+"Time" = "時刻";
+"Address" = "住所";
+"Watermark" = "ウォーターマーク";
+"System" = "システム";
+"Serif" = "セリフ";
+"Rounded" = "丸みを帯びた";
+"Monospaced" = "等幅";
+
+/* Filename */
+"Filename" = "ファイル名";
+"Template" = "テンプレート";
+"Prefix" = "接頭辞";
+"Suffix" = "接尾辞";
+"Date format" = "日付形式";
+"Auto-number" = "自動番号付け";
+"Adds a number automatically when a file of the same name exists." = "同名のファイルが存在するとき、番号を自動的に追加します。";
+"Date" = "日付";
+
+/* Gallery */
+"Gallery" = "ギャラリー";
+"No captures yet" = "キャプチャがありません";
+"Delete this item?" = "このアイテムを削除しますか?";
+"Delete" = "削除";
+
+/* Monetization */
+"Unlock every feature." = "すべての機能を解放する";
+"No ads" = "広告なし";
+"Remove watermark" = "ウォーターマークを削除";
+"Customize geotag" = "ジオタグのカスタマイズ";
+"Add logo and notes" = "ロゴとノートを追加";
+"The store is unavailable right now." = "現在ストアを利用できません。";
+"BEST VALUE" = "最もお得";
+"Continue" = "続ける";
+"Restore Purchase" = "購入を復元";
+"Terms" = "利用規約";
+"Legal" = "法的情報";
+"Purchase failed" = "購入に失敗しました";
+"Lifetime" = "永続";
+"Monthly" = "月額";
+"%@ / month" = "%@ / 月";
+"%@ once" = "%@ 一度限り";
+"Get GPS Camera Pro" = "GPS Camera Pro を入手";
+"All features available" = "すべての機能が利用可能です";
+"No ads, every feature unlocked" = "広告なし、すべての機能が利用可能";
+"Manage" = "管理";
+"Upgrade" = "アップグレード";
+"Pro unlocked!" = "Proがアクティベートされました！";
+"Enjoy all features" = "すべての機能をお楽しみください";
+"Purchases Restored" = "購入が復元されました";
+"GPS Camera Pro is active." = "GPS Camera Pro が有効です。";
+"No previous purchase was found." = "以前の購入が見つかりません。";
+"Restore could not be completed. Please try again." = "復元を完了できませんでした。もう一度お試しください。";
+"The purchase could not be completed. Please try again." = "購入を完了できませんでした。もう一度お試しください。";

@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "설정";
+"Done" = "완료";
+"OK" = "확인";
+"Included" = "포함됨";
+"Excluded" = "제외됨";
+"General" = "일반";
+"Language" = "언어";
+"System default" = "시스템 기본값";
+"Send Feedback" = "피드백 보내기";
+"About" = "정보";
+"Version" = "버전";
+"Terms of Service" = "서비스 이용약관";
+"Legal Notices" = "법적 고지";
+"Permission is off" = "권한이 꺼져 있음";
+"Close" = "닫기";
+"Go to Settings" = "설정으로 이동";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "권한이 필요한 설정이 켜져 있지만 권한이 취소되었습니다. 해당 기능 없이 촬영이 계속되었습니다.";
+
+/* Camera */
+"Capture" = "촬영";
+"Shutter sound" = "셔터음";
+"Orientation lock" = "방향 잠금";
+"Include EXIF location" = "EXIF 위치 정보 포함";
+"Includes location data in the photo file." = "사진 파일에 위치 데이터를 포함합니다.";
+"Photo" = "사진";
+"Video" = "동영상";
+"Resolution" = "해상도";
+"Format" = "형식";
+"Also save original" = "원본도 저장";
+"Keeps a copy without the overlay." = "오버레이가 없는 사본을 보관합니다.";
+"Save to Camera Roll" = "카메라 롤에 저장";
+"Camera access is off." = "카메라 접근이 꺼져 있습니다.";
+"Open Settings" = "설정 열기";
+"Good" = "좋음";
+"Normal" = "보통";
+"Bad" = "나쁨";
+"No signal" = "신호 없음";
+"PHOTO" = "사진";
+"VIDEO" = "동영상";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "GPS 카메라로 위치 태그됨";
+"Overlay" = "오버레이";
+"Include overlay in photo/video" = "사진/동영상에 오버레이 포함";
+"Display items" = "표시 항목";
+"Font" = "글꼴";
+"Font size" = "글꼴 크기";
+"Text color" = "텍스트 색상";
+"Background color" = "배경 색상";
+"Background opacity" = "배경 불투명도";
+"Coordinate format" = "좌표 형식";
+"Unit" = "단위";
+"Adjust position" = "위치 조정";
+"Lat, Lon" = "위도, 경도";
+"Metric" = "미터법";
+"Imperial" = "야드파운드법";
+"Coordinates" = "좌표";
+"Altitude" = "고도";
+"Accuracy" = "정확도";
+"Compass" = "나침반";
+"Time" = "시간";
+"Address" = "주소";
+"Watermark" = "워터마크";
+"System" = "시스템";
+"Serif" = "세리프";
+"Rounded" = "둥근";
+"Monospaced" = "고정폭";
+
+/* Filename */
+"Filename" = "파일명";
+"Template" = "템플릿";
+"Prefix" = "접두사";
+"Suffix" = "접미사";
+"Date format" = "날짜 형식";
+"Auto-number" = "자동 번호";
+"Adds a number automatically when a file of the same name exists." = "같은 이름의 파일이 있을 때 번호를 자동으로 추가합니다.";
+"Date" = "날짜";
+
+/* Gallery */
+"Gallery" = "갤러리";
+"No captures yet" = "캡처가 없습니다";
+"Delete this item?" = "이 항목을 삭제하시겠습니까?";
+"Delete" = "삭제";
+
+/* Monetization */
+"Unlock every feature." = "모든 기능 잠금 해제";
+"No ads" = "광고 없음";
+"Remove watermark" = "워터마크 제거";
+"Customize geotag" = "지오태그 사용자화";
+"Add logo and notes" = "로고 및 메모 추가";
+"The store is unavailable right now." = "스토어를 현재 이용할 수 없습니다.";
+"BEST VALUE" = "최고의 가치";
+"Continue" = "계속";
+"Restore Purchase" = "구매 복원";
+"Terms" = "이용약관";
+"Legal" = "법적 정보";
+"Purchase failed" = "구매 실패";
+"Lifetime" = "영구";
+"Monthly" = "월간";
+"%@ / month" = "%@ / 월";
+"%@ once" = "%@ 1회";
+"Get GPS Camera Pro" = "GPS Camera Pro 구매";
+"All features available" = "모든 기능 사용 가능";
+"No ads, every feature unlocked" = "광고 없음, 모든 기능 잠금 해제";
+"Manage" = "관리";
+"Upgrade" = "업그레이드";
+"Pro unlocked!" = "Pro 잠금 해제됨!";
+"Enjoy all features" = "모든 기능을 즐기세요";
+"Purchases Restored" = "구매가 복원되었습니다";
+"GPS Camera Pro is active." = "GPS Camera Pro가 활성화되어 있습니다.";
+"No previous purchase was found." = "이전 구매 내역이 없습니다.";
+"Restore could not be completed. Please try again." = "복원을 완료할 수 없습니다. 다시 시도해 주세요.";
+"The purchase could not be completed. Please try again." = "구매를 완료할 수 없습니다. 다시 시도해 주세요.";

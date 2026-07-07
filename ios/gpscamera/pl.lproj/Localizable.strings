@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Ustawienia";
+"Done" = "Gotowe";
+"OK" = "OK";
+"Included" = "Uwzględnione";
+"Excluded" = "Pominięte";
+"General" = "Ogólne";
+"Language" = "Język";
+"System default" = "Domyślny systemu";
+"Send Feedback" = "Wyślij opinię";
+"About" = "Informacje";
+"Version" = "Wersja";
+"Terms of Service" = "Warunki korzystania";
+"Legal Notices" = "Informacje prawne";
+"Permission is off" = "Uprawnienie jest wyłączone";
+"Close" = "Zamknij";
+"Go to Settings" = "Przejdź do ustawień";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Ustawienie wymagające uprawnienia pozostało włączone, ale uprawnienie zostało cofnięte. Rejestrowanie było kontynuowane bez tej funkcji.";
+
+/* Camera */
+"Capture" = "Rejestrowanie";
+"Shutter sound" = "Dźwięk migawki";
+"Orientation lock" = "Blokada orientacji";
+"Include EXIF location" = "Dołącz lokalizację EXIF";
+"Includes location data in the photo file." = "Dołącza dane lokalizacji do pliku zdjęcia.";
+"Photo" = "Zdjęcie";
+"Video" = "Wideo";
+"Resolution" = "Rozdzielczość";
+"Format" = "Format";
+"Also save original" = "Zapisuj też oryginał";
+"Keeps a copy without the overlay." = "Zachowuje kopię bez nakładki.";
+"Save to Camera Roll" = "Zapisuj w rolce z aparatu";
+"Camera access is off." = "Dostęp do aparatu jest wyłączony.";
+"Open Settings" = "Otwórz ustawienia";
+"Good" = "Dobra";
+"Normal" = "Średnia";
+"Bad" = "Słaba";
+"No signal" = "Brak sygnału";
+"PHOTO" = "ZDJĘCIE";
+"VIDEO" = "WIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geotagowanie przez GPS Camera";
+"Overlay" = "Nakładka";
+"Include overlay in photo/video" = "Dołącz nakładkę do zdjęcia/wideo";
+"Display items" = "Wyświetlane elementy";
+"Font" = "Czcionka";
+"Font size" = "Rozmiar czcionki";
+"Text color" = "Kolor tekstu";
+"Background color" = "Kolor tła";
+"Background opacity" = "Krycie tła";
+"Coordinate format" = "Format współrzędnych";
+"Unit" = "Jednostka";
+"Adjust position" = "Dostosuj pozycję";
+"Lat, Lon" = "Szer, Dług";
+"Metric" = "Metryczny";
+"Imperial" = "Imperialny";
+"Coordinates" = "Współrzędne";
+"Altitude" = "Wysokość";
+"Accuracy" = "Dokładność";
+"Compass" = "Kompas";
+"Time" = "Godzina";
+"Address" = "Adres";
+"Watermark" = "Znak wodny";
+"System" = "Systemowy";
+"Serif" = "Szeryfowy";
+"Rounded" = "Zaokrąglony";
+"Monospaced" = "Jednostajny";
+
+/* Filename */
+"Filename" = "Nazwa pliku";
+"Template" = "Szablon";
+"Prefix" = "Prefiks";
+"Suffix" = "Sufiks";
+"Date format" = "Format daty";
+"Auto-number" = "Autonumerowanie";
+"Adds a number automatically when a file of the same name exists." = "Automatycznie dodaje numer, gdy plik o tej samej nazwie już istnieje.";
+"Date" = "Data";
+
+/* Gallery */
+"Gallery" = "Galeria";
+"No captures yet" = "Brak zarejestrowanych ujęć";
+"Delete this item?" = "Usunąć ten element?";
+"Delete" = "Usuń";
+
+/* Monetization */
+"Unlock every feature." = "Odblokuj wszystkie funkcje.";
+"No ads" = "Bez reklam";
+"Remove watermark" = "Usuń znak wodny";
+"Customize geotag" = "Dostosuj geotag";
+"Add logo and notes" = "Dodaj logo i notatki";
+"The store is unavailable right now." = "Sklep jest teraz niedostępny.";
+"BEST VALUE" = "NAJLEPSZA OFERTA";
+"Continue" = "Kontynuuj";
+"Restore Purchase" = "Przywróć zakup";
+"Terms" = "Warunki";
+"Legal" = "Prawne";
+"Purchase failed" = "Zakup nie powiódł się";
+"Lifetime" = "Dożywotni";
+"Monthly" = "Miesięcznie";
+"%@ / month" = "%@ / mies.";
+"%@ once" = "%@ jednorazowo";
+"Get GPS Camera Pro" = "Zdobądź GPS Camera Pro";
+"All features available" = "Wszystkie funkcje dostępne";
+"No ads, every feature unlocked" = "Bez reklam, wszystkie funkcje odblokowane";
+"Manage" = "Zarządzaj";
+"Upgrade" = "Ulepsz";
+"Pro unlocked!" = "Pro odblokowane!";
+"Enjoy all features" = "Korzystaj ze wszystkich funkcji";
+"Purchases Restored" = "Zakupy przywrócone";
+"GPS Camera Pro is active." = "GPS Camera Pro jest aktywny.";
+"No previous purchase was found." = "Nie znaleziono wcześniejszych zakupów.";
+"Restore could not be completed. Please try again." = "Nie można było ukończyć przywracania. Spróbuj ponownie.";
+"The purchase could not be completed. Please try again." = "Nie można było sfinalizować zakupu. Spróbuj ponownie.";

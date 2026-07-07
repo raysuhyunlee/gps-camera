@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "การตั้งค่า";
+"Done" = "เสร็จสิ้น";
+"OK" = "ตกลง";
+"Included" = "รวม";
+"Excluded" = "ไม่รวม";
+"General" = "ทั่วไป";
+"Language" = "ภาษา";
+"System default" = "ค่าเริ่มต้นของระบบ";
+"Send Feedback" = "ส่งความคิดเห็น";
+"About" = "เกี่ยวกับ";
+"Version" = "เวอร์ชัน";
+"Terms of Service" = "ข้อกำหนดการให้บริการ";
+"Legal Notices" = "ประกาศทางกฎหมาย";
+"Permission is off" = "สิทธิ์ถูกปิดอยู่";
+"Close" = "ปิด";
+"Go to Settings" = "ไปที่การตั้งค่า";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "การตั้งค่าที่ต้องใช้สิทธิ์ยังเปิดอยู่ แต่สิทธิ์ถูกเพิกถอนแล้ว การถ่ายภาพดำเนินต่อโดยไม่มีฟีเจอร์นี้";
+
+/* Camera */
+"Capture" = "การถ่ายภาพ";
+"Shutter sound" = "เสียงชัตเตอร์";
+"Orientation lock" = "ล็อกการหมุน";
+"Include EXIF location" = "รวมตำแหน่ง EXIF";
+"Includes location data in the photo file." = "รวมข้อมูลตำแหน่งไว้ในไฟล์ภาพถ่าย";
+"Photo" = "รูปภาพ";
+"Video" = "วิดีโอ";
+"Resolution" = "ความละเอียด";
+"Format" = "รูปแบบ";
+"Also save original" = "บันทึกต้นฉบับด้วย";
+"Keeps a copy without the overlay." = "เก็บสำเนาที่ไม่มีโอเวอร์เลย์";
+"Save to Camera Roll" = "บันทึกลงในคลังภาพ";
+"Camera access is off." = "การเข้าถึงกล้องถูกปิดอยู่";
+"Open Settings" = "เปิดการตั้งค่า";
+"Good" = "ดี";
+"Normal" = "ปานกลาง";
+"Bad" = "แย่";
+"No signal" = "ไม่มีสัญญาณ";
+"PHOTO" = "ภาพถ่าย";
+"VIDEO" = "วิดีโอ";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "ถ่ายด้วย GPS Camera";
+"Overlay" = "โอเวอร์เลย์";
+"Include overlay in photo/video" = "รวมโอเวอร์เลย์ในรูปภาพ/วิดีโอ";
+"Display items" = "รายการที่แสดง";
+"Font" = "แบบอักษร";
+"Font size" = "ขนาดตัวอักษร";
+"Text color" = "สีตัวอักษร";
+"Background color" = "สีพื้นหลัง";
+"Background opacity" = "ความทึบของพื้นหลัง";
+"Coordinate format" = "รูปแบบพิกัด";
+"Unit" = "หน่วย";
+"Adjust position" = "ปรับตำแหน่ง";
+"Lat, Lon" = "ละติจูด, ลองจิจูด";
+"Metric" = "เมตริก";
+"Imperial" = "อิมพีเรียล";
+"Coordinates" = "พิกัด";
+"Altitude" = "ระดับความสูง";
+"Accuracy" = "ความแม่นยำ";
+"Compass" = "เข็มทิศ";
+"Time" = "เวลา";
+"Address" = "ที่อยู่";
+"Watermark" = "ลายน้ำ";
+"System" = "ระบบ";
+"Serif" = "Serif";
+"Rounded" = "มนกลม";
+"Monospaced" = "Monospaced";
+
+/* Filename */
+"Filename" = "ชื่อไฟล์";
+"Template" = "เทมเพลต";
+"Prefix" = "คำนำหน้า";
+"Suffix" = "ต่อท้าย";
+"Date format" = "รูปแบบวันที่";
+"Auto-number" = "การนับอัตโนมัติ";
+"Adds a number automatically when a file of the same name exists." = "เพิ่มหมายเลขโดยอัตโนมัติเมื่อมีไฟล์ที่มีชื่อเดียวกันอยู่แล้ว";
+"Date" = "วันที่";
+
+/* Gallery */
+"Gallery" = "แกลเลอรี";
+"No captures yet" = "ยังไม่มีภาพถ่าย";
+"Delete this item?" = "ลบรายการนี้?";
+"Delete" = "ลบ";
+
+/* Monetization */
+"Unlock every feature." = "ปลดล็อกทุกฟีเจอร์";
+"No ads" = "ไม่มีโฆษณา";
+"Remove watermark" = "ลบลายน้ำ";
+"Customize geotag" = "ปรับแต่งจีโอแท็ก";
+"Add logo and notes" = "เพิ่มโลโก้และบันทึก";
+"The store is unavailable right now." = "สโตร์ไม่พร้อมใช้งานในขณะนี้";
+"BEST VALUE" = "คุ้มค่าที่สุด";
+"Continue" = "ดำเนินการต่อ";
+"Restore Purchase" = "คืนค่าการซื้อ";
+"Terms" = "ข้อกำหนด";
+"Legal" = "กฎหมาย";
+"Purchase failed" = "การซื้อล้มเหลว";
+"Lifetime" = "ตลอดชีพ";
+"Monthly" = "รายเดือน";
+"%@ / month" = "%@ / เดือน";
+"%@ once" = "%@ ครั้งเดียว";
+"Get GPS Camera Pro" = "รับ GPS Camera Pro";
+"All features available" = "ฟีเจอร์ทั้งหมดพร้อมใช้งาน";
+"No ads, every feature unlocked" = "ไม่มีโฆษณา ปลดล็อกทุกฟีเจอร์แล้ว";
+"Manage" = "จัดการ";
+"Upgrade" = "อัปเกรด";
+"Pro unlocked!" = "ปลดล็อก Pro แล้ว!";
+"Enjoy all features" = "เพลิดเพลินกับทุกฟีเจอร์";
+"Purchases Restored" = "คืนค่าการซื้อแล้ว";
+"GPS Camera Pro is active." = "GPS Camera Pro ใช้งานอยู่";
+"No previous purchase was found." = "ไม่พบการซื้อก่อนหน้า";
+"Restore could not be completed. Please try again." = "ไม่สามารถกู้คืนได้ กรุณาลองใหม่";
+"The purchase could not be completed. Please try again." = "ไม่สามารถซื้อได้ กรุณาลองใหม่";

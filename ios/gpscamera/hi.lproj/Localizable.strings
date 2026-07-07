@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "सेटिंग्स";
+"Done" = "हो गया";
+"OK" = "ठीक है";
+"Included" = "शामिल";
+"Excluded" = "बाहर";
+"General" = "सामान्य";
+"Language" = "भाषा";
+"System default" = "सिस्टम डिफ़ॉल्ट";
+"Send Feedback" = "फ़ीडबैक भेजें";
+"About" = "बारे में";
+"Version" = "संस्करण";
+"Terms of Service" = "सेवा की शर्तें";
+"Legal Notices" = "कानूनी सूचनाएं";
+"Permission is off" = "अनुमति बंद है";
+"Close" = "बंद करें";
+"Go to Settings" = "सेटिंग्स पर जाएं";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "अनुमति चाहने वाली एक सेटिंग चालू रही, लेकिन अनुमति रद्द कर दी गई। कैप्चर उस सुविधा के बिना जारी रहा।";
+
+/* Camera */
+"Capture" = "कैप्चर";
+"Shutter sound" = "शटर ध्वनि";
+"Orientation lock" = "ओरिएंटेशन लॉक";
+"Include EXIF location" = "EXIF स्थान शामिल करें";
+"Includes location data in the photo file." = "फ़ोटो फ़ाइल में स्थान डेटा शामिल करता है।";
+"Photo" = "फ़ोटो";
+"Video" = "वीडियो";
+"Resolution" = "रिज़ॉल्यूशन";
+"Format" = "फ़ॉर्मेट";
+"Also save original" = "मूल फ़ोटो भी सहेजें";
+"Keeps a copy without the overlay." = "ओवरले के बिना एक प्रति रखता है।";
+"Save to Camera Roll" = "कैमरा रोल में सहेजें";
+"Camera access is off." = "कैमरा एक्सेस बंद है।";
+"Open Settings" = "सेटिंग्स खोलें";
+"Good" = "अच्छा";
+"Normal" = "सामान्य";
+"Bad" = "खराब";
+"No signal" = "कोई सिग्नल नहीं";
+"PHOTO" = "फ़ोटो";
+"VIDEO" = "वीडियो";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "GPS Camera से जियोटैग किया गया";
+"Overlay" = "ओवरले";
+"Include overlay in photo/video" = "फ़ोटो/वीडियो में ओवरले शामिल करें";
+"Display items" = "प्रदर्शित आइटम";
+"Font" = "फ़ॉन्ट";
+"Font size" = "फ़ॉन्ट आकार";
+"Text color" = "पाठ का रंग";
+"Background color" = "पृष्ठभूमि रंग";
+"Background opacity" = "पृष्ठभूमि अपारदर्शिता";
+"Coordinate format" = "निर्देशांक प्रारूप";
+"Unit" = "इकाई";
+"Adjust position" = "स्थिति समायोजित करें";
+"Lat, Lon" = "अक्षांश, देशांतर";
+"Metric" = "मीट्रिक";
+"Imperial" = "इम्पीरियल";
+"Coordinates" = "निर्देशांक";
+"Altitude" = "ऊंचाई";
+"Accuracy" = "सटीकता";
+"Compass" = "दिशासूचक";
+"Time" = "समय";
+"Address" = "पता";
+"Watermark" = "वॉटरमार्क";
+"System" = "सिस्टम";
+"Serif" = "सेरिफ़";
+"Rounded" = "गोल";
+"Monospaced" = "मोनोस्पेस";
+
+/* Filename */
+"Filename" = "फ़ाइल नाम";
+"Template" = "टेम्पलेट";
+"Prefix" = "उपसर्ग";
+"Suffix" = "प्रत्यय";
+"Date format" = "तिथि प्रारूप";
+"Auto-number" = "स्वत: क्रमांकन";
+"Adds a number automatically when a file of the same name exists." = "जब उसी नाम की फ़ाइल मौजूद होती है तो स्वचालित रूप से एक नंबर जोड़ता है।";
+"Date" = "तिथि";
+
+/* Gallery */
+"Gallery" = "गैलरी";
+"No captures yet" = "अभी तक कोई कैप्चर नहीं";
+"Delete this item?" = "इस आइटम को हटाएं?";
+"Delete" = "हटाएं";
+
+/* Monetization */
+"Unlock every feature." = "हर सुविधा अनलॉक करें।";
+"No ads" = "कोई विज्ञापन नहीं";
+"Remove watermark" = "वॉटरमार्क हटाएं";
+"Customize geotag" = "जियोटैग कस्टमाइज़ करें";
+"Add logo and notes" = "लोगो और नोट्स जोड़ें";
+"The store is unavailable right now." = "स्टोर अभी उपलब्ध नहीं है।";
+"BEST VALUE" = "सर्वश्रेष्ठ मूल्य";
+"Continue" = "जारी रखें";
+"Restore Purchase" = "खरीद पुनर्स्थापित करें";
+"Terms" = "शर्तें";
+"Legal" = "कानूनी";
+"Purchase failed" = "खरीद विफल";
+"Lifetime" = "आजीवन";
+"Monthly" = "मासिक";
+"%@ / month" = "%@ / माह";
+"%@ once" = "%@ एकबार";
+"Get GPS Camera Pro" = "GPS Camera Pro प्राप्त करें";
+"All features available" = "सभी सुविधाएं उपलब्ध हैं";
+"No ads, every feature unlocked" = "कोई विज्ञापन नहीं, हर सुविधा अनलॉक";
+"Manage" = "प्रबंधित करें";
+"Upgrade" = "अपग्रेड करें";
+"Pro unlocked!" = "Pro अनलॉक!";
+"Enjoy all features" = "सभी सुविधाओं का आनंद लें";
+"Purchases Restored" = "खरीद पुनर्स्थापित";
+"GPS Camera Pro is active." = "GPS Camera Pro सक्रिय है।";
+"No previous purchase was found." = "कोई पिछली खरीद नहीं मिली।";
+"Restore could not be completed. Please try again." = "पुनर्स्थापना पूरी नहीं हो सकी। कृपया दोबारा कोशिश करें।";
+"The purchase could not be completed. Please try again." = "खरीद पूरी नहीं हो सकी। कृपया दोबारा कोशिश करें।";

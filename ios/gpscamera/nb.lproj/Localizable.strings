@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Innstillinger";
+"Done" = "Ferdig";
+"OK" = "OK";
+"Included" = "Inkludert";
+"Excluded" = "Utelatt";
+"General" = "Generelt";
+"Language" = "Språk";
+"System default" = "Systemstandard";
+"Send Feedback" = "Send tilbakemelding";
+"About" = "Om";
+"Version" = "Versjon";
+"Terms of Service" = "Vilkår for bruk";
+"Legal Notices" = "Juridiske merknader";
+"Permission is off" = "Tillatelsen er av";
+"Close" = "Lukk";
+"Go to Settings" = "Gå til innstillinger";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "En innstilling som krever en tillatelse var fortsatt på, men tillatelsen ble trukket tilbake. Opptaket fortsatte uten funksjonen.";
+
+/* Camera */
+"Capture" = "Opptak";
+"Shutter sound" = "Lukkerlyd";
+"Orientation lock" = "Retningslås";
+"Include EXIF location" = "Inkluder EXIF-posisjon";
+"Includes location data in the photo file." = "Inkluderer posisjonsdata i bildefilen.";
+"Photo" = "Bilde";
+"Video" = "Video";
+"Resolution" = "Oppløsning";
+"Format" = "Format";
+"Also save original" = "Lagre også originalen";
+"Keeps a copy without the overlay." = "Beholder en kopi uten overlegget.";
+"Save to Camera Roll" = "Lagre til kamerarull";
+"Camera access is off." = "Kameratilgang er av.";
+"Open Settings" = "Åpne innstillinger";
+"Good" = "God";
+"Normal" = "Normal";
+"Bad" = "Dårlig";
+"No signal" = "Ingen signal";
+"PHOTO" = "FOTO";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geotagget med GPS Camera";
+"Overlay" = "Overlay";
+"Include overlay in photo/video" = "Inkluder overlay i bilde/video";
+"Display items" = "Viste elementer";
+"Font" = "Skrifttype";
+"Font size" = "Skriftstørrelse";
+"Text color" = "Tekstfarge";
+"Background color" = "Bakgrunnsfarge";
+"Background opacity" = "Bakgrunnsopasitet";
+"Coordinate format" = "Koordinatformat";
+"Unit" = "Enhet";
+"Adjust position" = "Juster posisjon";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metrisk";
+"Imperial" = "Imperialt";
+"Coordinates" = "Koordinater";
+"Altitude" = "Høyde";
+"Accuracy" = "Nøyaktighet";
+"Compass" = "Kompass";
+"Time" = "Tid";
+"Address" = "Adresse";
+"Watermark" = "Vannmerke";
+"System" = "System";
+"Serif" = "Serif";
+"Rounded" = "Avrundet";
+"Monospaced" = "Monospace";
+
+/* Filename */
+"Filename" = "Filnavn";
+"Template" = "Mal";
+"Prefix" = "Prefiks";
+"Suffix" = "Suffiks";
+"Date format" = "Datoformat";
+"Auto-number" = "Autonummerering";
+"Adds a number automatically when a file of the same name exists." = "Legger automatisk til et nummer når det allerede finnes en fil med samme navn.";
+"Date" = "Dato";
+
+/* Gallery */
+"Gallery" = "Galleri";
+"No captures yet" = "Ingen opptak ennå";
+"Delete this item?" = "Slette dette elementet?";
+"Delete" = "Slett";
+
+/* Monetization */
+"Unlock every feature." = "Lås opp alle funksjoner.";
+"No ads" = "Ingen annonser";
+"Remove watermark" = "Fjern vannmerke";
+"Customize geotag" = "Tilpass geotag";
+"Add logo and notes" = "Legg til logo og notater";
+"The store is unavailable right now." = "Butikken er ikke tilgjengelig akkurat nå.";
+"BEST VALUE" = "BEST PRIS";
+"Continue" = "Fortsett";
+"Restore Purchase" = "Gjenopprett kjøp";
+"Terms" = "Vilkår";
+"Legal" = "Juridisk";
+"Purchase failed" = "Kjøpet mislyktes";
+"Lifetime" = "Levetid";
+"Monthly" = "Månedlig";
+"%@ / month" = "%@ / mnd.";
+"%@ once" = "%@ én gang";
+"Get GPS Camera Pro" = "Få GPS Camera Pro";
+"All features available" = "Alle funksjoner tilgjengelig";
+"No ads, every feature unlocked" = "Ingen annonser, alle funksjoner låst opp";
+"Manage" = "Administrer";
+"Upgrade" = "Oppgrader";
+"Pro unlocked!" = "Pro låst opp!";
+"Enjoy all features" = "Nyt alle funksjoner";
+"Purchases Restored" = "Kjøp gjenopprettet";
+"GPS Camera Pro is active." = "GPS Camera Pro er aktiv.";
+"No previous purchase was found." = "Ingen tidligere kjøp ble funnet.";
+"Restore could not be completed. Please try again." = "Gjenopprettingen kunne ikke fullføres. Prøv igjen.";
+"The purchase could not be completed. Please try again." = "Kjøpet kunne ikke fullføres. Prøv igjen.";

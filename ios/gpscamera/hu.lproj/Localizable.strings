@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Beállítások";
+"Done" = "Kész";
+"OK" = "OK";
+"Included" = "Beleértve";
+"Excluded" = "Kizárva";
+"General" = "Általános";
+"Language" = "Nyelv";
+"System default" = "Rendszer alapértelmezés";
+"Send Feedback" = "Visszajelzés küldése";
+"About" = "Névjegy";
+"Version" = "Verzió";
+"Terms of Service" = "Felhasználási feltételek";
+"Legal Notices" = "Jogi nyilatkozatok";
+"Permission is off" = "Az engedély ki van kapcsolva";
+"Close" = "Bezárás";
+"Go to Settings" = "Ugrás a beállításokhoz";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Egy engedélyt igénylő beállítás bekapcsolva maradt, de az engedélyt visszavonták. A rögzítés e funkció nélkül folytatódott.";
+
+/* Camera */
+"Capture" = "Rögzítés";
+"Shutter sound" = "Zárhang";
+"Orientation lock" = "Tájolászár";
+"Include EXIF location" = "EXIF-helyadatok beágyazása";
+"Includes location data in the photo file." = "Helyadatokat ágyaz a fotófájlba.";
+"Photo" = "Fotó";
+"Video" = "Videó";
+"Resolution" = "Felbontás";
+"Format" = "Formátum";
+"Also save original" = "Az eredeti mentése is";
+"Keeps a copy without the overlay." = "Másolatot őriz meg a rávetítés nélkül.";
+"Save to Camera Roll" = "Mentés a Filmtekercsre";
+"Camera access is off." = "A kamera-hozzáférés ki van kapcsolva.";
+"Open Settings" = "Beállítások megnyitása";
+"Good" = "Jó";
+"Normal" = "Közepes";
+"Bad" = "Rossz";
+"No signal" = "Nincs jel";
+"PHOTO" = "FOTÓ";
+"VIDEO" = "VIDEÓ";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geocímkézve GPS Camera-val";
+"Overlay" = "Átfedés";
+"Include overlay in photo/video" = "Átfedés belefoglalása a fotóba/videóba";
+"Display items" = "Megjelenített elemek";
+"Font" = "Betűtípus";
+"Font size" = "Betűméret";
+"Text color" = "Szöveg színe";
+"Background color" = "Háttérszín";
+"Background opacity" = "Háttér átlátszatlansága";
+"Coordinate format" = "Koordinátaformátum";
+"Unit" = "Egység";
+"Adjust position" = "Pozíció beállítása";
+"Lat, Lon" = "Szél, Hossz";
+"Metric" = "Metrikus";
+"Imperial" = "Angolszász";
+"Coordinates" = "Koordináták";
+"Altitude" = "Magasság";
+"Accuracy" = "Pontosság";
+"Compass" = "Iránytű";
+"Time" = "Idő";
+"Address" = "Cím";
+"Watermark" = "Vízjel";
+"System" = "Rendszer";
+"Serif" = "Talpas";
+"Rounded" = "Lekerekített";
+"Monospaced" = "Rögzített szélességű";
+
+/* Filename */
+"Filename" = "Fájlnév";
+"Template" = "Sablon";
+"Prefix" = "Előtag";
+"Suffix" = "Utótag";
+"Date format" = "Dátumformátum";
+"Auto-number" = "Automatikus számozás";
+"Adds a number automatically when a file of the same name exists." = "Automatikusan számot ad hozzá, ha már létezik azonos nevű fájl.";
+"Date" = "Dátum";
+
+/* Gallery */
+"Gallery" = "Galéria";
+"No captures yet" = "Még nincs felvétel";
+"Delete this item?" = "Törli ezt az elemet?";
+"Delete" = "Törlés";
+
+/* Monetization */
+"Unlock every feature." = "Oldja fel az összes funkciót.";
+"No ads" = "Nincs hirdetés";
+"Remove watermark" = "Vízjel eltávolítása";
+"Customize geotag" = "Geotag testreszabása";
+"Add logo and notes" = "Logó és jegyzetek hozzáadása";
+"The store is unavailable right now." = "Az áruház jelenleg nem érhető el.";
+"BEST VALUE" = "LEGJOBB ÉRTÉK";
+"Continue" = "Folytatás";
+"Restore Purchase" = "Vásárlás visszaállítása";
+"Terms" = "Feltételek";
+"Legal" = "Jogi";
+"Purchase failed" = "Sikertelen vásárlás";
+"Lifetime" = "Élethosszig";
+"Monthly" = "Havonta";
+"%@ / month" = "%@ / hó";
+"%@ once" = "%@ egyszer";
+"Get GPS Camera Pro" = "Szerezze be a GPS Camera Pro-t";
+"All features available" = "Minden funkció elérhető";
+"No ads, every feature unlocked" = "Nincs hirdetés, minden funkció feloldva";
+"Manage" = "Kezelés";
+"Upgrade" = "Frissítés";
+"Pro unlocked!" = "Pro feloldva!";
+"Enjoy all features" = "Élvezze az összes funkciót";
+"Purchases Restored" = "Vásárlások visszaállítva";
+"GPS Camera Pro is active." = "A GPS Camera Pro aktív.";
+"No previous purchase was found." = "Nem található korábbi vásárlás.";
+"Restore could not be completed. Please try again." = "A visszaállítás nem sikerült. Kérjük próbálja újra.";
+"The purchase could not be completed. Please try again." = "A vásárlás nem sikerült. Kérjük próbálja újra.";

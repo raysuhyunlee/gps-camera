@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Réglages";
+"Done" = "OK";
+"OK" = "OK";
+"Included" = "Inclus";
+"Excluded" = "Exclus";
+"General" = "Général";
+"Language" = "Langue";
+"System default" = "Par défaut du système";
+"Send Feedback" = "Envoyer des commentaires";
+"About" = "À propos";
+"Version" = "Version";
+"Terms of Service" = "Conditions d'utilisation";
+"Legal Notices" = "Mentions légales";
+"Permission is off" = "L'autorisation est désactivée";
+"Close" = "Fermer";
+"Go to Settings" = "Aller aux réglages";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Un réglage nécessitant une autorisation est resté activé, mais l'autorisation a été révoquée. La capture a continué sans cette fonction.";
+
+/* Camera */
+"Capture" = "Capture";
+"Shutter sound" = "Son de l'obturateur";
+"Orientation lock" = "Verrouillage de l'orientation";
+"Include EXIF location" = "Inclure la position EXIF";
+"Includes location data in the photo file." = "Inclut les données de position dans le fichier photo.";
+"Photo" = "Photo";
+"Video" = "Vidéo";
+"Resolution" = "Résolution";
+"Format" = "Format";
+"Also save original" = "Enregistrer aussi l'original";
+"Keeps a copy without the overlay." = "Conserve une copie sans l'incrustation.";
+"Save to Camera Roll" = "Enregistrer dans la pellicule";
+"Camera access is off." = "L'accès à l'appareil photo est désactivé.";
+"Open Settings" = "Ouvrir les réglages";
+"Good" = "Bonne";
+"Normal" = "Normale";
+"Bad" = "Mauvaise";
+"No signal" = "Aucun signal";
+"PHOTO" = "PHOTO";
+"VIDEO" = "VIDÉO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Géolocalisé avec GPS Camera";
+"Overlay" = "Superposition";
+"Include overlay in photo/video" = "Inclure la superposition dans la photo/vidéo";
+"Display items" = "Éléments affichés";
+"Font" = "Police";
+"Font size" = "Taille de la police";
+"Text color" = "Couleur du texte";
+"Background color" = "Couleur d'arrière-plan";
+"Background opacity" = "Opacité de l'arrière-plan";
+"Coordinate format" = "Format des coordonnées";
+"Unit" = "Unité";
+"Adjust position" = "Ajuster la position";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Métrique";
+"Imperial" = "Impérial";
+"Coordinates" = "Coordonnées";
+"Altitude" = "Altitude";
+"Accuracy" = "Précision";
+"Compass" = "Boussole";
+"Time" = "Heure";
+"Address" = "Adresse";
+"Watermark" = "Filigrane";
+"System" = "Système";
+"Serif" = "Serif";
+"Rounded" = "Arrondie";
+"Monospaced" = "Monospace";
+
+/* Filename */
+"Filename" = "Nom de fichier";
+"Template" = "Modèle";
+"Prefix" = "Préfixe";
+"Suffix" = "Suffixe";
+"Date format" = "Format de date";
+"Auto-number" = "Numérotation automatique";
+"Adds a number automatically when a file of the same name exists." = "Ajoute automatiquement un numéro quand un fichier du même nom existe déjà.";
+"Date" = "Date";
+
+/* Gallery */
+"Gallery" = "Galerie";
+"No captures yet" = "Aucune capture pour l'instant";
+"Delete this item?" = "Supprimer cet élément ?";
+"Delete" = "Supprimer";
+
+/* Monetization */
+"Unlock every feature." = "Débloquez toutes les fonctionnalités.";
+"No ads" = "Sans publicité";
+"Remove watermark" = "Supprimer le filigrane";
+"Customize geotag" = "Personnaliser le géotag";
+"Add logo and notes" = "Ajouter logo et notes";
+"The store is unavailable right now." = "La boutique n'est pas disponible pour l'instant.";
+"BEST VALUE" = "MEILLEUR RAPPORT";
+"Continue" = "Continuer";
+"Restore Purchase" = "Restaurer l'achat";
+"Terms" = "Conditions";
+"Legal" = "Mentions légales";
+"Purchase failed" = "Échec de l'achat";
+"Lifetime" = "À vie";
+"Monthly" = "Mensuel";
+"%@ / month" = "%@ / mois";
+"%@ once" = "%@ en une fois";
+"Get GPS Camera Pro" = "Obtenir GPS Camera Pro";
+"All features available" = "Toutes les fonctionnalités disponibles";
+"No ads, every feature unlocked" = "Sans publicité, toutes les fonctionnalités débloquées";
+"Manage" = "Gérer";
+"Upgrade" = "Mettre à niveau";
+"Pro unlocked!" = "Pro débloqué !";
+"Enjoy all features" = "Profitez de toutes les fonctionnalités";
+"Purchases Restored" = "Achats restaurés";
+"GPS Camera Pro is active." = "GPS Camera Pro est actif.";
+"No previous purchase was found." = "Aucun achat précédent n'a été trouvé.";
+"Restore could not be completed. Please try again." = "La restauration n'a pas pu être effectuée. Veuillez réessayer.";
+"The purchase could not be completed. Please try again." = "L'achat n'a pas pu être effectué. Veuillez réessayer.";

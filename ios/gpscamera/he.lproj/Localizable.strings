@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "הגדרות";
+"Done" = "סיום";
+"OK" = "אישור";
+"Included" = "כלול";
+"Excluded" = "לא כלול";
+"General" = "כללי";
+"Language" = "שפה";
+"System default" = "ברירת המחדל של המערכת";
+"Send Feedback" = "שליחת משוב";
+"About" = "אודות";
+"Version" = "גרסה";
+"Terms of Service" = "תנאי השירות";
+"Legal Notices" = "מידע משפטי";
+"Permission is off" = "ההרשאה כבויה";
+"Close" = "סגירה";
+"Go to Settings" = "מעבר להגדרות";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "הגדרה הדורשת הרשאה נשארה פעילה, אך ההרשאה בוטלה. הצילום נמשך ללא תכונה זו.";
+
+/* Camera */
+"Capture" = "צילום";
+"Shutter sound" = "צליל צמצם";
+"Orientation lock" = "נעילת כיוון";
+"Include EXIF location" = "כלול מיקום EXIF";
+"Includes location data in the photo file." = "כולל נתוני מיקום בקובץ התמונה.";
+"Photo" = "תמונה";
+"Video" = "וידאו";
+"Resolution" = "רזולוציה";
+"Format" = "פורמט";
+"Also save original" = "שמור גם את המקור";
+"Keeps a copy without the overlay." = "שומר עותק ללא שכבת-העל.";
+"Save to Camera Roll" = "שמירה לגליל הצילום";
+"Camera access is off." = "הגישה למצלמה כבויה.";
+"Open Settings" = "פתיחת הגדרות";
+"Good" = "טובה";
+"Normal" = "רגילה";
+"Bad" = "חלשה";
+"No signal" = "אין אות";
+"PHOTO" = "תמונה";
+"VIDEO" = "וידאו";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "מקומות מוגדרים עם GPS Camera";
+"Overlay" = "שכבת-על";
+"Include overlay in photo/video" = "כלול שכבת-על בתמונה/וידאו";
+"Display items" = "פריטים מוצגים";
+"Font" = "גופן";
+"Font size" = "גודל הגופן";
+"Text color" = "צבע טקסט";
+"Background color" = "צבע רקע";
+"Background opacity" = "אטימות רקע";
+"Coordinate format" = "פורמט קואורדינטות";
+"Unit" = "יחידה";
+"Adjust position" = "כוונון מיקום";
+"Lat, Lon" = "רוחב, אורך";
+"Metric" = "מטרי";
+"Imperial" = "אימפריאלי";
+"Coordinates" = "קואורדינטות";
+"Altitude" = "גובה";
+"Accuracy" = "דיוק";
+"Compass" = "מצפן";
+"Time" = "שעה";
+"Address" = "כתובת";
+"Watermark" = "סימן מים";
+"System" = "מערכת";
+"Serif" = "סריף";
+"Rounded" = "מעוגל";
+"Monospaced" = "רוחב קבוע";
+
+/* Filename */
+"Filename" = "שם קובץ";
+"Template" = "תבנית";
+"Prefix" = "קידומת";
+"Suffix" = "סיומת";
+"Date format" = "פורמט תאריך";
+"Auto-number" = "מספור אוטומטי";
+"Adds a number automatically when a file of the same name exists." = "מוסיף מספר אוטומטית כאשר קובץ עם אותו שם כבר קיים.";
+"Date" = "תאריך";
+
+/* Gallery */
+"Gallery" = "גלריה";
+"No captures yet" = "אין לקיחות עדיין";
+"Delete this item?" = "למחוק פריט זה?";
+"Delete" = "מחיקה";
+
+/* Monetization */
+"Unlock every feature." = "פתח את נעילת כל התכונות.";
+"No ads" = "ללא פרסומות";
+"Remove watermark" = "הסר סימן מים";
+"Customize geotag" = "התאם אישית את הגיאוטאג";
+"Add logo and notes" = "הוסף לוגו ופתקים";
+"The store is unavailable right now." = "החנות אינה זמינה כרגע.";
+"BEST VALUE" = "הכי כדאי";
+"Continue" = "המשך";
+"Restore Purchase" = "שחזור רכישה";
+"Terms" = "תנאים";
+"Legal" = "משפטי";
+"Purchase failed" = "הרכישה נכשלה";
+"Lifetime" = "לכל החיים";
+"Monthly" = "חודשי";
+"%@ / month" = "%@ / חודש";
+"%@ once" = "%@ פעם אחת";
+"Get GPS Camera Pro" = "קבל GPS Camera Pro";
+"All features available" = "כל התכונות זמינות";
+"No ads, every feature unlocked" = "ללא פרסומות, כל התכונות פתוחות";
+"Manage" = "נהל";
+"Upgrade" = "שדרג";
+"Pro unlocked!" = "Pro נפתח!";
+"Enjoy all features" = "תהנה מכל התכונות";
+"Purchases Restored" = "הרכישות שוחזרו";
+"GPS Camera Pro is active." = "GPS Camera Pro פעיל.";
+"No previous purchase was found." = "לא נמצאה רכישה קודמת.";
+"Restore could not be completed. Please try again." = "לא ניתן היה להשלים את השחזור. אנא נסה שוב.";
+"The purchase could not be completed. Please try again." = "לא ניתן היה להשלים את הרכישה. אנא נסה שוב.";

@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Ayarlar";
+"Done" = "Bitti";
+"OK" = "Tamam";
+"Included" = "Dahil";
+"Excluded" = "Hariç";
+"General" = "Genel";
+"Language" = "Dil";
+"System default" = "Sistem varsayılanı";
+"Send Feedback" = "Geri bildirim gönder";
+"About" = "Hakkında";
+"Version" = "Sürüm";
+"Terms of Service" = "Hizmet Şartları";
+"Legal Notices" = "Yasal Bildirimler";
+"Permission is off" = "İzin kapalı";
+"Close" = "Kapat";
+"Go to Settings" = "Ayarlara git";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "İzin gerektiren bir ayar açık kaldı ancak izin iptal edildi. Çekim bu özellik olmadan devam etti.";
+
+/* Camera */
+"Capture" = "Çekim";
+"Shutter sound" = "Deklanşör sesi";
+"Orientation lock" = "Yön kilidi";
+"Include EXIF location" = "EXIF konumunu ekle";
+"Includes location data in the photo file." = "Konum verilerini fotoğraf dosyasına ekler.";
+"Photo" = "Fotoğraf";
+"Video" = "Video";
+"Resolution" = "Çözünürlük";
+"Format" = "Biçim";
+"Also save original" = "Orijinali de kaydet";
+"Keeps a copy without the overlay." = "Kaplama olmadan bir kopya saklar.";
+"Save to Camera Roll" = "Film Rulosuna kaydet";
+"Camera access is off." = "Kamera erişimi kapalı.";
+"Open Settings" = "Ayarları aç";
+"Good" = "İyi";
+"Normal" = "Normal";
+"Bad" = "Kötü";
+"No signal" = "Sinyal yok";
+"PHOTO" = "FOTOĞRAF";
+"VIDEO" = "VİDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "GPS Camera ile coğrafi etiketlendi";
+"Overlay" = "Kaplama";
+"Include overlay in photo/video" = "Fotoğraf/videoya kaplama ekle";
+"Display items" = "Gösterilen öğeler";
+"Font" = "Yazı tipi";
+"Font size" = "Yazı tipi boyutu";
+"Text color" = "Metin rengi";
+"Background color" = "Arka plan rengi";
+"Background opacity" = "Arka plan opaklığı";
+"Coordinate format" = "Koordinat biçimi";
+"Unit" = "Birim";
+"Adjust position" = "Konumu ayarla";
+"Lat, Lon" = "Enl, Boy";
+"Metric" = "Metrik";
+"Imperial" = "Emperyal";
+"Coordinates" = "Koordinatlar";
+"Altitude" = "Yükseklik";
+"Accuracy" = "Hassasiyet";
+"Compass" = "Pusula";
+"Time" = "Saat";
+"Address" = "Adres";
+"Watermark" = "Filigran";
+"System" = "Sistem";
+"Serif" = "Serif";
+"Rounded" = "Yuvarlak";
+"Monospaced" = "Sabit genişlikli";
+
+/* Filename */
+"Filename" = "Dosya adı";
+"Template" = "Şablon";
+"Prefix" = "Önek";
+"Suffix" = "Sonek";
+"Date format" = "Tarih biçimi";
+"Auto-number" = "Otomatik numaralandırma";
+"Adds a number automatically when a file of the same name exists." = "Aynı ada sahip bir dosya mevcut olduğunda otomatik olarak numara ekler.";
+"Date" = "Tarih";
+
+/* Gallery */
+"Gallery" = "Galeri";
+"No captures yet" = "Henüz çekim yok";
+"Delete this item?" = "Bu öğe silinsin mi?";
+"Delete" = "Sil";
+
+/* Monetization */
+"Unlock every feature." = "Tüm özelliklerin kilidini aç.";
+"No ads" = "Reklam yok";
+"Remove watermark" = "Filigranı kaldır";
+"Customize geotag" = "Coğrafi etiketi özelleştir";
+"Add logo and notes" = "Logo ve notlar ekle";
+"The store is unavailable right now." = "Mağaza şu anda kullanılamıyor.";
+"BEST VALUE" = "EN İYİ DEĞER";
+"Continue" = "Devam et";
+"Restore Purchase" = "Satın almayı geri yükle";
+"Terms" = "Koşullar";
+"Legal" = "Yasal";
+"Purchase failed" = "Satın alma başarısız";
+"Lifetime" = "Ömür boyu";
+"Monthly" = "Aylık";
+"%@ / month" = "%@ / ay";
+"%@ once" = "%@ bir kez";
+"Get GPS Camera Pro" = "GPS Camera Pro'yu edinin";
+"All features available" = "Tüm özellikler mevcut";
+"No ads, every feature unlocked" = "Reklam yok, tüm özellikler açık";
+"Manage" = "Yönet";
+"Upgrade" = "Yükselt";
+"Pro unlocked!" = "Pro kilidi açıldı!";
+"Enjoy all features" = "Tüm özelliklerin keyfini çıkar";
+"Purchases Restored" = "Satın almalar geri yüklendi";
+"GPS Camera Pro is active." = "GPS Camera Pro aktif.";
+"No previous purchase was found." = "Önceki satın alma bulunamadı.";
+"Restore could not be completed. Please try again." = "Geri yükleme tamamlanamadı. Lütfen tekrar deneyin.";
+"The purchase could not be completed. Please try again." = "Satın alma tamamlanamadı. Lütfen tekrar deneyin.";

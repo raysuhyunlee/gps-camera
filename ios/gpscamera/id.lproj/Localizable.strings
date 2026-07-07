@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Pengaturan";
+"Done" = "Selesai";
+"OK" = "Oke";
+"Included" = "Termasuk";
+"Excluded" = "Tidak termasuk";
+"General" = "Umum";
+"Language" = "Bahasa";
+"System default" = "Bawaan sistem";
+"Send Feedback" = "Kirim masukan";
+"About" = "Tentang";
+"Version" = "Versi";
+"Terms of Service" = "Ketentuan Layanan";
+"Legal Notices" = "Informasi hukum";
+"Permission is off" = "Izin dimatikan";
+"Close" = "Tutup";
+"Go to Settings" = "Buka pengaturan";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Pengaturan yang memerlukan izin tetap aktif, tetapi izinnya dicabut. Pengambilan tetap dilanjutkan tanpa fitur ini.";
+
+/* Camera */
+"Capture" = "Pengambilan";
+"Shutter sound" = "Suara rana";
+"Orientation lock" = "Kunci orientasi";
+"Include EXIF location" = "Sertakan lokasi EXIF";
+"Includes location data in the photo file." = "Menyertakan data lokasi dalam file foto.";
+"Photo" = "Foto";
+"Video" = "Video";
+"Resolution" = "Resolusi";
+"Format" = "Format";
+"Also save original" = "Simpan juga yang asli";
+"Keeps a copy without the overlay." = "Menyimpan salinan tanpa overlay.";
+"Save to Camera Roll" = "Simpan ke Rol Kamera";
+"Camera access is off." = "Akses kamera dimatikan.";
+"Open Settings" = "Buka Pengaturan";
+"Good" = "Baik";
+"Normal" = "Sedang";
+"Bad" = "Buruk";
+"No signal" = "Tidak ada sinyal";
+"PHOTO" = "FOTO";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geotagged dengan GPS Camera";
+"Overlay" = "Overlay";
+"Include overlay in photo/video" = "Sertakan overlay di foto/video";
+"Display items" = "Item yang ditampilkan";
+"Font" = "Fon";
+"Font size" = "Ukuran fon";
+"Text color" = "Warna teks";
+"Background color" = "Warna latar";
+"Background opacity" = "Opasitas latar";
+"Coordinate format" = "Format koordinat";
+"Unit" = "Satuan";
+"Adjust position" = "Sesuaikan posisi";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metrik";
+"Imperial" = "Imperial";
+"Coordinates" = "Koordinat";
+"Altitude" = "Ketinggian";
+"Accuracy" = "Akurasi";
+"Compass" = "Kompas";
+"Time" = "Waktu";
+"Address" = "Alamat";
+"Watermark" = "Tanda air";
+"System" = "Sistem";
+"Serif" = "Serif";
+"Rounded" = "Bulat";
+"Monospaced" = "Monospace";
+
+/* Filename */
+"Filename" = "Nama file";
+"Template" = "Template";
+"Prefix" = "Awalan";
+"Suffix" = "Akhiran";
+"Date format" = "Format tanggal";
+"Auto-number" = "Penomoran otomatis";
+"Adds a number automatically when a file of the same name exists." = "Menambahkan nomor secara otomatis saat file dengan nama yang sama sudah ada.";
+"Date" = "Tanggal";
+
+/* Gallery */
+"Gallery" = "Galeri";
+"No captures yet" = "Belum ada tangkapan";
+"Delete this item?" = "Hapus item ini?";
+"Delete" = "Hapus";
+
+/* Monetization */
+"Unlock every feature." = "Buka semua fitur.";
+"No ads" = "Tanpa iklan";
+"Remove watermark" = "Hapus tanda air";
+"Customize geotag" = "Sesuaikan geotag";
+"Add logo and notes" = "Tambahkan logo dan catatan";
+"The store is unavailable right now." = "Toko tidak tersedia sekarang.";
+"BEST VALUE" = "PALING HEMAT";
+"Continue" = "Lanjutkan";
+"Restore Purchase" = "Pulihkan Pembelian";
+"Terms" = "Ketentuan";
+"Legal" = "Hukum";
+"Purchase failed" = "Pembelian gagal";
+"Lifetime" = "Seumur hidup";
+"Monthly" = "Bulanan";
+"%@ / month" = "%@ / bulan";
+"%@ once" = "%@ sekali";
+"Get GPS Camera Pro" = "Dapatkan GPS Camera Pro";
+"All features available" = "Semua fitur tersedia";
+"No ads, every feature unlocked" = "Tanpa iklan, semua fitur terbuka";
+"Manage" = "Kelola";
+"Upgrade" = "Tingkatkan";
+"Pro unlocked!" = "Pro terbuka!";
+"Enjoy all features" = "Nikmati semua fitur";
+"Purchases Restored" = "Pembelian dipulihkan";
+"GPS Camera Pro is active." = "GPS Camera Pro aktif.";
+"No previous purchase was found." = "Tidak ada pembelian sebelumnya.";
+"Restore could not be completed. Please try again." = "Pemulihan tidak dapat diselesaikan. Silakan coba lagi.";
+"The purchase could not be completed. Please try again." = "Pembelian tidak dapat diselesaikan. Silakan coba lagi.";

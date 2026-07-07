@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Instellingen";
+"Done" = "Gereed";
+"OK" = "OK";
+"Included" = "Opgenomen";
+"Excluded" = "Uitgesloten";
+"General" = "Algemeen";
+"Language" = "Taal";
+"System default" = "Systeemstandaard";
+"Send Feedback" = "Feedback versturen";
+"About" = "Over";
+"Version" = "Versie";
+"Terms of Service" = "Servicevoorwaarden";
+"Legal Notices" = "Juridische informatie";
+"Permission is off" = "Toestemming is uitgeschakeld";
+"Close" = "Sluiten";
+"Go to Settings" = "Naar instellingen";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Een instelling die een toestemming vereist bleef aan, maar de toestemming is ingetrokken. De opname is zonder deze functie doorgegaan.";
+
+/* Camera */
+"Capture" = "Opname";
+"Shutter sound" = "Sluitergeluid";
+"Orientation lock" = "Oriëntatievergrendeling";
+"Include EXIF location" = "EXIF-locatie opnemen";
+"Includes location data in the photo file." = "Neemt locatiegegevens op in het fotobestand.";
+"Photo" = "Foto";
+"Video" = "Video";
+"Resolution" = "Resolutie";
+"Format" = "Formaat";
+"Also save original" = "Origineel ook bewaren";
+"Keeps a copy without the overlay." = "Bewaart een kopie zonder de overlay.";
+"Save to Camera Roll" = "Bewaren in filmrol";
+"Camera access is off." = "Cameratoegang is uitgeschakeld.";
+"Open Settings" = "Instellingen openen";
+"Good" = "Goed";
+"Normal" = "Normaal";
+"Bad" = "Slecht";
+"No signal" = "Geen signaal";
+"PHOTO" = "FOTO";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geotag toegevoegd met GPS Camera";
+"Overlay" = "Overlay";
+"Include overlay in photo/video" = "Overlay opnemen in foto/video";
+"Display items" = "Weergegeven items";
+"Font" = "Lettertype";
+"Font size" = "Lettergrootte";
+"Text color" = "Tekstkleur";
+"Background color" = "Achtergrondkleur";
+"Background opacity" = "Achtergrondondoorzichtigheid";
+"Coordinate format" = "Coördinaatopmaak";
+"Unit" = "Eenheid";
+"Adjust position" = "Positie aanpassen";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metrisch";
+"Imperial" = "Imperiaal";
+"Coordinates" = "Coördinaten";
+"Altitude" = "Hoogte";
+"Accuracy" = "Nauwkeurigheid";
+"Compass" = "Kompas";
+"Time" = "Tijd";
+"Address" = "Adres";
+"Watermark" = "Watermerk";
+"System" = "Systeem";
+"Serif" = "Serif";
+"Rounded" = "Afgerond";
+"Monospaced" = "Monospace";
+
+/* Filename */
+"Filename" = "Bestandsnaam";
+"Template" = "Sjabloon";
+"Prefix" = "Voorvoegsel";
+"Suffix" = "Achtervoegsel";
+"Date format" = "Datumopmaak";
+"Auto-number" = "Automatisch nummeren";
+"Adds a number automatically when a file of the same name exists." = "Voegt automatisch een nummer toe wanneer er al een bestand met dezelfde naam bestaat.";
+"Date" = "Datum";
+
+/* Gallery */
+"Gallery" = "Galerij";
+"No captures yet" = "Nog geen opnamen";
+"Delete this item?" = "Dit item verwijderen?";
+"Delete" = "Verwijderen";
+
+/* Monetization */
+"Unlock every feature." = "Alle functies ontgrendelen.";
+"No ads" = "Geen advertenties";
+"Remove watermark" = "Watermerk verwijderen";
+"Customize geotag" = "Geotag aanpassen";
+"Add logo and notes" = "Logo en notities toevoegen";
+"The store is unavailable right now." = "De Store is momenteel niet beschikbaar.";
+"BEST VALUE" = "BESTE WAARDE";
+"Continue" = "Doorgaan";
+"Restore Purchase" = "Aankoop herstellen";
+"Terms" = "Voorwaarden";
+"Legal" = "Juridisch";
+"Purchase failed" = "Aankoop mislukt";
+"Lifetime" = "Levenslang";
+"Monthly" = "Maandelijks";
+"%@ / month" = "%@ / maand";
+"%@ once" = "%@ eenmalig";
+"Get GPS Camera Pro" = "GPS Camera Pro krijgen";
+"All features available" = "Alle functies beschikbaar";
+"No ads, every feature unlocked" = "Geen advertenties, alle functies ontgrendeld";
+"Manage" = "Beheer";
+"Upgrade" = "Upgraden";
+"Pro unlocked!" = "Pro ontgrendeld!";
+"Enjoy all features" = "Geniet van alle functies";
+"Purchases Restored" = "Aankopen hersteld";
+"GPS Camera Pro is active." = "GPS Camera Pro is actief.";
+"No previous purchase was found." = "Er zijn geen eerdere aankopen gevonden.";
+"Restore could not be completed. Please try again." = "Herstellen kon niet worden voltooid. Probeer het opnieuw.";
+"The purchase could not be completed. Please try again." = "De aankoop kon niet worden voltooid. Probeer het opnieuw.";

@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "設定";
+"Done" = "完成";
+"OK" = "好";
+"Included" = "已包含";
+"Excluded" = "未包含";
+"General" = "一般";
+"Language" = "語言";
+"System default" = "跟隨系統";
+"Send Feedback" = "傳送意見回饋";
+"About" = "關於";
+"Version" = "版本";
+"Terms of Service" = "服務條款";
+"Legal Notices" = "法律資訊";
+"Permission is off" = "權限已關閉";
+"Close" = "關閉";
+"Go to Settings" = "前往設定";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "需要權限的設定仍為開啟狀態，但權限已被撤銷。拍攝已在沒有該功能的情況下繼續。";
+
+/* Camera */
+"Capture" = "拍攝";
+"Shutter sound" = "快門聲";
+"Orientation lock" = "方向鎖定";
+"Include EXIF location" = "包含 EXIF 位置資訊";
+"Includes location data in the photo file." = "在照片檔案中包含位置資料。";
+"Photo" = "照片";
+"Video" = "影片";
+"Resolution" = "解析度";
+"Format" = "格式";
+"Also save original" = "同時儲存原始檔";
+"Keeps a copy without the overlay." = "保留不含疊加層的副本。";
+"Save to Camera Roll" = "儲存到相機膠卷";
+"Camera access is off." = "相機存取已關閉。";
+"Open Settings" = "開啟設定";
+"Good" = "良好";
+"Normal" = "一般";
+"Bad" = "較差";
+"No signal" = "無訊號";
+"PHOTO" = "照片";
+"VIDEO" = "影片";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "使用 GPS Camera 地理標記";
+"Overlay" = "疊加層";
+"Include overlay in photo/video" = "在照片/影片中包含疊加層";
+"Display items" = "顯示項目";
+"Font" = "字體";
+"Font size" = "字體大小";
+"Text color" = "文字顏色";
+"Background color" = "背景顏色";
+"Background opacity" = "背景不透明度";
+"Coordinate format" = "座標格式";
+"Unit" = "單位";
+"Adjust position" = "調整位置";
+"Lat, Lon" = "緯度, 經度";
+"Metric" = "公制";
+"Imperial" = "英制";
+"Coordinates" = "座標";
+"Altitude" = "海拔";
+"Accuracy" = "精確度";
+"Compass" = "指南針";
+"Time" = "時間";
+"Address" = "地址";
+"Watermark" = "浮水印";
+"System" = "系統";
+"Serif" = "襯線";
+"Rounded" = "圓潤";
+"Monospaced" = "等寬";
+
+/* Filename */
+"Filename" = "檔案名稱";
+"Template" = "範本";
+"Prefix" = "前綴";
+"Suffix" = "後綴";
+"Date format" = "日期格式";
+"Auto-number" = "自動編號";
+"Adds a number automatically when a file of the same name exists." = "當同名檔案存在時自動加上序號。";
+"Date" = "日期";
+
+/* Gallery */
+"Gallery" = "相簿";
+"No captures yet" = "尚無捕捉";
+"Delete this item?" = "刪除此項目？";
+"Delete" = "刪除";
+
+/* Monetization */
+"Unlock every feature." = "解鎖所有功能。";
+"No ads" = "無廣告";
+"Remove watermark" = "移除浮水印";
+"Customize geotag" = "自訂地理標記";
+"Add logo and notes" = "新增標誌和備注";
+"The store is unavailable right now." = "商店目前無法使用。";
+"BEST VALUE" = "最超值";
+"Continue" = "繼續";
+"Restore Purchase" = "恢復購買";
+"Terms" = "條款";
+"Legal" = "法律";
+"Purchase failed" = "購買失敗";
+"Lifetime" = "永久";
+"Monthly" = "每月";
+"%@ / month" = "每月 %@";
+"%@ once" = "%@ 一次性";
+"Get GPS Camera Pro" = "取得 GPS Camera Pro";
+"All features available" = "所有功能可用";
+"No ads, every feature unlocked" = "無廣告，解鎖所有功能";
+"Manage" = "管理";
+"Upgrade" = "升級";
+"Pro unlocked!" = "Pro 已解鎖！";
+"Enjoy all features" = "盡享所有功能";
+"Purchases Restored" = "購買已恢復";
+"GPS Camera Pro is active." = "GPS Camera Pro 已啟用。";
+"No previous purchase was found." = "找不到先前的購買記錄。";
+"Restore could not be completed. Please try again." = "無法完成恢復。請再試一次。";
+"The purchase could not be completed. Please try again." = "無法完成購買。請再試一次。";

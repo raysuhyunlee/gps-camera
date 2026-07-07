@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Налаштування";
+"Done" = "Готово";
+"OK" = "OK";
+"Included" = "Включено";
+"Excluded" = "Виключено";
+"General" = "Загальні";
+"Language" = "Мова";
+"System default" = "Як у системі";
+"Send Feedback" = "Надіслати відгук";
+"About" = "Про застосунок";
+"Version" = "Версія";
+"Terms of Service" = "Умови користування";
+"Legal Notices" = "Правова інформація";
+"Permission is off" = "Дозвіл вимкнено";
+"Close" = "Закрити";
+"Go to Settings" = "Перейти до налаштувань";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Налаштування, що потребує дозволу, залишилося ввімкненим, але дозвіл було відкликано. Зйомка продовжилася без цієї функції.";
+
+/* Camera */
+"Capture" = "Зйомка";
+"Shutter sound" = "Звук затвора";
+"Orientation lock" = "Блокування орієнтації";
+"Include EXIF location" = "Додавати геодані EXIF";
+"Includes location data in the photo file." = "Додає дані про місцезнаходження у файл фото.";
+"Photo" = "Фото";
+"Video" = "Відео";
+"Resolution" = "Роздільна здатність";
+"Format" = "Формат";
+"Also save original" = "Також зберігати оригінал";
+"Keeps a copy without the overlay." = "Зберігає копію без накладання.";
+"Save to Camera Roll" = "Зберігати у фотоплівку";
+"Camera access is off." = "Доступ до камери вимкнено.";
+"Open Settings" = "Відкрити налаштування";
+"Good" = "Добре";
+"Normal" = "Середньо";
+"Bad" = "Погано";
+"No signal" = "Немає сигналу";
+"PHOTO" = "ФОТО";
+"VIDEO" = "ВІДЕО";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Геотег від GPS Camera";
+"Overlay" = "Накладання";
+"Include overlay in photo/video" = "Додавати накладання у фото/відео";
+"Display items" = "Відображувані елементи";
+"Font" = "Шрифт";
+"Font size" = "Розмір шрифту";
+"Text color" = "Колір тексту";
+"Background color" = "Колір фону";
+"Background opacity" = "Непрозорість фону";
+"Coordinate format" = "Формат координат";
+"Unit" = "Одиниця";
+"Adjust position" = "Налаштувати позицію";
+"Lat, Lon" = "Шир, Довг";
+"Metric" = "Метрична";
+"Imperial" = "Імперська";
+"Coordinates" = "Координати";
+"Altitude" = "Висота";
+"Accuracy" = "Точність";
+"Compass" = "Компас";
+"Time" = "Час";
+"Address" = "Адреса";
+"Watermark" = "Водяний знак";
+"System" = "Системний";
+"Serif" = "Серифний";
+"Rounded" = "Округлений";
+"Monospaced" = "Моноширинний";
+
+/* Filename */
+"Filename" = "Ім'я файлу";
+"Template" = "Шаблон";
+"Prefix" = "Префікс";
+"Suffix" = "Суфікс";
+"Date format" = "Формат дати";
+"Auto-number" = "Автонумерація";
+"Adds a number automatically when a file of the same name exists." = "Автоматично додає номер, якщо файл з таким іменем вже існує.";
+"Date" = "Дата";
+
+/* Gallery */
+"Gallery" = "Галерея";
+"No captures yet" = "Немає записів";
+"Delete this item?" = "Видалити цей елемент?";
+"Delete" = "Видалити";
+
+/* Monetization */
+"Unlock every feature." = "Відкрийте всі функції.";
+"No ads" = "Без реклами";
+"Remove watermark" = "Видалити водяний знак";
+"Customize geotag" = "Налаштувати геотег";
+"Add logo and notes" = "Додати логотип і нотатки";
+"The store is unavailable right now." = "Магазин зараз недоступний.";
+"BEST VALUE" = "НАЙВИГІДНІШЕ";
+"Continue" = "Продовжити";
+"Restore Purchase" = "Відновити покупку";
+"Terms" = "Умови";
+"Legal" = "Правові";
+"Purchase failed" = "Помилка покупки";
+"Lifetime" = "Назавжди";
+"Monthly" = "Щомісяця";
+"%@ / month" = "%@ / міс.";
+"%@ once" = "%@ одноразово";
+"Get GPS Camera Pro" = "Отримати GPS Camera Pro";
+"All features available" = "Всі функції доступні";
+"No ads, every feature unlocked" = "Без реклами, всі функції доступні";
+"Manage" = "Керувати";
+"Upgrade" = "Оновити";
+"Pro unlocked!" = "Pro розблоковано!";
+"Enjoy all features" = "Насолоджуйтесь всіма функціями";
+"Purchases Restored" = "Покупки відновлено";
+"GPS Camera Pro is active." = "GPS Camera Pro активний.";
+"No previous purchase was found." = "Попередніх покупок не знайдено.";
+"Restore could not be completed. Please try again." = "Відновлення не вдалося завершити. Спробуйте ще раз.";
+"The purchase could not be completed. Please try again." = "Не вдалося завершити покупку. Спробуйте ще раз.";

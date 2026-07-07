@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Настройки";
+"Done" = "Готово";
+"OK" = "ОК";
+"Included" = "Включено";
+"Excluded" = "Исключено";
+"General" = "Основные";
+"Language" = "Язык";
+"System default" = "Как в системе";
+"Send Feedback" = "Отправить отзыв";
+"About" = "О приложении";
+"Version" = "Версия";
+"Terms of Service" = "Условия использования";
+"Legal Notices" = "Правовая информация";
+"Permission is off" = "Разрешение отключено";
+"Close" = "Закрыть";
+"Go to Settings" = "Перейти в настройки";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "Настройка, требующая разрешения, осталась включённой, но разрешение было отозвано. Съёмка продолжилась без этой функции.";
+
+/* Camera */
+"Capture" = "Съёмка";
+"Shutter sound" = "Звук затвора";
+"Orientation lock" = "Блокировка ориентации";
+"Include EXIF location" = "Включать геоданные EXIF";
+"Includes location data in the photo file." = "Добавляет данные о местоположении в файл фото.";
+"Photo" = "Фото";
+"Video" = "Видео";
+"Resolution" = "Разрешение";
+"Format" = "Формат";
+"Also save original" = "Также сохранять оригинал";
+"Keeps a copy without the overlay." = "Сохраняет копию без наложения.";
+"Save to Camera Roll" = "Сохранять в галерею";
+"Camera access is off." = "Доступ к камере отключён.";
+"Open Settings" = "Открыть настройки";
+"Good" = "Хорошо";
+"Normal" = "Средне";
+"Bad" = "Плохо";
+"No signal" = "Нет сигнала";
+"PHOTO" = "ФОТО";
+"VIDEO" = "ВИДЕО";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Геотег добавлен GPS Camera";
+"Overlay" = "Наложение";
+"Include overlay in photo/video" = "Включать наложение в фото/видео";
+"Display items" = "Отображаемые элементы";
+"Font" = "Шрифт";
+"Font size" = "Размер шрифта";
+"Text color" = "Цвет текста";
+"Background color" = "Цвет фона";
+"Background opacity" = "Непрозрачность фона";
+"Coordinate format" = "Формат координат";
+"Unit" = "Единица";
+"Adjust position" = "Настроить позицию";
+"Lat, Lon" = "Широта, долг.";
+"Metric" = "Метрическая";
+"Imperial" = "Имперская";
+"Coordinates" = "Координаты";
+"Altitude" = "Высота";
+"Accuracy" = "Точность";
+"Compass" = "Компас";
+"Time" = "Время";
+"Address" = "Адрес";
+"Watermark" = "Водяной знак";
+"System" = "Системный";
+"Serif" = "Серифный";
+"Rounded" = "Скруглённый";
+"Monospaced" = "Моноширинный";
+
+/* Filename */
+"Filename" = "Имя файла";
+"Template" = "Шаблон";
+"Prefix" = "Префикс";
+"Suffix" = "Суффикс";
+"Date format" = "Формат даты";
+"Auto-number" = "Автонумерация";
+"Adds a number automatically when a file of the same name exists." = "Автоматически добавляет номер, если файл с таким именем уже существует.";
+"Date" = "Дата";
+
+/* Gallery */
+"Gallery" = "Галерея";
+"No captures yet" = "Нет снимков";
+"Delete this item?" = "Удалить этот элемент?";
+"Delete" = "Удалить";
+
+/* Monetization */
+"Unlock every feature." = "Откройте все функции.";
+"No ads" = "Без рекламы";
+"Remove watermark" = "Убрать водяной знак";
+"Customize geotag" = "Настроить геотег";
+"Add logo and notes" = "Добавить логотип и заметки";
+"The store is unavailable right now." = "Магазин сейчас недоступен.";
+"BEST VALUE" = "ВЫГОДНЕЕ ВСЕГО";
+"Continue" = "Продолжить";
+"Restore Purchase" = "Восстановить покупку";
+"Terms" = "Условия";
+"Legal" = "Правовые";
+"Purchase failed" = "Ошибка покупки";
+"Lifetime" = "Навсегда";
+"Monthly" = "Ежемесячно";
+"%@ / month" = "%@ / мес.";
+"%@ once" = "%@ единовременно";
+"Get GPS Camera Pro" = "Получить GPS Camera Pro";
+"All features available" = "Все функции доступны";
+"No ads, every feature unlocked" = "Без рекламы, все функции доступны";
+"Manage" = "Управление";
+"Upgrade" = "Обновить";
+"Pro unlocked!" = "Pro разблокировано!";
+"Enjoy all features" = "Наслаждайтесь всеми функциями";
+"Purchases Restored" = "Покупки восстановлены";
+"GPS Camera Pro is active." = "GPS Camera Pro активен.";
+"No previous purchase was found." = "Предыдущих покупок не найдено.";
+"Restore could not be completed. Please try again." = "Не удалось завершить восстановление. Попробуйте ещё раз.";
+"The purchase could not be completed. Please try again." = "Не удалось завершить покупку. Попробуйте ещё раз.";

@@ -1,0 +1,114 @@
+/* Settings */
+"Settings" = "Inställningar";
+"Done" = "Klar";
+"OK" = "OK";
+"Included" = "Inkluderade";
+"Excluded" = "Exkluderade";
+"General" = "Allmänt";
+"Language" = "Språk";
+"System default" = "Systemstandard";
+"Send Feedback" = "Skicka feedback";
+"About" = "Om";
+"Version" = "Version";
+"Terms of Service" = "Användarvillkor";
+"Legal Notices" = "Juridisk information";
+"Permission is off" = "Behörigheten är avstängd";
+"Close" = "Stäng";
+"Go to Settings" = "Gå till inställningar";
+"A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it." = "En inställning som kräver en behörighet var fortfarande på, men behörigheten återkallades. Tagningen fortsatte utan funktionen.";
+
+/* Camera */
+"Capture" = "Tagning";
+"Shutter sound" = "Slutarljud";
+"Orientation lock" = "Orienteringslås";
+"Include EXIF location" = "Inkludera EXIF-plats";
+"Includes location data in the photo file." = "Inkluderar platsdata i fotofilen.";
+"Photo" = "Foto";
+"Video" = "Video";
+"Resolution" = "Upplösning";
+"Format" = "Format";
+"Also save original" = "Spara även originalet";
+"Keeps a copy without the overlay." = "Behåller en kopia utan överlägget.";
+"Save to Camera Roll" = "Spara till kamerarullen";
+"Camera access is off." = "Kameraåtkomst är avstängd.";
+"Open Settings" = "Öppna inställningar";
+"Good" = "Bra";
+"Normal" = "Normal";
+"Bad" = "Dålig";
+"No signal" = "Ingen signal";
+"PHOTO" = "FOTO";
+"VIDEO" = "VIDEO";
+
+/* Overlay */
+"Geotagged with GPS Camera" = "Geotaggad med GPS Camera";
+"Overlay" = "Overlay";
+"Include overlay in photo/video" = "Inkludera overlay i foto/video";
+"Display items" = "Visade objekt";
+"Font" = "Typsnitt";
+"Font size" = "Teckenstorlek";
+"Text color" = "Textfärg";
+"Background color" = "Bakgrundsfärg";
+"Background opacity" = "Bakgrundsopacitet";
+"Coordinate format" = "Koordinatformat";
+"Unit" = "Enhet";
+"Adjust position" = "Justera position";
+"Lat, Lon" = "Lat, Lon";
+"Metric" = "Metriskt";
+"Imperial" = "Imperiellt";
+"Coordinates" = "Koordinater";
+"Altitude" = "Höjd";
+"Accuracy" = "Noggrannhet";
+"Compass" = "Kompass";
+"Time" = "Tid";
+"Address" = "Adress";
+"Watermark" = "Vattenstämpel";
+"System" = "System";
+"Serif" = "Serif";
+"Rounded" = "Rundad";
+"Monospaced" = "Monospace";
+
+/* Filename */
+"Filename" = "Filnamn";
+"Template" = "Mall";
+"Prefix" = "Prefix";
+"Suffix" = "Suffix";
+"Date format" = "Datumformat";
+"Auto-number" = "Autonumrering";
+"Adds a number automatically when a file of the same name exists." = "Lägger automatiskt till ett nummer när en fil med samma namn redan finns.";
+"Date" = "Datum";
+
+/* Gallery */
+"Gallery" = "Galleri";
+"No captures yet" = "Inga tagningar ännu";
+"Delete this item?" = "Radera det här objektet?";
+"Delete" = "Radera";
+
+/* Monetization */
+"Unlock every feature." = "Lås upp alla funktioner.";
+"No ads" = "Inga annonser";
+"Remove watermark" = "Ta bort vattenstämpel";
+"Customize geotag" = "Anpassa geotag";
+"Add logo and notes" = "Lägg till logotyp och anteckningar";
+"The store is unavailable right now." = "Butiken är för tillfället inte tillgänglig.";
+"BEST VALUE" = "BÄST VÄRDE";
+"Continue" = "Fortsätt";
+"Restore Purchase" = "Återställ köp";
+"Terms" = "Villkor";
+"Legal" = "Juridiskt";
+"Purchase failed" = "Köpet misslyckades";
+"Lifetime" = "Livstid";
+"Monthly" = "Månadsvis";
+"%@ / month" = "%@ / mån";
+"%@ once" = "%@ en gång";
+"Get GPS Camera Pro" = "Skaffa GPS Camera Pro";
+"All features available" = "Alla funktioner tillgängliga";
+"No ads, every feature unlocked" = "Inga annonser, alla funktioner upplåsta";
+"Manage" = "Hantera";
+"Upgrade" = "Uppgradera";
+"Pro unlocked!" = "Pro upplåst!";
+"Enjoy all features" = "Njut av alla funktioner";
+"Purchases Restored" = "Köp återställda";
+"GPS Camera Pro is active." = "GPS Camera Pro är aktiv.";
+"No previous purchase was found." = "Inga tidigare köp hittades.";
+"Restore could not be completed. Please try again." = "Återställningen kunde inte slutföras. Försök igen.";
+"The purchase could not be completed. Please try again." = "Köpet kunde inte slutföras. Försök igen.";
