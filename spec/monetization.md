@@ -2,12 +2,15 @@
 
 ## Status
 
+- 2026-07-07: Ads implemented on iOS (`InterstitialAds`, AdMob): every 10th
+  saved photo, free users only; ATT prompt + SDK init at launch. TODO: create
+  the gpscamera AdMob app and replace the sample app ID (Info.plist) and
+  release unit ID (`InterstitialAds.swift`). Still pending: nudge
+  orchestrator, in-app review.
 - 2026-07-06: Purchase success modal implemented (`PurchaseSuccessView`,
-  lottie-ios). TODO: add the celebration animation as
-  `Domains/Monetization/PurchaseSuccess.json` (SF Symbol fallback until then).
+  lottie-ios).
 - 2026-07-06: Restore row in Settings implemented (section order 90,
   `Control.action`) and watermark force-on for free implemented in overlay.
-  Still pending: ads, nudge orchestrator, in-app review, ad trigger.
 - 2026-07-06: Pro banner implemented on iOS, spec revised: thin tappable
   one-line banner on Main (no CTA), thicker banner with CTA in Settings
   (`Control.custom` row).
@@ -83,11 +86,16 @@ hosts stay monetization-unaware:
 
 ### Ads
 
-- Free users only. Interstitial shown every **10 photos**; counter resets per
-  session.
-- Driven by the foundation usage-metrics bus (photo count). Removed for `.pro`.
-- **Timing**: never at app launch, and never during/blocking an in-progress or
-  queued capture. Fires only after a capture has saved, while the user is idle.
+- **AdMob** interstitials, free users only. Shown every **10 photos**; counter
+  resets per session. Removed for `.pro` (no SDK init, no ATT prompt).
+- **Trigger**: `UsageMetrics.onPhotoCapture` (foundation) ->
+  `InterstitialAds.photoSaved()`, bound at the root. Runs after the photo has
+  saved; an ad never shows at app launch or during/blocking a capture.
+- **ATT**: tracking prompt at launch (first launch only, ~1s after UI settles),
+  then SDK init + preload. One interstitial stays preloaded; dismissing loads
+  the next. No fill / offline = the ad is silently skipped, never awaited.
+- **IDs**: debug builds use Google's sample IDs; the release unit ID and
+  `GADApplicationIdentifier` are placeholders until the AdMob app is created.
 - **Format**: only standard, always-dismissible interstitials. No deceptive,
   fake-system, or unclosable creatives - enforced via ad-network/format choice.
 
@@ -123,19 +131,24 @@ ios/gpscamera/Domains/Monetization/
 ├── ProStore.swift    - RevenueCat: API keys, offerings, purchase/restore, live entitlement + offline cache
 ├── PaywallView.swift - PaywallProviding seam + the paywall screen
 ├── PurchaseSuccessView.swift - post-purchase success modal in its own window (Lottie; expects bundled PurchaseSuccess.json)
+├── InterstitialAds.swift - AdMob executor + every-10-photos trigger; ATT prompt, SDK init, preload/show
 └── ProBanner.swift   - ProBannerProviding seam, Main + Settings banners, MonetizationSettingsProvider
+ios/gpscamera/Info.plist - AdMob app ID + SKAdNetworkItems (merged into the generated Info.plist)
 ios/gpscamera.storekit - StoreKit test config (local purchases with the Apple key; wired in the shared scheme)
 ```
 
-Dependencies: `purchases-ios-spm` (RevenueCat, SPM), `lottie-ios` (SPM).
+Dependencies: `purchases-ios-spm` (RevenueCat, SPM), `lottie-ios` (SPM),
+`swift-package-manager-google-mobile-ads` (AdMob, SPM).
 
 Android: planned.
 
 ## Revision History
 
+- 2026-07-07: iOS ads (`InterstitialAds`, AdMob SPM, ATT at launch, Info.plist
+  AdMob keys, `ad_shown` event, ads debug section).
 - 2026-07-06: Purchase success modal (`PurchaseSuccessView`, lottie-ios dep);
   presented window-level (`PurchaseSuccess.present()`) so it shows over any
-  screen; debug surface gains a show-modal button.
+  screen;
 - 2026-07-06: `ProStore.refresh()` (force customer-info refetch) for the debug
   surface's pro status section (camera.md "Individual controls").
 - 2026-07-06: Settings restore row (`Control.action`, order 90); domain-side

@@ -90,8 +90,6 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
         // 6. Copy to Camera Roll (add-only) when enabled.
         if options.saveToPhotos { CameraRoll.copy(url, as: .video) }
 
-        // 7. TODO: usage metrics (video count) -> monetization interstitial.
-
         finish(.success(url))
     }
 

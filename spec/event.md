@@ -2,9 +2,8 @@
 
 ## Status
 
-- 2026-07-06: Live on iOS. Backend confirmed: Firebase Analytics + Crashlytics.
-  `GoogleService-Info.plist` shipped; dSYM upload phase runs on install builds
-  only (Debug builds no dSYM, and local builds stay fast).
+- 2026-07-07: `ad_shown` added (monetization interstitial).
+- 2026-07-06: iOS implementation done.
 
 ## Domain Definition
 
@@ -56,6 +55,7 @@ Event = enum, one case per event, typed parameters
 | `purchase_completed` | IAP purchase succeeds        | product         |
 | `purchase_failed`    | IAP purchase errors          | product, reason |
 | `settings_changed`   | a setting value changes      | key, value      |
+| `ad_shown`           | interstitial ad presented    | -               |
 
 Global params (included in all events, provided by foundation)
 ```
@@ -74,7 +74,8 @@ isPro: bool
 
 - camera: capture results (completed/failed + non-fatal), capture counters
 - gallery: screen appear (gallery_opened), share tap (shared)
-- monetization: paywall appear with source, purchase result in `ProStore`
+- monetization: paywall appear with source, purchase result in `ProStore`,
+  interstitial present in `InterstitialAds` (ad_shown + load/show non-fatals)
 - settings_changed: `SettingsStore.onSet` hook, bound to the tracker at the root
 - failure reasons are compact `domain:code` (`Event.reason`)
 
@@ -99,5 +100,6 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-07: `ad_shown` event (ads implementation, monetization.md).
 - 2026-07-06: iOS implementation (catalog, seam, Firebase adapter, wiring).
 - 2026-07-06: Initial draft spec.

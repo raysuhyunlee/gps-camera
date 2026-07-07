@@ -167,7 +167,9 @@ Note: Mismatch popup only shows when the user had granted the permission and rev
 - `UsageMetrics`: lifetime counters persisted in UserDefaults
 - Consumed by `event` (global params) and `monetization` (ad triggers, nudge rules)
 - Camera records capture counts; the root records session start
-- `isPro` is a root-bound closure (foundation never imports a domain)
+- Root-bound closures (foundation never imports a domain): `isPro`
+  (entitlement) and `onPhotoCapture` (fires after every recorded photo;
+  bound to monetization's ad trigger)
 
 Metrics:
 	* firstInstalledAt: datetime
@@ -213,6 +215,7 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-07: `UsageMetrics.onPhotoCapture` hook (monetization ad trigger).
 - 2026-07-06: Dev backdoor to the debug surface (7 rapid taps on the Settings
   title, `debugScreen` factory); replaces the camera GPS-icon long-press.
 - 2026-07-06: `action(perform:)` controls + `ActionFeedback` alert (first

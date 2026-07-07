@@ -17,6 +17,7 @@ struct EventCatalogTests {
         #expect(Event.purchaseCompleted(product: "p").name == "purchase_completed")
         #expect(Event.purchaseFailed(product: "p", reason: "x").name == "purchase_failed")
         #expect(Event.settingsChanged(key: "k", value: "v").name == "settings_changed")
+        #expect(Event.adShown.name == "ad_shown")
     }
 
     @Test func paramsCarryTheTypedValues() {
@@ -44,11 +45,14 @@ struct UsageMetricsTests {
 
         metrics.recordSessionStart()
         let installedAt = metrics.firstInstalledAt
+        var photoHooks = 0
+        metrics.onPhotoCapture = { photoHooks += 1 }
         metrics.recordSessionStart()
         metrics.recordPhotoCapture()
         metrics.recordPhotoCapture()
         metrics.recordVideoCapture()
 
+        #expect(photoHooks == 2)                           // ad-trigger hook
         #expect(metrics.sessionCount == 2)
         #expect(metrics.firstInstalledAt == installedAt)   // stamped once
         #expect(metrics.photoCaptureCount == 2)

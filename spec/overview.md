@@ -5,12 +5,15 @@
 
 ## Status
 
+- 2026-07-07: Ads live on iOS: AdMob interstitial every 10th photo for free
+  users, triggered through foundation's `UsageMetrics.onPhotoCapture` hook
+  bound at the root (monetization.md "Ads").
 - 2026-07-06: Restore purchase row live in Settings (order 90); overlay
   enforces watermark force-on for free (entitlement wired into
   `OverlayRenderer` at the root).
 - 2026-07-06: Event domain live on iOS (Firebase Analytics + Crashlytics);
   `EventTracking` wired into camera, gallery, monetization, and the settings
-  store at the root. Pending: `GoogleService-Info.plist`.
+  store at the root.
 - 2026-07-06: Paywall + RevenueCat IAP live on iOS (`ProStore` replaces the
   entitlement stub at the root); locked pro rows open the paywall via the
   `PaywallProviding` seam.
@@ -82,8 +85,7 @@ Only these cross-domain seams exist. Everything else is internal.
 	- renders an overlay layer.
 - **camera** 
 	- consumes `overlay` (render into capture), `location` (EXIF write),
-  `filename` (name the output), `gallery` (recent-thumbnail control on Main),
-  `monetization` (capture-count → ad trigger).
+  `filename` (name the output), `gallery` (recent-thumbnail control on Main).
 	- publishes the capture store (browse/delete), read by `gallery`.
 - **gallery**
 	- consumes the capture store; renders the grid, viewer, and the
@@ -97,7 +99,8 @@ Only these cross-domain seams exist. Everything else is internal.
 	  locked pro settings rows
 	- publishes the Main pro banner (`ProBannerProviding`); the Settings banner
 	  ships as its `SettingsSection` (Control.custom)
-	- owns ads and the nudge orchestrator.
+	- owns ads (interstitial via foundation's usage-metrics hook, bound at the
+	  root) and the nudge orchestrator.
 - **event**
 	- publishes `EventTracking`, injected into any domain that fires analytics
 	  events or records non-fatals
@@ -135,6 +138,8 @@ never import each other's UI.
 
 ## Revision History
 
+- 2026-07-07: Ads wired at the root (`InterstitialAds`, usage-metrics hook);
+  camera no longer consumes monetization directly.
 - 2026-07-06: Event domain implemented on iOS and wired at the root.
 - 2026-07-06: Event domain added to the architecture (spec draft only).
 - 2026-07-06: Monetization wired at the root (`ProStore` entitlement + paywall).

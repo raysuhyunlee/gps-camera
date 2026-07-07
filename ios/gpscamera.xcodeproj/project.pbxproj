@@ -11,6 +11,7 @@
 		71F754042FFB66A6002FDBC2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000011 /* FirebaseCrashlytics */; };
 		AB000000000000000000000C /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AB000000000000000000000E /* RevenueCat */; };
 		AB0000000000000000000014 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000013 /* Lottie */; };
+		AB0000000000000000000017 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000016 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,9 +29,22 @@
 		AB0000000000000000000002 /* gpscameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gpscameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AB0000000000000000000018 /* Exceptions for "gpscamera" folder in "gpscamera" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 71F74BBF2FF3C65C002FDBC2 /* gpscamera */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		71F74BC22FF3C65C002FDBC2 /* gpscamera */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				AB0000000000000000000018 /* Exceptions for "gpscamera" folder in "gpscamera" target */,
+			);
 			path = gpscamera;
 			sourceTree = "<group>";
 		};
@@ -50,6 +64,7 @@
 				71F754032FFB66A6002FDBC2 /* FirebaseAnalytics in Frameworks */,
 				AB000000000000000000000C /* RevenueCat in Frameworks */,
 				AB0000000000000000000014 /* Lottie in Frameworks */,
+				AB0000000000000000000017 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +121,7 @@
 				AB0000000000000000000010 /* FirebaseAnalytics */,
 				AB0000000000000000000011 /* FirebaseCrashlytics */,
 				AB0000000000000000000013 /* Lottie */,
+				AB0000000000000000000016 /* GoogleMobileAds */,
 			);
 			productName = gpscamera;
 			productReference = 71F74BC02FF3C65C002FDBC2 /* gpscamera.app */;
@@ -166,6 +182,7 @@
 				AB000000000000000000000D /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 				AB000000000000000000000F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				AB0000000000000000000012 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				AB0000000000000000000015 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 71F74BC12FF3C65C002FDBC2 /* Products */;
@@ -374,10 +391,12 @@
 				DEVELOPMENT_TEAM = JT6WNXA7T8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gpscamera/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "GPS Camera uses the camera to take photos.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPS Camera uses your location to stamp photos and videos with GPS coordinates.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "GPS Camera uses the microphone to record audio with your videos.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "GPS Camera saves the photos it takes to your Camera Roll.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This lets us show ads that are more relevant to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -410,10 +429,12 @@
 				DEVELOPMENT_TEAM = JT6WNXA7T8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = gpscamera/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "GPS Camera uses the camera to take photos.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPS Camera uses your location to stamp photos and videos with GPS coordinates.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "GPS Camera uses the microphone to record audio with your videos.";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "GPS Camera saves the photos it takes to your Camera Roll.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This lets us show ads that are more relevant to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -535,6 +556,14 @@
 				minimumVersion = 4.5.0;
 			};
 		};
+		AB0000000000000000000015 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -557,6 +586,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AB0000000000000000000012 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		AB0000000000000000000016 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB0000000000000000000015 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

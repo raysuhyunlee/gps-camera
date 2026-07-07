@@ -12,10 +12,13 @@ struct ContentView: View {
     @StateObject private var location = LocationProvider()
     /// Pro status inspection; nil (previews) hides the section.
     var pro: ProStore?
+    /// Interstitial inspection; nil (previews) hides the section.
+    var ads: InterstitialAds?
 
     var body: some View {
         List {
             if let pro { ProDebugSection(pro: pro) }
+            if let ads { AdsDebugSection(ads: ads) }
             Section("Authorization") {
                 Text(String(describing: location.authorization))
                 if location.authorization == .notDetermined {
@@ -76,6 +79,35 @@ private struct ProDebugSection: View {
             }
             .disabled(refreshing)
             Button("Show success modal") { PurchaseSuccess.present() }
+        }
+    }
+}
+
+/// Live interstitial state + manual preload/show. Note: ads never start for
+/// pro - check the Pro section's entitlement when nothing loads.
+private struct AdsDebugSection: View {
+    @ObservedObject var ads: InterstitialAds
+
+    var body: some View {
+        Section("Ads") {
+            HStack {
+                Text("Photos this session")
+                Spacer()
+                Text("\(ads.sessionPhotoCount)").foregroundStyle(.secondary)
+            }
+            HStack {
+                Text("Interstitial")
+                Spacer()
+                Text(ads.isLoaded ? "loaded" : "not loaded")
+                    .foregroundStyle(.secondary)
+            }
+            if let error = ads.lastError {
+                Text("Ad error: \(error)")
+                    .font(.footnote).foregroundStyle(.red)
+            }
+            Button("Preload interstitial") { ads.preload() }
+            Button("Show interstitial") { ads.show() }
+                .disabled(!ads.isLoaded)
         }
     }
 }

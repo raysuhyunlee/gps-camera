@@ -12,6 +12,9 @@ final class UsageMetrics {
     /// Foundation never imports a domain: the composition root binds this to
     /// monetization's live entitlement.
     var isPro: () -> Bool = { false }
+    /// Fires after every recorded photo capture; the root binds it to
+    /// monetization's ad trigger (foundation.md "Usage Metrics").
+    var onPhotoCapture: () -> Void = {}
 
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -33,7 +36,7 @@ final class UsageMetrics {
         increment(Key.sessionCount)
     }
 
-    func recordPhotoCapture() { increment(Key.photoCaptures) }
+    func recordPhotoCapture() { increment(Key.photoCaptures); onPhotoCapture() }
     func recordVideoCapture() { increment(Key.videoCaptures) }
 
     private func increment(_ key: String) {

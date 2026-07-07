@@ -15,6 +15,8 @@ struct CameraView: View {
     let entitlement: EntitlementProviding
     let paywall: PaywallProviding
     let banner: ProBannerProviding
+    /// Only forwarded to the debug surface; nil in previews.
+    var ads: InterstitialAds? = nil
 
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false
@@ -65,7 +67,8 @@ struct CameraView: View {
                            entitled: { entitlement.entitlement == .pro },
                            onProLock: { _ in showPaywall = true },
                            highlightKey: settingsHighlight,
-                           debugScreen: { AnyView(ContentView(pro: entitlement as? ProStore)) })
+                           debugScreen: { AnyView(ContentView(pro: entitlement as? ProStore,
+                                                              ads: ads)) })
                 .sheet(isPresented: $showPaywall) { paywall.paywallScreen() }
         }
         // Permission-coupled mismatch popup (foundation.md): non-blocking, the

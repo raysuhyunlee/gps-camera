@@ -141,8 +141,6 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
         // 6. Copy to Camera Roll (add-only) when enabled.
         if options.saveToPhotos { CameraRoll.copy(url, as: .photo) }
 
-        // 7. TODO: usage metrics (photo count) -> monetization interstitial.
-
         finish(.success(url))
     }
 
