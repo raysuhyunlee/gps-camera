@@ -14,7 +14,7 @@ struct GalleryView: View {
         NavigationStack {
             Group {
                 if model.items.isEmpty {
-                    ContentUnavailableView("No captures yet",
+                    ContentUnavailableView(L("No captures yet"),
                                            systemImage: "photo.on.rectangle")
                 } else {
                     ScrollView {
@@ -28,11 +28,11 @@ struct GalleryView: View {
                     }
                 }
             }
-            .navigationTitle("Gallery")
+            .navigationTitle(L("Gallery"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
+                    Button(L("Done")) { dismiss() }
                 }
             }
         }

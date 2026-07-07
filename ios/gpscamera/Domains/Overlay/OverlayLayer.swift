@@ -17,7 +17,7 @@ struct OverlayLayer: View {
                 }
             }
             if settings.showWatermark {
-                Text("Geotagged with GPS Camera")
+                Text(L("Geotagged with GPS Camera"))
                     .font(settings.style.textFont(settings.style.fontSize * 0.85).italic())
                     .opacity(0.7)
             }

@@ -19,6 +19,8 @@ struct CameraView: View {
     var ads: InterstitialAds? = nil
     var metrics: UsageMetrics? = nil
 
+    /// Main stays alive across a language change; observing re-renders it.
+    @ObservedObject private var l10n = L10n.shared
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false
     @State private var showSettings = false
@@ -78,15 +80,15 @@ struct CameraView: View {
             for: .settingPermissionMismatch)) { note in
             mismatchKey = note.userInfo?["key"] as? String
         }
-        .alert("Permission is off", isPresented: .init(
+        .alert(L("Permission is off"), isPresented: .init(
             get: { mismatchKey != nil }, set: { if !$0 { mismatchKey = nil } })) {
-            Button("Close", role: .cancel) {}
-            Button("Go to Settings") {
+            Button(L("Close"), role: .cancel) {}
+            Button(L("Go to Settings")) {
                 settingsHighlight = mismatchKey
                 showSettings = true
             }
         } message: {
-            Text("A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it.")
+            Text(L("A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it."))
         }
     }
 
@@ -287,8 +289,8 @@ struct CameraView: View {
     private var deniedState: some View {
         VStack(spacing: 12) {
             Image(systemName: "camera.fill").font(.largeTitle)
-            Text("Camera access is off.")
-            Button("Open Settings") {
+            Text(L("Camera access is off."))
+            Button(L("Open Settings")) {
                 if let url = URL(string: UIApplication.openSettingsURLString) {
                     UIApplication.shared.open(url)
                 }
@@ -314,10 +316,10 @@ struct CameraView: View {
 
     private func gpsStatusText(_ level: AccuracyLevel?) -> String {
         switch level {
-        case .good:   return "Good"
-        case .normal: return "Normal"
-        case .bad:    return "Bad"
-        case nil:     return "No signal"
+        case .good:   return L("Good")
+        case .normal: return L("Normal")
+        case .bad:    return L("Bad")
+        case nil:     return L("No signal")
         }
     }
 
@@ -331,8 +333,8 @@ struct CameraView: View {
 
     private func label(for mode: CameraMode) -> String {
         switch mode {
-        case .photo: return "PHOTO"
-        case .video: return "VIDEO"
+        case .photo: return L("PHOTO")
+        case .video: return L("VIDEO")
         }
     }
 }

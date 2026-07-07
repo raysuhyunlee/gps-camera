@@ -57,7 +57,7 @@ private struct MainProBanner: View {
                     Image(systemName: "crown.fill")
                         .font(.caption)
                         .foregroundStyle(.yellow)
-                    Text("Get GPS Camera Pro")
+                    Text(L("Get GPS Camera Pro"))
                         .font(.caption.bold())
                     Image(systemName: "chevron.right")
                         .font(.caption2)
@@ -89,20 +89,20 @@ private struct SettingsProBanner: View {
                 .font(.title2)
                 .foregroundStyle(pro ? Color.accentColor : .yellow)
             VStack(alignment: .leading, spacing: 2) {
-                Text("GPS Camera Pro")
+                Text(L("GPS Camera Pro"))
                     .font(.headline)
-                Text(pro ? "All features unlocked" : "No ads, every feature unlocked")
+                Text(L(pro ? "All features available" : "No ads, every feature unlocked"))
                     .font(.footnote)
                     .foregroundStyle(.secondary)
             }
             Spacer()
             if pro {
                 if let url = store.managementURL {
-                    Button("Manage") { openURL(url) }
+                    Button(L("Manage")) { openURL(url) }
                         .buttonStyle(.bordered)
                 }
             } else {
-                Button("Upgrade") { showPaywall = true }
+                Button(L("Upgrade")) { showPaywall = true }
                     .buttonStyle(.borderedProminent)
             }
         }

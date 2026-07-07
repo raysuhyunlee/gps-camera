@@ -87,9 +87,9 @@ struct GalleryDetailView: View {
                     }
                 }
             }
-            .confirmationDialog("Delete this item?", isPresented: $confirmDelete,
+            .confirmationDialog(L("Delete this item?"), isPresented: $confirmDelete,
                                 titleVisibility: .visible) {
-                Button("Delete", role: .destructive) { deleteCurrent() }
+                Button(L("Delete"), role: .destructive) { deleteCurrent() }
             }
         }
     }

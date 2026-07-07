@@ -32,7 +32,10 @@ struct gpscameraApp: App {
         // Registry before consumers: it registers every setting's default.
         // Section placement is owned here (overview.md "Settings").
         let store = SettingsStore()
-        store.onSet = { events.track(.settingsChanged(key: $0, value: "\($1.primitive)")) }
+        store.onSet = { key, value in
+            events.track(.settingsChanged(key: key, value: "\(value.primitive)"))
+            if key == L10n.settingKey { L10n.shared.setLanguage(value.stringValue) }
+        }
         let pro = ProStore(events: events)
         metrics.isPro = { pro.entitlement == .pro }
         // Nudges + the ad trigger ride the usage-metrics capture hooks
@@ -46,10 +49,13 @@ struct gpscameraApp: App {
         Task { await ads.start() }
         let registry = SettingsRegistry(
             providers: [MonetizationSettingsProvider(store: pro),
+                        FoundationSettingsProvider(),
                         CameraSettingsProvider(), OverlaySettingsProvider(),
                         FilenameSettingsProvider()],
-            order: ["monetization": 0, "camera.capture": 20, "overlay": 30,
-                    "filename": 40, "monetization.restore": 90],
+            order: ["monetization": 0, "foundation.general": 10,
+                    "camera.capture": 20, "overlay": 30, "filename": 40,
+                    "monetization.restore": 90, "foundation.feedback": 91,
+                    "foundation.about": 92],
             store: store)
         let location = LocationProvider()
         let overlay = OverlayRenderer(store: store, entitlement: pro)

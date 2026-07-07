@@ -54,15 +54,15 @@ struct PurchaseSuccessView: View {
             celebration
                 .frame(width: 180, height: 180)
                 .padding(.top, 32)
-            Text("Pro unlocked!")
+            Text(L("Pro unlocked!"))
                 .font(.title.bold())
-            Text("Enjoy all features")
+            Text(L("Enjoy all features"))
                 .foregroundStyle(.secondary)
             Spacer()
             Button {
                 onContinue()
             } label: {
-                Text("Continue")
+                Text(L("Continue"))
                     .font(.headline)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 6)

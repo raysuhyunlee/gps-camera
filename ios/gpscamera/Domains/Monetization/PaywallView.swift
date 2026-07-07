@@ -46,10 +46,10 @@ struct PaywallView: View {
         .background(Color(.systemBackground))
         .onAppear { store.events.track(.paywallShown(source: source)) }
         .task { await store.loadOfferings() }
-        .alert("Purchase failed", isPresented: .init(
+        .alert(L("Purchase failed"), isPresented: .init(
             get: { failureMessage != nil },
             set: { if !$0 { failureMessage = nil } })) {
-            Button("OK", role: .cancel) {}
+            Button(L("OK"), role: .cancel) {}
         } message: {
             Text(failureMessage ?? "")
         }
@@ -75,9 +75,9 @@ struct PaywallView: View {
             Image(systemName: "location.viewfinder")
                 .font(.system(size: 56))
                 .foregroundStyle(Color.accentColor)
-            Text("GPS Camera Pro")
+            Text(L("GPS Camera Pro"))
                 .font(.largeTitle.bold())
-            Text("Unlock every feature.")
+            Text(L("Unlock every feature."))
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
@@ -101,7 +101,7 @@ struct PaywallView: View {
                         .frame(width: 30, height: 30)
                         .background(Color.accentColor.opacity(0.12),
                                     in: RoundedRectangle(cornerRadius: 9))
-                    Text(feature.title)
+                    Text(L(feature.title))
                         .fixedSize(horizontal: true, vertical: false)
                 }
             }
@@ -113,7 +113,7 @@ struct PaywallView: View {
         if !store.loaded {
             ProgressView().padding(.top, 12)
         } else if store.packages.isEmpty {
-            Text("The store is unavailable right now.")
+            Text(L("The store is unavailable right now."))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .padding(.top, 12)
@@ -138,7 +138,7 @@ struct PaywallView: View {
                 }
                 Spacer()
                 if package.packageType == .lifetime {
-                    Text("BEST VALUE")
+                    Text(L("BEST VALUE"))
                         .font(.caption2.bold())
                         .foregroundStyle(Color.accentColor)
                         .padding(.horizontal, 8)
@@ -166,7 +166,7 @@ struct PaywallView: View {
                     if purchasing {
                         ProgressView()
                     } else {
-                        Text("Continue").font(.headline)
+                        Text(L("Continue")).font(.headline)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -183,15 +183,15 @@ struct PaywallView: View {
 
     private var linkRow: some View {
         HStack(spacing: 6) {
-            Button("Restore Purchase") {
+            Button(L("Restore Purchase")) {
                 Task { await restore() }
             }
             .disabled(purchasing)
             divider
-            Link("Terms", destination:
+            Link(L("Terms"), destination:
                     URL(string: "https://www.raysuhyunlee.com/gpscamera/tos")!)
             divider
-            Link("Legal", destination:
+            Link(L("Legal"), destination:
                     URL(string: "https://www.raysuhyunlee.com/gpscamera/legal")!)
         }
         .font(.footnote)
@@ -223,7 +223,7 @@ struct PaywallView: View {
             }
             // false = user cancelled; no alert.
         } catch {
-            failureMessage = "The purchase could not be completed. Please try again."
+            failureMessage = L("The purchase could not be completed. Please try again.")
         }
     }
 
@@ -234,24 +234,25 @@ struct PaywallView: View {
             if try await store.restore() {
                 dismiss()
             } else {
-                failureMessage = "No previous purchase was found."
+                failureMessage = L("No previous purchase was found.")
             }
         } catch {
-            failureMessage = "Restore could not be completed. Please try again."
+            failureMessage = L("Restore could not be completed. Please try again.")
         }
     }
 
     private func title(_ package: Package) -> String {
         switch package.packageType {
-        case .lifetime: return "Lifetime"
-        case .monthly:  return "Monthly"
+        case .lifetime: return L("Lifetime")
+        case .monthly:  return L("Monthly")
         default:        return package.storeProduct.localizedTitle
         }
     }
 
     private func priceLine(_ package: Package) -> String {
         let price = package.storeProduct.localizedPriceString
-        return package.packageType == .monthly ? "\(price) / month" : "\(price) once"
+        return String(format: package.packageType == .monthly
+                      ? L("%@ / month") : L("%@ once"), price)
     }
 }
 

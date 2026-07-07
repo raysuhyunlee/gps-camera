@@ -21,6 +21,8 @@ struct SettingsScreen: View {
     /// the title present it; intentionally undiscoverable. nil disables it.
     var debugScreen: (() -> AnyView)? = nil
 
+    /// Re-renders the open screen when the language setting changes.
+    @ObservedObject private var l10n = L10n.shared
     @Environment(\.dismiss) private var dismiss
     @State private var path: [String] = []
     @State private var highlight: String?
@@ -40,17 +42,17 @@ struct SettingsScreen: View {
                                            highlight: $highlight)
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle(L("Settings"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 // Tappable stand-in for the inline title (the system title
                 // itself takes no gestures); hosts the debug backdoor.
                 ToolbarItem(placement: .principal) {
-                    Text("Settings").font(.headline)
+                    Text(L("Settings")).font(.headline)
                         .onTapGesture(perform: titleTapped)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                    Button(L("Done")) { dismiss() }
                 }
             }
             .sheet(isPresented: $showDebug) { debugScreen?() }
@@ -61,7 +63,7 @@ struct SettingsScreen: View {
                                                entitled: entitled, onProLock: onProLock,
                                                highlight: $highlight)
                     }
-                    .navigationTitle(section.titleKey)
+                    .navigationTitle(L(section.titleKey))
                 }
             }
         }
@@ -121,7 +123,7 @@ private struct SettingsSectionContent: View {
     @Binding var highlight: String?
 
     var body: some View {
-        Section(section.titleKey) {
+        Section(L(section.titleKey)) {
             ForEach(visibleItems) { item in
                 SettingRow(item: item, store: store,
                            entitled: entitled, onProLock: onProLock)
@@ -156,7 +158,7 @@ private struct SettingRow: View {
                 }
             }
             if let footnote = item.footnoteKey {
-                Text(footnote).font(.footnote).foregroundStyle(.secondary)
+                Text(L(footnote)).font(.footnote).foregroundStyle(.secondary)
             }
         }
         .opacity(dimmed ? 0.4 : 1)
@@ -172,31 +174,33 @@ private struct SettingRow: View {
     private var control: some View {
         switch item.control {
         case .toggle:
-            Toggle(item.titleKey, isOn: toggleBinding)
+            Toggle(L(item.titleKey), isOn: toggleBinding)
         case .select(let options):
-            let picker = Picker(item.titleKey, selection: stringBinding) {
+            let picker = Picker(L(item.titleKey), selection: stringBinding) {
                 ForEach(options) {
-                    Text($0.titleKey).font($0.previewFont).tag($0.value)
+                    Text(L($0.titleKey)).font($0.previewFont).tag($0.value)
                 }
             }
-            if options.contains(where: { $0.previewFont != nil }) {
+            // Navigation-link style for previewed options (menus strip custom
+            // fonts) and for long lists (e.g. the language picker).
+            if options.contains(where: { $0.previewFont != nil }) || options.count > 8 {
                 picker.pickerStyle(.navigationLink)
             } else {
                 picker
             }
         case .stepper(let range, let step):
             Stepper(value: numberBinding, in: range, step: step) {
-                LabeledContent(item.titleKey, value: format(store.number(item.key)))
+                LabeledContent(L(item.titleKey), value: format(store.number(item.key)))
             }
         case .slider(let range):
             VStack(alignment: .leading) {
-                Text(item.titleKey)
+                Text(L(item.titleKey))
                 Slider(value: numberBinding, in: range)
             }
         case .color:
-            ColorPicker(item.titleKey, selection: colorBinding)
+            ColorPicker(L(item.titleKey), selection: colorBinding)
         case .text:
-            LabeledContent(item.titleKey) {
+            LabeledContent(L(item.titleKey)) {
                 TextField("", text: stringBinding)
                     .multilineTextAlignment(.trailing)
                     .autocorrectionDisabled()
@@ -206,14 +210,14 @@ private struct SettingRow: View {
             }
         case .orderList(let options):
             NavigationLink {
-                OrderListEditor(title: item.titleKey, options: options,
+                OrderListEditor(title: L(item.titleKey), options: options,
                                 included: stringListBinding)
             } label: {
-                LabeledContent(item.titleKey,
+                LabeledContent(L(item.titleKey),
                                value: summary(store.stringList(item.key), options))
             }
         case .navigation(let ref):
-            NavigationLink(value: ref) { Text(item.titleKey) }
+            NavigationLink(value: ref) { Text(L(item.titleKey)) }
         case .action(let perform):
             ActionRow(titleKey: item.titleKey, perform: perform)
         case .custom(let view):
@@ -264,7 +268,7 @@ private struct SettingRow: View {
 
     private func summary(_ included: [String], _ options: [OrderListOption]) -> String {
         let titles = Dictionary(uniqueKeysWithValues: options.map { ($0.value, $0.titleKey) })
-        return included.compactMap { titles[$0] }.joined(separator: ", ")
+        return included.compactMap { titles[$0].map(L) }.joined(separator: ", ")
     }
 }
 
@@ -285,18 +289,18 @@ private struct ActionRow: View {
             }
         } label: {
             HStack {
-                Text(titleKey)
+                Text(L(titleKey))
                 Spacer()
                 if running { ProgressView() }
             }
         }
         .disabled(running)
-        .alert(feedback?.titleKey ?? "", isPresented: .init(
+        .alert(L(feedback?.titleKey ?? ""), isPresented: .init(
             get: { feedback != nil },
             set: { if !$0 { feedback = nil } })) {
-            Button("OK", role: .cancel) {}
+            Button(L("OK"), role: .cancel) {}
         } message: {
-            if let message = feedback?.messageKey { Text(message) }
+            if let message = feedback?.messageKey { Text(L(message)) }
         }
     }
 }
@@ -319,7 +323,7 @@ private struct OrderListEditor: View {
 
     var body: some View {
         List {
-            Section("Included") {
+            Section(L("Included")) {
                 ForEach(included, id: \.self) { id in
                     Text(label(id))
                 }
@@ -329,12 +333,12 @@ private struct OrderListEditor: View {
             let excluded = options.filter { !included.contains($0.value) }
                 .map(ExcludedRow.init)
             if !excluded.isEmpty {
-                Section("Excluded") {
+                Section(L("Excluded")) {
                     ForEach(excluded) { row in
                         Button {
                             withAnimation { include(row.option.value) }
                         } label: {
-                            Label(row.option.titleKey, systemImage: "plus.circle.fill")
+                            Label(L(row.option.titleKey), systemImage: "plus.circle.fill")
                         }
                         .moveDisabled(true)
                         .deleteDisabled(true)
@@ -352,6 +356,6 @@ private struct OrderListEditor: View {
     }
 
     private func label(_ id: String) -> String {
-        options.first { $0.value == id }?.titleKey ?? id
+        options.first { $0.value == id }.map { L($0.titleKey) } ?? id
     }
 }
