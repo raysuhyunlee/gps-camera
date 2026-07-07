@@ -2,6 +2,11 @@
 
 ## Status
 
+- 2026-07-08: L10n framework live on iOS: `L()` global resolver + `L10n`
+  singleton with NSLock thread safety; 29-language lproj string files (95
+  strings each). Language picker in Settings → General; `FoundationSettings`
+  provides General/Language, Send Feedback, About (Version, ToS, Legal).
+  All user-facing strings in every domain now route through `L()`.
 - 2026-07-06: Settings screen hosts the dev backdoor to the debug surface
   (7 rapid taps on the title; `debugScreen` factory from the root).
 - 2026-07-06: `action` controls implemented: the case carries the
@@ -35,9 +40,14 @@
 
 ### L10n
 
-- Every user-facing string resolves through an `L10nKey`.
-- Language is selectable in Settings → General
-	- defaults to the system locale.
+- `L10nKey = String` — the English text IS the key; no separate key namespace.
+- `L(_ key:) -> String` global resolver calls `L10n.shared.string(_:)`.
+- `L10n`: `ObservableObject` singleton; NSLock thread safety (overlay rasterization runs off-main).
+- Language override stored in `SettingsStore` under `"general.language"` (default `""` = follow system).
+- On language change: `SettingsStore.onSet` hook calls `L10n.shared.setLanguage()`, swapping the lproj bundle.
+- Views that need live re-render hold `@ObservedObject private var l10n = L10n.shared`.
+- 29 language lproj bundles ship with the app (95 strings each); English falls back to the key.
+- Language is selectable in Settings → General; defaults to the system locale.
 
 ### Theme
 
@@ -187,11 +197,11 @@ Metrics (this session, in-memory):
 
 ### Misc
 
-- **Feedback** - Settings → Control.action
-	- TBD
+- **Feedback** - Settings → Control.action — opens `www.raysuhyunlee.com/gpscamera/feedback`
 - **ToS, Legal** - Settings → Control.action
 	- tos: www.raysuhyunlee.com/gpscamera/tos
 	- legal: www.raysuhyunlee.com/gpscamera/legal
+- **AppVersion** - reads `CFBundleShortVersionString` + build for the About row.
 
 ## Implementation
 
@@ -199,9 +209,11 @@ Metrics (this session, in-memory):
 
 ```
 ios/gpscamera/Foundation/
-├── PermissionStatus.swift - shared authorization enum
-├── BundledFonts.swift     - runtime registration of Resources/Fonts
-├── UsageMetrics.swift     - persisted usage counters; isPro bound by the root
+├── PermissionStatus.swift    - shared authorization enum
+├── BundledFonts.swift        - runtime registration of Resources/Fonts
+├── UsageMetrics.swift        - persisted usage counters; isPro bound by the root
+├── L10n.swift                - L() global + L10n singleton; lproj bundle swapping
+├── FoundationSettings.swift  - General/Language picker, Send Feedback, About sections
 └── Settings/
     ├── SettingsSchema.swift      - Control, SettingItem, SettingsSection, SettingsProviding
     ├── SettingValue.swift        - typed value (bool/string/number/stringList) <-> UserDefaults
@@ -210,7 +222,8 @@ ios/gpscamera/Foundation/
     ├── SettingsPermissions.swift - SettingPermission status/request (location, add-only photos)
     ├── SettingsView.swift        - generic SettingsScreen renderer (controls, pro lock, highlight)
     └── ColorHex.swift            - Color <-> #RRGGBBAA for Control.color
-ios/gpscamera/Resources/Fonts/    - bundled OFL fonts + Licenses/*.txt
+ios/gpscamera/{lang}.lproj/Localizable.strings  - 29 languages, 95 strings each
+ios/gpscamera/Resources/Fonts/                  - bundled OFL fonts + Licenses/*.txt
 ios/gpscameraTests/
 └── SettingsValueTests.swift      - store/registry/deep-link + bundled-font tests
 ```
@@ -219,6 +232,9 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-08: L10n framework + `FoundationSettings` (General/Language, feedback,
+  about); 29 lproj bundles (95 strings each); all domains' user-facing strings
+  through `L()`.
 - 2026-07-07: Capture hooks combined into a single `UsageMetrics.onCapture`
   (nudging never separates photos from videos).
 - 2026-07-07: `UsageMetrics` session-scoped counters (in-memory, per-launch).

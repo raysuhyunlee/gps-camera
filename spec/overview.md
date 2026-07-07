@@ -5,6 +5,8 @@
 
 ## Status
 
+- 2026-07-08: L10n live; Settings fully populated (General/Language, feedback,
+  about now live alongside camera/overlay/filename/monetization). 30 languages.
 - 2026-07-07: Nudges live on iOS: `NudgeOrchestrator` owns the
   `UsageMetrics.onCapture` hook at the root and dispatches paywall nudge /
   review attempt / ad (monetization.md "Nudge orchestrator").
@@ -26,7 +28,6 @@
   (thicker banner with CTA, section order 0).
 - 2026-07-05: Settings screen live on iOS (sheet from Main's gear control):
   registry-rendered sections for camera (20) / overlay (30) / filename (40).
-  Pending sections: General/Language, feedback, about.
 - 2026-06-30: Initial spec. Architecture and settings framework defined.
 
 ## Product
@@ -142,6 +143,9 @@ never import each other's UI.
 
 ## Revision History
 
+- 2026-07-08: `L10n.shared.setLanguage` wired in `SettingsStore.onSet` at the
+  root; `FoundationSettingsProvider` registered (General/Language order 10,
+  feedback order 91, about order 92). Settings screen now fully populated.
 - 2026-07-07: Nudge orchestrator wired at the root (owns both usage-metrics
   capture hooks; ads now reached through it).
 - 2026-07-07: Ads wired at the root (`InterstitialAds`, usage-metrics hook);
