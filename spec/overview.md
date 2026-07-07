@@ -5,6 +5,9 @@
 
 ## Status
 
+- 2026-07-07: Nudges live on iOS: `NudgeOrchestrator` owns the
+  `UsageMetrics.onCapture` hook at the root and dispatches paywall nudge /
+  review attempt / ad (monetization.md "Nudge orchestrator").
 - 2026-07-07: Ads live on iOS: AdMob interstitial every 10th photo for free
   users, triggered through foundation's `UsageMetrics.onPhotoCapture` hook
   bound at the root (monetization.md "Ads").
@@ -99,8 +102,9 @@ Only these cross-domain seams exist. Everything else is internal.
 	  locked pro settings rows
 	- publishes the Main pro banner (`ProBannerProviding`); the Settings banner
 	  ships as its `SettingsSection` (Control.custom)
-	- owns ads (interstitial via foundation's usage-metrics hook, bound at the
-	  root) and the nudge orchestrator.
+	- owns ads and the nudge orchestrator; the orchestrator receives
+	  foundation's usage-metrics `onCapture` hook (bound at the root) and
+	  dispatches paywall nudge / review attempt / ad.
 - **event**
 	- publishes `EventTracking`, injected into any domain that fires analytics
 	  events or records non-fatals
@@ -138,6 +142,8 @@ never import each other's UI.
 
 ## Revision History
 
+- 2026-07-07: Nudge orchestrator wired at the root (owns both usage-metrics
+  capture hooks; ads now reached through it).
 - 2026-07-07: Ads wired at the root (`InterstitialAds`, usage-metrics hook);
   camera no longer consumes monetization directly.
 - 2026-07-06: Event domain implemented on iOS and wired at the root.

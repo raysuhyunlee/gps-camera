@@ -2,6 +2,8 @@
 
 ## Status
 
+- 2026-07-07: `review_requested` added; `paywall_shown` gains the `nudge`
+  source (monetization nudge orchestrator).
 - 2026-07-07: `ad_shown` added (monetization interstitial).
 - 2026-07-06: iOS implementation done.
 
@@ -51,11 +53,12 @@ Event = enum, one case per event, typed parameters
 | `capture_failed`     | capture errors               | kind, reason    |
 | `gallery_opened`     | gallery screen shown         | -               |
 | `shared`             | shared media                 | -               |
-| `paywall_shown`      | paywall presented            | source: main_banner, settings_banner, locked_setting |
+| `paywall_shown`      | paywall presented            | source: main_banner, settings_banner, locked_setting, nudge |
 | `purchase_completed` | IAP purchase succeeds        | product         |
 | `purchase_failed`    | IAP purchase errors          | product, reason |
 | `settings_changed`   | a setting value changes      | key, value      |
 | `ad_shown`           | interstitial ad presented    | -               |
+| `review_requested`   | in-app review attempt (OS may not show a prompt) | - |
 
 Global params (included in all events, provided by foundation)
 ```
@@ -75,7 +78,8 @@ isPro: bool
 - camera: capture results (completed/failed + non-fatal), capture counters
 - gallery: screen appear (gallery_opened), share tap (shared)
 - monetization: paywall appear with source, purchase result in `ProStore`,
-  interstitial present in `InterstitialAds` (ad_shown + load/show non-fatals)
+  interstitial present in `InterstitialAds` (ad_shown + load/show non-fatals),
+  review attempt in `NudgeOrchestrator` (review_requested)
 - settings_changed: `SettingsStore.onSet` hook, bound to the tracker at the root
 - failure reasons are compact `domain:code` (`Event.reason`)
 
@@ -100,6 +104,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-07: `review_requested` event + `nudge` paywall source (nudge
+  orchestrator, monetization.md).
 - 2026-07-07: `ad_shown` event (ads implementation, monetization.md).
 - 2026-07-06: iOS implementation (catalog, seam, Firebase adapter, wiring).
 - 2026-07-06: Initial draft spec.

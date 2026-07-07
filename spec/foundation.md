@@ -168,15 +168,19 @@ Note: Mismatch popup only shows when the user had granted the permission and rev
 - Consumed by `event` (global params) and `monetization` (ad triggers, nudge rules)
 - Camera records capture counts; the root records session start
 - Root-bound closures (foundation never imports a domain): `isPro`
-  (entitlement) and `onPhotoCapture` (fires after every recorded photo;
-  bound to monetization's ad trigger)
+  (entitlement) and `onCapture` (fires after every recorded capture, photo or
+  video; bound to monetization's nudge orchestrator)
 
-Metrics:
+Metrics (lifetime, persisted):
 	* firstInstalledAt: datetime
 	* sessionCount: number
 	* photoCaptureCount: number
 	* videoCaptureCount: number
 	* isPro: bool
+
+Metrics (this session, in-memory):
+	* sessionPhotoCount: number
+	* sessionVideoCount: number
 
 ### Version
 - a source-of-truth for the current app version
@@ -215,6 +219,13 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-07: Capture hooks combined into a single `UsageMetrics.onCapture`
+  (nudging never separates photos from videos).
+- 2026-07-07: `UsageMetrics` session-scoped counters (in-memory, per-launch).
+- 2026-07-07: `UsageMetrics` counters gain debug-only setters (debug surface
+  manual edit).
+- 2026-07-07: `UsageMetrics.onVideoCapture` hook; both capture hooks now bind
+  to monetization's nudge orchestrator.
 - 2026-07-07: `UsageMetrics.onPhotoCapture` hook (monetization ad trigger).
 - 2026-07-06: Dev backdoor to the debug surface (7 rapid taps on the Settings
   title, `debugScreen` factory); replaces the camera GPS-icon long-press.

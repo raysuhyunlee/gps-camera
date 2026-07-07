@@ -2,11 +2,12 @@
 
 ## Status
 
+- 2026-07-07: Nudge orchestrator + in-app review implemented on iOS
+  (`NudgeOrchestrator`): paywall nudge at lifetime-capture milestones, review
+  attempt on the first capture of a session from session 3; at most one nudge
+  per capture, paywall precedes ad. Rules never separate photos from videos.
 - 2026-07-07: Ads implemented on iOS (`InterstitialAds`, AdMob): every 10th
-  saved photo, free users only; ATT prompt + SDK init at launch. TODO: create
-  the gpscamera AdMob app and replace the sample app ID (Info.plist) and
-  release unit ID (`InterstitialAds.swift`). Still pending: nudge
-  orchestrator, in-app review.
+  saved photo, free users only; ATT prompt + SDK init at launch.
 - 2026-07-06: Purchase success modal implemented (`PurchaseSuccessView`,
   lottie-ios).
 - 2026-07-06: Restore row in Settings implemented (section order 90,
@@ -65,8 +66,8 @@
   "Enjoy all features", Continue): `PurchaseSuccess.present()` opens it in its
   own alert-level window, so it shows over any screen or sheet stack.
 - Opened by tapping a locked pro row in Settings (`PaywallProviding` seam,
-  presented by Main over the settings sheet). Always dismissible for now;
-  nudge-driven presentation lands with the orchestrator.
+  presented by Main over the settings sheet) or by the nudge orchestrator
+  (presented over the top view controller). Always dismissible.
 
 ### Pro banner
 
@@ -86,11 +87,13 @@ hosts stay monetization-unaware:
 
 ### Ads
 
-- **AdMob** interstitials, free users only. Shown every **10 photos**; counter
-  resets per session. Removed for `.pro` (no SDK init, no ATT prompt).
-- **Trigger**: `UsageMetrics.onPhotoCapture` (foundation) ->
-  `InterstitialAds.photoSaved()`, bound at the root. Runs after the photo has
-  saved; an ad never shows at app launch or during/blocking a capture.
+- **AdMob** interstitials, free users only. Shown every **10 captures**
+  (photos + videos); the cadence reads foundation's session capture counts
+  (`UsageMetrics`, reset per launch), so every capture counts regardless of
+  entitlement at capture time. Removed for `.pro` (no SDK init, no ATT prompt).
+- **Trigger**: the nudge orchestrator forwards every finished capture to
+  `InterstitialAds.captureSaved()`. Runs after the capture has saved; an ad
+  never shows at app launch or during/blocking a capture.
 - **ATT**: tracking prompt at launch (first launch only, ~1s after UI settles),
   then SDK init + preload. One interstitial stays preloaded; dismissing loads
   the next. No fill / offline = the ad is silently skipped, never awaited.
@@ -99,18 +102,28 @@ hosts stay monetization-unaware:
 - **Format**: only standard, always-dismissible interstitials. No deceptive,
   fake-system, or unclosable creatives - enforced via ad-network/format choice.
 
-### In-App Review 
+### In-App Review
 
-- Shown after the first photo or video is taken in the session
-- Only shown from the third session
+- Attempted after the first photo or video of the session, from the third
+  session on; every qualifying session attempts. The OS decides whether a
+  prompt actually shows (throttled by the platform, max 3/year on iOS).
+- Fired by the nudge orchestrator (`review_requested` event on attempt).
 
 ### Nudge orchestrator
 
-- Consumes injected usage metrics (session count, photo count, …) and applies a
-  rule set to decide when to present subscription nudges.
-- Rules are data-driven and easy to edit without touching call sites.
-- TODO: define the review-nudge period (when to prompt for the platform's
-  in-app review).
+- Consumes injected usage metrics (session count, photo count, ...) and applies
+  a rule set to decide what a finished capture earns: paywall nudge, review
+  prompt, or ad.
+- Rules are data-driven (`NudgeRules`, one place) and easy to edit without
+  touching call sites. Rules never separate photos from videos - a capture is
+  a capture. Current rules:
+	- Paywall nudge: lifetime capture count hits 25, 50, or 100; free users only.
+	- Review: see "In-App Review" above.
+- At most one nudge per capture. Paywall precedes ad (that capture's ad is
+  suppressed, not deferred) and review (the review attempt moves to the next
+  capture of the session).
+- Bound to the usage-metrics `onCapture` hook at the root: nudges run after a
+  capture has saved, never during one.
 
 ## Settings
 
@@ -131,7 +144,8 @@ ios/gpscamera/Domains/Monetization/
 ├── ProStore.swift    - RevenueCat: API keys, offerings, purchase/restore, live entitlement + offline cache
 ├── PaywallView.swift - PaywallProviding seam + the paywall screen
 ├── PurchaseSuccessView.swift - post-purchase success modal in its own window (Lottie; expects bundled PurchaseSuccess.json)
-├── InterstitialAds.swift - AdMob executor + every-10-photos trigger; ATT prompt, SDK init, preload/show
+├── InterstitialAds.swift - AdMob executor + every-10-captures trigger; ATT prompt, SDK init, preload/show
+├── NudgeOrchestrator.swift - NudgeRules + capture-hook dispatch: paywall nudge, review attempt, ad forward
 └── ProBanner.swift   - ProBannerProviding seam, Main + Settings banners, MonetizationSettingsProvider
 ios/gpscamera/Info.plist - AdMob app ID + SKAdNetworkItems (merged into the generated Info.plist)
 ios/gpscamera.storekit - StoreKit test config (local purchases with the Apple key; wired in the shared scheme)
@@ -144,6 +158,14 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-07: Photo/video nudge paths merged (`captureCompleted`, single
+  `onCapture` hook); paywall milestones count lifetime captures.
+- 2026-07-07: Ad cadence counts photos + videos, read from the `UsageMetrics`
+  session counters (own session counter removed); videos now forward to the
+  ad trigger too.
+- 2026-07-07: Nudge orchestrator + in-app review (`NudgeOrchestrator`,
+  `NudgeRules`); paywall-precedes-ad conflict rule; `review_requested` event
+  + `nudge` paywall source.
 - 2026-07-07: iOS ads (`InterstitialAds`, AdMob SPM, ATT at launch, Info.plist
   AdMob keys, `ad_shown` event, ads debug section).
 - 2026-07-06: Purchase success modal (`PurchaseSuccessView`, lottie-ios dep);

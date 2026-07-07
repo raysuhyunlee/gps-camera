@@ -19,6 +19,8 @@ struct gpscameraApp: App {
     private let pro: ProStore
     /// Interstitials for free users, triggered every 10th saved photo.
     private let ads: InterstitialAds
+    /// Kept for the debug surface's usage-metrics section.
+    private let metrics: UsageMetrics
 
     init() {
         BundledFonts.registerAll()   // before any UI renders
@@ -33,10 +35,14 @@ struct gpscameraApp: App {
         store.onSet = { events.track(.settingsChanged(key: $0, value: "\($1.primitive)")) }
         let pro = ProStore(events: events)
         metrics.isPro = { pro.entitlement == .pro }
-        // Ad trigger rides the usage-metrics hook (monetization.md "Ads");
-        // ATT prompt + SDK init at launch, free users only.
-        let ads = InterstitialAds(entitlement: pro, events: events)
-        metrics.onPhotoCapture = { ads.photoSaved() }
+        // Nudges + the ad trigger ride the usage-metrics capture hooks
+        // (monetization.md "Nudge orchestrator", "Ads"); ATT prompt + SDK
+        // init at launch, free users only.
+        let ads = InterstitialAds(entitlement: pro, metrics: metrics,
+                                  events: events)
+        let nudges = NudgeOrchestrator(metrics: metrics, store: pro, ads: ads,
+                                       events: events)
+        metrics.onCapture = { nudges.captureCompleted() }
         Task { await ads.start() }
         let registry = SettingsRegistry(
             providers: [MonetizationSettingsProvider(store: pro),
@@ -52,6 +58,7 @@ struct gpscameraApp: App {
         self.overlay = overlay
         self.pro = pro
         self.ads = ads
+        self.metrics = metrics
         // Gallery browses the same app-private store the capture services write.
         self.gallery = Gallery(store: CaptureStore(), events: events)
         _location = StateObject(wrappedValue: location)
@@ -65,7 +72,8 @@ struct gpscameraApp: App {
         WindowGroup {
             CameraView(controller: camera, location: location, overlay: overlay,
                        gallery: gallery, settings: store, registry: registry,
-                       entitlement: pro, paywall: pro, banner: pro, ads: ads)
+                       entitlement: pro, paywall: pro, banner: pro, ads: ads,
+                       metrics: metrics)
         }
     }
 }

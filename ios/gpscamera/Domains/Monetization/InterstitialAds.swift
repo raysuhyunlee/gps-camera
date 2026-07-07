@@ -16,31 +16,35 @@ private nonisolated enum AdMobConfig {
     #else
     static let interstitialUnitID = "ca-app-pub-4083381512720657/1101370813"
     #endif
-    /// One interstitial per this many saved photos; counter resets per session.
-    static let photosPerAd = 10
+    /// One interstitial per this many session captures, photos + videos
+    /// (UsageMetrics session counters).
+    static let capturesPerAd = 10
 }
 
 /// Free users only: requests ATT, initializes the SDK, keeps one interstitial
-/// preloaded, and shows it on every 10th saved photo. The trigger runs after
-/// the capture has saved (root binds it to `UsageMetrics.onPhotoCapture`), so
-/// an ad never blocks an in-progress capture. ObservableObject only for the
-/// debug surface (live loaded/error state).
+/// preloaded, and shows it on every 10th saved capture. The trigger runs after
+/// the capture has saved (reached via the nudge orchestrator), so an ad never
+/// blocks an in-progress capture. ObservableObject only for the debug surface
+/// (live loaded/error state).
 final class InterstitialAds: NSObject, ObservableObject {
     private let entitlement: EntitlementProviding
+    /// Cadence source: the ad fires on every multiple of capturesPerAd of the
+    /// session photo + video count (foundation.md "Usage Metrics").
+    private let metrics: UsageMetrics
     private let events: EventTracking
     @Published private var interstitial: InterstitialAd?
     private var loading = false
     private var started = false
-    /// Saved photos this session; the ad fires on every multiple of photosPerAd.
-    @Published private(set) var sessionPhotoCount = 0
     /// Last load or present failure, for the debug surface (nil = none yet).
     @Published private(set) var lastError: String?
     private var gatingObserver: NSObjectProtocol?
 
     var isLoaded: Bool { interstitial != nil }
 
-    init(entitlement: EntitlementProviding, events: EventTracking = NoopTracker()) {
+    init(entitlement: EntitlementProviding, metrics: UsageMetrics,
+         events: EventTracking = NoopTracker()) {
         self.entitlement = entitlement
+        self.metrics = metrics
         self.events = events
         super.init()
         // Pro at launch skips ads entirely; if the entitlement later flips to
@@ -71,13 +75,16 @@ final class InterstitialAds: NSObject, ObservableObject {
         preload()
     }
 
-    /// The ad trigger: every 10th saved photo, free users only. Runs after the
-    /// photo has saved, never during a capture.
-    func photoSaved() {
+    /// The ad trigger: every 10th saved capture (photo or video), free users
+    /// only. Reached via the nudge orchestrator after the capture has saved;
+    /// suppressed when a paywall nudge fired on the same capture (paywall
+    /// precedes ad).
+    func captureSaved(suppressingAd: Bool = false) {
         guard entitlement.entitlement == .free else { return }
         if !started { Task { await start() } }   // entitlement expired mid-session
-        sessionPhotoCount += 1
-        guard sessionPhotoCount % AdMobConfig.photosPerAd == 0 else { return }
+        let captures = metrics.sessionPhotoCount + metrics.sessionVideoCount
+        guard captures % AdMobConfig.capturesPerAd == 0, !suppressingAd
+        else { return }
         show()
     }
 
@@ -112,7 +119,8 @@ final class InterstitialAds: NSObject, ObservableObject {
 
     /// Top of the presentation stack: presenting from a view controller that
     /// is already presenting (settings sheet, debug sheet) fails silently.
-    private static func topViewController() -> UIViewController? {
+    /// Shared with the nudge orchestrator's paywall presentation.
+    static func topViewController() -> UIViewController? {
         var top = UIApplication.shared.connectedScenes
             .compactMap { ($0 as? UIWindowScene)?.keyWindow }
             .first?.rootViewController

@@ -14,11 +14,14 @@ struct ContentView: View {
     var pro: ProStore?
     /// Interstitial inspection; nil (previews) hides the section.
     var ads: InterstitialAds?
+    /// Usage counters inspection + manual edit; nil (previews) hides the section.
+    var metrics: UsageMetrics?
 
     var body: some View {
         List {
             if let pro { ProDebugSection(pro: pro) }
             if let ads { AdsDebugSection(ads: ads) }
+            if let metrics { MetricsDebugSection(metrics: metrics) }
             Section("Authorization") {
                 Text(String(describing: location.authorization))
                 if location.authorization == .notDetermined {
@@ -91,11 +94,6 @@ private struct AdsDebugSection: View {
     var body: some View {
         Section("Ads") {
             HStack {
-                Text("Photos this session")
-                Spacer()
-                Text("\(ads.sessionPhotoCount)").foregroundStyle(.secondary)
-            }
-            HStack {
                 Text("Interstitial")
                 Spacer()
                 Text(ads.isLoaded ? "loaded" : "not loaded")
@@ -108,6 +106,57 @@ private struct AdsDebugSection: View {
             Button("Preload interstitial") { ads.preload() }
             Button("Show interstitial") { ads.show() }
                 .disabled(!ads.isLoaded)
+        }
+    }
+}
+
+/// Session/lifetime usage counters, editable in place to exercise the nudge
+/// and ad rules (e.g. set photos to 24 and capture to hit the 25 milestone).
+private struct MetricsDebugSection: View {
+    let metrics: UsageMetrics
+    /// The number pad has no return key; a keyboard-toolbar Done button ends
+    /// editing (which also commits the focused field's value).
+    @FocusState private var editing: Bool
+
+    var body: some View {
+        Section("Usage metrics") {
+            HStack {
+                Text("First installed")
+                Spacer()
+                Text(metrics.firstInstalledAt.formatted(
+                    date: .abbreviated, time: .shortened))
+                    .foregroundStyle(.secondary)
+            }
+            editRow("Sessions", get: { metrics.sessionCount },
+                    set: { metrics.sessionCount = $0 })
+            editRow("Photos", get: { metrics.photoCaptureCount },
+                    set: { metrics.photoCaptureCount = $0 })
+            editRow("Videos", get: { metrics.videoCaptureCount },
+                    set: { metrics.videoCaptureCount = $0 })
+            editRow("Photos (session)", get: { metrics.sessionPhotoCount },
+                    set: { metrics.sessionPhotoCount = $0 })
+            editRow("Videos (session)", get: { metrics.sessionVideoCount },
+                    set: { metrics.sessionVideoCount = $0 })
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") { editing = false }
+            }
+        }
+    }
+
+    private func editRow(_ label: String, get: @escaping () -> Int,
+                         set: @escaping (Int) -> Void) -> some View {
+        HStack {
+            Text(label)
+            Spacer()
+            TextField("", value: Binding(get: get, set: set), format: .number)
+                .keyboardType(.numberPad)
+                .multilineTextAlignment(.trailing)
+                .frame(width: 80)
+                .foregroundStyle(.secondary)
+                .focused($editing)
         }
     }
 }

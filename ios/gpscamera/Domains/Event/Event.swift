@@ -16,6 +16,7 @@ enum Event {
     case purchaseFailed(product: String, reason: String)
     case settingsChanged(key: String, value: String)
     case adShown
+    case reviewRequested
 
     enum CaptureKind: String { case photo, video }
 
@@ -23,6 +24,7 @@ enum Event {
         case mainBanner = "main_banner"
         case settingsBanner = "settings_banner"
         case lockedSetting = "locked_setting"
+        case nudge
     }
 
     var name: String {
@@ -36,6 +38,7 @@ enum Event {
         case .purchaseFailed: "purchase_failed"
         case .settingsChanged: "settings_changed"
         case .adShown: "ad_shown"
+        case .reviewRequested: "review_requested"
         }
     }
 
@@ -45,7 +48,7 @@ enum Event {
             ["kind": kind.rawValue]
         case .captureFailed(let kind, let reason):
             ["kind": kind.rawValue, "reason": reason]
-        case .galleryOpened, .shared, .adShown:
+        case .galleryOpened, .shared, .adShown, .reviewRequested:
             [:]
         case .paywallShown(let source):
             ["source": source.rawValue]

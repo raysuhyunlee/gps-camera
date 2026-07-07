@@ -45,18 +45,20 @@ struct UsageMetricsTests {
 
         metrics.recordSessionStart()
         let installedAt = metrics.firstInstalledAt
-        var photoHooks = 0
-        metrics.onPhotoCapture = { photoHooks += 1 }
+        var captureHooks = 0
+        metrics.onCapture = { captureHooks += 1 }
         metrics.recordSessionStart()
         metrics.recordPhotoCapture()
         metrics.recordPhotoCapture()
         metrics.recordVideoCapture()
 
-        #expect(photoHooks == 2)                           // ad-trigger hook
+        #expect(captureHooks == 3)                         // nudge hook
         #expect(metrics.sessionCount == 2)
         #expect(metrics.firstInstalledAt == installedAt)   // stamped once
         #expect(metrics.photoCaptureCount == 2)
         #expect(metrics.videoCaptureCount == 1)
+        #expect(metrics.sessionPhotoCount == 2)
+        #expect(metrics.sessionVideoCount == 1)
         #expect(metrics.isPro() == false)                  // default until bound
     }
 }
