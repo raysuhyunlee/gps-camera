@@ -7,8 +7,23 @@ import SwiftUI
 struct OverlayLayer: View {
     let snapshot: LocationSnapshot?
     let settings: OverlaySettings
+    /// The map image (map item); nil while it is off or not yet rendered.
+    var mapImage: UIImage? = nil
+
+    /// The map box shows left of the card; both need a fix to place the pin.
+    private var showMap: Bool { settings.showMap && snapshot != nil }
 
     var body: some View {
+        // Map + card are one layer (drag together) but read as separate objects,
+        // spaced apart (overlay.md "Items"). Total width stays the same whether
+        // the map is on or off, so anchoring is unaffected.
+        HStack(alignment: .center, spacing: OverlayLayerMetrics.mapGap) {
+            if showMap { mapBox }
+            infoCard
+        }
+    }
+
+    private var infoCard: some View {
         VStack(alignment: .leading, spacing: 6) {
             if let s = snapshot {
                 Grid(alignment: .leadingFirstTextBaseline,
@@ -26,12 +41,34 @@ struct OverlayLayer: View {
         .foregroundStyle(settings.style.textColor)
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
-        // Fixed card width (near full screen at the design width) so every
-        // item fits on one line, identically live and burned.
-        .frame(width: OverlayLayerMetrics.designWidth - 2 * OverlayLayerMetrics.margin,
-               alignment: .leading)
+        // Fixed card width so every item fits on one line, identically live and
+        // burned; the map (fixed side + gap) eats into it when shown.
+        .frame(width: cardWidth, alignment: .leading)
         .background(settings.style.bgColor.opacity(settings.style.bgOpacity),
                     in: RoundedRectangle(cornerRadius: 8))
+    }
+
+    private var mapBox: some View {
+        ZStack {
+            if let mapImage {
+                Image(uiImage: mapImage).resizable()
+            } else {
+                settings.style.bgColor.opacity(settings.style.bgOpacity)
+            }
+        }
+        .frame(width: OverlayLayerMetrics.mapSide, height: OverlayLayerMetrics.mapSide)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        // "You are here": the snapshot is centered on the coordinate.
+        .overlay {
+            Circle().fill(.red)
+                .frame(width: 8, height: 8)
+                .overlay(Circle().stroke(.white, lineWidth: 1.5))
+        }
+    }
+
+    private var cardWidth: CGFloat {
+        let full = OverlayLayerMetrics.designWidth - 2 * OverlayLayerMetrics.margin
+        return showMap ? full - OverlayLayerMetrics.mapSide - OverlayLayerMetrics.mapGap : full
     }
 
     /// Empty when there is nothing to show (no fix and the watermark off).

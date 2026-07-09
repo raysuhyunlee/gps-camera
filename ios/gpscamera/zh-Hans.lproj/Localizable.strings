@@ -55,6 +55,11 @@
 "Lat, Lon" = "纬度, 经度";
 "Metric" = "公制";
 "Imperial" = "英制";
+"Map" = "地图";
+"Map scale" = "地图比例";
+"Near" = "近";
+"Medium" = "中";
+"Far" = "远";
 "Coordinates" = "坐标";
 "Altitude" = "海拔";
 "Accuracy" = "精度";

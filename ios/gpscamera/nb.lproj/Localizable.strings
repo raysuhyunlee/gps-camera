@@ -55,6 +55,11 @@
 "Lat, Lon" = "Lat, Lon";
 "Metric" = "Metrisk";
 "Imperial" = "Imperialt";
+"Map" = "Kart";
+"Map scale" = "Kartskala";
+"Near" = "Nær";
+"Medium" = "Middels";
+"Far" = "Langt";
 "Coordinates" = "Koordinater";
 "Altitude" = "Høyde";
 "Accuracy" = "Nøyaktighet";

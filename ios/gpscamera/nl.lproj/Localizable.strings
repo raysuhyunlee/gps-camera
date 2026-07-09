@@ -55,6 +55,11 @@
 "Lat, Lon" = "Lat, Lon";
 "Metric" = "Metrisch";
 "Imperial" = "Imperiaal";
+"Map" = "Kaart";
+"Map scale" = "Kaartschaal";
+"Near" = "Dichtbij";
+"Medium" = "Gemiddeld";
+"Far" = "Ver";
 "Coordinates" = "Coördinaten";
 "Altitude" = "Hoogte";
 "Accuracy" = "Nauwkeurigheid";

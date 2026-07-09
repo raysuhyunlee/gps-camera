@@ -28,4 +28,11 @@ nonisolated enum OverlayLayerMetrics {
     static let designWidth: CGFloat = 390
     /// Bottom-leading inset (pt, design space).
     static let margin: CGFloat = 16
+    /// Map item box side (pt, design space); sits left of the info card.
+    static let mapSide: CGFloat = 96
+    /// Gap between the map box and the info card - they read as separate objects.
+    static let mapGap: CGFloat = 8
+    /// Point size the map snapshot is rendered at (4x mapSide) so it stays crisp
+    /// when the layer is scaled up at burn time.
+    static let mapRenderSide: Double = 384
 }

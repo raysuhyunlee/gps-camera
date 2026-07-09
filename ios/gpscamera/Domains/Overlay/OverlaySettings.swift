@@ -3,6 +3,8 @@ import SwiftUI
 nonisolated enum OverlaySettingKey {
     static let enabled = "overlay.enabled"
     static let layout = "overlay.layout"   // OverlayAnchor raw value
+    static let itemMap = "overlay.item.map"
+    static let mapScale = "overlay.map.scale"   // MapScale raw value
     static let itemCoordinates = "overlay.item.coordinates"
     static let itemAltitude = "overlay.item.altitude"
     static let itemAccuracy = "overlay.item.accuracy"
@@ -19,12 +21,14 @@ nonisolated enum OverlaySettingKey {
     static let styleUnit = "overlay.style.unit"
 }
 
-/// Typed overlay settings (overlay.md "Settings"). Deferred items (map, QR,
-/// note, weather, logo) land with their features.
+/// Typed overlay settings (overlay.md "Settings"). Deferred items (QR, note,
+/// weather, logo) land with their features.
 struct OverlaySettings {
     var enabled = true
     var anchor = OverlayAnchor.bottomLeading
 
+    var showMap = true
+    var mapScale = MapScale.medium
     var showCoordinates = true
     var showAltitude = true
     var showAccuracy = true
@@ -89,12 +93,26 @@ struct OverlaySettings {
     enum CoordFormat: String { case latLon = "lat-lon", dms }   // overlay.style.coordFormat
     enum Unit: String { case metric, imperial }                 // overlay.style.unit
 
+    /// Map zoom (overlay.map.scale): ground span shown, smaller = more zoomed in.
+    enum MapScale: String {
+        case close, medium, far
+        var spanMeters: Double {
+            switch self {
+            case .close:  return 200
+            case .medium: return 500
+            case .far:    return 1500
+            }
+        }
+    }
+
     init() {}
 
     init(from store: SettingsStore) {
         enabled = store.bool(OverlaySettingKey.enabled)
         anchor = OverlayAnchor(rawValue: store.string(OverlaySettingKey.layout))
             ?? .bottomLeading
+        showMap = store.bool(OverlaySettingKey.itemMap)
+        mapScale = MapScale(rawValue: store.string(OverlaySettingKey.mapScale)) ?? .medium
         showCoordinates = store.bool(OverlaySettingKey.itemCoordinates)
         showAltitude = store.bool(OverlaySettingKey.itemAltitude)
         showAccuracy = store.bool(OverlaySettingKey.itemAccuracy)
@@ -150,6 +168,7 @@ nonisolated struct OverlaySettingsProvider: SettingsProviding {
 
     var settingsSections: [SettingsSection] {
         let items: [(String, L10nKey)] = [
+            (OverlaySettingKey.itemMap, "Map"),
             (OverlaySettingKey.itemCoordinates, "Coordinates"),
             (OverlaySettingKey.itemAltitude, "Altitude"),
             (OverlaySettingKey.itemAccuracy, "Accuracy"),
@@ -164,6 +183,13 @@ nonisolated struct OverlaySettingsProvider: SettingsProviding {
             SettingItem(key: "overlay.nav.items", titleKey: "Display items",
                         control: .navigation(sectionRef: "overlay.items"),
                         enabledWhen: Self.master),
+            // Only relevant while the map item is on, so it also greys out then.
+            SettingItem(key: OverlaySettingKey.mapScale, titleKey: "Map scale",
+                        control: .select([SelectOption(value: "close", titleKey: "Near"),
+                                          SelectOption(value: "medium", titleKey: "Medium"),
+                                          SelectOption(value: "far", titleKey: "Far")]),
+                        defaultValue: .string("medium"),
+                        enabledWhen: { Self.master($0) && $0.bool(OverlaySettingKey.itemMap) }),
             SettingItem(key: OverlaySettingKey.styleFont, titleKey: "Font",
                         control: .select(Self.fontOptions),
                         defaultValue: .string("system"), gate: .pro,

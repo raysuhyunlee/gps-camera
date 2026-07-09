@@ -55,6 +55,11 @@
 "Lat, Lon" = "רוחב, אורך";
 "Metric" = "מטרי";
 "Imperial" = "אימפריאלי";
+"Map" = "מפה";
+"Map scale" = "קנה מידה של המפה";
+"Near" = "קרוב";
+"Medium" = "בינוני";
+"Far" = "רחוק";
 "Coordinates" = "קואורדינטות";
 "Altitude" = "גובה";
 "Accuracy" = "דיוק";

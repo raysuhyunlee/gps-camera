@@ -55,6 +55,11 @@
 "Lat, Lon" = "Enl, Boy";
 "Metric" = "Metrik";
 "Imperial" = "Emperyal";
+"Map" = "Harita";
+"Map scale" = "Harita ölçeği";
+"Near" = "Yakın";
+"Medium" = "Orta";
+"Far" = "Uzak";
 "Coordinates" = "Koordinatlar";
 "Altitude" = "Yükseklik";
 "Accuracy" = "Hassasiyet";

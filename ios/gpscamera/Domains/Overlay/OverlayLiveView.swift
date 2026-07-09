@@ -19,7 +19,8 @@ struct OverlayLiveView: View {
     var body: some View {
         GeometryReader { geo in
             let center = anchorCenter(in: geo.size)
-            OverlayLayer(snapshot: snapshot, settings: renderer.settings)
+            OverlayLayer(snapshot: snapshot, settings: renderer.settings,
+                         mapImage: renderer.mapImage)
                 .onGeometryChange(for: CGSize.self, of: \.size) { layerSize = $0 }
                 .rotationEffect(OverlayAnchor.angle(for: orientation))
                 // The rotated layer's screen-space bounding box, so quarter

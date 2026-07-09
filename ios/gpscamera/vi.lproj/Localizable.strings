@@ -55,6 +55,11 @@
 "Lat, Lon" = "Vĩ, Kinh";
 "Metric" = "Hệ mét";
 "Imperial" = "Hệ đế quốc";
+"Map" = "Bản đồ";
+"Map scale" = "Tỷ lệ bản đồ";
+"Near" = "Gần";
+"Medium" = "Trung bình";
+"Far" = "Xa";
 "Coordinates" = "Tọa độ";
 "Altitude" = "Độ cao";
 "Accuracy" = "Độ chính xác";

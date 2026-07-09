@@ -55,6 +55,11 @@
 "Lat, Lon" = "緯度, 経度";
 "Metric" = "メートル法";
 "Imperial" = "ヤード・ポンド法";
+"Map" = "地図";
+"Map scale" = "地図の縮尺";
+"Near" = "近い";
+"Medium" = "中";
+"Far" = "遠い";
 "Coordinates" = "座標";
 "Altitude" = "高度";
 "Accuracy" = "精度";

@@ -55,6 +55,11 @@
 "Lat, Lon" = "Lat, Lon";
 "Metric" = "Metrinen";
 "Imperial" = "Imperiaalinen";
+"Map" = "Kartta";
+"Map scale" = "Kartan mittakaava";
+"Near" = "Lähellä";
+"Medium" = "Keskitaso";
+"Far" = "Kaukana";
 "Coordinates" = "Koordinaatit";
 "Altitude" = "Korkeus";
 "Accuracy" = "Tarkkuus";

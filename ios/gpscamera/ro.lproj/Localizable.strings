@@ -55,6 +55,11 @@
 "Lat, Lon" = "Lat, Lon";
 "Metric" = "Metric";
 "Imperial" = "Imperial";
+"Map" = "Hartă";
+"Map scale" = "Scara hărții";
+"Near" = "Aproape";
+"Medium" = "Mediu";
+"Far" = "Departe";
 "Coordinates" = "Coordonate";
 "Altitude" = "Altitudine";
 "Accuracy" = "Precizie";

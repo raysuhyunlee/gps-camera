@@ -55,6 +55,11 @@
 "Lat, Lon" = "Lat, Lon";
 "Metric" = "Métrico";
 "Imperial" = "Imperial";
+"Map" = "Mapa";
+"Map scale" = "Escala do mapa";
+"Near" = "Perto";
+"Medium" = "Médio";
+"Far" = "Longe";
 "Coordinates" = "Coordenadas";
 "Altitude" = "Altitude";
 "Accuracy" = "Precisão";

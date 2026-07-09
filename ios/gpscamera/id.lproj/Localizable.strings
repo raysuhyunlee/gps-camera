@@ -55,6 +55,11 @@
 "Lat, Lon" = "Lat, Lon";
 "Metric" = "Metrik";
 "Imperial" = "Imperial";
+"Map" = "Peta";
+"Map scale" = "Skala peta";
+"Near" = "Dekat";
+"Medium" = "Sedang";
+"Far" = "Jauh";
 "Coordinates" = "Koordinat";
 "Altitude" = "Ketinggian";
 "Accuracy" = "Akurasi";

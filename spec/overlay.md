@@ -2,6 +2,13 @@
 
 ## Status
 
+- 2026-07-09: Map scale setting (`overlay.map.scale`: near / medium / far,
+  default medium, free) sets the snapshot zoom; greys out while the map is off.
+- 2026-07-09: Map item live (`overlay.item.map`, default on, free). A static map
+  sits left of the info card as a separate box (gap between them) but is part of
+  the one draggable/anchored layer. Rendered by `MKMapSnapshotter`
+  (`OverlayMapSnapshotter`) so the same UIImage feeds the live layer and the
+  `ImageRenderer` burn; centered on the coordinate with a "you are here" dot.
 - 2026-07-09: Overlay data frozen while recording video: camera feeds the
   live layer the record-start snapshot, so the preview matches the burned clip.
 - 2026-07-08: Video overlay burn implemented. `AVCaptureMovieFileOutput`
@@ -54,7 +61,10 @@
   (altitude + accuracy share a row; the accuracy value is tinted by level)
 
 Supported items:
-- map
+- map - static map box, left of the info card, separated by a gap; part of the
+  one draggable layer. Rendered as a `MKMapSnapshotter` image (a live MapKit
+  view would not rasterize into burns); centered on the coordinate with a dot.
+  Zoom set by `overlay.map.scale` (near / medium / far).
 - QR code 
 - address 
 * coordinates 
@@ -113,6 +123,7 @@ Supported items:
 | `overlay.preview`           | Preview                             | custom                   | -       | free                          |
 | `overlay.layout`            | Adjust position                     | custom (position editor) | -       | free                          |
 | `overlay.item.*`            | Display items (one toggle per item) | toggle                   | on      | free                          |
+| `overlay.map.scale`         | Map scale (map zoom)                | select (near/medium/far) | medium  | free (inert while map off)    |
 | `overlay.item.watermark`    | Watermark                           | toggle                   | on      | **pro** (free cannot disable) |
 | `overlay.style.font`        | Font                                | select                   | system  | **pro**                       |
 | `overlay.style.size`        | Font size                           | stepper                  | 12 pt   | **pro**                       |
@@ -132,7 +143,8 @@ ios/gpscamera/Domains/Overlay/
 ├── OverlaySettings.swift  - setting keys, typed read from SettingsStore, SettingsProviding section
 ├── OverlayAnchor.swift    - 9-grid world-space anchor + orientation mapping
 ├── OverlayFormatter.swift - LocationSnapshot -> item strings (coord format, unit, heading, time)
-├── OverlayLayer.swift     - SwiftUI layer: icon + label + value rows, watermark
+├── OverlayLayer.swift     - SwiftUI layer: map box + info card (rows, watermark)
+├── OverlayMapSnapshotter.swift - MKMapSnapshotter -> map UIImage, coordinate-deduped
 ├── OverlayLiveView.swift  - Main-screen host: anchored placement + drag-to-snap
 ├── OverlayRendering.swift - seam protocol, RenderedOverlay, placement metrics
 └── OverlayRenderer.swift  - ImageRenderer-backed live + rasterized layer
@@ -144,6 +156,11 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-09: Map scale setting (`overlay.map.scale`) sets the snapshot zoom
+  (near / medium / far); snapshotter dedups on center + span.
+- 2026-07-09: Map item added (`overlay.item.map`): static `MKMapSnapshotter`
+  box left of the info card, part of the draggable layer; one image feeds live +
+  burn (`OverlayMapSnapshotter`).
 - 2026-07-09: Live overlay reads the record-start snapshot while recording
   (preview matches the burned clip).
 - 2026-07-08: Video overlay burn via post-record `AVVideoComposition`

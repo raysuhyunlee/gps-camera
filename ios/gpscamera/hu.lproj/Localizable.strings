@@ -55,6 +55,11 @@
 "Lat, Lon" = "Szél, Hossz";
 "Metric" = "Metrikus";
 "Imperial" = "Angolszász";
+"Map" = "Térkép";
+"Map scale" = "Térkép méretarány";
+"Near" = "Közeli";
+"Medium" = "Közepes";
+"Far" = "Távoli";
 "Coordinates" = "Koordináták";
 "Altitude" = "Magasság";
 "Accuracy" = "Pontosság";

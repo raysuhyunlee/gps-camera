@@ -55,6 +55,11 @@
 "Lat, Lon" = "위도, 경도";
 "Metric" = "미터법";
 "Imperial" = "야드파운드법";
+"Map" = "지도";
+"Map scale" = "지도 배율";
+"Near" = "가깝게";
+"Medium" = "보통";
+"Far" = "멀게";
 "Coordinates" = "좌표";
 "Altitude" = "고도";
 "Accuracy" = "정확도";

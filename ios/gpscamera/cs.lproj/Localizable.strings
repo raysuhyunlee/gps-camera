@@ -55,6 +55,11 @@
 "Lat, Lon" = "Lat, Lon";
 "Metric" = "Metrické";
 "Imperial" = "Imperiální";
+"Map" = "Mapa";
+"Map scale" = "Měřítko mapy";
+"Near" = "Blízko";
+"Medium" = "Střední";
+"Far" = "Daleko";
 "Coordinates" = "Souřadnice";
 "Altitude" = "Nadmořská výška";
 "Accuracy" = "Přesnost";

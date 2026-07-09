@@ -7,6 +7,13 @@ import SwiftUI
 /// ObservableObject: the live view re-renders on settings edits + anchor drags.
 @MainActor final class OverlayRenderer: ObservableObject, OverlayRendering {
     @Published private(set) var settings: OverlaySettings
+    /// Latest map snapshot (map item); republished for the live view + reused by
+    /// the burn. nil while the map is off or the first snapshot is in flight.
+    @Published private(set) var mapImage: UIImage?
+    private let mapSnapshotter = OverlayMapSnapshotter()
+    /// Latest coordinate seen, so a scale change can re-snapshot without waiting
+    /// for the next location update.
+    private var lastCoordinate: Coordinate?
     private let store: SettingsStore
     private let entitlement: EntitlementProviding
     /// Last entitlement `reload()` saw; detects the free -> pro transition.
@@ -47,6 +54,8 @@ import SwiftUI
             store.set(.bool(false), for: OverlaySettingKey.itemWatermark)
         }
         settings = OverlaySettings(from: store)
+        // Pick up a map-scale (or item) change without a location update.
+        refreshMap(for: lastCoordinate)
     }
 
     /// Drag-to-snap on Main (position editor v1). Synchronous settings update
@@ -58,14 +67,26 @@ import SwiftUI
 
     func liveLayer(snapshot: LocationSnapshot?,
                    orientation: UIDeviceOrientation) -> AnyView {
+        refreshMap(for: snapshot?.coordinate)
         let layer = OverlayLayer(snapshot: snapshot, settings: settings)
         guard settings.enabled, !layer.isEmpty else { return AnyView(EmptyView()) }
         return AnyView(OverlayLiveView(renderer: self, snapshot: snapshot,
                                        orientation: orientation))
     }
 
+    /// Keep the map snapshot tracking the current coordinate + scale (map item).
+    /// Called from `liveLayer` and `reload`; the snapshotter dedups itself.
+    private func refreshMap(for coordinate: Coordinate?) {
+        if let coordinate { lastCoordinate = coordinate }
+        guard settings.enabled, settings.showMap else { return }
+        mapSnapshotter.refresh(for: coordinate ?? lastCoordinate,
+                               spanMeters: settings.mapScale.spanMeters) { [weak self] image in
+            self?.mapImage = image
+        }
+    }
+
     func renderedLayer(snapshot: LocationSnapshot?) -> RenderedOverlay? {
-        let layer = OverlayLayer(snapshot: snapshot, settings: settings)
+        let layer = OverlayLayer(snapshot: snapshot, settings: settings, mapImage: mapImage)
         guard settings.enabled, !layer.isEmpty else { return nil }
         let renderer = ImageRenderer(content: layer)
         // Enough pixels for a 4032px-wide capture (4032 / 390 ≈ 10.3).
