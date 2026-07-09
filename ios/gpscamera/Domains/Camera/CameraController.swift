@@ -16,6 +16,9 @@ final class CameraController: ObservableObject {
     @Published private(set) var flashOn = false
     @Published private(set) var isCapturing = false
     @Published private(set) var isRecording = false
+    /// Overlay data (location snapshot) frozen at record start so the live
+    /// preview matches the burned clip while recording; nil = track live data.
+    @Published private(set) var lockedOverlaySnapshot: LocationSnapshot?
     /// Last preview frame, shown blurred while the session graph rebuilds
     /// (lens / facing / mode switch) so the feed never flickers to black.
     @Published private(set) var freezeFrame: UIImage?
@@ -160,7 +163,7 @@ final class CameraController: ObservableObject {
             guard !isCapturing else { return }
             isCapturing = true
             // Snapshot, overlay layer, and settings are fixed at shutter time
-            // so the burn and EXIF describe the same moment. Video burn: deferred.
+            // so the burn and EXIF describe the same moment.
             let snapshot = location.snapshot
             let settings = settings
             let options = PhotoCaptureOptions(
@@ -187,15 +190,23 @@ final class CameraController: ObservableObject {
         let options = VideoCaptureService.Options(
             exifLocation: CameraSettings.effectiveExifLocation(store),
             saveToPhotos: CameraSettings.effectiveSaveToPhotos(store))
-        video.startRecording(with: session, snapshot: location.snapshot,
-                             options: options) { [weak self] result in
+        // Overlay data locked at record start (like the photo burn + GPS
+        // metadata); the live preview reads this too, so it matches the clip.
+        let snapshot = location.snapshot
+        lockedOverlaySnapshot = snapshot
+        video.startRecording(with: session, snapshot: snapshot,
+                             overlayLayer: overlay.renderedLayer(snapshot: snapshot),
+                             options: options,
+                             onStopped: { [weak self] in
             guard let self else { return }
             if shutterSound { AudioServicesPlaySystemSound(RecordingSound.end) }
             isRecording = false
+            lockedOverlaySnapshot = nil
             // Controls resume tracking the live orientation.
             deviceOrientationChanged(UIDevice.current.orientation)
-            captureFinished(.video, result: result)
-        }
+        }, completion: { [weak self] result in
+            self?.captureFinished(.video, result: result)
+        })
     }
 
     /// Analytics + usage counters for a finished capture (event.md).

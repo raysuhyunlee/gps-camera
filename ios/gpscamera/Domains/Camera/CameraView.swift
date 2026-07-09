@@ -107,8 +107,12 @@ struct CameraView: View {
             // keeps this flexible region expanded even when the overlay is
             // off (liveLayer returns EmptyView, which vanishes from layout).
             ZStack {
-                overlay.liveLayer(snapshot: location.snapshot,
-                                  orientation: controller.captureOrientation)
+                // While recording the overlay data is frozen at record start
+                // (controller.lockedOverlaySnapshot) so the preview matches the
+                // burned clip; otherwise it tracks the live snapshot.
+                overlay.liveLayer(
+                    snapshot: controller.lockedOverlaySnapshot ?? location.snapshot,
+                    orientation: controller.captureOrientation)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             if controller.availableLenses.count > 1 {

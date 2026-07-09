@@ -2,6 +2,15 @@
 
 ## Status
 
+- 2026-07-09: Overlay data locked at record start. The live preview reads the
+  frozen snapshot (`lockedOverlaySnapshot`) while recording, so it matches the
+  burned clip. Video capture now signals `onStopped` when the clip finalizes
+  (UI leaves the recording state + stop sound) separately from `completion`
+  (after the background burn + persist).
+- 2026-07-08: Video overlay burn wired (pipeline step 2 for video). Movie
+  output can't composite live, so `VideoOverlayCompositor` exports the recorded
+  clip through an `AVVideoComposition` Core Animation layer, burning the
+  record-start overlay; a composite failure falls back to the raw clip.
 - 2026-07-05: Gallery wired: Main hosts the recent-thumbnail control
   (`GalleryProviding`); the capture store publishes `CaptureStoreBrowsing`
   (list newest-first, delete) and posts `captureStoreDidChange` on write/delete.
@@ -119,6 +128,12 @@ semi-transparent black bar so the preview shows through behind.
 
 1. Capture frame (photo) or stream (video).
 2. If `overlay.enabled`, burn the rendered overlay layer (from `OverlayRendering`).
+   Photo: drawn onto the still. Video: `AVCaptureMovieFileOutput` can't
+   composite live, so the finished clip is exported through an
+   `AVVideoComposition` Core Animation layer (`VideoOverlayCompositor`); the
+   overlay is rasterized once at record start. The overlay data (location
+   snapshot) is locked at record start and the live preview reads the same
+   frozen snapshot, so the preview matches the burned clip while recording.
 3. If `camera.exif.location`, write `LocationSnapshot` into EXIF.
 4. Name the output via `filename`.
 5. Persist (see **Storage** below). If `camera.photo.saveOriginal`, also save the
@@ -233,7 +248,8 @@ ios/gpscamera/Domains/Camera/
 ├── MicrophoneAuthorization.swift - mic permission -> PermissionStatus (video only)
 ├── CaptureStoreBrowsing.swift    - seam consumed by gallery: browse/delete + change notification
 ├── PhotoCaptureService.swift     - photo pipeline + CaptureStore + CameraRoll (add-only copy)
-├── VideoCaptureService.swift     - video pipeline (movie output, ISO6709 GPS metadata)
+├── VideoCaptureService.swift     - video pipeline (movie output, ISO6709 GPS metadata, overlay burn)
+├── VideoOverlayCompositor.swift  - burns the overlay onto a recorded clip (AVVideoComposition)
 └── GPSMetadata.swift             - LocationSnapshot -> EXIF GPS dictionary
 ios/gpscameraTests/
 └── CameraValueTests.swift        - camera value-type tests
@@ -243,6 +259,10 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-09: Lock overlay data at record start (preview matches the burned
+  clip); split video capture into `onStopped` + `completion`.
+- 2026-07-08: Video overlay burn (pipeline step 2 for video) via
+  `VideoOverlayCompositor` (post-record `AVVideoComposition`).
 - 2026-07-06: Debug surface backdoor moved off the GPS icon to the Settings
   title (7 rapid taps; see foundation.md "Settings Framework").
 - 2026-07-06: Debug surface gains a pro status section (entitlement + refresh

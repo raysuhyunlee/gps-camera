@@ -2,6 +2,13 @@
 
 ## Status
 
+- 2026-07-09: Overlay data frozen while recording video: camera feeds the
+  live layer the record-start snapshot, so the preview matches the burned clip.
+- 2026-07-08: Video overlay burn implemented. `AVCaptureMovieFileOutput`
+  cannot composite live, so the overlay (rasterized at record start, like the
+  photo burn) is exported onto the finished clip via an `AVVideoComposition`
+  Core Animation layer (`VideoOverlayCompositor`, camera domain). Same
+  world-space anchor + design-width scaling as the photo burn.
 - 2026-07-06: Watermark auto-off on purchase: the free -> pro transition
   writes the stored toggle off once; it stays user-editable afterwards.
 - 2026-07-06: Watermark force-on for free implemented: `OverlayRenderer` reads
@@ -137,6 +144,10 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-09: Live overlay reads the record-start snapshot while recording
+  (preview matches the burned clip).
+- 2026-07-08: Video overlay burn via post-record `AVVideoComposition`
+  (`VideoOverlayCompositor`); overlay rasterized at record start.
 - 2026-07-06: Watermark auto-off on the free -> pro transition (reverse of
   force-on); toggle stays user-editable afterwards.
 - 2026-07-06: Watermark force-on for free: revocation writes the stored

@@ -30,6 +30,8 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
     private let ext = "mov"
     private var options = Options()
     private var pendingSnapshot: LocationSnapshot?
+    private var pendingOverlay: RenderedOverlay?
+    private var onStopped: (() -> Void)?
     private var completion: ((Result<URL, Error>) -> Void)?
 
     init(filename: FilenameProviding) {
@@ -37,12 +39,20 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
     }
 
     /// `snapshot` is captured by the caller at record start (nil = no fix / EXIF off).
+    /// `overlayLayer` is the overlay rasterized at record start (nil = overlay off);
+    /// burned into the finished clip (camera.md pipeline step 2).
+    /// `onStopped` fires when the clip is finalized (UI leaves the recording
+    /// state); `completion` fires later, after the burn + persist finish.
     func startRecording(with session: CameraSession,
                         snapshot: LocationSnapshot?,
+                        overlayLayer: RenderedOverlay? = nil,
                         options: Options = Options(),
+                        onStopped: @escaping () -> Void,
                         completion: @escaping (Result<URL, Error>) -> Void) {
         self.options = options
         self.pendingSnapshot = snapshot
+        self.pendingOverlay = overlayLayer
+        self.onStopped = onStopped
         self.completion = completion
         let temp = FileManager.default.temporaryDirectory
             .appendingPathComponent(UUID().uuidString)
@@ -71,23 +81,46 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
                     didFinishRecordingTo outputFileURL: URL,
                     from connections: [AVCaptureConnection],
                     error: Error?) {
+        // Recording is done: leave the UI recording state now, before the
+        // (potentially slow) burn + persist run in the background.
+        let onStopped = onStopped
+        self.onStopped = nil
+        DispatchQueue.main.async { onStopped?() }
+
         if let error {
             try? FileManager.default.removeItem(at: outputFileURL)
             return finish(.failure(error))
         }
 
-        // 4. Name + 5. persist (app-private, atomic move).
+        // 2. Overlay burn: composite onto the finished clip, then persist the
+        // burned copy. A composite failure falls back to the raw clip so the
+        // recording is never lost (like the photo burn's encode fallback).
+        guard let overlay = pendingOverlay else { return persist(outputFileURL) }
+        let burned = outputFileURL.deletingPathExtension()
+            .appendingPathExtension("burned").appendingPathExtension(ext)
+        VideoOverlayCompositor.burn(overlay, from: outputFileURL, to: burned) { [self] result in
+            switch result {
+            case .success(let composited):
+                try? FileManager.default.removeItem(at: outputFileURL)
+                persist(composited)
+            case .failure:
+                persist(outputFileURL)
+            }
+        }
+    }
+
+    /// 4. Name + 5. persist (app-private, atomic move); 6. Camera Roll copy.
+    private func persist(_ fileURL: URL) {
         let name = filename.makeName(for: Date(), snapshot: pendingSnapshot) {
             store.existingBaseNames().contains($0)
         }
         let url: URL
         do {
-            url = try store.moveIn(from: outputFileURL, name: name, ext: ext)
+            url = try store.moveIn(from: fileURL, name: name, ext: ext)
         } catch {
             return finish(.failure(error))
         }
 
-        // 6. Copy to Camera Roll (add-only) when enabled.
         if options.saveToPhotos { CameraRoll.copy(url, as: .video) }
 
         finish(.success(url))
