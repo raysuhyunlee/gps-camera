@@ -17,8 +17,13 @@ enum Event {
     case settingsChanged(key: String, value: String)
     case adShown
     case reviewRequested
+    case onboardingStarted
+    case onboardingCompleted
+    case onboardingPermission(type: PermissionKind, granted: Bool)
 
     enum CaptureKind: String { case photo, video }
+
+    enum PermissionKind: String { case location, camera }
 
     enum PaywallSource: String {
         case mainBanner = "main_banner"
@@ -39,6 +44,9 @@ enum Event {
         case .settingsChanged: "settings_changed"
         case .adShown: "ad_shown"
         case .reviewRequested: "review_requested"
+        case .onboardingStarted: "onboarding_started"
+        case .onboardingCompleted: "onboarding_completed"
+        case .onboardingPermission: "onboarding_permission"
         }
     }
 
@@ -48,8 +56,11 @@ enum Event {
             ["kind": kind.rawValue]
         case .captureFailed(let kind, let reason):
             ["kind": kind.rawValue, "reason": reason]
-        case .galleryOpened, .shared, .adShown, .reviewRequested:
+        case .galleryOpened, .shared, .adShown, .reviewRequested,
+             .onboardingStarted, .onboardingCompleted:
             [:]
+        case .onboardingPermission(let type, let granted):
+            ["type": type.rawValue, "granted": String(granted)]
         case .paywallShown(let source):
             ["source": source.rawValue]
         case .purchaseCompleted(let product):

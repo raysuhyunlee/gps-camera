@@ -5,6 +5,9 @@
 
 ## Status
 
+- 2026-07-10: Onboarding domain live on iOS: first-run flow (2 value screens + 1
+  permissions page) gated by `RootView` at the composition root; camera +
+  location requested from within onboarding (onboarding.md).
 - 2026-07-08: L10n live; Settings fully populated (General/Language, feedback,
   about now live alongside camera/overlay/filename/monetization). 30 languages.
 - 2026-07-07: Nudges live on iOS: `NudgeOrchestrator` owns the
@@ -52,9 +55,10 @@
 
 Screens are assemblies of domains. A domain is never split across docs.
 
-| Screen   | Composed of                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| Main     | `camera` + `location` + `overlay` + `monetization` (pro banner)                                               |
+| Screen     | Composed of                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------- |
+| Onboarding | `onboarding` (shown once on first launch, before Main; requests camera + location)                            |
+| Main       | `camera` + `location` + `overlay` + `monetization` (pro banner)                                               |
 | Settings | `monetization` (pro banner, restore) + per-domain `SettingsSection`s + foundation (language, feedback, about); opened from Main's settings gear |
 | Gallery  | `gallery`                                                                                                     |
 | Paywall  | `monetization`                                                                                                |
@@ -71,7 +75,7 @@ Screens are assemblies of domains. A domain is never split across docs.
 Composition Root (the app entry point)
   └─ wires domains into screens
 Domains (self-contained feature modules)
-  camera · location · overlay · filename · gallery · monetization · event
+  onboarding · camera · location · overlay · filename · gallery · monetization · event
   each owns: models · logic · UI · SettingsSection
 Foundation (shared)
 ```
@@ -110,6 +114,12 @@ Only these cross-domain seams exist. Everything else is internal.
 	- publishes `EventTracking`, injected into any domain that fires analytics
 	  events or records non-fatals
 	- pure sink; depends on no other domain.
+- **onboarding**
+	- the first-run flow; presented by the root on first launch, gating Main
+	  behind the `onboarding.completed` flag (in `SettingsStore`)
+	- consumes `LocationProviding` (permission request), the camera auth request
+	  (`CameraAuthorization`), and `EventTracking`
+	- leaf: consumed by nobody, so it publishes no seam.
 
 Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,
 `CaptureStoreBrowsing`, `GalleryProviding`, `EntitlementProviding`. Domains
@@ -143,6 +153,8 @@ never import each other's UI.
 
 ## Revision History
 
+- 2026-07-10: Onboarding domain added (first-run value priming + permission
+  requests); `RootView` gates onboarding vs Main at the root (onboarding.md).
 - 2026-07-08: `L10n.shared.setLanguage` wired in `SettingsStore.onSet` at the
   root; `FoundationSettingsProvider` registered (General/Language order 10,
   feedback order 91, about order 92). Settings screen now fully populated.

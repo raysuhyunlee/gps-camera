@@ -59,6 +59,9 @@ Event = enum, one case per event, typed parameters
 | `settings_changed`   | a setting value changes      | key, value      |
 | `ad_shown`           | interstitial ad presented    | -               |
 | `review_requested`   | in-app review attempt (OS may not show a prompt) | - |
+| `onboarding_started` | first-run flow appears       | -               |
+| `onboarding_completed` | first-run flow finishes    | -               |
+| `onboarding_permission` | a permission dialog resolves in onboarding | type: location, camera; granted |
 
 Global params (included in all events, provided by foundation)
 ```
@@ -80,6 +83,7 @@ isPro: bool
 - monetization: paywall appear with source, purchase result in `ProStore`,
   interstitial present in `InterstitialAds` (ad_shown + load/show non-fatals),
   review attempt in `NudgeOrchestrator` (review_requested)
+- onboarding: flow start/finish + each permission result (`OnboardingModel`)
 - settings_changed: `SettingsStore.onSet` hook, bound to the tracker at the root
 - failure reasons are compact `domain:code` (`Event.reason`)
 
@@ -104,6 +108,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-10: `onboarding_started` / `onboarding_completed` /
+  `onboarding_permission` events (onboarding.md).
 - 2026-07-07: `review_requested` event + `nudge` paywall source (nudge
   orchestrator, monetization.md).
 - 2026-07-07: `ad_shown` event (ads implementation, monetization.md).

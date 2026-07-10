@@ -21,6 +21,8 @@ struct gpscameraApp: App {
     private let ads: InterstitialAds
     /// Kept for the debug surface's usage-metrics section.
     private let metrics: UsageMetrics
+    /// Injected into the onboarding gate (fires onboarding_* events).
+    private let events: EventTracking
 
     init() {
         BundledFonts.registerAll()   // before any UI renders
@@ -57,8 +59,10 @@ struct gpscameraApp: App {
                     "monetization.restore": 90, "foundation.feedback": 91,
                     "foundation.about": 92],
             store: store)
+        Onboarding.registerDefaults(store)   // no Settings section; register here
         let location = LocationProvider()
         let overlay = OverlayRenderer(store: store, entitlement: pro)
+        self.events = events
         self.store = store
         self.registry = registry
         self.overlay = overlay
@@ -76,10 +80,12 @@ struct gpscameraApp: App {
 
     var body: some Scene {
         WindowGroup {
-            CameraView(controller: camera, location: location, overlay: overlay,
-                       gallery: gallery, settings: store, registry: registry,
-                       entitlement: pro, paywall: pro, banner: pro, ads: ads,
-                       metrics: metrics)
+            RootView(store: store, location: location, events: events) {
+                CameraView(controller: camera, location: location, overlay: overlay,
+                           gallery: gallery, settings: store, registry: registry,
+                           entitlement: pro, paywall: pro, banner: pro, ads: ads,
+                           metrics: metrics)
+            }
         }
     }
 }

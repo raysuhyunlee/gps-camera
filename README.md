@@ -15,6 +15,7 @@ Domain documents live under `/spec`. Each is the source-of-truth for its domain.
 | Doc                    | Domain                                                                                       |
 | ---------------------- | -------------------------------------------------------------------------------------------- |
 | `spec/overview.md`     | Product, branding, BM, screen map, software architecture, settings composition               |
+| `spec/onboarding.md`   | First-run flow: value priming + camera/location permission requests                          |
 | `spec/foundation.md`   | Shared infra: l10n, theme, design system, settings framework, usage metrics, feedback, about |
 | `spec/camera.md`       | Capture surface: photo/video, lens, flash, front/back, capture settings, EXIF writing        |
 | `spec/location.md`     | GPS + sensor provider: accuracy, coords, altitude, compass, time, weather                    |
