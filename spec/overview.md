@@ -5,7 +5,7 @@
 
 ## Status
 
-- 2026-07-10: Onboarding domain live on iOS: first-run flow (2 value screens + 1
+- 2026-07-10: Onboarding domain live on iOS: first-run flow (1 value screen + 1
   permissions page) gated by `RootView` at the composition root; camera +
   location requested from within onboarding (onboarding.md).
 - 2026-07-08: L10n live; Settings fully populated (General/Language, feedback,

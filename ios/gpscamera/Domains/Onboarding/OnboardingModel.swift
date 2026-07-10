@@ -8,9 +8,9 @@ import Foundation
 
 @MainActor
 final class OnboardingModel: ObservableObject {
-    enum Step { case hook, report, permissions }
+    enum Step { case value, permissions }
 
-    @Published private(set) var step: Step = .hook
+    @Published private(set) var step: Step = .value
     /// Permission results shown on the permissions page (nil = not asked yet).
     @Published private(set) var locationGranted: Bool?
     @Published private(set) var cameraGranted: Bool?
@@ -44,11 +44,10 @@ final class OnboardingModel: ObservableObject {
         events.track(.onboardingStarted)
     }
 
-    /// "Continue" on a value page.
+    /// "Continue" on the value page.
     func next() {
         switch step {
-        case .hook: step = .report
-        case .report: step = .permissions
+        case .value: step = .permissions
         case .permissions: break   // the permissions page uses `requestPermissions`
         }
     }

@@ -2,7 +2,7 @@
 
 ## Status
 
-- 2026-07-10: Initial spec + iOS implementation. First-run flow (2 value screens
+- 2026-07-10: Initial spec + iOS implementation. First-run flow (1 value screen
   + 1 permissions page) gated at the composition root; completed flag in the
   foundation settings store.
 
@@ -27,11 +27,10 @@ survey, delivery, trades, real estate); travel/personal secondary.
 Universal, linear, shown once on first launch:
 
 ```
-1. Hook         "Prove where you were."        value: verifiable proof
-2. Report-ready sample stamped photo           value: report-ready output
-3. Permissions  both rationales + Enable ->    location (When In Use) + camera
-                requests location, then camera
-4. -> Main
+1. Value        sample stamped photo + "Prove where you were." + 3 proof bullets
+                (burn location/time, holds up as evidence, drop into your report)
+2. Permissions  both rationales + Enable -> requests location, then camera
+3. -> Main
 ```
 
 - One "Enable" button on the permissions page fires `location.requestPermission()`
@@ -46,6 +45,8 @@ Universal, linear, shown once on first launch:
 - `SettingsStore` key `onboarding.completed` (bool, default false). Set true when
   the flow finishes. The store asserts on unregistered keys, so onboarding
   registers this default at the root (`Onboarding.registerDefaults`).
+- The debug surface (foundation.md dev backdoor) can reset the flag; onboarding
+  shows again on next launch (`RootView` reads the flag at startup).
 
 ### Composition
 
@@ -70,8 +71,8 @@ Universal, linear, shown once on first launch:
 ios/gpscamera/Domains/Onboarding/
 ├── Onboarding.swift      - completedKey + registerDefaults(store)
 ├── OnboardingModel.swift - ObservableObject: step, requestPermissions, complete
-└── OnboardingView.swift  - paged UI (2 value pages + permissions page); the
-                            report-ready hero is a decoupled SwiftUI mock stamp
+└── OnboardingView.swift  - paged UI (1 value page + permissions page); the
+                            value-page hero is a decoupled SwiftUI mock stamp
 ios/gpscamera/RootView.swift - composition-root gate: onboarding vs CameraView
 ios/gpscameraTests/
 └── OnboardingTests.swift - complete() sets the flag; permissions advance

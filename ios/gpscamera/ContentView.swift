@@ -16,12 +16,15 @@ struct ContentView: View {
     var ads: InterstitialAds?
     /// Usage counters inspection + manual edit; nil (previews) hides the section.
     var metrics: UsageMetrics?
+    /// Onboarding flag reset; nil (previews) hides the section.
+    var store: SettingsStore?
 
     var body: some View {
         List {
             if let pro { ProDebugSection(pro: pro) }
             if let ads { AdsDebugSection(ads: ads) }
             if let metrics { MetricsDebugSection(metrics: metrics) }
+            if let store { OnboardingDebugSection(store: store) }
             Section("Authorization") {
                 Text(String(describing: location.authorization))
                 if location.authorization == .notDetermined {
@@ -106,6 +109,32 @@ private struct AdsDebugSection: View {
             Button("Preload interstitial") { ads.preload() }
             Button("Show interstitial") { ads.show() }
                 .disabled(!ads.isLoaded)
+        }
+    }
+}
+
+/// Resets the onboarding flag so the first-run flow shows again on next launch
+/// (RootView reads the flag at startup; onboarding.md).
+private struct OnboardingDebugSection: View {
+    let store: SettingsStore
+    @State private var didReset = false
+
+    var body: some View {
+        Section("Onboarding") {
+            HStack {
+                Text("Completed")
+                Spacer()
+                Text(String(store.bool(Onboarding.completedKey)))
+                    .foregroundStyle(.secondary)
+            }
+            Button("Reset onboarding") {
+                store.set(.bool(false), for: Onboarding.completedKey)
+                didReset = true
+            }
+            if didReset {
+                Text("Restart the app to see it.")
+                    .font(.footnote).foregroundStyle(.secondary)
+            }
         }
     }
 }

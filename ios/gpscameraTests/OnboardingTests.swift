@@ -26,12 +26,11 @@ private func makeStore() -> SettingsStore {
 }
 
 struct OnboardingModelTests {
-    @Test @MainActor func valuePagesAdvanceThenStopAtPermissions() {
+    @Test @MainActor func valuePageAdvancesThenStopsAtPermissions() {
         let model = OnboardingModel(location: FakeLocation(),
                                     requestCamera: { $0(.authorized) },
                                     store: makeStore(), events: NoopTracker())
-        #expect(model.step == .hook)
-        model.next(); #expect(model.step == .report)
+        #expect(model.step == .value)
         model.next(); #expect(model.step == .permissions)
         model.next(); #expect(model.step == .permissions)   // no-op on last page
     }

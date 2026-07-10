@@ -71,7 +71,8 @@ struct CameraView: View {
                            onProLock: { _ in showPaywall = true },
                            highlightKey: settingsHighlight,
                            debugScreen: { AnyView(ContentView(pro: entitlement as? ProStore,
-                                                              ads: ads, metrics: metrics)) })
+                                                              ads: ads, metrics: metrics,
+                                                              store: settings)) })
                 .sheet(isPresented: $showPaywall) { paywall.paywallScreen() }
         }
         // Permission-coupled mismatch popup (foundation.md): non-blocking, the
