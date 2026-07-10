@@ -213,8 +213,8 @@ Neither platform ever requests full photo-library **read** access.
 | --------------------------- | ------------------------------ | ------- | ------- | ---- | -------------------- |
 | `camera.photo.resolution`   | Resolution                     | select  | highest | free | -                    |
 | `camera.photo.format`       | Format                         | select  | JPG     | free | -                    |
-| `camera.photo.saveOriginal` | Also save original             | toggle  | on      | free | -                    |
-| `camera.saveToPhotos`       | Save to Camera Roll (iOS only) | toggle  | on      | free | add-only photo (iOS) |
+| `camera.photo.saveOriginal` | Also save original             | toggle  | off     | free | -                    |
+| `camera.saveToPhotos`       | Save to Camera Roll (iOS only) | toggle  | off     | free | add-only photo (iOS) |
 
 - `camera.saveToPhotos` is iOS-only (hidden on Android). Revocation skips the
   Camera Roll copy (capture still succeeds app-private) and resumes on re-grant -

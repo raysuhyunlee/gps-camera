@@ -160,9 +160,9 @@ nonisolated struct CameraSettingsProvider: SettingsProviding {
                         defaultValue: .string("jpg")),
             SettingItem(key: CameraSettingKey.saveOriginal, titleKey: "Also save original",
                         footnoteKey: "Keeps a copy without the overlay.",
-                        control: .toggle, defaultValue: .bool(true)),
+                        control: .toggle, defaultValue: .bool(false)),
             SettingItem(key: CameraSettingKey.saveToPhotos, titleKey: "Save to Camera Roll",
-                        control: .toggle, defaultValue: .bool(true),
+                        control: .toggle, defaultValue: .bool(false),
                         requiresPermission: .photoAddOnly),
         ]),
         SettingsSection(id: "camera.video", titleKey: "Video", items: [
