@@ -87,6 +87,11 @@
 "No captures yet" = "キャプチャがありません";
 "Delete this item?" = "このアイテムを削除しますか?";
 "Delete" = "削除";
+"Select" = "選択";
+"Cancel" = "キャンセル";
+"Select Items" = "項目を選択";
+"%d Selected" = "%d件選択中";
+"Delete selected items?" = "選択した項目を削除しますか?";
 
 /* Monetization */
 "Unlock every feature." = "すべての機能を解放する";

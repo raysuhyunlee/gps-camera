@@ -29,4 +29,15 @@ struct GalleryItemTests {
         let items = [GalleryItem(url: URL(fileURLWithPath: "/only.jpg"))]
         #expect(items.nextSelection(afterDeleting: items[0]) == nil)
     }
+
+    @Test func selectedKeepsListOrderAndIgnoresUnknownIDs() {
+        let items = ["a", "b", "c"].map { GalleryItem(url: URL(fileURLWithPath: "/\($0).jpg")) }
+        let ids: Set<URL> = [items[2].url, items[0].url, URL(fileURLWithPath: "/gone.jpg")]
+        #expect(items.selected(ids) == [items[0], items[2]])
+    }
+
+    @Test func selectedIsEmptyForNoIDs() {
+        let items = ["a", "b"].map { GalleryItem(url: URL(fileURLWithPath: "/\($0).jpg")) }
+        #expect(items.selected([]).isEmpty)
+    }
 }

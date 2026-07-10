@@ -87,6 +87,11 @@
 "No captures yet" = "Noch keine Aufnahmen";
 "Delete this item?" = "Dieses Element löschen?";
 "Delete" = "Löschen";
+"Select" = "Auswählen";
+"Cancel" = "Abbrechen";
+"Select Items" = "Objekte auswählen";
+"%d Selected" = "%d ausgewählt";
+"Delete selected items?" = "Ausgewählte Objekte löschen?";
 
 /* Monetization */
 "Unlock every feature." = "Alle Funktionen freischalten.";

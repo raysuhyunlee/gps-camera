@@ -87,6 +87,11 @@
 "No captures yet" = "ยังไม่มีภาพถ่าย";
 "Delete this item?" = "ลบรายการนี้?";
 "Delete" = "ลบ";
+"Select" = "เลือก";
+"Cancel" = "ยกเลิก";
+"Select Items" = "เลือกรายการ";
+"%d Selected" = "เลือกแล้ว %d รายการ";
+"Delete selected items?" = "ลบรายการที่เลือกหรือไม่?";
 
 /* Monetization */
 "Unlock every feature." = "ปลดล็อกทุกฟีเจอร์";

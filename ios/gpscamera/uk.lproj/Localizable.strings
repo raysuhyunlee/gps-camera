@@ -87,6 +87,11 @@
 "No captures yet" = "Немає записів";
 "Delete this item?" = "Видалити цей елемент?";
 "Delete" = "Видалити";
+"Select" = "Вибрати";
+"Cancel" = "Скасувати";
+"Select Items" = "Вибрати об'єкти";
+"%d Selected" = "Вибрано: %d";
+"Delete selected items?" = "Видалити вибрані об'єкти?";
 
 /* Monetization */
 "Unlock every feature." = "Відкрийте всі функції.";

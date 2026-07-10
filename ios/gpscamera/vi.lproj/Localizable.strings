@@ -87,6 +87,11 @@
 "No captures yet" = "Chưa có ảnh chụp nào";
 "Delete this item?" = "Xóa mục này?";
 "Delete" = "Xóa";
+"Select" = "Chọn";
+"Cancel" = "Hủy";
+"Select Items" = "Chọn mục";
+"%d Selected" = "Đã chọn %d";
+"Delete selected items?" = "Xóa các mục đã chọn?";
 
 /* Monetization */
 "Unlock every feature." = "Mở khóa mọi tính năng.";

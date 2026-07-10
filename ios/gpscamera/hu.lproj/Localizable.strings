@@ -87,6 +87,11 @@
 "No captures yet" = "Még nincs felvétel";
 "Delete this item?" = "Törli ezt az elemet?";
 "Delete" = "Törlés";
+"Select" = "Kijelölés";
+"Cancel" = "Mégse";
+"Select Items" = "Elemek kijelölése";
+"%d Selected" = "%d kijelölve";
+"Delete selected items?" = "Törli a kijelölt elemeket?";
 
 /* Monetization */
 "Unlock every feature." = "Oldja fel az összes funkciót.";

@@ -87,6 +87,11 @@
 "No captures yet" = "尚無捕捉";
 "Delete this item?" = "刪除此項目？";
 "Delete" = "刪除";
+"Select" = "選擇";
+"Cancel" = "取消";
+"Select Items" = "選擇項目";
+"%d Selected" = "已選擇 %d 個項目";
+"Delete selected items?" = "刪除所選項目?";
 
 /* Monetization */
 "Unlock every feature." = "解鎖所有功能。";

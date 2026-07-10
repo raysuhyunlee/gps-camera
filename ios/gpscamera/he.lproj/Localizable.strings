@@ -87,6 +87,11 @@
 "No captures yet" = "אין לקיחות עדיין";
 "Delete this item?" = "למחוק פריט זה?";
 "Delete" = "מחיקה";
+"Select" = "בחר";
+"Cancel" = "ביטול";
+"Select Items" = "בחירת פריטים";
+"%d Selected" = "%d נבחרו";
+"Delete selected items?" = "למחוק את הפריטים שנבחרו?";
 
 /* Monetization */
 "Unlock every feature." = "פתח את נעילת כל התכונות.";

@@ -46,7 +46,7 @@
 - Language override stored in `SettingsStore` under `"general.language"` (default `""` = follow system).
 - On language change: `SettingsStore.onSet` hook calls `L10n.shared.setLanguage()`, swapping the lproj bundle.
 - Views that need live re-render hold `@ObservedObject private var l10n = L10n.shared`.
-- 29 language lproj bundles ship with the app (95 strings each); English falls back to the key.
+- 29 language lproj bundles ship with the app (113 strings each); English falls back to the key.
 - Language is selectable in Settings → General; defaults to the system locale.
 
 ### Theme
@@ -222,7 +222,7 @@ ios/gpscamera/Foundation/
     ├── SettingsPermissions.swift - SettingPermission status/request (location, add-only photos)
     ├── SettingsView.swift        - generic SettingsScreen renderer (controls, pro lock, highlight)
     └── ColorHex.swift            - Color <-> #RRGGBBAA for Control.color
-ios/gpscamera/{lang}.lproj/Localizable.strings  - 29 languages, 95 strings each
+ios/gpscamera/{lang}.lproj/Localizable.strings  - 29 languages, 113 strings each
 ios/gpscamera/Resources/Fonts/                  - bundled OFL fonts + Licenses/*.txt
 ios/gpscameraTests/
 └── SettingsValueTests.swift      - store/registry/deep-link + bundled-font tests

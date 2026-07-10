@@ -87,6 +87,11 @@
 "No captures yet" = "Brak zarejestrowanych ujęć";
 "Delete this item?" = "Usunąć ten element?";
 "Delete" = "Usuń";
+"Select" = "Wybierz";
+"Cancel" = "Anuluj";
+"Select Items" = "Wybierz elementy";
+"%d Selected" = "Wybrano: %d";
+"Delete selected items?" = "Usunąć wybrane elementy?";
 
 /* Monetization */
 "Unlock every feature." = "Odblokuj wszystkie funkcje.";

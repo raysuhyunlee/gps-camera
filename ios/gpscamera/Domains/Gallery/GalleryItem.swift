@@ -18,6 +18,9 @@ nonisolated struct GalleryItem: Identifiable, Hashable {
 }
 
 extension Array where Element == GalleryItem {
+    /// The multi-selected items, in list order (newest first).
+    func selected(_ ids: Set<URL>) -> [GalleryItem] { filter { ids.contains($0.url) } }
+
     /// Selection to fall back to after deleting `item` from this (pre-delete)
     /// list: the item that takes its index, else the new last, nil when empty.
     func nextSelection(afterDeleting item: GalleryItem) -> GalleryItem? {

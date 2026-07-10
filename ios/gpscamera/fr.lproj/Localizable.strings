@@ -87,6 +87,11 @@
 "No captures yet" = "Aucune capture pour l'instant";
 "Delete this item?" = "Supprimer cet élément ?";
 "Delete" = "Supprimer";
+"Select" = "Sélectionner";
+"Cancel" = "Annuler";
+"Select Items" = "Sélectionner des éléments";
+"%d Selected" = "%d sélectionnés";
+"Delete selected items?" = "Supprimer les éléments sélectionnés ?";
 
 /* Monetization */
 "Unlock every feature." = "Débloquez toutes les fonctionnalités.";

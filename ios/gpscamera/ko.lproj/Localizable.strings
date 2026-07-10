@@ -87,6 +87,11 @@
 "No captures yet" = "캡처가 없습니다";
 "Delete this item?" = "이 항목을 삭제하시겠습니까?";
 "Delete" = "삭제";
+"Select" = "선택";
+"Cancel" = "취소";
+"Select Items" = "항목 선택";
+"%d Selected" = "%d개 선택됨";
+"Delete selected items?" = "선택한 항목을 삭제하시겠습니까?";
 
 /* Monetization */
 "Unlock every feature." = "모든 기능 잠금 해제";

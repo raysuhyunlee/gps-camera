@@ -87,6 +87,11 @@
 "No captures yet" = "Žádné záznamy";
 "Delete this item?" = "Smazat tuto položku?";
 "Delete" = "Smazat";
+"Select" = "Vybrat";
+"Cancel" = "Zrušit";
+"Select Items" = "Vybrat položky";
+"%d Selected" = "Vybráno: %d";
+"Delete selected items?" = "Smazat vybrané položky?";
 
 /* Monetization */
 "Unlock every feature." = "Odemkněte všechny funkce.";

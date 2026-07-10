@@ -87,6 +87,11 @@
 "No captures yet" = "Nicio captură încă";
 "Delete this item?" = "Ștergeți acest element?";
 "Delete" = "Șterge";
+"Select" = "Selectați";
+"Cancel" = "Anulați";
+"Select Items" = "Selectați elemente";
+"%d Selected" = "%d selectate";
+"Delete selected items?" = "Ștergeți elementele selectate?";
 
 /* Monetization */
 "Unlock every feature." = "Deblochează toate funcțiile.";

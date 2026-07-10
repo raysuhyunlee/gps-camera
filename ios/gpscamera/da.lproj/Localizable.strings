@@ -87,6 +87,11 @@
 "No captures yet" = "Ingen optagelser endnu";
 "Delete this item?" = "Slet dette element?";
 "Delete" = "Slet";
+"Select" = "Vælg";
+"Cancel" = "Annuller";
+"Select Items" = "Vælg emner";
+"%d Selected" = "%d valgt";
+"Delete selected items?" = "Slet valgte emner?";
 
 /* Monetization */
 "Unlock every feature." = "Lås alle funktioner op.";

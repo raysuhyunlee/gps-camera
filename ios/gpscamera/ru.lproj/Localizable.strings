@@ -87,6 +87,11 @@
 "No captures yet" = "Нет снимков";
 "Delete this item?" = "Удалить этот элемент?";
 "Delete" = "Удалить";
+"Select" = "Выбрать";
+"Cancel" = "Отмена";
+"Select Items" = "Выбрать объекты";
+"%d Selected" = "Выбрано: %d";
+"Delete selected items?" = "Удалить выбранные объекты?";
 
 /* Monetization */
 "Unlock every feature." = "Откройте все функции.";

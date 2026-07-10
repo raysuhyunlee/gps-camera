@@ -87,6 +87,11 @@
 "No captures yet" = "Henüz çekim yok";
 "Delete this item?" = "Bu öğe silinsin mi?";
 "Delete" = "Sil";
+"Select" = "Seç";
+"Cancel" = "Vazgeç";
+"Select Items" = "Öğeleri seç";
+"%d Selected" = "%d seçildi";
+"Delete selected items?" = "Seçilen öğeler silinsin mi?";
 
 /* Monetization */
 "Unlock every feature." = "Tüm özelliklerin kilidini aç.";
