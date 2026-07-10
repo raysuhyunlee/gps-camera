@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Попередніх покупок не знайдено.";
 "Restore could not be completed. Please try again." = "Відновлення не вдалося завершити. Спробуйте ще раз.";
 "The purchase could not be completed. Please try again." = "Не вдалося завершити покупку. Спробуйте ще раз.";
+
+/* Onboarding */
+"Prove where you were." = "Місце і час — на кожному знімку";
+"Burn location and time into every shot" = "Координати й час на кожному фото";
+"Your photos hold up as evidence" = "Надійне підтвердження";
+"Drop it straight into your report" = "Готово для вашого звіту";
+"Almost ready" = "Майже готово";
+"Two permissions are required to stamp your photos." = "Нам потрібні два дозволи, щоб додавати дані до фото.";
+"Location" = "Місцезнаходження";
+"Stamp coordinates, altitude, and address onto each photo." = "Додає до кожного фото координати, висоту й адресу.";
+"Camera" = "Камера";
+"Capture the photos and videos you'll stamp." = "Знімайте фото та відео, до яких додаватимуться дані.";
+"Enable" = "Дозволити";
+"Empire State Building, New York" = "Емпайр-Стейт-Білдінг, Нью-Йорк";
+
+/* Camera */
+"Mode" = "Режим";
+

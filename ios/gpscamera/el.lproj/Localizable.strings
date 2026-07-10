@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Δεν βρέθηκε προηγούμενη αγορά.";
 "Restore could not be completed. Please try again." = "Η επαναφορά δεν ήταν δυνατή. Παρακαλώ δοκιμάστε ξανά.";
 "The purchase could not be completed. Please try again." = "Η αγορά δεν ήταν δυνατή. Παρακαλώ δοκιμάστε ξανά.";
+
+/* Onboarding */
+"Prove where you were." = "Τόπος και ώρα σε κάθε φωτογραφία";
+"Burn location and time into every shot" = "Τοποθεσία και ώρα σε κάθε φωτογραφία";
+"Your photos hold up as evidence" = "Ένα αξιόπιστο τεκμήριο";
+"Drop it straight into your report" = "Έτοιμες για την αναφορά σας";
+"Almost ready" = "Σχεδόν έτοιμο";
+"Two permissions are required to stamp your photos." = "Χρειαζόμαστε δύο άδειες για να προσθέσουμε τα στοιχεία στις φωτογραφίες σας.";
+"Location" = "Τοποθεσία";
+"Stamp coordinates, altitude, and address onto each photo." = "Προσθέτει συντεταγμένες, υψόμετρο και διεύθυνση σε κάθε φωτογραφία.";
+"Camera" = "Κάμερα";
+"Capture the photos and videos you'll stamp." = "Τραβήξτε τις φωτογραφίες και τα βίντεο που θέλετε να σημειώσετε.";
+"Enable" = "Ενεργοποίηση";
+"Empire State Building, New York" = "Empire State Building, Νέα Υόρκη";
+
+/* Camera */
+"Mode" = "Λειτουργία";
+

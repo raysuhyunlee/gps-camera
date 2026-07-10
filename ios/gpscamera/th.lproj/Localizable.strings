@@ -117,3 +117,21 @@
 "No previous purchase was found." = "ไม่พบการซื้อก่อนหน้า";
 "Restore could not be completed. Please try again." = "ไม่สามารถกู้คืนได้ กรุณาลองใหม่";
 "The purchase could not be completed. Please try again." = "ไม่สามารถซื้อได้ กรุณาลองใหม่";
+
+/* Onboarding */
+"Prove where you were." = "สถานที่และเวลา ในทุกภาพ";
+"Burn location and time into every shot" = "บันทึกตำแหน่งและเวลาในทุกภาพ";
+"Your photos hold up as evidence" = "หลักฐานที่เชื่อถือได้";
+"Drop it straight into your report" = "พร้อมใช้ในรายงานของคุณ";
+"Almost ready" = "เกือบพร้อมแล้ว";
+"Two permissions are required to stamp your photos." = "เราต้องการสองสิทธิ์เพื่อเพิ่มข้อมูลลงในภาพของคุณ";
+"Location" = "ตำแหน่ง";
+"Stamp coordinates, altitude, and address onto each photo." = "เพิ่มพิกัด ระดับความสูง และที่อยู่ลงในทุกภาพ";
+"Camera" = "กล้อง";
+"Capture the photos and videos you'll stamp." = "ถ่ายภาพและวิดีโอที่คุณต้องการบันทึกข้อมูล";
+"Enable" = "เปิดใช้งาน";
+"Empire State Building, New York" = "ตึกเอ็มไพร์สเตต นิวยอร์ก";
+
+/* Camera */
+"Mode" = "โหมด";
+

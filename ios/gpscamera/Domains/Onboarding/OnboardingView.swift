@@ -163,7 +163,7 @@ private struct SampleStampView: View {
             .overlay(alignment: .bottomLeading) {
                 VStack(alignment: .leading, spacing: 2) {
                     Text("40.7484, -73.9857").font(.caption.monospaced().bold())
-                    Text("Empire State Building, New York").font(.caption2)
+                    Text(L("Empire State Building, New York")).font(.caption2)
                     Text("2026-07-10 14:05  N").font(.caption2.monospaced())
                 }
                 .foregroundStyle(.white)

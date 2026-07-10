@@ -117,3 +117,21 @@
 "No previous purchase was found." = "이전 구매 내역이 없습니다.";
 "Restore could not be completed. Please try again." = "복원을 완료할 수 없습니다. 다시 시도해 주세요.";
 "The purchase could not be completed. Please try again." = "구매를 완료할 수 없습니다. 다시 시도해 주세요.";
+
+/* Onboarding */
+"Prove where you were." = "언제 어디서 찍었는지 한눈에";
+"Burn location and time into every shot" = "모든 사진에 위치와 시간 기록";
+"Your photos hold up as evidence" = "사진으로 증빙하세요";
+"Drop it straight into your report" = "보고서에 바로 활용하세요";
+"Almost ready" = "거의 다 됐어요";
+"Two permissions are required to stamp your photos." = "사진에 정보를 기록하려면 두 가지 권한이 필요해요.";
+"Location" = "위치";
+"Stamp coordinates, altitude, and address onto each photo." = "각 사진에 좌표, 고도, 주소를 기록해요.";
+"Camera" = "카메라";
+"Capture the photos and videos you'll stamp." = "기록할 사진과 동영상을 촬영해요.";
+"Enable" = "사용 설정";
+"Empire State Building, New York" = "엠파이어 스테이트 빌딩, 뉴욕";
+
+/* Camera */
+"Mode" = "모드";
+

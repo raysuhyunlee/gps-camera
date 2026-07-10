@@ -117,3 +117,21 @@
 "No previous purchase was found." = "לא נמצאה רכישה קודמת.";
 "Restore could not be completed. Please try again." = "לא ניתן היה להשלים את השחזור. אנא נסה שוב.";
 "The purchase could not be completed. Please try again." = "לא ניתן היה להשלים את הרכישה. אנא נסה שוב.";
+
+/* Onboarding */
+"Prove where you were." = "המקום והזמן, בכל תמונה";
+"Burn location and time into every shot" = "מיקום וזמן בכל תמונה";
+"Your photos hold up as evidence" = "תיעוד אמין";
+"Drop it straight into your report" = "מוכנות לדוח שלך";
+"Almost ready" = "כמעט מוכן";
+"Two permissions are required to stamp your photos." = "אנחנו צריכים שתי הרשאות כדי להוסיף את הפרטים לתמונות שלך.";
+"Location" = "מיקום";
+"Stamp coordinates, altitude, and address onto each photo." = "מוסיף לכל תמונה קואורדינטות, גובה וכתובת.";
+"Camera" = "מצלמה";
+"Capture the photos and videos you'll stamp." = "צלם את התמונות והסרטונים שתרצה לתעד.";
+"Enable" = "הפעלה";
+"Empire State Building, New York" = "אמפייר סטייט בילדינג, ניו יורק";
+
+/* Camera */
+"Mode" = "מצב";
+

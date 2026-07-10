@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Nu a fost găsită nicio achiziție anterioară.";
 "Restore could not be completed. Please try again." = "Restaurarea nu a putut fi finalizată. Vă rugăm încercați din nou.";
 "The purchase could not be completed. Please try again." = "Achiziția nu a putut fi finalizată. Vă rugăm încercați din nou.";
+
+/* Onboarding */
+"Prove where you were." = "Locul și ora, în fiecare fotografie";
+"Burn location and time into every shot" = "Locație și oră pe fiecare fotografie";
+"Your photos hold up as evidence" = "O dovadă de încredere";
+"Drop it straight into your report" = "Gata pentru raportul tău";
+"Almost ready" = "Aproape gata";
+"Two permissions are required to stamp your photos." = "Avem nevoie de două permisiuni pentru a adăuga datele pe fotografiile tale.";
+"Location" = "Locație";
+"Stamp coordinates, altitude, and address onto each photo." = "Adaugă coordonate, altitudine și adresă pe fiecare fotografie.";
+"Camera" = "Cameră";
+"Capture the photos and videos you'll stamp." = "Fotografiază și filmează ce vrei să marchezi.";
+"Enable" = "Activează";
+"Empire State Building, New York" = "Empire State Building, New York";
+
+/* Camera */
+"Mode" = "Mod";
+

@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Žádný předchozí nákup nebyl nalezen.";
 "Restore could not be completed. Please try again." = "Obnovení se nepodařilo dokončit. Zkuste to znovu.";
 "The purchase could not be completed. Please try again." = "Nákup se nepodařilo dokončit. Zkuste to znovu.";
+
+/* Onboarding */
+"Prove where you were." = "Místo a čas na každé fotce";
+"Burn location and time into every shot" = "Poloha a čas na každé fotce";
+"Your photos hold up as evidence" = "Spolehlivý záznam";
+"Drop it straight into your report" = "Připraveno do vaší zprávy";
+"Almost ready" = "Téměř hotovo";
+"Two permissions are required to stamp your photos." = "Potřebujeme dvě oprávnění, abychom mohli přidat údaje k vašim fotkám.";
+"Location" = "Poloha";
+"Stamp coordinates, altitude, and address onto each photo." = "Přidává ke každé fotce souřadnice, nadmořskou výšku a adresu.";
+"Camera" = "Fotoaparát";
+"Capture the photos and videos you'll stamp." = "Pořiďte fotky a videa, která chcete označit.";
+"Enable" = "Povolit";
+"Empire State Building, New York" = "Empire State Building, New York";
+
+/* Camera */
+"Mode" = "Režim";
+

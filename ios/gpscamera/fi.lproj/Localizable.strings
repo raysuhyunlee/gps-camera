@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Aiempia ostoksia ei löydetty.";
 "Restore could not be completed. Please try again." = "Palautusta ei voitu suorittaa. Yritä uudelleen.";
 "The purchase could not be completed. Please try again." = "Ostoa ei voitu suorittaa. Yritä uudelleen.";
+
+/* Onboarding */
+"Prove where you were." = "Paikka ja aika – joka kuvassa";
+"Burn location and time into every shot" = "Sijainti ja aika jokaisessa kuvassa";
+"Your photos hold up as evidence" = "Luotettava todiste";
+"Drop it straight into your report" = "Valmiina raporttiisi";
+"Almost ready" = "Melkein valmis";
+"Two permissions are required to stamp your photos." = "Tarvitsemme kaksi lupaa lisätäksemme tiedot kuviisi.";
+"Location" = "Sijainti";
+"Stamp coordinates, altitude, and address onto each photo." = "Lisää jokaiseen kuvaan koordinaatit, korkeuden ja osoitteen.";
+"Camera" = "Kamera";
+"Capture the photos and videos you'll stamp." = "Ota kuvat ja videot, jotka haluat merkitä.";
+"Enable" = "Ota käyttöön";
+"Empire State Building, New York" = "Empire State Building, New York";
+
+/* Camera */
+"Mode" = "Tila";
+

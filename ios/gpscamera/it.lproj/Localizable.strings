@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Nessun acquisto precedente trovato.";
 "Restore could not be completed. Please try again." = "Il ripristino non è stato possibile. Riprova.";
 "The purchase could not be completed. Please try again." = "L'acquisto non è stato possibile. Riprova.";
+
+/* Onboarding */
+"Prove where you were." = "Luogo e ora, su ogni foto";
+"Burn location and time into every shot" = "Posizione e ora su ogni foto";
+"Your photos hold up as evidence" = "Una prova affidabile";
+"Drop it straight into your report" = "Pronte per il tuo rapporto";
+"Almost ready" = "Quasi pronto";
+"Two permissions are required to stamp your photos." = "Servono due autorizzazioni per aggiungere i dati alle tue foto.";
+"Location" = "Posizione";
+"Stamp coordinates, altitude, and address onto each photo." = "Aggiunge coordinate, altitudine e indirizzo a ogni foto.";
+"Camera" = "Fotocamera";
+"Capture the photos and videos you'll stamp." = "Scatta le foto e i video da contrassegnare.";
+"Enable" = "Attiva";
+"Empire State Building, New York" = "Empire State Building, New York";
+
+/* Camera */
+"Mode" = "Modalità";
+

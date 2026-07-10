@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Ingen tidligere kjøp ble funnet.";
 "Restore could not be completed. Please try again." = "Gjenopprettingen kunne ikke fullføres. Prøv igjen.";
 "The purchase could not be completed. Please try again." = "Kjøpet kunne ikke fullføres. Prøv igjen.";
+
+/* Onboarding */
+"Prove where you were." = "Sted og tid – på hvert bilde";
+"Burn location and time into every shot" = "Sted og tid på hvert bilde";
+"Your photos hold up as evidence" = "Et pålitelig bevis";
+"Drop it straight into your report" = "Klar for rapporten din";
+"Almost ready" = "Nesten klar";
+"Two permissions are required to stamp your photos." = "Vi trenger to tillatelser for å legge til opplysningene på bildene dine.";
+"Location" = "Posisjon";
+"Stamp coordinates, altitude, and address onto each photo." = "Legger til koordinater, høyde og adresse på hvert bilde.";
+"Camera" = "Kamera";
+"Capture the photos and videos you'll stamp." = "Ta bildene og videoene du vil merke.";
+"Enable" = "Aktiver";
+"Empire State Building, New York" = "Empire State Building, New York";
+
+/* Camera */
+"Mode" = "Modus";
+

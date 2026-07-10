@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Tidak ada pembelian sebelumnya.";
 "Restore could not be completed. Please try again." = "Pemulihan tidak dapat diselesaikan. Silakan coba lagi.";
 "The purchase could not be completed. Please try again." = "Pembelian tidak dapat diselesaikan. Silakan coba lagi.";
+
+/* Onboarding */
+"Prove where you were." = "Tempat dan waktu di setiap foto";
+"Burn location and time into every shot" = "Lokasi dan waktu di setiap foto";
+"Your photos hold up as evidence" = "Catatan yang bisa diandalkan";
+"Drop it straight into your report" = "Siap untuk laporan Anda";
+"Almost ready" = "Hampir siap";
+"Two permissions are required to stamp your photos." = "Kami memerlukan dua izin untuk menambahkan data ke foto Anda.";
+"Location" = "Lokasi";
+"Stamp coordinates, altitude, and address onto each photo." = "Menambahkan koordinat, ketinggian, dan alamat ke setiap foto.";
+"Camera" = "Kamera";
+"Capture the photos and videos you'll stamp." = "Ambil foto dan video yang ingin Anda tandai.";
+"Enable" = "Aktifkan";
+"Empire State Building, New York" = "Empire State Building, New York";
+
+/* Camera */
+"Mode" = "Mode";
+

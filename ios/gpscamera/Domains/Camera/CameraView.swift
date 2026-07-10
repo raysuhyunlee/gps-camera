@@ -277,7 +277,7 @@ struct CameraView: View {
 
     /// Liquid Glass segmented control (iOS 26 default for `.segmented`).
     private var modeSwitch: some View {
-        Picker("Mode", selection: Binding(
+        Picker(L("Mode"), selection: Binding(
             get: { controller.mode },
             set: { controller.setMode($0) }
         )) {

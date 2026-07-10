@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Không tìm thấy giao dịch mua trước đó.";
 "Restore could not be completed. Please try again." = "Không thể hoàn tất khôi phục. Vui lòng thử lại.";
 "The purchase could not be completed. Please try again." = "Không thể hoàn tất giao dịch mua. Vui lòng thử lại.";
+
+/* Onboarding */
+"Prove where you were." = "Địa điểm và thời gian trên mọi bức ảnh";
+"Burn location and time into every shot" = "Vị trí và thời gian trên mỗi ảnh";
+"Your photos hold up as evidence" = "Bằng chứng đáng tin cậy";
+"Drop it straight into your report" = "Sẵn sàng cho báo cáo của bạn";
+"Almost ready" = "Gần xong rồi";
+"Two permissions are required to stamp your photos." = "Chúng tôi cần hai quyền để thêm thông tin vào ảnh của bạn.";
+"Location" = "Vị trí";
+"Stamp coordinates, altitude, and address onto each photo." = "Thêm tọa độ, độ cao và địa chỉ vào mỗi ảnh.";
+"Camera" = "Máy ảnh";
+"Capture the photos and videos you'll stamp." = "Chụp ảnh và quay video bạn muốn ghi dấu.";
+"Enable" = "Bật";
+"Empire State Building, New York" = "Empire State Building, New York";
+
+/* Camera */
+"Mode" = "Chế độ";
+

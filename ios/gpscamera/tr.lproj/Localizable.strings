@@ -117,3 +117,21 @@
 "No previous purchase was found." = "Önceki satın alma bulunamadı.";
 "Restore could not be completed. Please try again." = "Geri yükleme tamamlanamadı. Lütfen tekrar deneyin.";
 "The purchase could not be completed. Please try again." = "Satın alma tamamlanamadı. Lütfen tekrar deneyin.";
+
+/* Onboarding */
+"Prove where you were." = "Yer ve zaman – her karede";
+"Burn location and time into every shot" = "Her fotoğrafta konum ve saat";
+"Your photos hold up as evidence" = "Güvenilir bir kayıt";
+"Drop it straight into your report" = "Raporunuza hazır";
+"Almost ready" = "Neredeyse hazır";
+"Two permissions are required to stamp your photos." = "Fotoğraflarınıza bilgi eklemek için iki izne ihtiyacımız var.";
+"Location" = "Konum";
+"Stamp coordinates, altitude, and address onto each photo." = "Her fotoğrafa konum, rakım ve adres ekler.";
+"Camera" = "Kamera";
+"Capture the photos and videos you'll stamp." = "İşaretleyeceğiniz fotoğraf ve videoları çekin.";
+"Enable" = "Etkinleştir";
+"Empire State Building, New York" = "Empire State Binası, New York";
+
+/* Camera */
+"Mode" = "Mod";
+

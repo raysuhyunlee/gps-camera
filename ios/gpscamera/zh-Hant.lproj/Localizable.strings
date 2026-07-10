@@ -117,3 +117,21 @@
 "No previous purchase was found." = "找不到先前的購買記錄。";
 "Restore could not be completed. Please try again." = "無法完成恢復。請再試一次。";
 "The purchase could not be completed. Please try again." = "無法完成購買。請再試一次。";
+
+/* Onboarding */
+"Prove where you were." = "拍攝的地點和時間，盡在照片中";
+"Burn location and time into every shot" = "每張照片都記錄位置和時間";
+"Your photos hold up as evidence" = "值得信賴的紀錄";
+"Drop it straight into your report" = "可直接用於你的報告";
+"Almost ready" = "就快好了";
+"Two permissions are required to stamp your photos." = "需要兩項權限，才能為照片加上資訊。";
+"Location" = "位置";
+"Stamp coordinates, altitude, and address onto each photo." = "為每張照片記錄座標、海拔和地址。";
+"Camera" = "相機";
+"Capture the photos and videos you'll stamp." = "拍攝需要標記的照片和影片。";
+"Enable" = "啟用";
+"Empire State Building, New York" = "帝國大廈，紐約";
+
+/* Camera */
+"Mode" = "模式";
+

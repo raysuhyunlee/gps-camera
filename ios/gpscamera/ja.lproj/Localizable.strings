@@ -117,3 +117,21 @@
 "No previous purchase was found." = "以前の購入が見つかりません。";
 "Restore could not be completed. Please try again." = "復元を完了できませんでした。もう一度お試しください。";
 "The purchase could not be completed. Please try again." = "購入を完了できませんでした。もう一度お試しください。";
+
+/* Onboarding */
+"Prove where you were." = "撮った場所と時間が、写真に";
+"Burn location and time into every shot" = "すべての写真に位置と時間を記録";
+"Your photos hold up as evidence" = "信頼できる記録として";
+"Drop it straight into your report" = "そのまま報告書に使える";
+"Almost ready" = "あと少しです";
+"Two permissions are required to stamp your photos." = "写真に情報を記録するには、2つの許可が必要です。";
+"Location" = "位置情報";
+"Stamp coordinates, altitude, and address onto each photo." = "各写真に座標・高度・住所を記録します。";
+"Camera" = "カメラ";
+"Capture the photos and videos you'll stamp." = "記録する写真や動画を撮影します。";
+"Enable" = "許可する";
+"Empire State Building, New York" = "エンパイア・ステート・ビル、ニューヨーク";
+
+/* Camera */
+"Mode" = "モード";
+
