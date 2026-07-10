@@ -87,6 +87,11 @@
 "No captures yet" = "Belum ada tangkapan";
 "Delete this item?" = "Padam item ini?";
 "Delete" = "Padam";
+"Select" = "Pilih";
+"Cancel" = "Batal";
+"Select Items" = "Pilih Item";
+"%d Selected" = "%d dipilih";
+"Delete selected items?" = "Padam item yang dipilih?";
 
 /* Monetization */
 "Unlock every feature." = "Buka kunci setiap ciri.";

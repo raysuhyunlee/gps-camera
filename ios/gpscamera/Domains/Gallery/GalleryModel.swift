@@ -25,9 +25,13 @@ final class GalleryModel: ObservableObject {
         items = store.mediaURLs().map(GalleryItem.init)
     }
 
-    func delete(_ item: GalleryItem) {
-        try? store.delete(item.url)
-        thumbnails.removeObject(forKey: item.url as NSURL)
+    func delete(_ item: GalleryItem) { delete([item]) }
+
+    func delete(_ items: [GalleryItem]) {
+        for item in items {
+            try? store.delete(item.url)
+            thumbnails.removeObject(forKey: item.url as NSURL)
+        }
         refresh()
     }
 

@@ -87,6 +87,11 @@
 "No captures yet" = "Δεν υπάρχουν λήψεις";
 "Delete this item?" = "Διαγραφή αυτού του στοιχείου;";
 "Delete" = "Διαγραφή";
+"Select" = "Επιλογή";
+"Cancel" = "Ακύρωση";
+"Select Items" = "Επιλογή στοιχείων";
+"%d Selected" = "Επιλέχθηκαν %d";
+"Delete selected items?" = "Διαγραφή επιλεγμένων στοιχείων;";
 
 /* Monetization */
 "Unlock every feature." = "Ξεκλείδωμα κάθε λειτουργίας.";

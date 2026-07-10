@@ -87,6 +87,11 @@
 "No captures yet" = "Ingen opptak ennå";
 "Delete this item?" = "Slette dette elementet?";
 "Delete" = "Slett";
+"Select" = "Velg";
+"Cancel" = "Avbryt";
+"Select Items" = "Velg objekter";
+"%d Selected" = "%d valgt";
+"Delete selected items?" = "Slett valgte objekter?";
 
 /* Monetization */
 "Unlock every feature." = "Lås opp alle funksjoner.";

@@ -87,6 +87,11 @@
 "No captures yet" = "Inga tagningar ännu";
 "Delete this item?" = "Radera det här objektet?";
 "Delete" = "Radera";
+"Select" = "Välj";
+"Cancel" = "Avbryt";
+"Select Items" = "Välj objekt";
+"%d Selected" = "%d valda";
+"Delete selected items?" = "Radera valda objekt?";
 
 /* Monetization */
 "Unlock every feature." = "Lås upp alla funktioner.";

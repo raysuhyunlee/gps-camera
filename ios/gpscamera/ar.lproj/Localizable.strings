@@ -87,6 +87,11 @@
 "No captures yet" = "لا توجد لقطات بعد";
 "Delete this item?" = "هل تريد حذف هذا العنصر؟";
 "Delete" = "حذف";
+"Select" = "تحديد";
+"Cancel" = "إلغاء";
+"Select Items" = "تحديد العناصر";
+"%d Selected" = "تم تحديد %d";
+"Delete selected items?" = "حذف العناصر المحددة؟";
 
 /* Monetization */
 "Unlock every feature." = "افتح كل الميزات.";

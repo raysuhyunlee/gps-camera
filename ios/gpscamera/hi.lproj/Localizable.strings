@@ -87,6 +87,11 @@
 "No captures yet" = "अभी तक कोई कैप्चर नहीं";
 "Delete this item?" = "इस आइटम को हटाएं?";
 "Delete" = "हटाएं";
+"Select" = "चुनें";
+"Cancel" = "रद्द करें";
+"Select Items" = "आइटम चुनें";
+"%d Selected" = "%d चुने गए";
+"Delete selected items?" = "चयनित आइटम हटाएं?";
 
 /* Monetization */
 "Unlock every feature." = "हर सुविधा अनलॉक करें।";

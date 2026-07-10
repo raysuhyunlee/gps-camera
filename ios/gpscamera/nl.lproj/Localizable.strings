@@ -87,6 +87,11 @@
 "No captures yet" = "Nog geen opnamen";
 "Delete this item?" = "Dit item verwijderen?";
 "Delete" = "Verwijderen";
+"Select" = "Selecteer";
+"Cancel" = "Annuleer";
+"Select Items" = "Selecteer onderdelen";
+"%d Selected" = "%d geselecteerd";
+"Delete selected items?" = "Geselecteerde onderdelen verwijderen?";
 
 /* Monetization */
 "Unlock every feature." = "Alle functies ontgrendelen.";

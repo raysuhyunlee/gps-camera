@@ -87,6 +87,11 @@
 "No captures yet" = "Ei kuvauksia vielä";
 "Delete this item?" = "Poistetaanko tämä kohde?";
 "Delete" = "Poista";
+"Select" = "Valitse";
+"Cancel" = "Kumoa";
+"Select Items" = "Valitse kohteita";
+"%d Selected" = "%d valittu";
+"Delete selected items?" = "Poistetaanko valitut kohteet?";
 
 /* Monetization */
 "Unlock every feature." = "Avaa kaikki ominaisuudet.";
