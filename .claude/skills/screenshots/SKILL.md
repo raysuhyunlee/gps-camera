@@ -45,9 +45,9 @@ Paths are relative to repo root. fastlane runs from `ios/`; compose runs from `s
 
 ## 5. AI polish (optional)
 
-- If the user wants the premium look and `GEMINI_API_KEY` is set, run
-  `node enhance.mjs --input <png> --output <png>` per final screen (Nano Banana /
-  Gemini 2.5 Flash Image). Review each output; image models vary per run, so
+- If the user wants the premium look and `OPENAI_API_KEY` is set, run
+  `node enhance.mjs --input <png> --output <png>` per final screen (OpenAI
+  `gpt-image-1` / "ducktape"). Review each output; image models vary per run, so
   re-run for variants and keep the best. Skip this step if no key.
 
 ## 6. Upload

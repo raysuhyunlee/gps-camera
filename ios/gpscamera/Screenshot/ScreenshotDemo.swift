@@ -74,7 +74,15 @@ struct ScreenshotDemo {
     //       altitude: 2106, accuracyMeters: 4.2, heading: Heading(degrees: 312),
     //       timestamp: .now, address: "Furkapass, Realp, Uri, Switzerland",
     //       weather: nil)
-    private static let scenes: [String: LocationSnapshot] = [:]
+    private static let scenes: [String: LocationSnapshot] = [
+        // Night skyline shot from Top of the Rock, facing south at the
+        // Empire State Building (`screenshot-scene-new-york.jpg`).
+        "new-york": LocationSnapshot(
+            coordinate: Coordinate(latitude: 40.7593, longitude: -73.9793),
+            altitude: 259, accuracyMeters: 4.8, heading: Heading(degrees: 180),
+            timestamp: .now, address: "30 Rockefeller Plaza, New York, NY 10112",
+            weather: nil),
+    ]
 
     private static let defaultSnapshot = LocationSnapshot(
         coordinate: Coordinate(latitude: 37.5326, longitude: 127.0246),

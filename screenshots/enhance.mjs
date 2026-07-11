@@ -1,16 +1,16 @@
 // Optional AI polish (screenshots.md): passes a composed scaffold through
-// Google's "Nano Banana" image model (Gemini 2.5 Flash Image) for photorealistic
-// lighting / subtle breakout polish, keeping the app UI intact. Deterministic
-// compose remains the backbone; this is a per-screen enhancement pass.
+// OpenAI's latest ChatGPT image model ("ducktape", API id gpt-image-1) for
+// photorealistic lighting / subtle breakout polish, keeping the app UI intact.
+// Deterministic compose remains the backbone; this is a per-screen pass.
 //
-// Requires GEMINI_API_KEY. Usage:
+// Requires OPENAI_API_KEY. Usage:
 //   node enhance.mjs --input final/01Main.png --output final/01Main.png \
-//     [--prompt "..."] [--model gemini-2.5-flash-image]
+//     [--prompt "..."] [--model gpt-image-1]
 //
 // Note: image models vary run-to-run. Review each output; re-run for variants.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { dirname, resolve, basename } from 'node:path';
 
 function arg(name, def) {
   const i = process.argv.indexOf(`--${name}`);
@@ -23,29 +23,26 @@ const DEFAULT_PROMPT =
   'cohesive. Do not alter, cover, or distort the phone screen content or the caption.';
 
 async function main() {
-  const key = process.env.GEMINI_API_KEY;
-  if (!key) { console.error('GEMINI_API_KEY not set; skipping AI enhancement.'); process.exit(2); }
+  const key = process.env.OPENAI_API_KEY;
+  if (!key) { console.error('OPENAI_API_KEY not set; skipping AI enhancement.'); process.exit(2); }
   const input = arg('input'), output = arg('output');
   if (!input || !output) { console.error('required: --input <png> --output <png>'); process.exit(1); }
-  const model = arg('model', 'gemini-2.5-flash-image');
+  const model = arg('model', 'gpt-image-1');
   const prompt = arg('prompt', DEFAULT_PROMPT);
 
-  const b64 = (await readFile(resolve(input))).toString('base64');
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
-  const body = {
-    contents: [{
-      role: 'user',
-      parts: [{ text: prompt }, { inline_data: { mime_type: 'image/png', data: b64 } }],
-    }],
-  };
+  const bytes = await readFile(resolve(input));
+  const form = new FormData();
+  form.append('model', model);
+  form.append('prompt', prompt);
+  form.append('input_fidelity', 'high');   // preserve UI + caption pixels
+  form.append('image', new Blob([bytes], { type: 'image/png' }), basename(input));
 
-  const res = await fetch(url, {
-    method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body),
+  const res = await fetch('https://api.openai.com/v1/images/edits', {
+    method: 'POST', headers: { authorization: `Bearer ${key}` }, body: form,
   });
-  if (!res.ok) { console.error(`Gemini API ${res.status}: ${await res.text()}`); process.exit(1); }
+  if (!res.ok) { console.error(`OpenAI API ${res.status}: ${await res.text()}`); process.exit(1); }
   const json = await res.json();
-  const part = json?.candidates?.[0]?.content?.parts?.find((p) => p.inline_data || p.inlineData);
-  const data = part?.inline_data?.data ?? part?.inlineData?.data;
+  const data = json?.data?.[0]?.b64_json;
   if (!data) { console.error('no image in response'); process.exit(1); }
 
   await mkdir(dirname(resolve(output)), { recursive: true });

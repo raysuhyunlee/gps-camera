@@ -4,7 +4,8 @@
 
 - 2026-07-11: Initial. App Store screenshot automation live on iOS. Two stages:
   in-app demo mode (capture) + Node compose (frame). AI polish step present but
-  needs `GEMINI_API_KEY`. Scene/gallery photos are user-supplied.
+  needs `OPENAI_API_KEY`. Gallery photos are user-supplied; a bundled `demo`
+  scene (Empire State Building skyline) ships as the default camera-feed.
 
 ## Domain Definition
 
@@ -56,8 +57,8 @@ Deterministic: Playwright renders `web/renderer.html` - a device bezel holding
 the raw capture, with a 2-line caption on a solid background, at 1320x2868
 (iPhone 6.9"). `build.mjs` frames every raw capture using per-locale captions;
 output lands in `ios/fastlane/screenshots/<locale>/`. Optional AI polish
-(`enhance.mjs`, Gemini 2.5 Flash Image / Nano Banana) runs per screen when
-`GEMINI_API_KEY` is set.
+(`enhance.mjs`, OpenAI `gpt-image-1` / "ducktape") runs per screen when
+`OPENAI_API_KEY` is set.
 
 ### Assets (user-supplied)
 
@@ -99,7 +100,7 @@ ios/fastlane/
 screenshots/
 ├── compose.mjs        - frame one capture (device bezel + caption) via Playwright
 ├── build.mjs          - frame every raw capture using captions/<locale>.json
-├── enhance.mjs        - optional Gemini polish (needs GEMINI_API_KEY)
+├── enhance.mjs        - optional OpenAI gpt-image-1 polish (needs OPENAI_API_KEY)
 ├── web/renderer.html  - device shell + caption template
 └── captions/          - per-locale line1/line2 + bg per screen
 ```
@@ -110,3 +111,7 @@ screenshots/
 - 2026-07-11: Fix demo captures - scene fill keeps controls in the safe area
   (was overlapping the status bar / cropping the bottom), seed the lens set, and
   pose Settings (Overlay) + Gallery (multi-select) in the UI test.
+- 2026-07-11: AI polish switched from Gemini to OpenAI `gpt-image-1`
+  ("ducktape"); env var now `OPENAI_API_KEY`.
+- 2026-07-11: Bundled `demo` scene added - Empire State Building night skyline
+  (from Top of the Rock); curated snapshot set to that vantage.
