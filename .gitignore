@@ -13,3 +13,10 @@
 # Keystore
 android/key.properties
 
+# Screenshot build artifacts (screenshots.md)
+ios/build/
+ios/fastlane/screenshots_raw/
+ios/fastlane/screenshots/
+ios/fastlane/test_output/
+screenshots/node_modules/
+

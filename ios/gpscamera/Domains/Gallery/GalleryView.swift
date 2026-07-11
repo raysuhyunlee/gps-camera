@@ -79,6 +79,7 @@ struct GalleryView: View {
             if !isSelecting {
                 Button(L("Select")) { isSelecting = true }
                     .disabled(model.items.isEmpty)
+                    .accessibilityIdentifier("selectButton")
             }
         }
         ToolbarItem(placement: .topBarTrailing) {

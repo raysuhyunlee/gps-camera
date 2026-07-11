@@ -9,12 +9,22 @@
 /* Begin PBXBuildFile section */
 		71F754032FFB66A6002FDBC2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000010 /* FirebaseAnalytics */; };
 		71F754042FFB66A6002FDBC2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000011 /* FirebaseCrashlytics */; };
+		7BFE6E8CDA25205E6A2DD08F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6BD57157B774860AF3EF61F /* Foundation.framework */; };
+		904000BE5CD348A059202288 /* ScreenshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FDDA3CD71EE90FD8EDA6614 /* ScreenshotUITests.swift */; };
 		AB000000000000000000000C /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = AB000000000000000000000E /* RevenueCat */; };
 		AB0000000000000000000014 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000013 /* Lottie */; };
 		AB0000000000000000000017 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = AB0000000000000000000016 /* GoogleMobileAds */; };
+		FCD3CD59CE686C720E50E87B /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261C9D04D67BA88E32EDE6D9 /* SnapshotHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		68191AD53EC35DB26AA41BA2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71F74BB82FF3C65C002FDBC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71F74BBF2FF3C65C002FDBC2;
+			remoteInfo = gpscamera;
+		};
 		AB000000000000000000000B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 71F74BB82FF3C65C002FDBC2 /* Project object */;
@@ -25,7 +35,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		261C9D04D67BA88E32EDE6D9 /* SnapshotHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		5FDDA3CD71EE90FD8EDA6614 /* ScreenshotUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotUITests.swift; sourceTree = "<group>"; };
+		615A763972B94116AA0BCBE6 /* gpscameraScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gpscameraScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71F74BC02FF3C65C002FDBC2 /* gpscamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gpscamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6BD57157B774860AF3EF61F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		AB0000000000000000000002 /* gpscameraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gpscameraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -34,6 +48,9 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Screenshot/Assets/README.md,
+				Screenshot/Assets/scenes/.gitkeep,
+				Screenshot/Assets/gallery/.gitkeep,
 			);
 			target = 71F74BBF2FF3C65C002FDBC2 /* gpscamera */;
 		};
@@ -50,6 +67,8 @@
 		};
 		AB0000000000000000000006 /* gpscameraTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = gpscameraTests;
 			sourceTree = "<group>";
 		};
@@ -68,6 +87,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A9D44D540C2D1AD3A8FD273E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BFE6E8CDA25205E6A2DD08F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AB0000000000000000000004 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -78,12 +105,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46A4313D5695EE62E0045C8C /* gpscameraScreenshots */ = {
+			isa = PBXGroup;
+			children = (
+				5FDDA3CD71EE90FD8EDA6614 /* ScreenshotUITests.swift */,
+				261C9D04D67BA88E32EDE6D9 /* SnapshotHelper.swift */,
+			);
+			name = gpscameraScreenshots;
+			path = gpscameraScreenshots;
+			sourceTree = "<group>";
+		};
+		646CABD30C0F66FA6E1F47C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				999CFA05E6722A6E2D57EDB5 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		71F74BB72FF3C65C002FDBC2 = {
 			isa = PBXGroup;
 			children = (
 				71F74BC22FF3C65C002FDBC2 /* gpscamera */,
 				AB0000000000000000000006 /* gpscameraTests */,
 				71F74BC12FF3C65C002FDBC2 /* Products */,
+				646CABD30C0F66FA6E1F47C4 /* Frameworks */,
+				46A4313D5695EE62E0045C8C /* gpscameraScreenshots */,
 			);
 			sourceTree = "<group>";
 		};
@@ -92,8 +139,17 @@
 			children = (
 				71F74BC02FF3C65C002FDBC2 /* gpscamera.app */,
 				AB0000000000000000000002 /* gpscameraTests.xctest */,
+				615A763972B94116AA0BCBE6 /* gpscameraScreenshots.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		999CFA05E6722A6E2D57EDB5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A6BD57157B774860AF3EF61F /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +183,24 @@
 			productReference = 71F74BC02FF3C65C002FDBC2 /* gpscamera.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9AADFFAC7A3C719CE324132F /* gpscameraScreenshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F94FD3D1FDA70FC2DD9D167 /* Build configuration list for PBXNativeTarget "gpscameraScreenshots" */;
+			buildPhases = (
+				54E2A15974C02476C935B8FE /* Sources */,
+				A9D44D540C2D1AD3A8FD273E /* Frameworks */,
+				EC9C7F88C8386954454F1594 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				532C3C0D4A9D6B879B557C2F /* PBXTargetDependency */,
+			);
+			name = gpscameraScreenshots;
+			productName = gpscameraScreenshots;
+			productReference = 615A763972B94116AA0BCBE6 /* gpscameraScreenshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		AB0000000000000000000001 /* gpscameraTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB0000000000000000000009 /* Build configuration list for PBXNativeTarget "gpscameraTests" */;
@@ -144,8 +218,6 @@
 				AB0000000000000000000006 /* gpscameraTests */,
 			);
 			name = gpscameraTests;
-			packageProductDependencies = (
-			);
 			productName = gpscameraTests;
 			productReference = AB0000000000000000000002 /* gpscameraTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -220,6 +292,7 @@
 			targets = (
 				71F74BBF2FF3C65C002FDBC2 /* gpscamera */,
 				AB0000000000000000000001 /* gpscameraTests */,
+				9AADFFAC7A3C719CE324132F /* gpscameraScreenshots */,
 			);
 		};
 /* End PBXProject section */
@@ -233,6 +306,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		AB0000000000000000000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC9C7F88C8386954454F1594 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -264,6 +344,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		54E2A15974C02476C935B8FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				904000BE5CD348A059202288 /* ScreenshotUITests.swift in Sources */,
+				FCD3CD59CE686C720E50E87B /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		71F74BBC2FF3C65C002FDBC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -281,6 +370,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		532C3C0D4A9D6B879B557C2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = gpscamera;
+			target = 71F74BBF2FF3C65C002FDBC2 /* gpscamera */;
+			targetProxy = 68191AD53EC35DB26AA41BA2 /* PBXContainerItemProxy */;
+		};
 		AB000000000000000000000A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 71F74BBF2FF3C65C002FDBC2 /* gpscamera */;
@@ -528,9 +623,59 @@
 			};
 			name = Release;
 		};
+		DE697D8BFC3ADC5C6A2ED88F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JT6WNXA7T8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raysuhyunlee.gpscameraScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = gpscamera;
+			};
+			name = Debug;
+		};
+		F5A8057BAC84C5180C9717FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JT6WNXA7T8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raysuhyunlee.gpscameraScreenshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = gpscamera;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F94FD3D1FDA70FC2DD9D167 /* Build configuration list for PBXNativeTarget "gpscameraScreenshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5A8057BAC84C5180C9717FD /* Release */,
+				DE697D8BFC3ADC5C6A2ED88F /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		71F74BBB2FF3C65C002FDBC2 /* Build configuration list for PBXProject "gpscamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

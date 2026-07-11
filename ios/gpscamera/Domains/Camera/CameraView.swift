@@ -34,9 +34,27 @@ struct CameraView: View {
 
             switch controller.authorization {
             case .authorized:
+                #if DEBUG
+                // Screenshot demo mode: a pre-arranged scene behind the real
+                // chrome + overlay (the live preview is black in the simulator).
+                if let scene = ScreenshotDemo.current.sceneImage {
+                    // Fill like `Color.black.ignoresSafeArea()` (a flexible
+                    // fill), not a rigid maxHeight frame - the latter expands the
+                    // ZStack past the safe area and drags `controls` up under the
+                    // status bar / off the bottom edge.
+                    Color.black
+                        .overlay { Image(uiImage: scene).resizable().scaledToFill() }
+                        .clipped().ignoresSafeArea()
+                } else {
+                    CameraPreview(session: controller.previewSession,
+                                  freezeFrame: controller.freezeFrame)
+                        .ignoresSafeArea()
+                }
+                #else
                 CameraPreview(session: controller.previewSession,
                               freezeFrame: controller.freezeFrame)
                     .ignoresSafeArea()
+                #endif
                 controls
                 if controller.isRecording { recordingIndicator }
             case .notDetermined:
@@ -185,6 +203,7 @@ struct CameraView: View {
                 .frame(width: 44, height: 44)
         }
         .rotatable(rotation)
+        .accessibilityIdentifier("settingsButton")
     }
 
     private var flashButton: some View {
@@ -217,6 +236,7 @@ struct CameraView: View {
         gallery.thumbnailButton()
             .rotatable(rotation)
             .disabled(controller.isRecording)
+            .accessibilityIdentifier("galleryButton")
     }
 
     private var facingButton: some View {

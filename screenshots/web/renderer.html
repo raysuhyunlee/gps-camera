@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; }
+  #stage {
+    width: 100vw; height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    background: #0B6E4F;
+    overflow: hidden;
+  }
+  #caption {
+    width: 84%;
+    text-align: center;
+    color: #ffffff;
+    font-family: -apple-system, "Apple SD Gothic Neo", "Hiragino Sans", sans-serif;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  #line2 { opacity: 0.9; }
+  #device {
+    position: relative;
+    background: #000;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    overflow: hidden;
+  }
+  #device img { display: block; width: 100%; height: 100%; object-fit: cover; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="caption"><span id="line1"></span><span id="line2"></span></div>
+  <div id="device"><img id="shot"></div>
+</div>
+<script>
+  // Called from compose.mjs via page.evaluate(render, cfg). Resolves when the
+  // screenshot image has laid out, so the caller can wait on window.__ready.
+  window.render = function (cfg) {
+    window.__ready = false;
+    const stage = document.getElementById('stage');
+    stage.style.background = cfg.bg;
+    const cap = document.getElementById('caption');
+    cap.style.color = cfg.fg;
+    if (cfg.font) cap.style.fontFamily = cfg.font;
+
+    const W = cfg.width, H = cfg.height;
+    cap.style.marginTop = Math.round(H * 0.045) + 'px';
+    cap.style.height = Math.round(H * 0.20) + 'px';
+    cap.style.fontSize = Math.round(W * cfg.fontScale) + 'px';
+    document.getElementById('line1').textContent = cfg.line1 || '';
+    document.getElementById('line2').textContent = cfg.line2 || '';
+
+    const dev = document.getElementById('device');
+    const shot = document.getElementById('shot');
+    const layout = () => {
+      const ratio = shot.naturalHeight / shot.naturalWidth;
+      const devW = Math.round(W * cfg.deviceScale);
+      dev.style.width = devW + 'px';
+      dev.style.height = Math.round(devW * ratio) + 'px';
+      dev.style.borderRadius = Math.round(devW * cfg.cornerScale) + 'px';
+      window.__ready = true;
+    };
+    shot.onload = layout;
+    shot.src = cfg.image;
+    if (shot.complete && shot.naturalWidth) layout();
+  };
+</script>
+</body>
+</html>

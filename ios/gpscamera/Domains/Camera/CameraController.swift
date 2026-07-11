@@ -53,6 +53,11 @@ final class CameraController: ObservableObject {
         photo = PhotoCaptureService(filename: filename)
         video = VideoCaptureService(filename: filename)
         authorization = CameraAuthorization.status
+        #if DEBUG
+        // Screenshot demo mode renders a static scene (no session); treat the
+        // camera as authorized so CameraView shows the preview area.
+        if ScreenshotDemo.current.isActive { authorization = .authorized }
+        #endif
         // Live-apply resolution/fps edits.
         storeChanges = store.onChange { [weak self] in self?.applyQualityIfChanged() }
     }
@@ -62,6 +67,14 @@ final class CameraController: ObservableObject {
     var previewSession: AVCaptureSession { session.session }
 
     func onAppear() {
+        #if DEBUG
+        if ScreenshotDemo.current.isActive {
+            // Static scene; no real session. Seed the lens set so the 0.5x/1x/2x
+            // selector renders (a real session would populate it from hardware).
+            availableLenses = [.ultraWide, .wide, .tele]
+            return
+        }
+        #endif
         switch authorization {
         case .authorized:
             configureAndStart()

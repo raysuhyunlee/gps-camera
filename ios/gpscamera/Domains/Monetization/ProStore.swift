@@ -44,6 +44,16 @@ final class ProStore: ObservableObject, EntitlementProviding {
         // Last persisted entitlement until RevenueCat answers (offline reads).
         cached = EntitlementBox(
             UserDefaults.standard.bool(forKey: cachedProKey) ? .pro : .free)
+        #if DEBUG
+        // Screenshot demo mode: pin the entitlement (screenshots.md). Forced
+        // pro (default) skips RevenueCat so nothing flips it back mid-shot; a
+        // paywall shot passes `-ScreenshotPro 0` to fall through and load real
+        // offerings as a free user.
+        if ScreenshotDemo.current.isActive {
+            cached.value = ScreenshotDemo.current.forcePro ? .pro : .free
+            if ScreenshotDemo.current.forcePro { loaded = true; return }
+        }
+        #endif
         if !Purchases.isConfigured {
             Purchases.logLevel = .warn
             Purchases.configure(withAPIKey: RevenueCatConfig.apiKey)

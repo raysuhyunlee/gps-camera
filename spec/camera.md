@@ -2,6 +2,10 @@
 
 ## Status
 
+- 2026-07-11: `#if DEBUG` screenshot demo mode: `CameraView` renders a
+  pre-arranged scene image instead of `CameraPreview` (the live feed is black in
+  the simulator) and `CameraController` forces `.authorized` + skips the session.
+  See screenshots.md.
 - 2026-07-09: Overlay data locked at record start. The live preview reads the
   frozen snapshot (`lockedOverlaySnapshot`) while recording, so it matches the
   burned clip. Video capture now signals `onStopped` when the clip finalizes

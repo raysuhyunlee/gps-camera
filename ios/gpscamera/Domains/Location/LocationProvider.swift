@@ -24,9 +24,20 @@ final class LocationProvider: NSObject, ObservableObject, LocationProviding {
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         authorization = Self.map(manager.authorizationStatus)
+        #if DEBUG
+        // Screenshot demo mode: seed a curated snapshot; start()/requestPermission()
+        // become no-ops below so a real fix never overwrites it.
+        if ScreenshotDemo.current.isActive {
+            snapshot = ScreenshotDemo.current.snapshot
+            authorization = .authorized
+        }
+        #endif
     }
 
     func start() {
+        #if DEBUG
+        if ScreenshotDemo.current.isActive { return }
+        #endif
         manager.startUpdatingLocation()
         if CLLocationManager.headingAvailable() {
             manager.startUpdatingHeading()
@@ -45,6 +56,9 @@ final class LocationProvider: NSObject, ObservableObject, LocationProviding {
     }
 
     func requestPermission() {
+        #if DEBUG
+        if ScreenshotDemo.current.isActive { return }
+        #endif
         manager.requestWhenInUseAuthorization()
     }
 

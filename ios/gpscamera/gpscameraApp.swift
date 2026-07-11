@@ -60,6 +60,18 @@ struct gpscameraApp: App {
                     "foundation.about": 92],
             store: store)
         Onboarding.registerDefaults(store)   // no Settings section; register here
+        #if DEBUG
+        // Screenshot demo mode: skip onboarding + seed the gallery so the
+        // simulator renders finished screens (screenshots.md). Entitlement is
+        // forced inside ProStore; the scene/location are read where used.
+        if ScreenshotDemo.current.isActive {
+            store.set(.bool(true), for: Onboarding.completedKey)
+            if let locale = ScreenshotDemo.current.locale {
+                store.set(.string(locale), for: L10n.settingKey)   // fires L10n via onSet
+            }
+            ScreenshotSeed.seedCaptures()
+        }
+        #endif
         let location = LocationProvider()
         let overlay = OverlayRenderer(store: store, entitlement: pro)
         self.events = events
