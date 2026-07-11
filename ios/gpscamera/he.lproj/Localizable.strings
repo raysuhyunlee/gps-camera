@@ -101,6 +101,8 @@
 "Add logo and notes" = "הוסף לוגו ופתקים";
 "The store is unavailable right now." = "החנות אינה זמינה כרגע.";
 "BEST VALUE" = "הכי כדאי";
+"Free Trial" = "ניסיון חינם";
+"One-time payment" = "תשלום חד-פעמי";
 "Continue" = "המשך";
 "Restore Purchase" = "שחזור רכישה";
 "Terms" = "תנאים";
@@ -110,6 +112,11 @@
 "Monthly" = "חודשי";
 "%@ / month" = "%@ / חודש";
 "%@ once" = "%@ פעם אחת";
+"7-Day Free Trial" = "ניסיון חינם ל-7 ימים";
+"Then %@/month" = "אחר כך %@/חודש";
+"Lifetime Access" = "גישה לכל החיים";
+"Start for Free" = "התחלה בחינם";
+"Start Now" = "התחל עכשיו";
 "Get GPS Camera Pro" = "קבל GPS Camera Pro";
 "All features available" = "כל התכונות זמינות";
 "No ads, every feature unlocked" = "ללא פרסומות, כל התכונות פתוחות";

@@ -101,6 +101,8 @@
 "Add logo and notes" = "เพิ่มโลโก้และบันทึก";
 "The store is unavailable right now." = "สโตร์ไม่พร้อมใช้งานในขณะนี้";
 "BEST VALUE" = "คุ้มค่าที่สุด";
+"Free Trial" = "ทดลองใช้ฟรี";
+"One-time payment" = "ชำระครั้งเดียว";
 "Continue" = "ดำเนินการต่อ";
 "Restore Purchase" = "คืนค่าการซื้อ";
 "Terms" = "ข้อกำหนด";
@@ -110,6 +112,11 @@
 "Monthly" = "รายเดือน";
 "%@ / month" = "%@ / เดือน";
 "%@ once" = "%@ ครั้งเดียว";
+"7-Day Free Trial" = "ทดลองใช้ฟรี 7 วัน";
+"Then %@/month" = "จากนั้น %@/เดือน";
+"Lifetime Access" = "เข้าถึงตลอดชีพ";
+"Start for Free" = "เริ่มใช้ฟรี";
+"Start Now" = "เริ่มเลย";
 "Get GPS Camera Pro" = "รับ GPS Camera Pro";
 "All features available" = "ฟีเจอร์ทั้งหมดพร้อมใช้งาน";
 "No ads, every feature unlocked" = "ไม่มีโฆษณา ปลดล็อกทุกฟีเจอร์แล้ว";

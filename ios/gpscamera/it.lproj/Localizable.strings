@@ -101,6 +101,8 @@
 "Add logo and notes" = "Aggiungi logo e note";
 "The store is unavailable right now." = "Lo store non è disponibile in questo momento.";
 "BEST VALUE" = "MIGLIOR OFFERTA";
+"Free Trial" = "Prova gratuita";
+"One-time payment" = "Pagamento unico";
 "Continue" = "Continua";
 "Restore Purchase" = "Ripristina acquisto";
 "Terms" = "Termini";
@@ -110,6 +112,11 @@
 "Monthly" = "Mensile";
 "%@ / month" = "%@ / mese";
 "%@ once" = "%@ una volta";
+"7-Day Free Trial" = "Prova gratuita di 7 giorni";
+"Then %@/month" = "Poi %@/mese";
+"Lifetime Access" = "Accesso a vita";
+"Start for Free" = "Inizia gratis";
+"Start Now" = "Inizia ora";
 "Get GPS Camera Pro" = "Ottieni GPS Camera Pro";
 "All features available" = "Tutte le funzionalità disponibili";
 "No ads, every feature unlocked" = "Nessuna pubblicità, tutte le funzionalità sbloccate";

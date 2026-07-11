@@ -101,6 +101,8 @@
 "Add logo and notes" = "Thêm logo và ghi chú";
 "The store is unavailable right now." = "Cửa hàng hiện không khả dụng.";
 "BEST VALUE" = "GIÁ TRỊ NHẤT";
+"Free Trial" = "Dùng thử miễn phí";
+"One-time payment" = "Thanh toán một lần";
 "Continue" = "Tiếp tục";
 "Restore Purchase" = "Khôi phục giao dịch mua";
 "Terms" = "Điều khoản";
@@ -110,6 +112,11 @@
 "Monthly" = "Hàng tháng";
 "%@ / month" = "%@ / tháng";
 "%@ once" = "%@ một lần";
+"7-Day Free Trial" = "Dùng thử miễn phí 7 ngày";
+"Then %@/month" = "Sau đó %@/tháng";
+"Lifetime Access" = "Truy cập trọn đời";
+"Start for Free" = "Bắt đầu miễn phí";
+"Start Now" = "Bắt đầu ngay";
 "Get GPS Camera Pro" = "Tải GPS Camera Pro";
 "All features available" = "Tất cả tính năng có sẵn";
 "No ads, every feature unlocked" = "Không quảng cáo, mọi tính năng được mở khóa";

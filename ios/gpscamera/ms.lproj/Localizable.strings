@@ -101,6 +101,8 @@
 "Add logo and notes" = "Tambah logo dan nota";
 "The store is unavailable right now." = "Kedai tidak tersedia sekarang.";
 "BEST VALUE" = "NILAI TERBAIK";
+"Free Trial" = "Percubaan percuma";
+"One-time payment" = "Bayaran sekali";
 "Continue" = "Teruskan";
 "Restore Purchase" = "Pulihkan Pembelian";
 "Terms" = "Terma";
@@ -110,6 +112,11 @@
 "Monthly" = "Bulanan";
 "%@ / month" = "%@ / bulan";
 "%@ once" = "%@ sekali";
+"7-Day Free Trial" = "Percubaan percuma 7 hari";
+"Then %@/month" = "Kemudian %@/bulan";
+"Lifetime Access" = "Akses seumur hidup";
+"Start for Free" = "Mula secara percuma";
+"Start Now" = "Mula sekarang";
 "Get GPS Camera Pro" = "Dapatkan GPS Camera Pro";
 "All features available" = "Semua ciri tersedia";
 "No ads, every feature unlocked" = "Tiada iklan, setiap ciri dibuka kuncinya";

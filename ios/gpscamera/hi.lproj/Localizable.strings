@@ -101,6 +101,8 @@
 "Add logo and notes" = "लोगो और नोट्स जोड़ें";
 "The store is unavailable right now." = "स्टोर अभी उपलब्ध नहीं है।";
 "BEST VALUE" = "सर्वश्रेष्ठ मूल्य";
+"Free Trial" = "मुफ़्त ट्रायल";
+"One-time payment" = "एकमुश्त भुगतान";
 "Continue" = "जारी रखें";
 "Restore Purchase" = "खरीद पुनर्स्थापित करें";
 "Terms" = "शर्तें";
@@ -110,6 +112,11 @@
 "Monthly" = "मासिक";
 "%@ / month" = "%@ / माह";
 "%@ once" = "%@ एकबार";
+"7-Day Free Trial" = "7-दिन का मुफ़्त ट्रायल";
+"Then %@/month" = "फिर %@/माह";
+"Lifetime Access" = "आजीवन एक्सेस";
+"Start for Free" = "मुफ़्त में शुरू करें";
+"Start Now" = "अभी शुरू करें";
 "Get GPS Camera Pro" = "GPS Camera Pro प्राप्त करें";
 "All features available" = "सभी सुविधाएं उपलब्ध हैं";
 "No ads, every feature unlocked" = "कोई विज्ञापन नहीं, हर सुविधा अनलॉक";

@@ -101,6 +101,8 @@
 "Add logo and notes" = "Lisää logo ja muistiinpanot";
 "The store is unavailable right now." = "Kauppa ei ole käytettävissä juuri nyt.";
 "BEST VALUE" = "PARAS ARVO";
+"Free Trial" = "Ilmainen kokeilu";
+"One-time payment" = "Kertamaksu";
 "Continue" = "Jatka";
 "Restore Purchase" = "Palauta ostos";
 "Terms" = "Ehdot";
@@ -110,6 +112,11 @@
 "Monthly" = "Kuukausittain";
 "%@ / month" = "%@ / kk";
 "%@ once" = "%@ kerran";
+"7-Day Free Trial" = "7 päivän ilmainen kokeilu";
+"Then %@/month" = "Sitten %@/kk";
+"Lifetime Access" = "Elinikäinen käyttöoikeus";
+"Start for Free" = "Aloita ilmaiseksi";
+"Start Now" = "Aloita nyt";
 "Get GPS Camera Pro" = "Hanki GPS Camera Pro";
 "All features available" = "Kaikki ominaisuudet käytettävissä";
 "No ads, every feature unlocked" = "Ei mainoksia, kaikki ominaisuudet avattu";

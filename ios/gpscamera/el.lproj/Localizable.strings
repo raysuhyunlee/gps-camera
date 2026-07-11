@@ -101,6 +101,8 @@
 "Add logo and notes" = "Προσθήκη λογότυπου και σημειώσεων";
 "The store is unavailable right now." = "Το κατάστημα δεν είναι διαθέσιμο αυτή τη στιγμή.";
 "BEST VALUE" = "ΚΑΛΥΤΕΡΗ ΑΞΙΑ";
+"Free Trial" = "Δωρεάν δοκιμή";
+"One-time payment" = "Εφάπαξ πληρωμή";
 "Continue" = "Συνέχεια";
 "Restore Purchase" = "Επαναφορά αγοράς";
 "Terms" = "Όροι";
@@ -110,6 +112,11 @@
 "Monthly" = "Μηνιαία";
 "%@ / month" = "%@ / μήνα";
 "%@ once" = "%@ εφάπαξ";
+"7-Day Free Trial" = "Δωρεάν δοκιμή 7 ημερών";
+"Then %@/month" = "Έπειτα %@/μήνα";
+"Lifetime Access" = "Ισόβια πρόσβαση";
+"Start for Free" = "Ξεκινήστε δωρεάν";
+"Start Now" = "Ξεκινήστε τώρα";
 "Get GPS Camera Pro" = "Αποκτήστε GPS Camera Pro";
 "All features available" = "Όλες οι δυνατότητες διαθέσιμες";
 "No ads, every feature unlocked" = "Χωρίς διαφημίσεις, κάθε λειτουργία ξεκλειδωμένη";

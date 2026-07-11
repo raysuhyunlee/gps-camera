@@ -72,13 +72,13 @@ struct PaywallView: View {
 
     private var hero: some View {
         VStack(spacing: 12) {
-            Image(systemName: "location.viewfinder")
-                .font(.system(size: 56))
-                .foregroundStyle(Color.accentColor)
+            Image("AppLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 96, height: 96)
+                .clipShape(RoundedRectangle(cornerRadius: 21, style: .continuous))
             Text(L("GPS Camera Pro"))
                 .font(.largeTitle.bold())
-            Text(L("Unlock every feature."))
-                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
     }
@@ -131,20 +131,18 @@ struct PaywallView: View {
         return Button { selectedID = package.identifier } label: {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(title(package)).font(.headline)
-                    Text(priceLine(package))
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+                    Text(title(package)).font(.title3.bold())
+                    Text(priceLine(package)).font(.title3.bold())
                 }
                 Spacer()
-                if package.packageType == .lifetime {
-                    Text(L("BEST VALUE"))
-                        .font(.caption2.bold())
+                if let badge = badge(package) {
+                    Text(badge)
+                        .font(.caption.bold())
                         .foregroundStyle(Color.accentColor)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.accentColor.opacity(0.12),
-                                    in: Capsule())
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(Color.accentColor.opacity(0.14),
+                                    in: RoundedRectangle(cornerRadius: 8))
                 }
             }
             .padding(16)
@@ -166,7 +164,7 @@ struct PaywallView: View {
                     if purchasing {
                         ProgressView()
                     } else {
-                        Text(L("Continue")).font(.headline)
+                        Text(ctaTitle).font(.headline)
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -241,18 +239,38 @@ struct PaywallView: View {
         }
     }
 
+    /// CTA copy follows the selected plan (monetization.md "Paywall").
+    private var ctaTitle: String {
+        switch selectedPackage?.packageType {
+        case .monthly:  return L("Start for Free")
+        case .lifetime: return L("Start Now")
+        default:        return L("Continue")
+        }
+    }
+
+    /// Short green badge on each price card (monetization.md "Paywall").
+    private func badge(_ package: Package) -> String? {
+        switch package.packageType {
+        case .monthly:  return L("Free Trial")
+        case .lifetime: return L("One-time payment")
+        default:        return nil
+        }
+    }
+
     private func title(_ package: Package) -> String {
         switch package.packageType {
-        case .lifetime: return L("Lifetime")
-        case .monthly:  return L("Monthly")
+        case .lifetime: return L("Lifetime Access")
+        case .monthly:  return L("7-Day Free Trial")
         default:        return package.storeProduct.localizedTitle
         }
     }
 
     private func priceLine(_ package: Package) -> String {
         let price = package.storeProduct.localizedPriceString
-        return String(format: package.packageType == .monthly
-                      ? L("%@ / month") : L("%@ once"), price)
+        switch package.packageType {
+        case .monthly:  return String(format: L("Then %@/month"), price)
+        default:        return price
+        }
     }
 }
 

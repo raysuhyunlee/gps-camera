@@ -101,6 +101,8 @@
 "Add logo and notes" = "Přidat logo a poznámky";
 "The store is unavailable right now." = "Obchod je momentálně nedostupný.";
 "BEST VALUE" = "NEJLEPŠÍ HODNOTA";
+"Free Trial" = "Zdarma na zkoušku";
+"One-time payment" = "Jednorázová platba";
 "Continue" = "Pokračovat";
 "Restore Purchase" = "Obnovit nákup";
 "Terms" = "Podmínky";
@@ -110,6 +112,11 @@
 "Monthly" = "Měsíčně";
 "%@ / month" = "%@ / měsíc";
 "%@ once" = "%@ jednorázově";
+"7-Day Free Trial" = "7denní zkušební verze zdarma";
+"Then %@/month" = "Poté %@/měsíc";
+"Lifetime Access" = "Doživotní přístup";
+"Start for Free" = "Začít zdarma";
+"Start Now" = "Začít nyní";
 "Get GPS Camera Pro" = "Získejte GPS Camera Pro";
 "All features available" = "Všechny funkce k dispozici";
 "No ads, every feature unlocked" = "Žádné reklamy, všechny funkce odemčeny";

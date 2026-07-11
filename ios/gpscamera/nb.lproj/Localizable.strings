@@ -101,6 +101,8 @@
 "Add logo and notes" = "Legg til logo og notater";
 "The store is unavailable right now." = "Butikken er ikke tilgjengelig akkurat nå.";
 "BEST VALUE" = "BEST PRIS";
+"Free Trial" = "Gratis prøve";
+"One-time payment" = "Engangsbetaling";
 "Continue" = "Fortsett";
 "Restore Purchase" = "Gjenopprett kjøp";
 "Terms" = "Vilkår";
@@ -110,6 +112,11 @@
 "Monthly" = "Månedlig";
 "%@ / month" = "%@ / mnd.";
 "%@ once" = "%@ én gang";
+"7-Day Free Trial" = "7 dagers gratis prøve";
+"Then %@/month" = "Deretter %@/måned";
+"Lifetime Access" = "Livstidstilgang";
+"Start for Free" = "Start gratis";
+"Start Now" = "Start nå";
 "Get GPS Camera Pro" = "Få GPS Camera Pro";
 "All features available" = "Alle funksjoner tilgjengelig";
 "No ads, every feature unlocked" = "Ingen annonser, alle funksjoner låst opp";

@@ -101,6 +101,8 @@
 "Add logo and notes" = "Adaugă logo și note";
 "The store is unavailable right now." = "Magazinul este indisponibil acum.";
 "BEST VALUE" = "CEL MAI BUN RAPORT";
+"Free Trial" = "Probă gratuită";
+"One-time payment" = "Plată unică";
 "Continue" = "Continuă";
 "Restore Purchase" = "Restaurează achiziția";
 "Terms" = "Termeni";
@@ -110,6 +112,11 @@
 "Monthly" = "Lunar";
 "%@ / month" = "%@ / lună";
 "%@ once" = "%@ o singură dată";
+"7-Day Free Trial" = "Probă gratuită de 7 zile";
+"Then %@/month" = "Apoi %@/lună";
+"Lifetime Access" = "Acces pe viață";
+"Start for Free" = "Începe gratuit";
+"Start Now" = "Începe acum";
 "Get GPS Camera Pro" = "Obțineți GPS Camera Pro";
 "All features available" = "Toate funcțiile disponibile";
 "No ads, every feature unlocked" = "Fără reclame, toate funcțiile deblocate";

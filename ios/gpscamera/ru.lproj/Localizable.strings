@@ -101,6 +101,8 @@
 "Add logo and notes" = "Добавить логотип и заметки";
 "The store is unavailable right now." = "Магазин сейчас недоступен.";
 "BEST VALUE" = "ВЫГОДНЕЕ ВСЕГО";
+"Free Trial" = "Бесплатный период";
+"One-time payment" = "Разовый платёж";
 "Continue" = "Продолжить";
 "Restore Purchase" = "Восстановить покупку";
 "Terms" = "Условия";
@@ -110,6 +112,11 @@
 "Monthly" = "Ежемесячно";
 "%@ / month" = "%@ / мес.";
 "%@ once" = "%@ единовременно";
+"7-Day Free Trial" = "7 дней бесплатно";
+"Then %@/month" = "Затем %@/месяц";
+"Lifetime Access" = "Пожизненный доступ";
+"Start for Free" = "Начать бесплатно";
+"Start Now" = "Начать сейчас";
 "Get GPS Camera Pro" = "Получить GPS Camera Pro";
 "All features available" = "Все функции доступны";
 "No ads, every feature unlocked" = "Без рекламы, все функции доступны";
