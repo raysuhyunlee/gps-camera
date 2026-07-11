@@ -40,7 +40,6 @@
 "VIDEO" = "WIDEO";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Geotagowanie przez GPS Camera";
 "Overlay" = "Nakładka";
 "Include overlay in photo/video" = "Dołącz nakładkę do zdjęcia/wideo";
 "Display items" = "Wyświetlane elementy";

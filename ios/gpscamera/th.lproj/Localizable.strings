@@ -40,7 +40,6 @@
 "VIDEO" = "วิดีโอ";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "ถ่ายด้วย GPS Camera";
 "Overlay" = "โอเวอร์เลย์";
 "Include overlay in photo/video" = "รวมโอเวอร์เลย์ในรูปภาพ/วิดีโอ";
 "Display items" = "รายการที่แสดง";

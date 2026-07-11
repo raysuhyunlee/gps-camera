@@ -40,7 +40,6 @@
 "VIDEO" = "ビデオ";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "GPS Cameraでジオタグ付け";
 "Overlay" = "オーバーレイ";
 "Include overlay in photo/video" = "写真/ビデオにオーバーレイを含める";
 "Display items" = "表示項目";

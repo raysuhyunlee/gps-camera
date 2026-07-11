@@ -40,7 +40,6 @@
 "VIDEO" = "VIDEÓ";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Geocímkézve GPS Camera-val";
 "Overlay" = "Átfedés";
 "Include overlay in photo/video" = "Átfedés belefoglalása a fotóba/videóba";
 "Display items" = "Megjelenített elemek";

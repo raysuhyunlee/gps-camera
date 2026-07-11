@@ -40,7 +40,6 @@
 "VIDEO" = "ВИДЕО";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Геотег добавлен GPS Camera";
 "Overlay" = "Наложение";
 "Include overlay in photo/video" = "Включать наложение в фото/видео";
 "Display items" = "Отображаемые элементы";

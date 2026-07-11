@@ -40,7 +40,6 @@
 "VIDEO" = "VIDEO";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Geotagattu GPS Cameralla";
 "Overlay" = "Overlay";
 "Include overlay in photo/video" = "Sisällytä overlay kuvaan/videoon";
 "Display items" = "Näytettävät kohteet";

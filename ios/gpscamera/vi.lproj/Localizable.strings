@@ -40,7 +40,6 @@
 "VIDEO" = "VIDEO";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Được gắn thẻ địa lý với GPS Camera";
 "Overlay" = "Lớp phủ";
 "Include overlay in photo/video" = "Bao gồm lớp phủ trong ảnh/video";
 "Display items" = "Các mục hiển thị";

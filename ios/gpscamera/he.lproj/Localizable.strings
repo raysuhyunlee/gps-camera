@@ -40,7 +40,6 @@
 "VIDEO" = "וידאו";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "מקומות מוגדרים עם GPS Camera";
 "Overlay" = "שכבת-על";
 "Include overlay in photo/video" = "כלול שכבת-על בתמונה/וידאו";
 "Display items" = "פריטים מוצגים";

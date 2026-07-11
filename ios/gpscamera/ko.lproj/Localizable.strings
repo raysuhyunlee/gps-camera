@@ -40,7 +40,6 @@
 "VIDEO" = "동영상";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "GPS 카메라로 위치 태그됨";
 "Overlay" = "오버레이";
 "Include overlay in photo/video" = "사진/동영상에 오버레이 포함";
 "Display items" = "표시 항목";

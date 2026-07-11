@@ -40,7 +40,6 @@
 "VIDEO" = "فيديو";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "تم الترميز الجغرافي باستخدام GPS Camera";
 "Overlay" = "التراكب";
 "Include overlay in photo/video" = "تضمين التراكب في الصورة/الفيديو";
 "Display items" = "العناصر المعروضة";

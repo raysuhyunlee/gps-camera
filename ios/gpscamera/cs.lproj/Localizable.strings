@@ -40,7 +40,6 @@
 "VIDEO" = "VIDEO";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Geotagováno pomocí GPS Camera";
 "Overlay" = "Překryv";
 "Include overlay in photo/video" = "Zahrnout překryv do fotografie/videa";
 "Display items" = "Zobrazené položky";

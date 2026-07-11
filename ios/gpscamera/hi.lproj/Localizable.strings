@@ -40,7 +40,6 @@
 "VIDEO" = "वीडियो";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "GPS Camera से जियोटैग किया गया";
 "Overlay" = "ओवरले";
 "Include overlay in photo/video" = "फ़ोटो/वीडियो में ओवरले शामिल करें";
 "Display items" = "प्रदर्शित आइटम";

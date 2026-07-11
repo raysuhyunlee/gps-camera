@@ -40,7 +40,6 @@
 "VIDEO" = "视频";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "使用 GPS Camera 地理标记";
 "Overlay" = "叠加层";
 "Include overlay in photo/video" = "在照片/视频中包含叠加层";
 "Display items" = "显示项目";

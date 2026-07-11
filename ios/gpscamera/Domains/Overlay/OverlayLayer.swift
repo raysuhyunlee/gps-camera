@@ -14,13 +14,37 @@ struct OverlayLayer: View {
     private var showMap: Bool { settings.showMap && snapshot != nil }
 
     var body: some View {
-        // Map + card are one layer (drag together) but read as separate objects,
-        // spaced apart (overlay.md "Items"). Total width stays the same whether
-        // the map is on or off, so anchoring is unaffected.
-        HStack(alignment: .center, spacing: OverlayLayerMetrics.mapGap) {
-            if showMap { mapBox }
-            infoCard
+        // The watermark badge sits above, aligned to the layer's right edge, and
+        // moves with the layer (overlay.md "Watermark badge"). Map + card are one
+        // layer (drag together) but read as separate objects, spaced apart
+        // (overlay.md "Items"). Total width stays the same whether the map is on
+        // or off, so anchoring is unaffected.
+        VStack(alignment: .trailing, spacing: OverlayLayerMetrics.mapGap) {
+            if settings.showWatermark { watermarkBadge }
+            if snapshot != nil {
+                HStack(alignment: .center, spacing: OverlayLayerMetrics.mapGap) {
+                    if showMap { mapBox }
+                    infoCard
+                }
+            }
         }
+    }
+
+    /// Brand badge: app logo + name, its own box separate from the info card.
+    private var watermarkBadge: some View {
+        HStack(spacing: 5) {
+            Image("AppLogo").resizable()
+                .frame(width: settings.style.fontSize * 1.3,
+                       height: settings.style.fontSize * 1.3)
+                .clipShape(RoundedRectangle(cornerRadius: 4))
+            Text("GPS Camera")
+                .font(settings.style.textFont(settings.style.fontSize * 0.9))
+        }
+        .foregroundStyle(settings.style.textColor)
+        .padding(.horizontal, 7)
+        .padding(.vertical, 5)
+        .background(settings.style.bgColor.opacity(settings.style.bgOpacity),
+                    in: RoundedRectangle(cornerRadius: 8))
     }
 
     private var infoCard: some View {
@@ -30,11 +54,6 @@ struct OverlayLayer: View {
                      horizontalSpacing: 8, verticalSpacing: 6) {
                     rows(for: s)
                 }
-            }
-            if settings.showWatermark {
-                Text(L("Geotagged with GPS Camera"))
-                    .font(settings.style.textFont(settings.style.fontSize * 0.85).italic())
-                    .opacity(0.7)
             }
         }
         .font(settings.style.textFont(settings.style.fontSize))
