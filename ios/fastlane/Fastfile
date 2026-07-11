@@ -1,0 +1,33 @@
+default_platform(:ios)
+
+PROJECT = "gpscamera.xcodeproj"
+SCHEME = "gpscamera"
+
+platform :ios do
+  desc "Build and upload a release build to App Store Connect"
+  lane :release do
+    app_store_connect_api_key(
+      key_id: ENV.fetch("ASC_KEY_ID"),
+      issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      key_filepath: ENV.fetch("ASC_KEY_PATH")
+    )
+
+    ensure_git_status_clean
+
+    increment_build_number(
+      xcodeproj: PROJECT,
+      build_number: latest_testflight_build_number(initial_build_number: 0) + 1
+    )
+
+    build_app(project: PROJECT, scheme: SCHEME)
+
+    upload_to_app_store(
+      precheck_include_in_app_purchases: false,
+      submit_for_review: false,
+      # metadata/ holds only release_notes.txt per locale, so deliver
+      # updates What's New and leaves all other fields untouched.
+      skip_metadata: false,
+      skip_screenshots: true
+    )
+  end
+end
