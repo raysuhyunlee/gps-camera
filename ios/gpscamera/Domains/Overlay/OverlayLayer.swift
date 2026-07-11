@@ -37,7 +37,7 @@ struct OverlayLayer: View {
                 .frame(width: settings.style.fontSize * 1.3,
                        height: settings.style.fontSize * 1.3)
                 .clipShape(RoundedRectangle(cornerRadius: 4))
-            Text("GPS Camera")
+            Text(L("GPS Camera"))
                 .font(settings.style.textFont(settings.style.fontSize * 0.9))
         }
         .foregroundStyle(settings.style.textColor)

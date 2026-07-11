@@ -35,7 +35,7 @@
 
 ## Product
 
-- App name: GPS Camera(**TBD**)
+- App name: GPS Camera
 - Platforms: iOS (SwiftUI), Android (planned)
 - One-liner: a camera that burns GPS + location metadata into photos/videos.
 
