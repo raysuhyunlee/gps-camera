@@ -48,6 +48,10 @@ test:
       -sdk iphonesimulator -destination 'platform=iOS Simulator,name={{sim}}' \
       test CODE_SIGNING_ALLOWED=NO
 
+# build and upload a release build to App Store Connect (needs fastlane/.env)
+release:
+    bundle exec fastlane release
+
 # clean build artifacts
 clean:
     xcodebuild -project {{project}} -scheme {{scheme}} clean
