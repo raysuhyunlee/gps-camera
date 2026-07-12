@@ -64,6 +64,9 @@ struct OverlayLayer: View {
                 .frame(width: 8, height: 8)
                 .overlay(Circle().stroke(.white, lineWidth: 1.5))
         }
+        // Lets the screenshot UI test wait for the async map snapshot to land
+        // before capturing Main (screenshots.md); no-op in Release.
+        .screenshotMapMarker(ready: mapImage != nil)
     }
 
     private var cardWidth: CGFloat {
@@ -137,6 +140,21 @@ struct OverlayLayer: View {
         case .normal: return .yellow
         case .bad:    return .red
         }
+    }
+}
+
+private extension View {
+    /// DEBUG-only marker the screenshot UI test polls before capturing Main, so
+    /// the async map snapshot has arrived (else the map box shows blank). The
+    /// identifier flips to `overlayMapReady` once the image loads. No-op in
+    /// Release, where it must not alter the overlay's accessibility tree.
+    @ViewBuilder func screenshotMapMarker(ready: Bool) -> some View {
+        #if DEBUG
+        accessibilityElement()
+            .accessibilityIdentifier(ready ? "overlayMapReady" : "overlayMapLoading")
+        #else
+        self
+        #endif
     }
 }
 

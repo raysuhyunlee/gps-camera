@@ -139,6 +139,9 @@ screenshots/
 - 2026-07-11: Scene now selected per storefront via `ScreenshotUITests`
   `sceneForStore`/`scenesByStore` (defaults all stores to `new-york`); the old
   `demo` scene id/default is gone.
+- 2026-07-12: Wait for the async map snapshot before capturing Main - the UI
+  test polls the overlay's `overlayMapReady` a11y marker (DEBUG-only) so the map
+  box is not blank; times out and shoots anyway if the snapshot never lands.
 - 2026-07-12: All 30 storefronts (`L10n.languages`). Snapfile lists the 30 ASC
   locales; one caption file per store; overlay address localized per non-Latin
   store (`ScreenshotDemo.localizedAddresses`); `no` store maps to L10n `nb`.

@@ -25,7 +25,11 @@ final class ScreenshotUITests: XCTestCase {
         app.launchArguments += ["-ScreenshotDemo", "1", "-Scene", scene, "-ScreenshotPro", pro]
         app.launch()
 
-        // 1. Main - live camera surface with the overlay card + map.
+        // 1. Main - live camera surface with the overlay card + map. The map is
+        //    an async MKMapSnapshotter render, so wait for it to land (the layer
+        //    flips this id to `overlayMapReady`) before capturing; on failure the
+        //    wait times out and we still shoot rather than hang.
+        _ = app.otherElements["overlayMapReady"].waitForExistence(timeout: 10)
         snapshot("01Main")
 
         // 2. Settings - the customization surface (a sheet; dismiss after).
