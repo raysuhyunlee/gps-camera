@@ -114,8 +114,6 @@ struct PaywallView: View {
                     Image(systemName: feature.icon)
                         .foregroundStyle(Color.accentColor)
                         .frame(width: 30, height: 30)
-                        .background(Color.accentColor.opacity(0.12),
-                                    in: RoundedRectangle(cornerRadius: 9))
                     Text(L(feature.title))
                         .fixedSize(horizontal: true, vertical: false)
                 }
@@ -146,8 +144,8 @@ struct PaywallView: View {
         return Button { selectedID = package.identifier } label: {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(title(package)).font(.title3.bold())
-                    Text(priceLine(package)).font(.title3.bold())
+                    Text(title(package)).font(.headline.bold())
+                    Text(priceLine(package)).font(.headline.bold())
                 }
                 Spacer()
                 if let badge = badge(package) {
