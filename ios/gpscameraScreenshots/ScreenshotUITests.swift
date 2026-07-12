@@ -38,12 +38,7 @@ final class ScreenshotUITests: XCTestCase {
         let settings = app.buttons["settingsButton"]
         if settings.waitForExistence(timeout: 5) {
             settings.tap()
-            // A controlled drag (not swipeUp's fling, which overshoots to the
-            // bottom) lifts the Capture rows off so Overlay leads the shot.
-            let from = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.82))
-            let to = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.36))
-            from.press(forDuration: 0.1, thenDragTo: to, withVelocity: .default,
-                       thenHoldForDuration: 0.1)
+            leadWithOverlay(app)
             snapshot("02Settings")
             dismissSheet(app)   // back to Main so the gallery button is hittable
         }
@@ -61,6 +56,36 @@ final class ScreenshotUITests: XCTestCase {
             }
             snapshot("03Gallery")
         }
+    }
+
+    /// Lift the rows above Overlay off the top so the Overlay section leads the
+    /// shot: it is the app's headline feature, not the generic Capture rows.
+    ///
+    /// The drag is anchored to the list and sized in points, not to the window:
+    /// on iPad the sheet is a centred form sheet, so window-relative coordinates
+    /// land on the camera behind it. `overlayTop` is the height of the rows above
+    /// Overlay (pro card + General + Capture), which is the same on both devices
+    /// because row heights are. A press-drag, never `swipeUp`, whose fling
+    /// overshoots to the bottom of the list.
+    private func leadWithOverlay(_ app: XCUIApplication) {
+        let list = settingsList(app)
+        guard list.waitForExistence(timeout: 5) else { return }
+        let overlayTop: CGFloat = 440
+
+        let from = list.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.85))
+        let to = from.withOffset(CGVector(dx: 0, dy: -overlayTop))
+        from.press(forDuration: 0.1, thenDragTo: to, withVelocity: .default,
+                   thenHoldForDuration: 0.1)
+    }
+
+    /// The settings list. SwiftUI's `Form` backs onto a collection view, but the
+    /// element type has moved across OS versions, so take the first that exists.
+    private func settingsList(_ app: XCUIApplication) -> XCUIElement {
+        for query in [app.collectionViews, app.tables, app.scrollViews] {
+            let element = query.firstMatch
+            if element.exists { return element }
+        }
+        return app.collectionViews.firstMatch
     }
 
     /// A gallery grid cell (3 columns), addressed by normalized position so no

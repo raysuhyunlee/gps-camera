@@ -175,3 +175,7 @@ screenshots/
 - 2026-07-12: iPad Pro 13" added to the Snapfile (the app targets iPhone + iPad,
   so the App Store requires both sets). `build.mjs` now prefixes each composed
   file with its device, which previously collided on the shared screen key.
+- 2026-07-12: Settings pose fixed for iPad - the scroll-to-Overlay drag was
+  relative to the window, which on iPad lands on the camera behind the centred
+  form sheet, so the sheet never scrolled. It now drags the list itself, by a
+  point distance both devices share.
