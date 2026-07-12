@@ -5,12 +5,12 @@
     "bg": "#0B6E4F"
   },
   "02Settings": {
-    "line1": "Overlay,",
+    "line1": "Oma leima,",
     "line2": "omalla tyylilläsi",
     "bg": "#8A3B12"
   },
   "03Gallery": {
-    "line1": "Lähetä todisteet",
+    "line1": "Lähetä todiste",
     "line2": "mihin tahansa raporttiin",
     "bg": "#1D4E89"
   }

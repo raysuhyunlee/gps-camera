@@ -1,17 +1,17 @@
 {
   "01Main": {
-    "line1": "Hvert foto,",
-    "line2": "med sted og tid",
+    "line1": "Sted og tid,",
+    "line2": "på hvert billede",
     "bg": "#0B6E4F"
   },
   "02Settings": {
-    "line1": "Dit overlay,",
-    "line2": "i din stil",
+    "line1": "Dit stempel,",
+    "line2": "din stil",
     "bg": "#8A3B12"
   },
   "03Gallery": {
-    "line1": "Send bevis",
-    "line2": "til enhver rapport",
+    "line1": "Bevis der holder,",
+    "line2": "til hver rapport",
     "bg": "#1D4E89"
   }
 }

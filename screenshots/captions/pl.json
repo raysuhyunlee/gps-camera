@@ -1,6 +1,6 @@
 {
   "01Main": {
-    "line1": "Każde zdjęcie,",
+    "line1": "Każde zdjęcie",
     "line2": "z miejscem i czasem",
     "bg": "#0B6E4F"
   },
@@ -10,7 +10,7 @@
     "bg": "#8A3B12"
   },
   "03Gallery": {
-    "line1": "Wyślij dowód",
+    "line1": "Dowód gotowy",
     "line2": "do każdego raportu",
     "bg": "#1D4E89"
   }

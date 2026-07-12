@@ -1,16 +1,16 @@
 {
   "01Main": {
     "line1": "Setiap foto,",
-    "line2": "dengan lokasi dan waktu",
+    "line2": "lengkap lokasi & waktu",
     "bg": "#0B6E4F"
   },
   "02Settings": {
-    "line1": "Overlay Anda,",
-    "line2": "sesuai gaya Anda",
+    "line1": "Atur watermark,",
+    "line2": "sesuai selera Anda",
     "bg": "#8A3B12"
   },
   "03Gallery": {
-    "line1": "Kirim bukti",
+    "line1": "Kirim bukti,",
     "line2": "untuk laporan apa pun",
     "bg": "#1D4E89"
   }
