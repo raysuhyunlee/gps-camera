@@ -1,7 +1,7 @@
 # fastlane snapshot config (screenshots.md). Raw simulator captures land in
 # ./screenshots/<locale>/; the compose stage frames them for the store.
 
-devices(["iPhone 17 Pro Max"])   # 6.9" (1320x2868); add "iPad Pro 13-inch (M5)" when needed
+devices(["iPhone 17 Pro Max", "iPad Pro 13-inch (M5)"])   # 6.9" (1320x2868) + 13" (2064x2752); both required, the app ships for iPhone + iPad
 
 # All 30 App Store storefronts the app localizes (L10n.languages). Codes are the
 # App Store Connect locales (output-dir + upload keys); ScreenshotDemo maps each

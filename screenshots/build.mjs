@@ -24,6 +24,9 @@ const capDir = resolve(arg('captions', join(HERE, 'captions')));
 
 // Raw files are "<device>-<screen>.png"; the screen key is the last segment.
 const screenKey = (file) => basename(file, '.png').split('-').pop();
+// One store listing holds every device's shots, so the output name carries the
+// device too; deliver routes each file to a display type by its pixel size.
+const deviceKey = (file) => (/ipad/i.test(file) ? 'ipad' : 'iphone');
 
 async function loadCaptions(locale) {
   for (const name of [`${locale}.json`, 'en-US.json']) {
@@ -59,7 +62,7 @@ async function main() {
       const cap = captions[key] ?? {};
       await compose({
         screenshot: join(rawDir, locale, file),
-        output: join(outDir, locale, `${key}.png`),
+        output: join(outDir, locale, `${deviceKey(file)}-${key}.png`),
         ...cap,
       });
     }

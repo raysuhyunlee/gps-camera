@@ -14,6 +14,10 @@
   (e.g. `S`) is still English everywhere - localizing it is a live-overlay change,
   not screenshot-only (see "Non-interests").
 
+- 2026-07-12: iPad added. The app ships for iPhone + iPad, so the App Store
+  requires a screenshot set per device family. Snapfile captures both; composed
+  names are device-prefixed so one locale folder holds both sets.
+
 ## Domain Definition
 
 - **Interests**
@@ -85,7 +89,9 @@ from the text script (`--locale auto`): Latin is uppercase display, CJK/RTL/Indi
 render in native fonts. It bundles `SF Pro Display Black` (Latin) and `Pretendard`
 (Korean) as data-URI fonts when installed, else falls back to system fonts.
 `build.mjs` frames every raw capture using per-locale captions; output lands in
-`ios/fastlane/screenshots/<locale>/`. Optional AI polish (`enhance.mjs`, OpenAI
+`ios/fastlane/screenshots/<locale>/` as `<device>-<screen>.png` (`iphone-01Main.png`,
+`ipad-01Main.png`) - one folder holds every device, and deliver routes each file
+to its display type by pixel size. Optional AI polish (`enhance.mjs`, OpenAI
 `gpt-image-1` / "ducktape") runs per screen when `OPENAI_API_KEY` is set.
 
 ### Assets (user-supplied)
@@ -118,7 +124,7 @@ ios/gpscameraScreenshots/       - UI test target (shared scheme)
 ├── ScreenshotUITests.swift     - drives Main/Gallery/Settings; picks scene per store; calls snapshot()
 └── SnapshotHelper.swift        - fastlane helper
 ios/fastlane/
-├── Snapfile                    - devices + 30 store languages + status-bar override
+├── Snapfile                    - devices (iPhone 6.9" + iPad 13") + 30 store languages + status-bar override
 └── Fastfile                    - `screenshots` lane; release auto-includes shots
 
 # DEBUG-gated swaps in existing files:
@@ -166,3 +172,6 @@ screenshots/
 - 2026-07-12: `just` recipes for the full pipeline (raw capture + compose):
   `screenshot-test <lang>` (one language) and `screenshots` (all). The
   `screenshots` fastlane lane now accepts an optional `languages:` override.
+- 2026-07-12: iPad Pro 13" added to the Snapfile (the app targets iPhone + iPad,
+  so the App Store requires both sets). `build.mjs` now prefixes each composed
+  file with its device, which previously collided on the shared screen key.
