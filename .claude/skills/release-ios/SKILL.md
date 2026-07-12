@@ -1,7 +1,7 @@
 ---
 name: release-ios
 description: Ship an iOS App Store release. Use when the user says "release ios", "ship it to App Store", or "publish to App Store". 
-Runs preflight checks, translate metadata, git tag version, then runs fastlane release.
+Runs preflight checks, git tag version, then runs fastlane release.
 ---
 
 # Release
@@ -26,26 +26,7 @@ Paths are relative to repo root. All fastlane commands run from `ios/`.
 - Show the user the English note and confirm it is final before continuing.
 - Reject notes over 4000 characters (App Store per-locale limit).
 
-## 3. Translate
-
-Translate the `en-US` note into every other locale and overwrite each
-`ios/fastlane/metadata/<locale>/release_notes.txt`.
-
-Locales (App Store Connect codes):
-`ko ja zh-Hans zh-Hant es-ES pt-BR de-DE fr-FR it nl-NL ru tr sv da fi no pl cs hu ro uk vi id ms th hi el ar-SA he`
-
-Rules:
-- Do NOT translate the app name "GPS Camera".
-- Natural, idiomatic App Store phrasing per locale — not literal.
-- Match the tone and length of the English note.
-- `ar-SA` and `he` are right-to-left; write plain translated text, no markup.
-- Keep every file under 4000 characters.
-
-Show the user a short summary (locale + first line each) and let them review before continuing.
-
-## 4. Commit + tag
-
-Once the user approves the translations:
+## 3. Commit + tag
 
 - `git add ios/gpscamera.xcodeproj/project.pbxproj ios/fastlane/metadata`
 - `git commit -m "Release v<MARKETING_VERSION>"`
@@ -53,7 +34,7 @@ Once the user approves the translations:
 
 The tree must be clean after this — `fastlane release` runs `ensure_git_status_clean`.
 
-## 5. Run fastlane
+## 4. Run fastlane
 
 - `cd ios && bundle exec fastlane release` (or `just release`).
 - This bumps the build number, builds a signed archive, and uploads to App Store Connect (What's New + binary; no review submission).
@@ -64,3 +45,4 @@ The tree must be clean after this — `fastlane release` runs `ensure_git_status
 
 - Requires `ios/fastlane/.env` (API key credentials) and `ios/fastlane/AuthKey.p8`. If missing, `fastlane release` fails at auth — tell the user to set them up (see `ios/fastlane/.env.example`).
 - App Store shows release notes only on updates, not the first version.
+- The store listing is English-only: `ios/fastlane/metadata/` holds `en-US` alone, and the App Store serves it to every storefront. Do not add other locale folders unless the full listing (name, subtitle, keywords, description) is localized too — App Store Connect rejects a new localization that has only release notes.

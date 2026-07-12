@@ -35,8 +35,7 @@ platform :ios do
     upload_to_app_store(
       precheck_include_in_app_purchases: false,
       submit_for_review: false,
-      # metadata/ holds only release_notes.txt per locale, so deliver
-      # updates What's New and leaves all other fields untouched.
+      # metadata/ holds en-US only, so the listing is English on every storefront.
       skip_metadata: false,
       skip_screenshots: !has_screenshots
     )
