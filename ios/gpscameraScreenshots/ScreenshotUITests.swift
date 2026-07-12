@@ -3,8 +3,8 @@
 //  Drives the app in screenshot demo mode (screenshots.md) and captures the
 //  hero screens per locale via fastlane snapshot. The app itself synthesizes an
 //  authentic camera screen (scene photo + curated overlay); this test only
-//  navigates. Scene id + entitlement come from the SCREENSHOT_* env, defaulted
-//  by the fastlane lane.
+//  navigates. The scene is chosen per App Store storefront (the fastlane locale)
+//  via `sceneForStore`; `SCREENSHOT_SCENE`/`SCREENSHOT_PRO` env override it.
 //
 
 import XCTest
@@ -17,11 +17,11 @@ final class ScreenshotUITests: XCTestCase {
     @MainActor
     func testCaptureScreens() throws {
         let env = ProcessInfo.processInfo.environment
-        let scene = env["SCREENSHOT_SCENE"] ?? "demo"
         let pro = env["SCREENSHOT_PRO"] ?? "1"
 
         let app = XCUIApplication()
-        setupSnapshot(app)
+        setupSnapshot(app)   // populates Snapshot.deviceLanguage (the store locale)
+        let scene = env["SCREENSHOT_SCENE"] ?? Self.sceneForStore(Snapshot.deviceLanguage)
         app.launchArguments += ["-ScreenshotDemo", "1", "-Scene", scene, "-ScreenshotPro", pro]
         app.launch()
 
@@ -72,5 +72,17 @@ final class ScreenshotUITests: XCTestCase {
         let top = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.08))
         let bottom = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.92))
         top.press(forDuration: 0.1, thenDragTo: bottom)
+    }
+
+    // MARK: - Store -> scene
+
+    /// Camera scene (`screenshot-scene-<id>.jpg`) per App Store storefront, keyed
+    /// by the fastlane locale (`Snapfile` languages). Every store falls back to
+    /// `defaultScene`; override a single store by adding its locale here.
+    private static let scenesByStore: [String: String] = [:]
+    private static let defaultScene = "new-york"
+
+    static func sceneForStore(_ locale: String) -> String {
+        scenesByStore[locale] ?? defaultScene
     }
 }

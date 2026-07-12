@@ -15,17 +15,16 @@ Paths are relative to repo root. fastlane runs from `ios/`; compose runs from `s
 - Check `ios/gpscamera/Screenshot/Assets/scenes/` for `screenshot-scene-<id>.jpg`
   and `.../gallery/` for `screenshot-gallery-<n>.jpg`.
 - If none exist, stop and ask the user to drop real photos in (see the README
-  there). The demo Main screen is black without a scene photo.
+  there).
 - For each scene id used, confirm a matching `LocationSnapshot` entry exists in
   the `scenes` table in `ios/gpscamera/Screenshot/ScreenshotDemo.swift` so the
-  overlay address/coordinates fit the photo. Default is Seoul.
+  overlay address/coordinates fit the photo.
 
 ## 2. Benefit discovery (captions)
 
 - Read `README.md` + `spec/overview.md` for the product's core benefits.
-- Draft a 2-line caption + background color per hero screen (Main, Gallery,
-  Settings) and write `screenshots/captions/<locale>.json` for each target
-  locale. Keys are the screen ids: `01Main`, `02Gallery`, `03Settings`.
+- Draft a 2-line caption + background color per hero screen and write `screenshots/captions/<locale>.json` for each target
+  locale.
 - Show the user the captions and confirm before continuing.
 
 ## 3. Capture (stage 1)

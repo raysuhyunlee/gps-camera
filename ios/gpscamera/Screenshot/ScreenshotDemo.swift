@@ -46,9 +46,18 @@ struct ScreenshotDemo {
     }
 
     /// Curated location for the overlay card + GPS indicator, matched per scene
-    /// so the address/coordinates read sensibly. Falls back to a default.
-    var snapshot: LocationSnapshot {
-        Self.scenes[scene ?? ""] ?? Self.defaultSnapshot
+    /// so the address/coordinates read sensibly. The overlay renders in the run's
+    /// locale, so the address is localized too: non-Latin stores get a native
+    /// spelling from `localizedAddresses`; Latin-script stores keep the scene's
+    /// default (proper nouns are not translated). nil for an unknown scene.
+    var snapshot: LocationSnapshot? {
+        guard let scene, let base = Self.scenes[scene] else { return nil }
+        guard let locale, let address = Self.localizedAddresses[scene]?[locale]
+        else { return base }
+        return LocationSnapshot(
+            coordinate: base.coordinate, altitude: base.altitude,
+            accuracyMeters: base.accuracyMeters, heading: base.heading,
+            timestamp: base.timestamp, address: address, weather: base.weather)
     }
 
     /// The app-language code (L10n) for this run, derived from the standard
@@ -60,9 +69,13 @@ struct ScreenshotDemo {
         if let scripted = codes.first(where: { pref.hasPrefix($0) }) {
             return scripted                                     // zh-Hans-CN -> zh-Hans
         }
-        let base = pref.split(separator: "-").first.map(String.init) ?? pref
+        var base = pref.split(separator: "-").first.map(String.init) ?? pref
+        base = Self.localeAliases[base] ?? base                 // store "no" -> L10n "nb"
         return codes.first { $0 == base || $0.hasPrefix(base + "-") }
     }
+
+    /// App Store storefront codes whose base differs from the L10n code.
+    private static let localeAliases = ["no": "nb"]
 
     // MARK: - Curated scenes
 
@@ -84,10 +97,23 @@ struct ScreenshotDemo {
             weather: nil),
     ]
 
-    private static let defaultSnapshot = LocationSnapshot(
-        coordinate: Coordinate(latitude: 37.5326, longitude: 127.0246),
-        altitude: 38.2, accuracyMeters: 4.5,
-        heading: Heading(degrees: 275), timestamp: .now,
-        address: "12 Hannam-daero, Yongsan-gu, Seoul", weather: nil)
+    // Native address spelling per non-Latin store (Apple-Maps style). Latin-script
+    // stores fall back to the scene's default address above. Machine-drafted;
+    // review with native speakers. Keyed by scene, then L10n code.
+    private static let localizedAddresses: [String: [String: String]] = [
+        "new-york": [
+            "ko":      "\u{BBF8}\u{AD6D} \u{B274}\u{C695} \u{B85D}\u{D3A0}\u{B7EC} \u{D50C}\u{B77C}\u{C790} 30",
+            "ja":      "\u{30A2}\u{30E1}\u{30EA}\u{30AB} \u{30CB}\u{30E5}\u{30FC}\u{30E8}\u{30FC}\u{30AF} \u{30ED}\u{30C3}\u{30AF}\u{30D5}\u{30A7}\u{30E9}\u{30FC}\u{30FB}\u{30D7}\u{30E9}\u{30B6}30",
+            "zh-Hans": "\u{7F8E}\u{56FD}\u{7EBD}\u{7EA6}\u{6D1B}\u{514B}\u{83F2}\u{52D2}\u{5E7F}\u{573A}30\u{53F7}",
+            "zh-Hant": "\u{7F8E}\u{570B}\u{7D10}\u{7D04}\u{6D1B}\u{514B}\u{6590}\u{52D2}\u{5EE3}\u{5834}30\u{865F}",
+            "ru":      "\u{0420}\u{043E}\u{043A}\u{0444}\u{0435}\u{043B}\u{043B}\u{0435}\u{0440}-\u{041F}\u{043B}\u{0430}\u{0437}\u{0430}, 30, \u{041D}\u{044C}\u{044E}-\u{0419}\u{043E}\u{0440}\u{043A}",
+            "uk":      "\u{0420}\u{043E}\u{043A}\u{0444}\u{0435}\u{043B}\u{043B}\u{0435}\u{0440}-\u{041F}\u{043B}\u{0430}\u{0437}\u{0430}, 30, \u{041D}\u{044C}\u{044E}-\u{0419}\u{043E}\u{0440}\u{043A}",
+            "el":      "\u{03A1}\u{03CC}\u{03BA}\u{03C6}\u{03B5}\u{03BB}\u{03B5}\u{03C1} \u{03A0}\u{03BB}\u{03AC}\u{03B6}\u{03B1} 30, \u{039D}\u{03AD}\u{03B1} \u{03A5}\u{03CC}\u{03C1}\u{03BA}\u{03B7}",
+            "th":      "\u{0E23}\u{0E47}\u{0E2D}\u{0E01}\u{0E40}\u{0E01}\u{0E2D}\u{0E40}\u{0E1F}\u{0E25}\u{0E40}\u{0E25}\u{0E2D}\u{0E23}\u{0E4C}\u{0E1E}\u{0E25}\u{0E32}\u{0E0B}\u{0E32} 30, \u{0E19}\u{0E34}\u{0E27}\u{0E22}\u{0E2D}\u{0E23}\u{0E4C}\u{0E01}",
+            "hi":      "30 \u{0930}\u{0949}\u{0915}\u{0947}\u{092B}\u{0947}\u{0932}\u{0930} \u{092A}\u{094D}\u{0932}\u{093E}\u{095B}\u{093E}, \u{0928}\u{094D}\u{092F}\u{0942}\u{092F}\u{0949}\u{0930}\u{094D}\u{0915}",
+            "ar":      "30 \u{0631}\u{0648}\u{0643}\u{0641}\u{0644}\u{0631} \u{0628}\u{0644}\u{0627}\u{0632}\u{0627}\u{060C} \u{0646}\u{064A}\u{0648}\u{064A}\u{0648}\u{0631}\u{0643}",
+            "he":      "\u{05E8}\u{05D5}\u{05E7}\u{05E4}\u{05DC}\u{05E8} \u{05E4}\u{05DC}\u{05D0}\u{05D6}\u{05D4} 30, \u{05E0}\u{05D9}\u{05D5} \u{05D9}\u{05D5}\u{05E8}\u{05E7}",
+        ],
+    ]
 }
 #endif

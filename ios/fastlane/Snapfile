@@ -3,11 +3,40 @@
 
 devices(["iPhone 17 Pro Max"])   # 6.9" (1320x2868); add "iPad Pro 13-inch (M5)" when needed
 
-# Start with a representative subset; expand toward the ~30 metadata locales.
+# All 30 App Store storefronts the app localizes (L10n.languages). Codes are the
+# App Store Connect locales (output-dir + upload keys); ScreenshotDemo maps each
+# back to its L10n code for the in-app language + localized overlay address.
 languages([
   "en-US",
   "ko",
   "ja",
+  "zh-Hans",
+  "zh-Hant",
+  "es-ES",
+  "pt-BR",
+  "de-DE",
+  "fr-FR",
+  "it",
+  "ru",
+  "nl-NL",
+  "sv",
+  "da",
+  "no",
+  "fi",
+  "pl",
+  "tr",
+  "ar-SA",
+  "he",
+  "hi",
+  "th",
+  "vi",
+  "id",
+  "ms",
+  "cs",
+  "el",
+  "uk",
+  "ro",
+  "hu",
 ])
 
 scheme("gpscameraScreenshots")

@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Každá fotka,",
+    "line2": "s místem a časem",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Váš překryv,",
+    "line2": "ve vašem stylu",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Pošlete důkaz",
+    "line2": "do každé zprávy",
+    "bg": "#1D4E89"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Setiap foto,",
+    "line2": "dengan lokasi dan masa",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Tindanan anda,",
+    "line2": "ikut gaya anda",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Hantar bukti",
+    "line2": "untuk sebarang laporan",
+    "bg": "#1D4E89"
+  }
+}

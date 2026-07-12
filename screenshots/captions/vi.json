@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Mọi bức ảnh,",
+    "line2": "với địa điểm và thời gian",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Lớp phủ của bạn,",
+    "line2": "theo phong cách của bạn",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Gửi bằng chứng",
+    "line2": "cho mọi báo cáo",
+    "bg": "#1D4E89"
+  }
+}

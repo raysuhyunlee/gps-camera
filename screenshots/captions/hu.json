@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Minden fotó,",
+    "line2": "hellyel és idővel",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "A fedvényed,",
+    "line2": "a saját stílusodban",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Küldj bizonyítékot",
+    "line2": "bármely jelentéshez",
+    "bg": "#1D4E89"
+  }
+}

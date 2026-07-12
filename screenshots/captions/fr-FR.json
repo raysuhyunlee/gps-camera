@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Chaque photo,",
+    "line2": "avec lieu et heure",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Votre superposition,",
+    "line2": "à votre goût",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Envoyez la preuve",
+    "line2": "pour tout rapport",
+    "bg": "#1D4E89"
+  }
+}
