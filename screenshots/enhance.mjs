@@ -11,6 +11,12 @@
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname, resolve, basename } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { existsSync } from 'node:fs';
+
+// Load OPENAI_API_KEY from a gitignored .env next to this script, if present.
+const envFile = resolve(dirname(fileURLToPath(import.meta.url)), '.env');
+if (existsSync(envFile)) process.loadEnvFile(envFile);
 
 function arg(name, def) {
   const i = process.argv.indexOf(`--${name}`);

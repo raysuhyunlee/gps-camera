@@ -44,10 +44,13 @@ Paths are relative to repo root. fastlane runs from `ios/`; compose runs from `s
 
 ## 5. AI polish (optional)
 
-- If the user wants the premium look and `OPENAI_API_KEY` is set, run
+- Needs `OPENAI_API_KEY` from a gitignored `screenshots/.env` (copy
+  `screenshots/.env.example`). `enhance.mjs` auto-loads it. Skip this step if no
+  `.env`.
+- If the user wants the premium look, run
   `node enhance.mjs --input <png> --output <png>` per final screen (OpenAI
   `gpt-image-1` / "ducktape"). Review each output; image models vary per run, so
-  re-run for variants and keep the best. Skip this step if no key.
+  re-run for variants and keep the best.
 
 ## 6. Upload
 
