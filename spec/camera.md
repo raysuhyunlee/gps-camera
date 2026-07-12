@@ -81,9 +81,9 @@ Three control types:
 
 Individual controls:
 
-- GPS status - icon only, tinted by accuracy (green good / yellow normal /
-  red bad); tap shows a status tooltip (good / normal / bad). From `location`
-  `accuracyLevel`.
+- GPS signal - location icon only, tinted by accuracy (green good / yellow
+  normal / red bad); tap shows a tooltip "GPS signal: Good | Normal | Bad |
+  No signal". From `location` `accuracyLevel`.
 - Photo/video switch
 - Lens / field-of-view switch (ultra-wide / wide / tele, as available)
 - Flash toggle
@@ -98,7 +98,7 @@ Portrait orientation. Two **control sections**, top and bottom, each a
 semi-transparent black bar so the preview shows through behind.
 
 - Top section
-	- GPS status - top left
+	- GPS signal - top left
 	- Other controls (flash, settings gear) - top right; grouped, but each
 	  rotates individually
 - Bottom section

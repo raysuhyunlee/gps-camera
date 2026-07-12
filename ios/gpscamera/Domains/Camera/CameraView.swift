@@ -181,7 +181,7 @@ struct CameraView: View {
         }
         .rotatable(rotation)
         .popover(isPresented: $showGPSTooltip) {
-            Text(gpsStatusText(level))
+            Text("\(L("GPS signal")): \(gpsStatusText(level))")
                 .font(.caption)
                 .padding(8)
                 .presentationCompactAdaptation(.popover)
