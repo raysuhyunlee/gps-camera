@@ -1,1 +1,1 @@
-GPS Camera - Timestamp & Map
+GPS Camera - Timestamp Geo Tag
