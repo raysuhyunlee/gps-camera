@@ -1,0 +1,8 @@
+Keep track of where your photos were taken.
+
+GPS Camera stamps live coordinates, address, altitude, compass, and time onto your photos and videos as you capture them. The overlay is burned into the image and written into EXIF metadata, so you can prove where and when a shot was taken. Built for job-site logs, inspections, land surveys, real estate, and insurance claims.
+
+FEATURES
+- Live overlay: coordinates, address, compass, date and time
+- Drag the overlay anywhere; customize style, size, and fields
+- Auto-name files with location, date, and custom text
