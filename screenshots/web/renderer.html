@@ -1,73 +1,393 @@
 <!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; }
-  #stage {
-    width: 100vw; height: 100vh;
-    display: flex; flex-direction: column; align-items: center;
-    background: #0B6E4F;
-    overflow: hidden;
-  }
-  #caption {
-    width: 84%;
-    text-align: center;
-    color: #ffffff;
-    font-family: -apple-system, "Apple SD Gothic Neo", "Hiragino Sans", sans-serif;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  #line2 { opacity: 0.9; }
-  #device {
-    position: relative;
-    background: #000;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
-    overflow: hidden;
-  }
-  #device img { display: block; width: 100%; height: 100%; object-fit: cover; }
-</style>
-</head>
-<body>
-<div id="stage">
-  <div id="caption"><span id="line1"></span><span id="line2"></span></div>
-  <div id="device"><img id="shot"></div>
-</div>
-<script>
-  // Called from compose.mjs via page.evaluate(render, cfg). Resolves when the
-  // screenshot image has laid out, so the caller can wait on window.__ready.
-  window.render = function (cfg) {
-    window.__ready = false;
-    const stage = document.getElementById('stage');
-    stage.style.background = cfg.bg;
-    const cap = document.getElementById('caption');
-    cap.style.color = cfg.fg;
-    if (cfg.font) cap.style.fontFamily = cfg.font;
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+    <style>
+      __FONT_FACE_CSS__
 
-    const W = cfg.width, H = cfg.height;
-    cap.style.marginTop = Math.round(H * 0.045) + 'px';
-    cap.style.height = Math.round(H * 0.20) + 'px';
-    cap.style.fontSize = Math.round(W * cfg.fontScale) + 'px';
-    document.getElementById('line1').textContent = cfg.line1 || '';
-    document.getElementById('line2').textContent = cfg.line2 || '';
+      :root {
+        color-scheme: light;
+        --canvas-width: 1320px;
+        --canvas-height: 2868px;
+        --background: #0f172a;
+        --device-width: 1054px;
+        --device-height: 2872px;
+        --device-y: 720px;
+        --bezel: 15px;
+        --screen-radius: 132px;
+        --device-radius: 147px;
+        --text-top: 200px;
+        --verb-size-max: 256px;
+        --verb-size-min: 72px;
+        --desc-size: 124px;
+        --verb-desc-gap: 20px;
+        --desc-line-gap: 24px;
+        --max-text-width: 1214px;
+        --max-verb-width: 1214px;
+        --line-height-ratio: 0.733;
+        --copy-block-gap: 28px;
+        --copy-font-family: "SF Pro Display Black", sans-serif;
+        --copy-font-weight: 900;
+        --copy-text-transform: uppercase;
+        --copy-direction: ltr;
+      }
 
-    const dev = document.getElementById('device');
-    const shot = document.getElementById('shot');
-    const layout = () => {
-      const ratio = shot.naturalHeight / shot.naturalWidth;
-      const devW = Math.round(W * cfg.deviceScale);
-      dev.style.width = devW + 'px';
-      dev.style.height = Math.round(devW * ratio) + 'px';
-      dev.style.borderRadius = Math.round(devW * cfg.cornerScale) + 'px';
-      window.__ready = true;
-    };
-    shot.onload = layout;
-    shot.src = cfg.image;
-    if (shot.complete && shot.naturalWidth) layout();
-  };
-</script>
-</body>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+
+      body {
+        font-family: var(--copy-font-family);
+      }
+
+      .canvas {
+        position: relative;
+        width: var(--canvas-width);
+        height: var(--canvas-height);
+        overflow: hidden;
+        background: var(--background);
+        color: #ffffff;
+        isolation: isolate;
+      }
+
+      .copy {
+        position: absolute;
+        top: var(--text-top);
+        left: 50%;
+        width: 100%;
+        transform: translateX(-50%);
+        text-align: center;
+        text-transform: var(--copy-text-transform);
+        font-family: var(--copy-font-family);
+        font-weight: var(--copy-font-weight);
+        direction: var(--copy-direction);
+        unicode-bidi: plaintext;
+      }
+
+      .title,
+      .subtitle {
+        margin: 0 auto;
+        display: grid;
+        justify-items: center;
+      }
+
+      .title {
+        width: var(--max-verb-width);
+      }
+
+      .subtitle {
+        width: var(--max-text-width);
+        margin-top: var(--copy-block-gap);
+      }
+
+      .line {
+        display: block;
+        white-space: nowrap;
+        line-height: var(--line-height-ratio);
+      }
+
+      .line + .line {
+        margin-top: var(--desc-line-gap);
+      }
+
+      .device-shell {
+        position: absolute;
+        left: 50%;
+        top: var(--device-y);
+        width: var(--device-width);
+        height: var(--device-height);
+        transform: translateX(-50%);
+        border-radius: var(--device-radius);
+      }
+
+      .device-shell.iphone {
+        background: linear-gradient(180deg, rgb(36 36 40), rgb(14 14 17));
+        box-shadow:
+          inset 0 0 0 2px rgb(48 48 52),
+          inset 0 0 0 12px rgb(8 8 10);
+      }
+
+      .device-shell.ipad {
+        background: rgb(34 34 36);
+        box-shadow: inset 0 0 0 2px rgb(18 18 20);
+      }
+
+      .device-shell.iphone::after {
+        content: "";
+        position: absolute;
+      }
+
+      .device-shell.iphone::after {
+        inset: 8px;
+        border-radius: calc(var(--device-radius) - 8px);
+        box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06);
+        pointer-events: none;
+      }
+
+      .screen {
+        position: absolute;
+        top: var(--bezel);
+        left: var(--bezel);
+        width: calc(var(--device-width) - (var(--bezel) * 2));
+        height: calc(var(--device-height) - (var(--bezel) * 2));
+        overflow: hidden;
+        border-radius: var(--screen-radius);
+        background: #000000;
+      }
+
+      .device-shell.iphone .screen {
+        box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.05);
+      }
+
+      .screen img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main class="canvas" id="canvas">
+      <section class="copy">
+        <div class="title" id="title"></div>
+        <div class="subtitle" id="subtitle"></div>
+      </section>
+      <section class="device-shell" id="device-shell">
+        <div class="screen" id="screen">
+          <img id="screenshot-image" alt="" />
+        </div>
+      </section>
+    </main>
+    <script>
+      window.__RENDER_CONFIG__ = __RENDER_CONFIG_JSON__;
+    </script>
+    <script type="module">
+      const config = window.__RENDER_CONFIG__;
+      const root = document.documentElement;
+      const copy = document.querySelector(".copy");
+      const title = document.getElementById("title");
+      const subtitle = document.getElementById("subtitle");
+      const deviceShell = document.getElementById("device-shell");
+      const screenshotImage = document.getElementById("screenshot-image");
+
+      const canvasContext = document.createElement("canvas").getContext("2d");
+
+      function px(value) {
+        return `${value}px`;
+      }
+
+      function measureWidth(text, fontSize) {
+        const fontWeight = config.typography.fontWeight;
+        const fontFamily = config.typography.fontFamily;
+        canvasContext.font = `${fontWeight} ${fontSize}px ${fontFamily}`;
+        return canvasContext.measureText(text).width;
+      }
+
+      async function ensureTypographyLoaded(profile) {
+        if (!document.fonts) {
+          return;
+        }
+
+        const fontSizes = [profile.verbSizeMax, profile.descSize];
+        await Promise.all(
+          fontSizes.map((fontSize) =>
+            document.fonts.load(
+              `${config.typography.fontWeight} ${fontSize}px ${config.typography.fontLoadFamily}`,
+            ),
+          ),
+        );
+      }
+
+      function transformText(value) {
+        if (config.typography.textTransform === "uppercase") {
+          return value.toUpperCase();
+        }
+        return value;
+      }
+
+      function splitGraphemes(text) {
+        if (typeof Intl !== "undefined" && Intl.Segmenter) {
+          return Array.from(
+            new Intl.Segmenter(config.typography.lang, { granularity: "grapheme" }).segment(text),
+            ({ segment }) => segment,
+          );
+        }
+        return Array.from(text);
+      }
+
+      function wrapText(text, fontSize, maxWidth, wrapMode = "word") {
+        if (text.includes("\n")) {
+          return text
+            .split(/\n+/)
+            .map((line) => line.trim())
+            .filter(Boolean)
+            .flatMap((line) => wrapText(line, fontSize, maxWidth, wrapMode === "cjk" ? "cjk" : "word"));
+        }
+
+        const segments =
+          wrapMode === "cjk"
+            ? splitGraphemes(text)
+            : text.trim().split(/\s+/).filter(Boolean);
+        if (segments.length === 0) return [text];
+
+        const lines = [];
+        let current = "";
+        const joiner = wrapMode === "cjk" ? "" : " ";
+
+        for (const segment of segments) {
+          const candidate = current ? `${current}${joiner}${segment}` : segment;
+          if (measureWidth(candidate, fontSize) <= maxWidth) {
+            current = candidate;
+          } else {
+            if (current) {
+              lines.push(current);
+              current = segment;
+            } else {
+              lines.push(candidate);
+              current = "";
+            }
+          }
+        }
+
+        if (current) lines.push(current);
+        return lines;
+      }
+
+      function fitSubtitle(text, profile) {
+        const wrapMode = config.typography.wrapMode ?? "word";
+        const maxLines = config.typography.maxSubtitleLines ?? Number.POSITIVE_INFINITY;
+        const minScale = config.typography.descSizeMinScale ?? 1;
+        const minSize = Math.max(48, Math.floor(profile.descSize * minScale));
+
+        for (let fontSize = profile.descSize; fontSize >= minSize; fontSize -= 4) {
+          const lines = wrapText(text, fontSize, profile.maxTextWidth, wrapMode);
+          if (lines.length <= maxLines) {
+            return { fontSize, lines };
+          }
+        }
+
+        return {
+          fontSize: minSize,
+          lines: wrapText(text, minSize, profile.maxTextWidth, wrapMode),
+        };
+      }
+
+      function renderLines(container, lines, fontSize) {
+        container.innerHTML = "";
+        container.style.fontSize = px(fontSize);
+        for (const lineText of lines) {
+          const line = document.createElement("span");
+          line.className = "line";
+          line.textContent = lineText;
+          container.appendChild(line);
+        }
+      }
+
+      function fitTitle(text, profile) {
+        let size = profile.verbSizeMax;
+        while (size >= profile.verbSizeMin) {
+          if (measureWidth(text, size) <= profile.maxVerbWidth) {
+            return size;
+          }
+          size -= 4;
+        }
+        return profile.verbSizeMin;
+      }
+
+      function applyProfile(profile) {
+        root.style.setProperty("--canvas-width", px(profile.canvasWidth));
+        root.style.setProperty("--canvas-height", px(profile.canvasHeight));
+        root.style.setProperty("--background", config.background);
+        root.style.setProperty("--device-width", px(profile.deviceWidth));
+        root.style.setProperty("--device-height", px(profile.deviceHeight));
+        root.style.setProperty("--device-y", px(profile.deviceY));
+        root.style.setProperty("--bezel", px(profile.bezel));
+        root.style.setProperty("--screen-radius", px(profile.screenCornerRadius));
+        root.style.setProperty("--device-radius", px(profile.deviceCornerRadius));
+        root.style.setProperty("--text-top", px(profile.textTop));
+        root.style.setProperty("--verb-size-max", px(profile.verbSizeMax));
+        root.style.setProperty("--verb-size-min", px(profile.verbSizeMin));
+        root.style.setProperty("--desc-size", px(profile.descSize));
+        root.style.setProperty("--verb-desc-gap", px(profile.verbDescGap));
+        root.style.setProperty("--desc-line-gap", px(profile.descLineGap));
+        root.style.setProperty("--max-text-width", px(profile.maxTextWidth));
+        root.style.setProperty("--max-verb-width", px(profile.maxVerbWidth));
+        root.style.setProperty(
+          "--copy-block-gap",
+          px(profile.verbDescGap + config.typography.subtitleGapOffset),
+        );
+        root.style.setProperty("--line-height-ratio", String(config.typography.lineHeightRatio));
+        root.style.setProperty("--copy-font-family", config.typography.fontFamily);
+        root.style.setProperty("--copy-font-weight", String(config.typography.fontWeight));
+        root.style.setProperty("--copy-text-transform", config.typography.textTransform);
+        root.style.setProperty("--copy-direction", config.typography.direction);
+      }
+
+      function layoutCopy(profile) {
+        const titleText = transformText(config.verb);
+        const subtitleText = transformText(config.desc);
+        const copyBlockGap = profile.verbDescGap + config.typography.subtitleGapOffset;
+        const titleSize = fitTitle(titleText, profile);
+        const titleLines = [titleText];
+        const subtitleLayout = fitSubtitle(subtitleText, profile);
+
+        renderLines(title, titleLines, titleSize);
+        renderLines(subtitle, subtitleLayout.lines, subtitleLayout.fontSize);
+
+        title.style.marginTop = "0";
+        subtitle.style.marginTop = px(copyBlockGap);
+
+        const copyHeight = Math.ceil(
+          title.getBoundingClientRect().height +
+            subtitle.getBoundingClientRect().height +
+            copyBlockGap,
+        );
+        const centeredTop = Math.round(
+          (profile.deviceY - copyHeight) / 2 + (config.typography.topOffset ?? 0),
+        );
+        root.style.setProperty("--text-top", px(centeredTop));
+      }
+
+      async function waitForImage(imageElement) {
+        if (imageElement.complete) return;
+        await new Promise((resolve, reject) => {
+          imageElement.addEventListener("load", resolve, { once: true });
+          imageElement.addEventListener("error", reject, { once: true });
+        });
+      }
+
+      async function render() {
+        const profile = config.profile;
+        applyProfile(profile);
+        document.documentElement.lang = config.typography.lang;
+        copy.dir = config.typography.direction;
+        title.lang = config.typography.lang;
+        subtitle.lang = config.typography.lang;
+        deviceShell.className = `device-shell ${config.profile.shellStyle}`;
+        screenshotImage.src = config.screenshotDataUrl;
+
+        await ensureTypographyLoaded(profile);
+        layoutCopy(profile);
+        await waitForImage(screenshotImage);
+
+        document.body.dataset.renderReady = "true";
+      }
+
+      render().catch((error) => {
+        document.body.dataset.renderError = String(error?.message ?? error);
+      });
+    </script>
+  </body>
 </html>

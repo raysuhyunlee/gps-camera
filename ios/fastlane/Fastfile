@@ -4,9 +4,11 @@ PROJECT = "gpscamera.xcodeproj"
 SCHEME = "gpscamera"
 
 platform :ios do
-  desc "Capture raw simulator screenshots in demo mode (screenshots.md). Raw PNGs land in fastlane/screenshots_raw/<locale>/; the compose stage frames them into fastlane/screenshots/."
-  lane :screenshots do
-    capture_screenshots(scheme: "gpscameraScreenshots")
+  desc "Capture raw simulator screenshots in demo mode (screenshots.md). Raw PNGs land in fastlane/screenshots_raw/<locale>/; the compose stage frames them into fastlane/screenshots/. Pass languages:ko (comma-separated) to capture a subset; omit for all Snapfile locales."
+  lane :screenshots do |options|
+    args = { scheme: "gpscameraScreenshots" }
+    args[:languages] = options[:languages].split(",") if options[:languages]
+    capture_screenshots(**args)
   end
 
   desc "Build and upload a release build to App Store Connect"

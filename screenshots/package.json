@@ -8,6 +8,7 @@
     "enhance": "node enhance.mjs"
   },
   "dependencies": {
+    "image-size": "^2.0.2",
     "playwright": "^1.49.0"
   }
 }

@@ -1,68 +1,460 @@
+#!/usr/bin/env node
 // Deterministic compose stage (screenshots.md): frame a raw simulator capture
-// with a device bezel + 2-line caption on a solid background, at App Store
-// dimensions. Playwright renders web/renderer.html; no AI, fully reproducible.
+// with a device shell + locale-aware 2-line caption on a solid background, at
+// App Store dimensions. Playwright renders web/renderer.html; no AI.
 //
 // Usage:
-//   node compose.mjs --screenshot raw/01Main.png --output final/01Main.png \
-//     --line1 "Stamp every shot" --line2 "with GPS + location" --bg "#0B6E4F"
-//
-// Options: --fg (caption color, default #fff), --font (CSS family stack),
-//   --width/--height (default 1320x2868, iPhone 6.9"), --device-scale (0.78),
-//   --font-scale (0.058), --corner-scale (0.09).
+//   node compose.mjs --bg '#0B6E4F' --line1 'Every photo,' \
+//     --line2 'with place and time' --screenshot in.png --output out.png \
+//     [--device auto|iphone-69|android-phone|ipad-13] \
+//     [--locale auto|en|ko|ja|ar|he|hi|th|zh-Hans|zh-Hant]
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
-import { chromium } from 'playwright';
+import fs from "node:fs/promises";
+import path from "node:path";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
+import { imageSizeFromFile } from "image-size/fromFile";
+import { chromium } from "playwright";
 
-const HERE = dirname(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const rootDir = __dirname;
+const homeDir = process.env.HOME ?? "";
 
-function args(argv) {
-  const out = {};
-  for (let i = 2; i < argv.length; i++) {
-    if (argv[i].startsWith('--')) out[argv[i].slice(2)] = argv[i + 1];
+const profiles = {
+  "iphone-69": {
+    canvasWidth: 1320,
+    canvasHeight: 2868,
+    shellStyle: "iphone",
+    deviceWidth: 1054,
+    deviceHeight: 2872,
+    deviceY: 720,
+    bezel: 15,
+    screenCornerRadius: 132,
+    deviceCornerRadius: 147,
+    textTop: 200,
+    verbSizeMax: 256,
+    verbSizeMin: 72,
+    descSize: 124,
+    verbDescGap: 20,
+    descLineGap: 24,
+    maxTextWidth: Math.floor(1320 * 0.92),
+    maxVerbWidth: Math.floor(1320 * 0.92),
+  },
+  "android-phone": {
+    canvasWidth: 1290,
+    canvasHeight: 2796,
+    shellStyle: "iphone",
+    deviceWidth: 1030,
+    deviceHeight: 2800,
+    deviceY: 700,
+    bezel: 15,
+    screenCornerRadius: 86,
+    deviceCornerRadius: 96,
+    textTop: 200,
+    verbSizeMax: 256,
+    verbSizeMin: 72,
+    descSize: 124,
+    verbDescGap: 20,
+    descLineGap: 24,
+    maxTextWidth: Math.floor(1290 * 0.92),
+    maxVerbWidth: Math.floor(1290 * 0.92),
+  },
+  "ipad-13": {
+    canvasWidth: 2064,
+    canvasHeight: 2752,
+    shellStyle: "ipad",
+    deviceWidth: 1760,
+    deviceHeight: 2332,
+    deviceY: 680,
+    bezel: 22,
+    screenCornerRadius: 40,
+    deviceCornerRadius: 64,
+    textTop: 150,
+    verbSizeMax: 320,
+    verbSizeMin: 120,
+    descSize: 150,
+    verbDescGap: 24,
+    descLineGap: 28,
+    maxTextWidth: Math.floor(2064 * 0.84),
+    maxVerbWidth: Math.floor(2064 * 0.86),
+  },
+};
+
+const localeTypographyMap = {
+  en: "latin",
+  ko: "korean",
+  ja: "japanese",
+  ar: "arabic",
+  he: "hebrew",
+  hi: "hindi",
+  th: "thai",
+  "zh-Hans": "simplifiedChinese",
+  "zh-Hant": "traditionalChinese",
+};
+
+const typographyProfiles = {
+  latin: {
+    fontFamily: '"SF Pro Display Black", sans-serif',
+    fontLoadFamily: '"SF Pro Display Black"',
+    fontWeight: 900,
+    direction: "ltr",
+    lang: "en",
+    textTransform: "uppercase",
+    lineHeightRatio: 0.733,
+    subtitleGapOffset: 60,
+  },
+  korean: {
+    fontFamily: '"Pretendard", "Apple SD Gothic Neo", "AppleGothic", sans-serif',
+    fontLoadFamily: '"Pretendard"',
+    fontWeight: 800,
+    direction: "ltr",
+    lang: "ko",
+    textTransform: "none",
+    lineHeightRatio: 0.9,
+    subtitleGapOffset: 52,
+  },
+  japanese: {
+    fontFamily: '"Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif',
+    fontLoadFamily: '"Hiragino Sans"',
+    fontWeight: 700,
+    direction: "ltr",
+    lang: "ja",
+    textTransform: "none",
+    wrapMode: "cjk",
+    maxSubtitleLines: 2,
+    descSizeMinScale: 0.7,
+    lineHeightRatio: 0.92,
+    subtitleGapOffset: 52,
+  },
+  simplifiedChinese: {
+    fontFamily: '"PingFang SC", "Hiragino Sans GB", sans-serif',
+    fontLoadFamily: '"PingFang SC"',
+    fontWeight: 700,
+    direction: "ltr",
+    lang: "zh-Hans",
+    textTransform: "none",
+    wrapMode: "cjk",
+    maxSubtitleLines: 2,
+    descSizeMinScale: 0.7,
+    lineHeightRatio: 0.92,
+    subtitleGapOffset: 52,
+  },
+  traditionalChinese: {
+    fontFamily: '"PingFang TC", "PingFang HK", "Hiragino Sans GB", sans-serif',
+    fontLoadFamily: '"PingFang TC"',
+    fontWeight: 700,
+    direction: "ltr",
+    lang: "zh-Hant",
+    textTransform: "none",
+    wrapMode: "cjk",
+    maxSubtitleLines: 2,
+    descSizeMinScale: 0.7,
+    lineHeightRatio: 0.92,
+    subtitleGapOffset: 52,
+  },
+  arabic: {
+    fontFamily: '"SF Arabic", "Geeza Pro", "Baghdad", "Damascus", sans-serif',
+    fontLoadFamily: '"SF Arabic"',
+    fontWeight: 700,
+    direction: "rtl",
+    lang: "ar",
+    textTransform: "none",
+    lineHeightRatio: 1,
+    subtitleGapOffset: 56,
+  },
+  hebrew: {
+    fontFamily: '"SF Hebrew", "Arial Hebrew", sans-serif',
+    fontLoadFamily: '"SF Hebrew"',
+    fontWeight: 700,
+    direction: "rtl",
+    lang: "he",
+    textTransform: "none",
+    lineHeightRatio: 1,
+    subtitleGapOffset: 56,
+  },
+  hindi: {
+    fontFamily: '"Kohinoor Devanagari", ".SF Devanagari", "Arial Unicode MS", sans-serif',
+    fontLoadFamily: '"Kohinoor Devanagari"',
+    fontWeight: 700,
+    direction: "ltr",
+    lang: "hi",
+    textTransform: "none",
+    lineHeightRatio: 1,
+    topOffset: 40,
+    subtitleGapOffset: 56,
+  },
+  thai: {
+    fontFamily: '"Sukhumvit Set", "Thonburi", "Arial Unicode MS", sans-serif',
+    fontLoadFamily: '"Sukhumvit Set"',
+    fontWeight: 700,
+    direction: "ltr",
+    lang: "th",
+    textTransform: "none",
+    lineHeightRatio: 1,
+    subtitleGapOffset: 56,
+  },
+};
+
+const bundledFontCandidates = {
+  latin: [
+    {
+      family: "SF Pro Display Black",
+      fontWeight: "900",
+      path: "/Library/Fonts/SF-Pro-Display-Black.otf",
+    },
+  ],
+  korean: [
+    {
+      family: "Pretendard",
+      fontWeight: "45 920",
+      path: path.join(homeDir, "Library", "Fonts", "PretendardVariable.ttf"),
+    },
+    {
+      family: "Pretendard",
+      fontWeight: "800",
+      path: path.join(homeDir, "Library", "Fonts", "Pretendard-ExtraBold.otf"),
+    },
+  ],
+  arabic: [
+    {
+      family: "SF Arabic",
+      fontWeight: "700",
+      path: "/System/Library/Fonts/SFArabic.ttf",
+    },
+  ],
+  hebrew: [
+    {
+      family: "SF Hebrew",
+      fontWeight: "700",
+      path: "/System/Library/Fonts/SFHebrew.ttf",
+    },
+  ],
+  hindi: [],
+  thai: [],
+};
+
+function usage() {
+  return [
+    "Usage:",
+    "  node compose.mjs \\",
+    "    --bg '#0B6E4F' \\",
+    "    --line1 'Every photo,' \\",
+    "    --line2 'with place and time' \\",
+    "    --screenshot '/path/to/screenshot.png' \\",
+    "    --output '/path/to/output.png' \\",
+    "    [--device auto|iphone-69|android-phone|ipad-13] \\",
+    "    [--locale auto|en|ko|ja|ar|he|hi|th|zh-Hans|zh-Hant]",
+  ].join("\n");
+}
+
+function parseArgs(argv) {
+  const values = {};
+  for (let index = 0; index < argv.length; index += 1) {
+    const key = argv[index];
+    if (!key.startsWith("--")) {
+      throw new Error(usage());
+    }
+    const value = argv[index + 1];
+    if (value == null) {
+      throw new Error(`Missing value for ${key}\n\n${usage()}`);
+    }
+    values[key.slice(2)] = value;
+    index += 1;
   }
-  return out;
+
+  const line1 = values.line1 ?? values.verb;
+  const line2 = values.line2 ?? values.desc;
+  values.line1 = line1;
+  values.line2 = line2;
+
+  for (const key of ["bg", "line1", "line2", "screenshot", "output"]) {
+    if (!values[key]) {
+      throw new Error(usage());
+    }
+  }
+
+  const device = values.device ?? "auto";
+  if (!["auto", ...Object.keys(profiles)].includes(device)) {
+    throw new Error(`Unsupported device '${device}'\n\n${usage()}`);
+  }
+
+  const locale = values.locale ?? "auto";
+  if (!["auto", ...Object.keys(localeTypographyMap)].includes(locale)) {
+    throw new Error(`Unsupported locale '${locale}'\n\n${usage()}`);
+  }
+
+  return {
+    background: values.bg,
+    verb: values.line1,
+    desc: values.line2,
+    screenshotPath: path.resolve(values.screenshot),
+    outputPath: path.resolve(values.output),
+    device,
+    locale,
+  };
+}
+
+async function fileToDataUrl(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  const mimeType = {
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".webp": "image/webp",
+    ".otf": "font/otf",
+    ".ttf": "font/ttf",
+  }[ext];
+
+  if (!mimeType) {
+    throw new Error(`Unsupported file type for ${filePath}`);
+  }
+
+  const buffer = await fs.readFile(filePath);
+  return `data:${mimeType};base64,${buffer.toString("base64")}`;
+}
+
+async function inferProfileName(screenshotPath) {
+  const { width = 0, height = 0 } = await imageSizeFromFile(screenshotPath);
+  if (width >= 1800 && height >= 2400) {
+    return "ipad-13";
+  }
+  return "iphone-69";
+}
+
+async function resolveFirstExistingFont(candidates) {
+  for (const candidate of candidates) {
+    try {
+      await fs.access(candidate.path);
+      return candidate;
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
+function fontFormat(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  return {
+    ".otf": "opentype",
+    ".ttf": "truetype",
+  }[ext];
+}
+
+async function buildFontFaceCss() {
+  const fontFaceBlocks = [];
+
+  for (const candidates of Object.values(bundledFontCandidates)) {
+    const font = await resolveFirstExistingFont(candidates);
+    if (!font) {
+      continue;
+    }
+
+    const dataUrl = await fileToDataUrl(font.path);
+    fontFaceBlocks.push(`@font-face {
+        font-family: "${font.family}";
+        src: url("${dataUrl}") format("${fontFormat(font.path)}");
+        font-weight: ${font.fontWeight};
+        font-style: normal;
+      }`);
+  }
+
+  return fontFaceBlocks.join("\n\n");
+}
+
+async function buildHtml(config) {
+  const templatePath = path.join(rootDir, "web", "renderer.html");
+  const template = await fs.readFile(templatePath, "utf8");
+  const fontFaceCss = await buildFontFaceCss();
+
+  return template
+    .replace("__FONT_FACE_CSS__", fontFaceCss)
+    .replace("__RENDER_CONFIG_JSON__", JSON.stringify(config));
+}
+
+function detectScript(text) {
+  if (/[가-힣ㄱ-ㅎㅏ-ㅣ]/u.test(text)) {
+    return "korean";
+  }
+  if (/[\u3040-\u30FF\u31F0-\u31FF\uFF66-\uFF9D]/u.test(text)) {
+    return "japanese";
+  }
+  if (/[\u4E00-\u9FFF\u3400-\u4DBF]/u.test(text)) {
+    return "simplifiedChinese";
+  }
+  if (/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/u.test(text)) {
+    return "arabic";
+  }
+  if (/[\u0590-\u05FF]/u.test(text)) {
+    return "hebrew";
+  }
+  if (/[\u0900-\u097F]/u.test(text)) {
+    return "hindi";
+  }
+  if (/[\u0E00-\u0E7F]/u.test(text)) {
+    return "thai";
+  }
+  return "latin";
 }
 
 async function main() {
-  const a = args(process.argv);
-  if (!a.screenshot || !a.output) {
-    console.error('required: --screenshot <in.png> --output <out.png>');
-    process.exit(1);
-  }
-  const width = Number(a.width ?? 1320);
-  const height = Number(a.height ?? 2868);
+  const options = parseArgs(process.argv.slice(2));
+  const profileName =
+    options.device === "auto"
+      ? await inferProfileName(options.screenshotPath)
+      : options.device;
+  const profile = profiles[profileName];
+  const screenshotDataUrl = await fileToDataUrl(options.screenshotPath);
+  const typographyKey =
+    options.locale === "auto"
+      ? detectScript(`${options.verb} ${options.desc}`)
+      : localeTypographyMap[options.locale];
+  const typography = typographyProfiles[typographyKey];
 
-  const imgData = await readFile(resolve(a.screenshot));
-  const cfg = {
-    image: `data:image/png;base64,${imgData.toString('base64')}`,
-    line1: a.line1 ?? '',
-    line2: a.line2 ?? '',
-    bg: a.bg ?? '#0B6E4F',
-    fg: a.fg ?? '#ffffff',
-    font: a.font ?? '',
-    width, height,
-    deviceScale: Number(a['device-scale'] ?? 0.78),
-    fontScale: Number(a['font-scale'] ?? 0.058),
-    cornerScale: Number(a['corner-scale'] ?? 0.09),
+  const renderConfig = {
+    background: options.background,
+    verb: options.verb,
+    desc: options.desc,
+    profile,
+    typography,
+    screenshotDataUrl,
   };
 
-  const html = await readFile(resolve(HERE, 'web/renderer.html'), 'utf8');
+  const html = await buildHtml(renderConfig);
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage({
+    viewport: {
+      width: profile.canvasWidth,
+      height: profile.canvasHeight,
+    },
+    deviceScaleFactor: 1,
+  });
 
-  const browser = await chromium.launch();
-  try {
-    const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
-    page.on('pageerror', (e) => console.error('[page error]', e.message));
-    await page.setContent(html, { waitUntil: 'load' });
-    await page.evaluate((c) => window.render(c), cfg);
-    await page.waitForFunction('window.__ready === true', { timeout: 15000 });
-    await mkdir(dirname(resolve(a.output)), { recursive: true });
-    await page.screenshot({ path: resolve(a.output), clip: { x: 0, y: 0, width, height } });
-  } finally {
-    await browser.close();
+  page.on("pageerror", (error) => {
+    process.stderr.write(`pageerror: ${error.message}\n`);
+  });
+
+  await page.setContent(html, { waitUntil: "load" });
+  await page.waitForFunction(
+    () => document.body.dataset.renderReady === "true" || !!document.body.dataset.renderError,
+  );
+  const renderError = await page.evaluate(() => document.body.dataset.renderError ?? null);
+  if (renderError) {
+    throw new Error(`Renderer failed: ${renderError}`);
   }
-  console.log(`composed -> ${a.output}`);
+
+  await page.screenshot({
+    path: options.outputPath,
+    type: "png",
+  });
+
+  await browser.close();
+  process.stdout.write(
+    `✓ ${options.outputPath} (${profile.canvasWidth}×${profile.canvasHeight}) [${profileName}]\n`,
+  );
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+main().catch((error) => {
+  process.stderr.write(`${error.message}\n`);
+  process.exit(1);
+});

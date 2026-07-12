@@ -1,5 +1,5 @@
 {
-  "01Main":     { "line1": "Every photo,", "line2": "with place and time", "bg": "#0B6E4F" },
-  "02Settings": { "line1": "Your overlay,", "line2": "styled your way", "bg": "#8A3B12" },
-  "03Gallery":  { "line1": "Send proof", "line2": "for any report", "bg": "#1D4E89" }
+  "01Main":     { "line1": "Capture", "line2": "location & time", "bg": "#0B6E4F" },
+  "02Settings": { "line1": "Style", "line2": "your overlay", "bg": "#8A3B12" },
+  "03Gallery":  { "line1": "Share", "line2": "for report", "bg": "#1D4E89" }
 }

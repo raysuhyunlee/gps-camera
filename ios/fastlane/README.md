@@ -21,7 +21,7 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 [bundle exec] fastlane ios screenshots
 ```
 
-Capture raw simulator screenshots in demo mode (screenshots.md). Raw PNGs land in fastlane/screenshots_raw/<locale>/; the compose stage frames them into fastlane/screenshots/.
+Capture raw simulator screenshots in demo mode (screenshots.md). Raw PNGs land in fastlane/screenshots_raw/<locale>/; the compose stage frames them into fastlane/screenshots/. Pass languages:ko (comma-separated) to capture a subset; omit for all Snapfile locales.
 
 ### ios release
 

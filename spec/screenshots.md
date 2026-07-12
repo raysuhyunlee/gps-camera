@@ -64,16 +64,29 @@ via `sceneForStore(Snapshot.deviceLanguage)` (defaults every store to `new-york`
 
 A UI test target (`gpscameraScreenshots`) drives navigation and calls fastlane
 `snapshot(...)` per screen; `fastlane screenshots` runs it per locale/device.
-Raw PNGs land in `ios/fastlane/screenshots_raw/<locale>/`.
+Raw PNGs land in `ios/fastlane/screenshots_raw/<locale>/`. The `screenshots`
+lane takes an optional `languages:` (comma-separated) to capture a subset;
+omitted, it uses the full Snapfile list.
+
+### Commands (`ios/justfile`)
+
+Each recipe runs both stages (raw capture + compose):
+
+- `just screenshot-test <lang>` - one language only (e.g. `just screenshot-test ko`)
+- `just screenshots` - every language in the Snapfile
 
 ### Stage 2: frame (Node compose)
 
-Deterministic: Playwright renders `web/renderer.html` - a device bezel holding
+Deterministic: Playwright renders `web/renderer.html` - a device shell holding
 the raw capture, with a 2-line caption on a solid background, at 1320x2868
-(iPhone 6.9"). `build.mjs` frames every raw capture using per-locale captions;
-output lands in `ios/fastlane/screenshots/<locale>/`. Optional AI polish
-(`enhance.mjs`, OpenAI `gpt-image-1` / "ducktape") runs per screen when
-`OPENAI_API_KEY` is set.
+(iPhone 6.9"). `compose.mjs` picks the device profile from the capture size
+(iphone-69 or ipad-13; android-phone via `--device`) and the caption typography
+from the text script (`--locale auto`): Latin is uppercase display, CJK/RTL/Indic
+render in native fonts. It bundles `SF Pro Display Black` (Latin) and `Pretendard`
+(Korean) as data-URI fonts when installed, else falls back to system fonts.
+`build.mjs` frames every raw capture using per-locale captions; output lands in
+`ios/fastlane/screenshots/<locale>/`. Optional AI polish (`enhance.mjs`, OpenAI
+`gpt-image-1` / "ducktape") runs per screen when `OPENAI_API_KEY` is set.
 
 ### Assets (user-supplied)
 
@@ -119,7 +132,7 @@ ios/fastlane/
 
 ```
 screenshots/
-├── compose.mjs        - frame one capture (device bezel + caption) via Playwright
+├── compose.mjs        - frame one capture via Playwright; device + locale-typography profiles
 ├── build.mjs          - frame every raw capture using captions/<locale>.json
 ├── enhance.mjs        - optional OpenAI gpt-image-1 polish (needs OPENAI_API_KEY)
 ├── web/renderer.html  - device shell + caption template
@@ -146,3 +159,10 @@ screenshots/
   locales; one caption file per store; overlay address localized per non-Latin
   store (`ScreenshotDemo.localizedAddresses`); `no` store maps to L10n `nb`.
   Caption + address drafts are machine-translated, pending native review.
+- 2026-07-12: Compose rewrite - device profiles (iphone-69/ipad-13/android-phone)
+  auto-picked from capture size, locale-aware caption typography (uppercase Latin
+  display, native CJK/RTL/Indic fonts), bundled `SF Pro Display Black`/`Pretendard`
+  data-URI fonts with system fallback. Adds `image-size` dep.
+- 2026-07-12: `just` recipes for the full pipeline (raw capture + compose):
+  `screenshot-test <lang>` (one language) and `screenshots` (all). The
+  `screenshots` fastlane lane now accepts an optional `languages:` override.
