@@ -29,7 +29,7 @@
 | `heading`        | compass degrees + cardinal                                                                                                   |
 | `timestamp`      | capture time                                                                                                                 |
 | `weather`        | TODO (temp, pressure, wind, humidity)                                                                                        |
-| `address`        | reverse-geocoded                                                                                                             |
+| `address`        | reverse-geocoded in the app language (`preferredLocale`, bound by the root to foundation `L10n.locale`; re-geocodes on change) |
 
 ### Accuracy classification
 
@@ -77,4 +77,6 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-12: Addresses geocode in the app language (`preferredLocale` bound to
+  `L10n.locale`); `refreshAddress()` re-geocodes when it changes.
 - 2026-06-30: Initial location spec.

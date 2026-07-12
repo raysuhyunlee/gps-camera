@@ -2,6 +2,11 @@
 
 ## Status
 
+- 2026-07-12: Language switching fixed: picking English resolved to
+  `Bundle.main` (the system language) instead of the keys; long-lived views
+  (overlay layer, main pro banner) kept the old language because SwiftUI skipped
+  them. `L10n.locale` added - the geocoded address and overlay timestamp now
+  follow the app language, not the device's.
 - 2026-07-08: L10n framework live on iOS: `L()` global resolver + `L10n`
   singleton with NSLock thread safety; 29-language lproj string files (95
   strings each). Language picker in Settings → General; `FoundationSettings`
@@ -46,7 +51,15 @@
 - Language override stored in `SettingsStore` under `"general.language"` (default `""` = follow system).
 - On language change: `SettingsStore.onSet` hook calls `L10n.shared.setLanguage()`, swapping the lproj bundle.
 - Views that need live re-render hold `@ObservedObject private var l10n = L10n.shared`.
-- 29 language lproj bundles ship with the app (113 strings each); English falls back to the key.
+  Required for any view that stays on screen across the change: SwiftUI skips a
+  view whose inputs did not move, so its `L()` calls would keep the old language
+  (camera surface, overlay layer, main pro banner). Sheets rebuild on present.
+- `L10n.locale` - the selected language as a `Locale`, for domains that format
+  data rather than resolve strings (geocoded address, overlay timestamp).
+- 29 language lproj bundles ship with the app (113 strings each); English ships
+  none - the keys ARE its strings, so it resolves to no bundle at all. English
+  must NOT fall back to `Bundle.main`: that resolves in the *system* language, so
+  a Korean phone picking English would stay Korean.
 - Language is selectable in Settings → General; defaults to the system locale.
 
 ### Theme
@@ -232,6 +245,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-12: L10n fixes (English -> no bundle; live re-render of long-lived
+  views) + `L10n.locale` for data formatting (address, timestamp).
 - 2026-07-08: L10n framework + `FoundationSettings` (General/Language, feedback,
   about); 29 lproj bundles (95 strings each); all domains' user-facing strings
   through `L()`.

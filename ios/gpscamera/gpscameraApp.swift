@@ -34,9 +34,17 @@ struct gpscameraApp: App {
         // Registry before consumers: it registers every setting's default.
         // Section placement is owned here (overview.md "Settings").
         let store = SettingsStore()
+        // Before `onSet`: the language write below re-geocodes through it.
+        let location = LocationProvider()
+        location.preferredLocale = L10n.shared.locale
         store.onSet = { key, value in
             events.track(.settingsChanged(key: key, value: "\(value.primitive)"))
-            if key == L10n.settingKey { L10n.shared.setLanguage(value.stringValue) }
+            if key == L10n.settingKey {
+                L10n.shared.setLanguage(value.stringValue)
+                // Addresses come back from the geocoder in the app language.
+                location.preferredLocale = L10n.shared.locale
+                location.refreshAddress()
+            }
         }
         let pro = ProStore(events: events)
         metrics.isPro = { pro.entitlement == .pro }
@@ -72,7 +80,6 @@ struct gpscameraApp: App {
             ScreenshotSeed.seedCaptures()
         }
         #endif
-        let location = LocationProvider()
         let overlay = OverlayRenderer(store: store, entitlement: pro)
         self.events = events
         self.store = store

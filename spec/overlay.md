@@ -110,8 +110,8 @@ Supported items:
 - text color 
 - background color 
 - background opacity
-- date/time format - defaults to the device locale's format; TODO: decide the
-  per-locale default + user customization (`overlay.style.dateFormat`)
+- date/time format - the app language's format (foundation `L10n.locale`), not
+  the device's; TODO: user customization (`overlay.style.dateFormat`)
 - coordinate format (lat-lon / DMS) 
 - unit
 
@@ -183,5 +183,7 @@ Android: planned.
   anchor); font design select added.
 - 2026-07-04: Icon + label item rows; 9-anchor world-space placement with
   drag-to-snap (position editor v1).
+- 2026-07-12: Layer re-renders on a language change; the timestamp formats in the
+  app language (`L10n.locale`), not the device's.
 - 2026-07-04: iOS overlay v1 - live layer on Main + photo burn, default settings.
 - 2026-06-30: Initial overlay spec.

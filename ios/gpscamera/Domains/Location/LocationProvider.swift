@@ -10,8 +10,8 @@ final class LocationProvider: NSObject, ObservableObject, LocationProviding {
     private let manager = CLLocationManager()
     private let geocoder = CLGeocoder()
 
-    /// Locale for reverse-geocoded addresses.
-    /// TODO: bind to the app language once foundation L10n exists; defaults to system.
+    /// Locale for reverse-geocoded addresses. Bound by the composition root to
+    /// the app language; the system locale until then.
     var preferredLocale: Locale = .current
 
     private var lastLocation: CLLocation?
@@ -84,6 +84,14 @@ final class LocationProvider: NSObject, ObservableObject, LocationProviding {
             timestamp: loc.timestamp,
             address: lastAddress,
             weather: nil)
+    }
+
+    /// Re-geocodes the last fix, e.g. after `preferredLocale` changed. Clears the
+    /// throttle: the language moved, not the place.
+    func refreshAddress() {
+        guard let loc = lastLocation else { return }
+        lastGeocodedAt = nil
+        reverseGeocode(loc)
     }
 
     private func reverseGeocode(_ loc: CLLocation) {

@@ -57,18 +57,23 @@ nonisolated final class L10n: ObservableObject {
     /// Current override code; "" while following the system.
     @Published private(set) var language: String
     private let lock = NSLock()
-    private var bundle: Bundle
+    /// nil = English: the keys are the English source strings, so English needs
+    /// no bundle at all.
+    private var bundle: Bundle?
+    private var currentLocale: Locale
 
     init(defaults: UserDefaults = .standard) {
         let code = defaults.string(forKey: Self.settingKey) ?? ""
         language = code
         bundle = Self.bundle(for: code)
+        currentLocale = Self.locale(for: code)
     }
 
     /// Bound by the composition root to the `general.language` setting write.
     func setLanguage(_ code: String) {
         lock.lock()
         bundle = Self.bundle(for: code)
+        currentLocale = Self.locale(for: code)
         lock.unlock()
         DispatchQueue.main.async { self.language = code }
     }
@@ -76,14 +81,30 @@ nonisolated final class L10n: ObservableObject {
     /// Thread-safe: overlay rasterization resolves strings off the main actor.
     func string(_ key: L10nKey) -> String {
         lock.lock(); defer { lock.unlock() }
+        guard let bundle else { return key }
         return bundle.localizedString(forKey: key, value: key, table: nil)
     }
 
+    /// The selected language as a `Locale`, for domains that format data rather
+    /// than resolve strings (geocoded addresses, overlay timestamps).
+    var locale: Locale {
+        lock.lock(); defer { lock.unlock() }
+        return currentLocale
+    }
+
+    /// English -> nil: it ships no lproj, and `Bundle.main` would hand back the
+    /// *system* language (a Korean phone picking English would stay Korean).
     /// "" or an unknown code -> Bundle.main (system language pick).
-    private static func bundle(for code: String) -> Bundle {
+    private static func bundle(for code: String) -> Bundle? {
+        guard code != "en" else { return nil }
         guard !code.isEmpty,
               let path = Bundle.main.path(forResource: code, ofType: "lproj"),
               let bundle = Bundle(path: path) else { return .main }
         return bundle
+    }
+
+    /// "" (follow the system) -> the device locale.
+    private static func locale(for code: String) -> Locale {
+        code.isEmpty ? .current : Locale(identifier: code)
     }
 }

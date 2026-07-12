@@ -48,6 +48,9 @@ struct MonetizationSettingsProvider: SettingsProviding {
 /// Main: one line, no CTA - the banner itself opens the paywall. Hidden for pro.
 private struct MainProBanner: View {
     @ObservedObject var store: ProStore
+    /// Re-renders on a language change: `store` alone never moves, so SwiftUI
+    /// would otherwise keep the old language's string.
+    @ObservedObject private var l10n = L10n.shared
     @State private var showPaywall = false
 
     var body: some View {

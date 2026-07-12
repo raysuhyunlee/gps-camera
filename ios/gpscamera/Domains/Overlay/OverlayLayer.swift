@@ -10,6 +10,10 @@ struct OverlayLayer: View {
     /// The map image (map item); nil while it is off or not yet rendered.
     var mapImage: UIImage? = nil
 
+    /// Re-renders the live overlay when the language changes: none of the inputs
+    /// above move, so SwiftUI would otherwise keep the old language's strings.
+    @ObservedObject private var l10n = L10n.shared
+
     /// The map box shows left of the card; both need a fix to place the pin.
     private var showMap: Bool { settings.showMap && snapshot != nil }
 
@@ -139,7 +143,7 @@ struct OverlayLayer: View {
         if settings.showTime {
             GridRow {
                 icon("clock")
-                Text(OverlayFormatter.time(s.timestamp))
+                Text(OverlayFormatter.time(s.timestamp, locale: l10n.locale))
             }
         }
     }
