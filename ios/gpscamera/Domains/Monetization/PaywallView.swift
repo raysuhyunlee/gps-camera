@@ -5,6 +5,7 @@
 //  cards, pinned CTA + link row); restyled to this app's native look.
 //
 
+import Lottie
 import RevenueCat
 import SwiftUI
 
@@ -72,15 +73,29 @@ struct PaywallView: View {
 
     private var hero: some View {
         VStack(spacing: 12) {
-            Image("AppLogo")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 96, height: 96)
-                .clipShape(RoundedRectangle(cornerRadius: 21, style: .continuous))
+            heroIcon
             Text(L("GPS Camera Pro"))
                 .font(.largeTitle.bold())
         }
         .frame(maxWidth: .infinity)
+    }
+
+    /// Looping Premium Lottie; falls back to the app icon when the bundled
+    /// animation is missing.
+    @ViewBuilder
+    private var heroIcon: some View {
+        if let animation = LottieAnimation.named("Premium") {
+            LottieView(animation: animation)
+                .playing(loopMode: .loop)
+                .frame(width: 110, height: 110)
+                .allowsHitTesting(false)
+        } else {
+            Image("AppLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 70, height: 70)
+                .clipShape(RoundedRectangle(cornerRadius: 21, style: .continuous))
+        }
     }
 
     /// Pro unlocks (overview.md "Business Model").
