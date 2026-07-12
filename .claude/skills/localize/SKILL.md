@@ -6,8 +6,7 @@ description: Create localized copies of app content for a given scope (screensho
 # Localize
 
 Produce localized copies for one scope across every target language. Localize for
-meaning, culture, and store trends -- never literal translation. One subagent per
-language does the work.
+meaning, culture, and store trends -- never literal translation. Spawn subagents and run in batch. Use Sonnet for subagents regardless of default model setting.
 
 Paths are relative to repo root. Sources of truth: `spec/foundation.md` (L10n),
 `spec/screenshots.md` (captions), the domain doc for the scope.
