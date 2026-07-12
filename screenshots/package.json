@@ -1,0 +1,14 @@
+{
+  "name": "gpscamera-screenshots",
+  "private": true,
+  "type": "module",
+  "description": "App Store screenshot compose stage (screenshots.md): frame raw simulator captures with a device bezel + caption, optional AI polish.",
+  "scripts": {
+    "compose": "node compose.mjs",
+    "enhance": "node enhance.mjs"
+  },
+  "dependencies": {
+    "image-size": "^2.0.2",
+    "playwright": "^1.49.0"
+  }
+}

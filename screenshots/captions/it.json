@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Ogni scatto,",
+    "line2": "con luogo e ora",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Il tuo timbro,",
+    "line2": "su misura",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Invia la prova",
+    "line2": "per ogni report",
+    "bg": "#1D4E89"
+  }
+}

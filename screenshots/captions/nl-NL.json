@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Elke foto,",
+    "line2": "met tijd en plaats",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Jouw overlay,",
+    "line2": "in jouw stijl",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Stuur bewijs",
+    "line2": "voor elk rapport",
+    "bg": "#1D4E89"
+  }
+}

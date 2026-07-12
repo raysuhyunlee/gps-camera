@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Hely és idő",
+    "line2": "minden fotón",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "A fedvényed,",
+    "line2": "a te stílusodban",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Bizonyíték",
+    "line2": "minden jelentéshez",
+    "bg": "#1D4E89"
+  }
+}

@@ -24,3 +24,4 @@ Domain documents live under `/spec`. Each is the source-of-truth for its domain.
 | `spec/gallery.md`      | Built-in gallery                                                                             |
 | `spec/monetization.md` | Pro subscription, paywall, IAP products, gating, ads, nudge orchestrator                     |
 | `spec/event.md`        | Analytics event catalog, Crashlytics, Firebase dispatch                                      |
+| `spec/screenshots.md`  | App Store screenshot automation: in-app demo mode (capture) + Node compose (frame)           |

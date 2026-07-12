@@ -4,6 +4,13 @@ PROJECT = "gpscamera.xcodeproj"
 SCHEME = "gpscamera"
 
 platform :ios do
+  desc "Capture raw simulator screenshots in demo mode (screenshots.md). Raw PNGs land in fastlane/screenshots_raw/<locale>/; the compose stage frames them into fastlane/screenshots/. Pass languages:ko (comma-separated) to capture a subset; omit for all Snapfile locales."
+  lane :screenshots do |options|
+    args = { scheme: "gpscameraScreenshots" }
+    args[:languages] = options[:languages].split(",") if options[:languages]
+    capture_screenshots(**args)
+  end
+
   desc "Build and upload a release build to App Store Connect"
   lane :release do
     app_store_connect_api_key(
@@ -21,13 +28,17 @@ platform :ios do
 
     build_app(project: PROJECT, scheme: SCHEME)
 
+    # Upload composed screenshots only when the compose stage has produced them
+    # (screenshots.md); otherwise leave the store listing's screenshots untouched.
+    has_screenshots = !Dir.glob("fastlane/screenshots/*/*.png").empty?
+
     upload_to_app_store(
       precheck_include_in_app_purchases: false,
       submit_for_review: false,
       # metadata/ holds only release_notes.txt per locale, so deliver
       # updates What's New and leaves all other fields untouched.
       skip_metadata: false,
-      skip_screenshots: true
+      skip_screenshots: !has_screenshots
     )
   end
 end

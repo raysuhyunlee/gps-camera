@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Her fotoğraf,",
+    "line2": "yer ve saatle",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Damgan,",
+    "line2": "senin tarzında",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Kanıt gönder,",
+    "line2": "her rapora",
+    "bg": "#1D4E89"
+  }
+}

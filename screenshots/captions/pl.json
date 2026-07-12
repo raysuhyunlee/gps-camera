@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Każde zdjęcie",
+    "line2": "z miejscem i czasem",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Twoja nakładka,",
+    "line2": "w Twoim stylu",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Dowód gotowy",
+    "line2": "do każdego raportu",
+    "bg": "#1D4E89"
+  }
+}

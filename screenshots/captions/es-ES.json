@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Cada foto,",
+    "line2": "con lugar y hora",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Tu sello,",
+    "line2": "a tu estilo",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Comparte pruebas",
+    "line2": "para cualquier informe",
+    "bg": "#1D4E89"
+  }
+}

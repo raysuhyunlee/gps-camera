@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Hvert bilde,",
+    "line2": "med sted og tid",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Ditt stempel,",
+    "line2": "helt i din stil",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Send bevis",
+    "line2": "til enhver rapport",
+    "bg": "#1D4E89"
+  }
+}

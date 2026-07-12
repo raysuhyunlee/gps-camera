@@ -5,6 +5,9 @@
 
 ## Status
 
+- 2026-07-11: Screenshot automation live on iOS: `#if DEBUG` demo mode
+  synthesizes an authentic Main screen (pre-arranged scene + curated overlay)
+  for App Store captures, framed by a Node compose stage (screenshots.md).
 - 2026-07-10: Onboarding domain live on iOS: first-run flow (1 value screen + 1
   permissions page) gated by `RootView` at the composition root; camera +
   location requested from within onboarding (onboarding.md).

@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Chaque photo,",
+    "line2": "datée et localisée",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Votre tampon,",
+    "line2": "à votre image",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Partagez la preuve,",
+    "line2": "pour chaque rapport",
+    "bg": "#1D4E89"
+  }
+}

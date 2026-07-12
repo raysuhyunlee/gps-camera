@@ -1,0 +1,17 @@
+{
+  "01Main": {
+    "line1": "Varje foto,",
+    "line2": "med plats och tid",
+    "bg": "#0B6E4F"
+  },
+  "02Settings": {
+    "line1": "Din stämpel,",
+    "line2": "i din stil",
+    "bg": "#8A3B12"
+  },
+  "03Gallery": {
+    "line1": "Skicka bevis",
+    "line2": "för alla rapporter",
+    "bg": "#1D4E89"
+  }
+}
