@@ -61,7 +61,7 @@ Event = enum, one case per event, typed parameters
 | `review_requested`   | in-app review attempt (OS may not show a prompt) | - |
 | `onboarding_started` | first-run flow appears       | -               |
 | `onboarding_completed` | first-run flow finishes    | -               |
-| `onboarding_permission` | a permission dialog resolves in onboarding | type: location, camera; granted |
+| `onboarding_permission` | a permission dialog resolves in onboarding | type: location, camera, mic; granted |
 
 Global params (included in all events, provided by foundation)
 ```

@@ -8,18 +8,27 @@ import SwiftUI
 
 /// Source-of-truth for the current app version (foundation.md "Version").
 nonisolated enum AppVersion {
-    static var current: String {
-        let info = Bundle.main
-        let version = info.object(forInfoDictionaryKey: "CFBundleShortVersionString")
+    /// Marketing version only, e.g. "1.0.0".
+    static var short: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString")
             as? String ?? "?"
-        let build = info.object(forInfoDictionaryKey: "CFBundleVersion") as? String
-        return build.map { "\(version) (\($0))" } ?? version
+    }
+    /// Marketing version + build for display, e.g. "1.0.0 (12)".
+    static var current: String {
+        let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        return build.map { "\(short) (\($0))" } ?? short
     }
 }
 
 /// The app's web endpoints (foundation.md "Misc").
 nonisolated enum FoundationURL {
-    static let feedback = URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/feedback")!
+    /// Feedback page; carries the marketing version (`?version=1.0.0`) so the
+    /// form can attribute reports to a release.
+    static var feedback: URL {
+        var c = URLComponents(string: "https://www.raysuhyunlee.com/apps/gps-camera/feedback")!
+        c.queryItems = [URLQueryItem(name: "version", value: AppVersion.short)]
+        return c.url!
+    }
     static let tos = URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/tos")!
     static let privacy = URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/privacy")!
 }

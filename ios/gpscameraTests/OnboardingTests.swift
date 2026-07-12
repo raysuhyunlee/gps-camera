@@ -29,18 +29,20 @@ struct OnboardingModelTests {
     @Test @MainActor func valuePageAdvancesThenStopsAtPermissions() {
         let model = OnboardingModel(location: FakeLocation(),
                                     requestCamera: { $0(.authorized) },
+                                    requestMic: { $0(.authorized) },
                                     store: makeStore(), events: NoopTracker())
         #expect(model.step == .value)
         model.next(); #expect(model.step == .permissions)
         model.next(); #expect(model.step == .permissions)   // no-op on last page
     }
 
-    @Test @MainActor func grantingBothCompletesAndSetsFlag() async {
+    @Test @MainActor func grantingAllCompletesAndSetsFlag() async {
         let store = makeStore()
         let loc = FakeLocation()   // grants location
         var completed = false
         let model = OnboardingModel(location: loc,
                                     requestCamera: { $0(.authorized) },
+                                    requestMic: { $0(.authorized) },
                                     store: store, events: NoopTracker())
         model.onComplete = { completed = true }
         model.requestPermissions()
@@ -51,6 +53,7 @@ struct OnboardingModelTests {
         #expect(completed)
         #expect(model.locationGranted == true)
         #expect(model.cameraGranted == true)
+        #expect(model.micGranted == true)
     }
 
     @Test @MainActor func denyingStillCompletes() async {
@@ -59,6 +62,7 @@ struct OnboardingModelTests {
         var completed = false
         let model = OnboardingModel(location: loc,
                                     requestCamera: { $0(.denied) },
+                                    requestMic: { $0(.denied) },
                                     store: store, events: NoopTracker())
         model.onComplete = { completed = true }
         model.requestPermissions()
@@ -68,5 +72,6 @@ struct OnboardingModelTests {
         #expect(completed)
         #expect(model.locationGranted == false)
         #expect(model.cameraGranted == false)
+        #expect(model.micGranted == false)
     }
 }

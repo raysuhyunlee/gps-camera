@@ -42,13 +42,13 @@ struct gpscameraApp: App {
         metrics.isPro = { pro.entitlement == .pro }
         // Nudges + the ad trigger ride the usage-metrics capture hooks
         // (monetization.md "Nudge orchestrator", "Ads"); ATT prompt + SDK
-        // init at launch, free users only.
+        // init after onboarding's camera/location prompts resolve (started via
+        // RootView's onOnboarded below), free users only.
         let ads = InterstitialAds(entitlement: pro, metrics: metrics,
                                   events: events)
         let nudges = NudgeOrchestrator(metrics: metrics, store: pro, ads: ads,
                                        events: events)
         metrics.onCapture = { nudges.captureCompleted() }
-        Task { await ads.start() }
         let registry = SettingsRegistry(
             providers: [MonetizationSettingsProvider(store: pro),
                         FoundationSettingsProvider(),
@@ -92,7 +92,8 @@ struct gpscameraApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView(store: store, location: location, events: events) {
+            RootView(store: store, location: location, events: events,
+                     onOnboarded: { Task { await ads.start() } }) {
                 CameraView(controller: camera, location: location, overlay: overlay,
                            gallery: gallery, settings: store, registry: registry,
                            entitlement: pro, paywall: pro, banner: pro, ads: ads,

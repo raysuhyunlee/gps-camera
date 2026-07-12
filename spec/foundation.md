@@ -197,7 +197,7 @@ Metrics (this session, in-memory):
 
 ### Misc
 
-- **Feedback** - Settings → Control.action — opens `www.raysuhyunlee.com/apps/gps-camera/feedback`
+- **Feedback** - Settings → Control.action — opens `www.raysuhyunlee.com/apps/gps-camera/feedback?version=<marketing>` (marketing version only, for release attribution)
 - **ToS, Privacy** - Settings → Control.action
 	- tos: www.raysuhyunlee.com/apps/gps-camera/tos
 	- privacy: www.raysuhyunlee.com/apps/gps-camera/privacy

@@ -94,9 +94,11 @@ hosts stay monetization-unaware:
 - **Trigger**: the nudge orchestrator forwards every finished capture to
   `InterstitialAds.captureSaved()`. Runs after the capture has saved; an ad
   never shows at app launch or during/blocking a capture.
-- **ATT**: tracking prompt at launch (first launch only, ~1s after UI settles),
-  then SDK init + preload. One interstitial stays preloaded; dismissing loads
-  the next. No fill / offline = the ad is silently skipped, never awaited.
+- **ATT**: tracking prompt after onboarding's camera/location prompts resolve
+  (returning launches: at launch), first launch only, ~1s after UI settles;
+  then SDK init + preload. Sequenced via `RootView.onOnboarded` so ATT never
+  stacks on the onboarding page. One interstitial stays preloaded; dismissing
+  loads the next. No fill / offline = the ad is silently skipped, never awaited.
 - **IDs**: debug builds use Google's sample IDs; the release unit ID and
   `GADApplicationIdentifier` are placeholders until the AdMob app is created.
 - **Format**: only standard, always-dismissible interstitials. No deceptive,

@@ -48,9 +48,9 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Screenshot/Assets/gallery/.gitkeep,
 				Screenshot/Assets/README.md,
 				Screenshot/Assets/scenes/.gitkeep,
-				Screenshot/Assets/gallery/.gitkeep,
 			);
 			target = 71F74BBF2FF3C65C002FDBC2 /* gpscamera */;
 		};
@@ -67,8 +67,6 @@
 		};
 		AB0000000000000000000006 /* gpscameraTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = gpscameraTests;
 			sourceTree = "<group>";
 		};
@@ -111,7 +109,6 @@
 				5FDDA3CD71EE90FD8EDA6614 /* ScreenshotUITests.swift */,
 				261C9D04D67BA88E32EDE6D9 /* SnapshotHelper.swift */,
 			);
-			name = gpscameraScreenshots;
 			path = gpscameraScreenshots;
 			sourceTree = "<group>";
 		};

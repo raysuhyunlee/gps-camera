@@ -23,7 +23,7 @@ enum Event {
 
     enum CaptureKind: String { case photo, video }
 
-    enum PermissionKind: String { case location, camera }
+    enum PermissionKind: String { case location, camera, mic }
 
     enum PaywallSource: String {
         case mainBanner = "main_banner"

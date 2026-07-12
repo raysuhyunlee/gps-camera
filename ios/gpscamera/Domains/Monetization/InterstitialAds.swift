@@ -61,8 +61,9 @@ final class InterstitialAds: NSObject, ObservableObject {
         }
     }
 
-    /// ATT prompt (first launch only) then SDK init + first preload. Called at
-    /// launch; no-op for pro (no ads, no prompt). IDFA must resolve before SDK
+    /// ATT prompt (first launch only) then SDK init + first preload. Called once
+    /// onboarding's camera/location prompts resolve (returning launches: at
+    /// launch); no-op for pro (no ads, no prompt). IDFA must resolve before SDK
     /// init for accurate attribution.
     func start() async {
         guard !started, entitlement.entitlement == .free else { return }

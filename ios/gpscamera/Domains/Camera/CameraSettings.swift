@@ -5,6 +5,7 @@
 
 import AVFoundation
 import Foundation
+import SwiftUI
 
 nonisolated enum CameraSettingKey {
     static let shutterSound = "camera.shutterSound"
@@ -175,6 +176,9 @@ nonisolated struct CameraSettingsProvider: SettingsProviding {
                         control: .select([SelectOption(value: "30", titleKey: "30"),
                                           SelectOption(value: "60", titleKey: "60")]),
                         defaultValue: .string("30")),
+            SettingItem(key: "camera.video.mic", titleKey: "Microphone",
+                        footnoteKey: "Off records silent video.",
+                        control: .custom(view: { AnyView(MicPermissionRow()) })),
         ])]
     }
 }

@@ -2,6 +2,9 @@
 
 ## Status
 
+- 2026-07-12: Video settings gains a `camera.video.mic` status row
+  (`MicPermissionRow`); mic is now primed in onboarding, lazy request kept as
+  fallback.
 - 2026-07-11: `#if DEBUG` screenshot demo mode: `CameraView` renders a
   pre-arranged scene image instead of `CameraPreview` (the live feed is black in
   the simulator) and `CameraController` forces `.authorized` + skips the session.
@@ -165,8 +168,9 @@ Neither platform ever requests full photo-library **read** access.
 
 ### Audio
 
-- The microphone is attached **only in video mode**, and its permission is
-  requested lazily on first video use.
+- The microphone is attached **only in video mode**. Its permission is primed in
+  onboarding (onboarding.md); the camera also requests it lazily on first video
+  use as a fallback when still undetermined. A denied mic records silent video.
 - Photo capture never configures the audio session
 	- the user's music/podcast keeps playing.
 - `camera.shutterSound` gates capture sounds: the photo shutter and the video
@@ -180,7 +184,8 @@ Neither platform ever requests full photo-library **read** access.
 - Photo library
 	- iOS: requests **add-only** only when `camera.saveToPhotos` is on
 	* Android needs none (own `MediaStore` entries)
-- Microphone: video mode only.
+- Microphone: video mode only; primed in onboarding, status + re-enable via the
+  `camera.video.mic` row.
 - Location: provided by the location domain (foreground).
 
 ### Seams
@@ -230,11 +235,16 @@ Neither platform ever requests full photo-library **read** access.
 |---|---|---|---|---|
 | `camera.video.resolution` | Resolution | select | highest | free |
 | `camera.video.fps` | FPS | select | 30 | free |
+| `camera.video.mic` | Microphone | custom | - | free |
 
 - Resolution options are concrete values read from the hardware (back wide
   camera), never a literal "max": photo lists its 4:3 sizes as "N MP (WxH)",
   video lists 4K/1080p/720p as supported. Default = highest available. At
   capture, the session clamps to what the active format supports.
+- `camera.video.mic` is a status row (not a stored setting): shows the mic
+  authorization; tap requests it when undetermined, else opens iOS Settings.
+  Footnote "Off records silent video." Mic is primed in onboarding
+  (onboarding.md); denial records silent video.
 
 ## Implementation
 
@@ -250,6 +260,7 @@ ios/gpscamera/Domains/Camera/
 ├── CameraOrientation.swift       - device orientation -> control angle, capture rotation, anchor alignment
 ├── CameraAuthorization.swift     - camera permission -> PermissionStatus
 ├── MicrophoneAuthorization.swift - mic permission -> PermissionStatus (video only)
+├── MicPermissionRow.swift        - Video-section status row: mic auth + open iOS Settings
 ├── CaptureStoreBrowsing.swift    - seam consumed by gallery: browse/delete + change notification
 ├── PhotoCaptureService.swift     - photo pipeline + CaptureStore + CameraRoll (add-only copy)
 ├── VideoCaptureService.swift     - video pipeline (movie output, ISO6709 GPS metadata, overlay burn)

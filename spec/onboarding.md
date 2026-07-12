@@ -2,6 +2,8 @@
 
 ## Status
 
+- 2026-07-12: Permissions page adds a mic row; Enable now requests
+  location -> camera -> mic. Mic is optional (silent video on deny).
 - 2026-07-10: Initial spec + iOS implementation. First-run flow (1 value screen
   + 1 permissions page) gated at the composition root; completed flag in the
   foundation settings store.
@@ -29,15 +31,18 @@ Universal, linear, shown once on first launch:
 ```
 1. Value        sample stamped photo + "Prove where you were." + 3 proof bullets
                 (burn location/time, holds up as evidence, drop into your report)
-2. Permissions  both rationales + Enable -> requests location, then camera
+2. Permissions  three rationales + Enable -> requests location, then camera, then mic
 3. -> Main
 ```
 
 - One "Enable" button on the permissions page fires `location.requestPermission()`
-  then `CameraAuthorization.request` (the OS serializes the two dialogs).
+  then `CameraAuthorization.request` then `MicrophoneAuthorization.request` (the
+  OS serializes the dialogs).
 - Non-blocking: after the dialogs resolve, advance to Main regardless of
   grant/deny. A denied camera lands on Main's existing denied state; a denied
-  location is handled per the permission-coupled policy (foundation.md).
+  location is handled per the permission-coupled policy (foundation.md); a denied
+  mic just records silent video (camera.md "Audio"). Mic is optional - primed
+  here so first video use has no cold prompt.
 - No notifications (the app has no push use case today), no paywall.
 
 ### Completed flag
@@ -53,14 +58,17 @@ Universal, linear, shown once on first launch:
 - The root shows onboarding vs Main based on the flag, so Main (and its cold
   permission prompts) does not mount until onboarding completes. Returning
   launches go straight to Main.
+- `RootView.onOnboarded` fires when the flow finishes (or at once for returning
+  launches); the root uses it to start ATT after the camera/location prompts, so
+  the ATT dialog never stacks on the onboarding page (monetization.md "ATT").
 - Onboarding is a leaf: consumed by nobody, so it publishes no seam. It consumes
-  `LocationProviding` (permission), the camera auth request, `SettingsStore`
+  `LocationProviding` (permission), the camera + mic auth requests, `SettingsStore`
   (flag), and `EventTracking` (events), all injected by the root.
 
 ### Analytics
 
 - `onboarding_started`, `onboarding_completed`,
-  `onboarding_permission` (params: `type` location|camera, `granted`).
+  `onboarding_permission` (params: `type` location|camera|mic, `granted`).
   Defined in the event catalog (event.md).
 
 ## Implementation
@@ -85,5 +93,6 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-12: Mic added to the permissions page + Enable sequence.
 - 2026-07-10: Initial onboarding spec + iOS implementation.
 

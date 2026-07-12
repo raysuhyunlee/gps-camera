@@ -70,7 +70,7 @@ struct OnboardingView: View {
                 Text(L("Almost ready"))
                     .font(.largeTitle.bold())
                     .multilineTextAlignment(.center)
-                Text(L("Two permissions are required to stamp your photos."))
+                Text(L("Enable access to capture and stamp your photos."))
                     .multilineTextAlignment(.center)
             }
             VStack(spacing: 16) {
@@ -80,6 +80,9 @@ struct OnboardingView: View {
                 permissionRow(icon: "camera.fill", title: L("Camera"),
                               detail: L("Capture the photos and videos you'll stamp."),
                               granted: model.cameraGranted)
+                permissionRow(icon: "mic.fill", title: L("Microphone"),
+                              detail: L("Record sound with your videos."),
+                              granted: model.micGranted)
             }
             Spacer()
             continueButton(L("Enable"), busy: model.requesting,
