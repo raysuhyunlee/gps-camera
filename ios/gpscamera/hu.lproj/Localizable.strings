@@ -40,7 +40,6 @@
 "VIDEO" = "VIDEÓ";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Geocímkézve GPS Camera-val";
 "Overlay" = "Átfedés";
 "Include overlay in photo/video" = "Átfedés belefoglalása a fotóba/videóba";
 "Display items" = "Megjelenített elemek";
@@ -67,6 +66,7 @@
 "Time" = "Idő";
 "Address" = "Cím";
 "Watermark" = "Vízjel";
+"GPS Camera" = "GPS kamera";
 "System" = "Rendszer";
 "Serif" = "Talpas";
 "Rounded" = "Lekerekített";
@@ -101,6 +101,8 @@
 "Add logo and notes" = "Logó és jegyzetek hozzáadása";
 "The store is unavailable right now." = "Az áruház jelenleg nem érhető el.";
 "BEST VALUE" = "LEGJOBB ÉRTÉK";
+"Free Trial" = "Ingyenes próba";
+"One-time payment" = "Egyszeri fizetés";
 "Continue" = "Folytatás";
 "Restore Purchase" = "Vásárlás visszaállítása";
 "Terms" = "Feltételek";
@@ -110,6 +112,11 @@
 "Monthly" = "Havonta";
 "%@ / month" = "%@ / hó";
 "%@ once" = "%@ egyszer";
+"7-Day Free Trial" = "7 napos ingyenes próba";
+"Then %@/month" = "Utána %@/hónap";
+"Lifetime Access" = "Örökös hozzáférés";
+"Start for Free" = "Kezdés ingyen";
+"Start Now" = "Kezdés most";
 "Get GPS Camera Pro" = "Szerezze be a GPS Camera Pro-t";
 "All features available" = "Minden funkció elérhető";
 "No ads, every feature unlocked" = "Nincs hirdetés, minden funkció feloldva";

@@ -40,7 +40,6 @@
 "VIDEO" = "VIDEO";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Geotaggad med GPS Camera";
 "Overlay" = "Overlay";
 "Include overlay in photo/video" = "Inkludera overlay i foto/video";
 "Display items" = "Visade objekt";
@@ -67,6 +66,7 @@
 "Time" = "Tid";
 "Address" = "Adress";
 "Watermark" = "Vattenstämpel";
+"GPS Camera" = "GPS-kamera";
 "System" = "System";
 "Serif" = "Serif";
 "Rounded" = "Rundad";
@@ -101,6 +101,8 @@
 "Add logo and notes" = "Lägg till logotyp och anteckningar";
 "The store is unavailable right now." = "Butiken är för tillfället inte tillgänglig.";
 "BEST VALUE" = "BÄST VÄRDE";
+"Free Trial" = "Gratis prova";
+"One-time payment" = "Engångsbetalning";
 "Continue" = "Fortsätt";
 "Restore Purchase" = "Återställ köp";
 "Terms" = "Villkor";
@@ -110,6 +112,11 @@
 "Monthly" = "Månadsvis";
 "%@ / month" = "%@ / mån";
 "%@ once" = "%@ en gång";
+"7-Day Free Trial" = "7 dagars gratis provperiod";
+"Then %@/month" = "Sedan %@/månad";
+"Lifetime Access" = "Livstidsåtkomst";
+"Start for Free" = "Börja gratis";
+"Start Now" = "Börja nu";
 "Get GPS Camera Pro" = "Skaffa GPS Camera Pro";
 "All features available" = "Alla funktioner tillgängliga";
 "No ads, every feature unlocked" = "Inga annonser, alla funktioner upplåsta";

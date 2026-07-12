@@ -40,7 +40,6 @@
 "VIDEO" = "ビデオ";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "GPS Cameraでジオタグ付け";
 "Overlay" = "オーバーレイ";
 "Include overlay in photo/video" = "写真/ビデオにオーバーレイを含める";
 "Display items" = "表示項目";
@@ -67,6 +66,7 @@
 "Time" = "時刻";
 "Address" = "住所";
 "Watermark" = "ウォーターマーク";
+"GPS Camera" = "GPSカメラ";
 "System" = "システム";
 "Serif" = "セリフ";
 "Rounded" = "丸みを帯びた";
@@ -101,6 +101,8 @@
 "Add logo and notes" = "ロゴとノートを追加";
 "The store is unavailable right now." = "現在ストアを利用できません。";
 "BEST VALUE" = "最もお得";
+"Free Trial" = "無料体験";
+"One-time payment" = "一回のみの支払い";
 "Continue" = "続ける";
 "Restore Purchase" = "購入を復元";
 "Terms" = "利用規約";
@@ -110,6 +112,11 @@
 "Monthly" = "月額";
 "%@ / month" = "%@ / 月";
 "%@ once" = "%@ 一度限り";
+"7-Day Free Trial" = "7日間無料トライアル";
+"Then %@/month" = "以降 %@/月";
+"Lifetime Access" = "永久アクセス";
+"Start for Free" = "無料で始める";
+"Start Now" = "今すぐ始める";
 "Get GPS Camera Pro" = "GPS Camera Pro を入手";
 "All features available" = "すべての機能が利用可能です";
 "No ads, every feature unlocked" = "広告なし、すべての機能が利用可能";

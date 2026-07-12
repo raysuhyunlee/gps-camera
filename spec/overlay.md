@@ -2,6 +2,10 @@
 
 ## Status
 
+- 2026-07-11: Watermark redesigned as a separate badge (app logo + "GPS Camera")
+  above the map + info card, aligned to the layer's right edge, part of the one
+  draggable layer (moves with it, like the map). No longer a text row inside the
+  info card. Logo uses the `AppLogo` imageset (app-icon artwork).
 - 2026-07-09: Map scale setting (`overlay.map.scale`: near / medium / far,
   default medium, free) sets the snapshot zoom; greys out while the map is off.
 - 2026-07-09: Map item live (`overlay.item.map`, default on, free). A static map
@@ -74,7 +78,8 @@ Supported items:
 * capture time 
 * note 
 * weather (TODO)
-* watermark
+* watermark - a separate badge (app logo + "GPS Camera" text) above the map +
+  info card, aligned to the layer's right edge; part of the one draggable layer
 * logo / custom image (TODO) - user-supplied, distinct from the app watermark
 
 ### Position & scale editor
@@ -143,7 +148,7 @@ ios/gpscamera/Domains/Overlay/
 ├── OverlaySettings.swift  - setting keys, typed read from SettingsStore, SettingsProviding section
 ├── OverlayAnchor.swift    - 9-grid world-space anchor + orientation mapping
 ├── OverlayFormatter.swift - LocationSnapshot -> item strings (coord format, unit, heading, time)
-├── OverlayLayer.swift     - SwiftUI layer: map box + info card (rows, watermark)
+├── OverlayLayer.swift     - SwiftUI layer: watermark badge + map box + info card
 ├── OverlayMapSnapshotter.swift - MKMapSnapshotter -> map UIImage, coordinate-deduped
 ├── OverlayLiveView.swift  - Main-screen host: anchored placement + drag-to-snap
 ├── OverlayRendering.swift - seam protocol, RenderedOverlay, placement metrics
@@ -156,6 +161,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-11: Watermark redesigned as a right-aligned badge (app logo + "GPS
+  Camera") above the map + info card; `AppLogo` imageset added.
 - 2026-07-09: Map scale setting (`overlay.map.scale`) sets the snapshot zoom
   (near / medium / far); snapshotter dedups on center + span.
 - 2026-07-09: Map item added (`overlay.item.map`): static `MKMapSnapshotter`

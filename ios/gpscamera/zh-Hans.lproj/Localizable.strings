@@ -40,7 +40,6 @@
 "VIDEO" = "视频";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "使用 GPS Camera 地理标记";
 "Overlay" = "叠加层";
 "Include overlay in photo/video" = "在照片/视频中包含叠加层";
 "Display items" = "显示项目";
@@ -67,6 +66,7 @@
 "Time" = "时间";
 "Address" = "地址";
 "Watermark" = "水印";
+"GPS Camera" = "GPS相机";
 "System" = "系统";
 "Serif" = "衬线";
 "Rounded" = "圆润";
@@ -101,6 +101,8 @@
 "Add logo and notes" = "添加徽标和备注";
 "The store is unavailable right now." = "商店目前无法使用。";
 "BEST VALUE" = "最超值";
+"Free Trial" = "免费试用";
+"One-time payment" = "一次性付款";
 "Continue" = "继续";
 "Restore Purchase" = "恢复购买";
 "Terms" = "条款";
@@ -110,6 +112,11 @@
 "Monthly" = "每月";
 "%@ / month" = "每月 %@";
 "%@ once" = "%@ 一次性";
+"7-Day Free Trial" = "7天免费试用";
+"Then %@/month" = "之后 %@/月";
+"Lifetime Access" = "永久使用权";
+"Start for Free" = "免费开始";
+"Start Now" = "立即开始";
 "Get GPS Camera Pro" = "获取 GPS Camera Pro";
 "All features available" = "所有功能可用";
 "No ads, every feature unlocked" = "无广告，解锁所有功能";

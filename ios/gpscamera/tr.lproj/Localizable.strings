@@ -40,7 +40,6 @@
 "VIDEO" = "VİDEO";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "GPS Camera ile coğrafi etiketlendi";
 "Overlay" = "Kaplama";
 "Include overlay in photo/video" = "Fotoğraf/videoya kaplama ekle";
 "Display items" = "Gösterilen öğeler";
@@ -67,6 +66,7 @@
 "Time" = "Saat";
 "Address" = "Adres";
 "Watermark" = "Filigran";
+"GPS Camera" = "GPS Kamera";
 "System" = "Sistem";
 "Serif" = "Serif";
 "Rounded" = "Yuvarlak";
@@ -101,6 +101,8 @@
 "Add logo and notes" = "Logo ve notlar ekle";
 "The store is unavailable right now." = "Mağaza şu anda kullanılamıyor.";
 "BEST VALUE" = "EN İYİ DEĞER";
+"Free Trial" = "Ücretsiz deneme";
+"One-time payment" = "Tek seferlik ödeme";
 "Continue" = "Devam et";
 "Restore Purchase" = "Satın almayı geri yükle";
 "Terms" = "Koşullar";
@@ -110,6 +112,11 @@
 "Monthly" = "Aylık";
 "%@ / month" = "%@ / ay";
 "%@ once" = "%@ bir kez";
+"7-Day Free Trial" = "7 gün ücretsiz deneme";
+"Then %@/month" = "Sonra %@/ay";
+"Lifetime Access" = "Ömür boyu erişim";
+"Start for Free" = "Ücretsiz başla";
+"Start Now" = "Şimdi başla";
 "Get GPS Camera Pro" = "GPS Camera Pro'yu edinin";
 "All features available" = "Tüm özellikler mevcut";
 "No ads, every feature unlocked" = "Reklam yok, tüm özellikler açık";

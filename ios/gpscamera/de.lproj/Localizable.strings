@@ -40,7 +40,6 @@
 "VIDEO" = "VIDEO";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Geotaggt mit GPS Camera";
 "Overlay" = "Überlagerung";
 "Include overlay in photo/video" = "Überlagerung in Foto/Video einschließen";
 "Display items" = "Angezeigte Elemente";
@@ -67,6 +66,7 @@
 "Time" = "Zeit";
 "Address" = "Adresse";
 "Watermark" = "Wasserzeichen";
+"GPS Camera" = "GPS-Kamera";
 "System" = "System";
 "Serif" = "Serif";
 "Rounded" = "Gerundet";
@@ -101,6 +101,8 @@
 "Add logo and notes" = "Logo und Notizen hinzufügen";
 "The store is unavailable right now." = "Der Store ist gerade nicht verfügbar.";
 "BEST VALUE" = "BESTES ANGEBOT";
+"Free Trial" = "Gratis testen";
+"One-time payment" = "Einmalzahlung";
 "Continue" = "Weiter";
 "Restore Purchase" = "Kauf wiederherstellen";
 "Terms" = "Bedingungen";
@@ -110,6 +112,11 @@
 "Monthly" = "Monatlich";
 "%@ / month" = "%@ / Monat";
 "%@ once" = "%@ einmalig";
+"7-Day Free Trial" = "7 Tage kostenlos testen";
+"Then %@/month" = "Danach %@/Monat";
+"Lifetime Access" = "Lebenslanger Zugang";
+"Start for Free" = "Kostenlos starten";
+"Start Now" = "Jetzt starten";
 "Get GPS Camera Pro" = "GPS Camera Pro holen";
 "All features available" = "Alle Funktionen verfügbar";
 "No ads, every feature unlocked" = "Keine Werbung, alle Funktionen freigeschaltet";

@@ -40,7 +40,6 @@
 "VIDEO" = "ВІДЕО";
 
 /* Overlay */
-"Geotagged with GPS Camera" = "Геотег від GPS Camera";
 "Overlay" = "Накладання";
 "Include overlay in photo/video" = "Додавати накладання у фото/відео";
 "Display items" = "Відображувані елементи";
@@ -67,6 +66,7 @@
 "Time" = "Час";
 "Address" = "Адреса";
 "Watermark" = "Водяний знак";
+"GPS Camera" = "GPS-камера";
 "System" = "Системний";
 "Serif" = "Серифний";
 "Rounded" = "Округлений";
@@ -101,6 +101,8 @@
 "Add logo and notes" = "Додати логотип і нотатки";
 "The store is unavailable right now." = "Магазин зараз недоступний.";
 "BEST VALUE" = "НАЙВИГІДНІШЕ";
+"Free Trial" = "Безкоштовний період";
+"One-time payment" = "Одноразовий платіж";
 "Continue" = "Продовжити";
 "Restore Purchase" = "Відновити покупку";
 "Terms" = "Умови";
@@ -110,6 +112,11 @@
 "Monthly" = "Щомісяця";
 "%@ / month" = "%@ / міс.";
 "%@ once" = "%@ одноразово";
+"7-Day Free Trial" = "7 днів безкоштовно";
+"Then %@/month" = "Потім %@/місяць";
+"Lifetime Access" = "Довічний доступ";
+"Start for Free" = "Почати безкоштовно";
+"Start Now" = "Почати зараз";
 "Get GPS Camera Pro" = "Отримати GPS Camera Pro";
 "All features available" = "Всі функції доступні";
 "No ads, every feature unlocked" = "Без реклами, всі функції доступні";
