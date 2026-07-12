@@ -35,6 +35,8 @@ platform :ios do
     upload_to_app_store(
       precheck_include_in_app_purchases: false,
       submit_for_review: false,
+      # Skip deliver's interactive HTML preview; the lane must run unattended.
+      force: true,
       # metadata/ holds en-US only, so the listing is English on every storefront.
       skip_metadata: false,
       skip_screenshots: !has_screenshots
