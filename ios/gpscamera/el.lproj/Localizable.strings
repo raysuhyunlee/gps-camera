@@ -11,7 +11,7 @@
 "About" = "Σχετικά";
 "Version" = "Έκδοση";
 "Terms of Service" = "Όροι χρήσης";
-"Legal Notices" = "Νομικές σημειώσεις";
+"Privacy Policy" = "Πολιτική απορρήτου";
 "Permission is off" = "Η άδεια είναι απενεργοποιημένη";
 "Close" = "Κλείσιμο";
 "Go to Settings" = "Μετάβαση στις ρυθμίσεις";
@@ -106,7 +106,7 @@
 "Continue" = "Συνέχεια";
 "Restore Purchase" = "Επαναφορά αγοράς";
 "Terms" = "Όροι";
-"Legal" = "Νομικά";
+"Privacy" = "Απόρρητο";
 "Purchase failed" = "Αποτυχία αγοράς";
 "Lifetime" = "Δια βίου";
 "Monthly" = "Μηνιαία";

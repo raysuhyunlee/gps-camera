@@ -200,10 +200,10 @@ struct PaywallView: View {
             .disabled(purchasing)
             divider
             Link(L("Terms"), destination:
-                    URL(string: "https://www.raysuhyunlee.com/gpscamera/tos")!)
+                    URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/tos")!)
             divider
-            Link(L("Legal"), destination:
-                    URL(string: "https://www.raysuhyunlee.com/gpscamera/legal")!)
+            Link(L("Privacy"), destination:
+                    URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/privacy")!)
         }
         .font(.footnote)
         .foregroundStyle(.secondary)

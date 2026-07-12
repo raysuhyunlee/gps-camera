@@ -11,7 +11,7 @@
 "About" = "Giới thiệu";
 "Version" = "Phiên bản";
 "Terms of Service" = "Điều khoản dịch vụ";
-"Legal Notices" = "Thông tin pháp lý";
+"Privacy Policy" = "Chính sách quyền riêng tư";
 "Permission is off" = "Quyền đang tắt";
 "Close" = "Đóng";
 "Go to Settings" = "Đi tới cài đặt";
@@ -106,7 +106,7 @@
 "Continue" = "Tiếp tục";
 "Restore Purchase" = "Khôi phục giao dịch mua";
 "Terms" = "Điều khoản";
-"Legal" = "Pháp lý";
+"Privacy" = "Quyền riêng tư";
 "Purchase failed" = "Giao dịch mua thất bại";
 "Lifetime" = "Vĩnh viễn";
 "Monthly" = "Hàng tháng";

@@ -11,7 +11,7 @@
 "About" = "О приложении";
 "Version" = "Версия";
 "Terms of Service" = "Условия использования";
-"Legal Notices" = "Правовая информация";
+"Privacy Policy" = "Политика конфиденциальности";
 "Permission is off" = "Разрешение отключено";
 "Close" = "Закрыть";
 "Go to Settings" = "Перейти в настройки";
@@ -106,7 +106,7 @@
 "Continue" = "Продолжить";
 "Restore Purchase" = "Восстановить покупку";
 "Terms" = "Условия";
-"Legal" = "Правовые";
+"Privacy" = "Конфиденциальность";
 "Purchase failed" = "Ошибка покупки";
 "Lifetime" = "Навсегда";
 "Monthly" = "Ежемесячно";

@@ -11,7 +11,7 @@
 "About" = "Om";
 "Version" = "Version";
 "Terms of Service" = "Servicevilkår";
-"Legal Notices" = "Juridiske oplysninger";
+"Privacy Policy" = "Privatlivspolitik";
 "Permission is off" = "Tilladelsen er slået fra";
 "Close" = "Luk";
 "Go to Settings" = "Gå til indstillinger";
@@ -106,7 +106,7 @@
 "Continue" = "Fortsæt";
 "Restore Purchase" = "Gendan køb";
 "Terms" = "Vilkår";
-"Legal" = "Juridisk";
+"Privacy" = "Privatliv";
 "Purchase failed" = "Købet mislykkedes";
 "Lifetime" = "Livstid";
 "Monthly" = "Månedlig";

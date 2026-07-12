@@ -11,7 +11,7 @@
 "About" = "Hakkında";
 "Version" = "Sürüm";
 "Terms of Service" = "Hizmet Şartları";
-"Legal Notices" = "Yasal Bildirimler";
+"Privacy Policy" = "Gizlilik Politikası";
 "Permission is off" = "İzin kapalı";
 "Close" = "Kapat";
 "Go to Settings" = "Ayarlara git";
@@ -106,7 +106,7 @@
 "Continue" = "Devam et";
 "Restore Purchase" = "Satın almayı geri yükle";
 "Terms" = "Koşullar";
-"Legal" = "Yasal";
+"Privacy" = "Gizlilik";
 "Purchase failed" = "Satın alma başarısız";
 "Lifetime" = "Ömür boyu";
 "Monthly" = "Aylık";

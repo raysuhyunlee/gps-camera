@@ -11,7 +11,7 @@
 "About" = "حول";
 "Version" = "الإصدار";
 "Terms of Service" = "شروط الخدمة";
-"Legal Notices" = "إشعارات قانونية";
+"Privacy Policy" = "سياسة الخصوصية";
 "Permission is off" = "الإذن معطّل";
 "Close" = "إغلاق";
 "Go to Settings" = "الانتقال إلى الإعدادات";
@@ -106,7 +106,7 @@
 "Continue" = "متابعة";
 "Restore Purchase" = "استعادة الشراء";
 "Terms" = "الشروط";
-"Legal" = "قانوني";
+"Privacy" = "الخصوصية";
 "Purchase failed" = "فشل الشراء";
 "Lifetime" = "مدى الحياة";
 "Monthly" = "شهريًا";

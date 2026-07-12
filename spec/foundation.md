@@ -5,7 +5,7 @@
 - 2026-07-08: L10n framework live on iOS: `L()` global resolver + `L10n`
   singleton with NSLock thread safety; 29-language lproj string files (95
   strings each). Language picker in Settings → General; `FoundationSettings`
-  provides General/Language, Send Feedback, About (Version, ToS, Legal).
+  provides General/Language, Send Feedback, About (Version, ToS, Privacy).
   All user-facing strings in every domain now route through `L()`.
 - 2026-07-06: Settings screen hosts the dev backdoor to the debug surface
   (7 rapid taps on the title; `debugScreen` factory from the root).
@@ -197,10 +197,10 @@ Metrics (this session, in-memory):
 
 ### Misc
 
-- **Feedback** - Settings → Control.action — opens `www.raysuhyunlee.com/gpscamera/feedback`
-- **ToS, Legal** - Settings → Control.action
-	- tos: www.raysuhyunlee.com/gpscamera/tos
-	- legal: www.raysuhyunlee.com/gpscamera/legal
+- **Feedback** - Settings → Control.action — opens `www.raysuhyunlee.com/apps/gps-camera/feedback`
+- **ToS, Privacy** - Settings → Control.action
+	- tos: www.raysuhyunlee.com/apps/gps-camera/tos
+	- privacy: www.raysuhyunlee.com/apps/gps-camera/privacy
 - **AppVersion** - reads `CFBundleShortVersionString` + build for the About row.
 
 ## Implementation

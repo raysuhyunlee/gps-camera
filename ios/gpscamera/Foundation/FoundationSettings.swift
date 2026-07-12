@@ -1,7 +1,7 @@
 //
 //  FoundationSettings.swift
 //  Foundation - the foundation-owned Settings sections (foundation.md):
-//  General (language), Send feedback, About (version, ToS, legal).
+//  General (language), Send feedback, About (version, ToS, privacy).
 //
 
 import SwiftUI
@@ -19,9 +19,9 @@ nonisolated enum AppVersion {
 
 /// The app's web endpoints (foundation.md "Misc").
 nonisolated enum FoundationURL {
-    static let feedback = URL(string: "https://www.raysuhyunlee.com/gpscamera/feedback")!
-    static let tos = URL(string: "https://www.raysuhyunlee.com/gpscamera/tos")!
-    static let legal = URL(string: "https://www.raysuhyunlee.com/gpscamera/legal")!
+    static let feedback = URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/feedback")!
+    static let tos = URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/tos")!
+    static let privacy = URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/privacy")!
 }
 
 /// General / feedback / about sections (placement from overview.md).
@@ -54,9 +54,9 @@ nonisolated struct FoundationSettingsProvider: SettingsProviding {
                             await UIApplication.shared.open(FoundationURL.tos)
                             return nil
                         })),
-            SettingItem(key: "foundation.about.legal", titleKey: "Legal Notices",
+            SettingItem(key: "foundation.about.privacy", titleKey: "Privacy Policy",
                         control: .action(perform: {
-                            await UIApplication.shared.open(FoundationURL.legal)
+                            await UIApplication.shared.open(FoundationURL.privacy)
                             return nil
                         })),
         ])]

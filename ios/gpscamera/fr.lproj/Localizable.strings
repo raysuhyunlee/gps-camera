@@ -11,7 +11,7 @@
 "About" = "À propos";
 "Version" = "Version";
 "Terms of Service" = "Conditions d'utilisation";
-"Legal Notices" = "Mentions légales";
+"Privacy Policy" = "Politique de confidentialité";
 "Permission is off" = "L'autorisation est désactivée";
 "Close" = "Fermer";
 "Go to Settings" = "Aller aux réglages";
@@ -106,7 +106,7 @@
 "Continue" = "Continuer";
 "Restore Purchase" = "Restaurer l'achat";
 "Terms" = "Conditions";
-"Legal" = "Mentions légales";
+"Privacy" = "Confidentialité";
 "Purchase failed" = "Échec de l'achat";
 "Lifetime" = "À vie";
 "Monthly" = "Mensuel";

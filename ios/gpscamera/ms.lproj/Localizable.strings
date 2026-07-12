@@ -11,7 +11,7 @@
 "About" = "Perihal";
 "Version" = "Versi";
 "Terms of Service" = "Terma Perkhidmatan";
-"Legal Notices" = "Notis undang-undang";
+"Privacy Policy" = "Dasar Privasi";
 "Permission is off" = "Kebenaran dimatikan";
 "Close" = "Tutup";
 "Go to Settings" = "Pergi ke tetapan";
@@ -106,7 +106,7 @@
 "Continue" = "Teruskan";
 "Restore Purchase" = "Pulihkan Pembelian";
 "Terms" = "Terma";
-"Legal" = "Undang-undang";
+"Privacy" = "Privasi";
 "Purchase failed" = "Pembelian gagal";
 "Lifetime" = "Seumur hidup";
 "Monthly" = "Bulanan";

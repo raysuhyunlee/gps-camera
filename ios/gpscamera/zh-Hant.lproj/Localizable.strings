@@ -11,7 +11,7 @@
 "About" = "關於";
 "Version" = "版本";
 "Terms of Service" = "服務條款";
-"Legal Notices" = "法律資訊";
+"Privacy Policy" = "隱私政策";
 "Permission is off" = "權限已關閉";
 "Close" = "關閉";
 "Go to Settings" = "前往設定";
@@ -106,7 +106,7 @@
 "Continue" = "繼續";
 "Restore Purchase" = "恢復購買";
 "Terms" = "條款";
-"Legal" = "法律";
+"Privacy" = "隱私";
 "Purchase failed" = "購買失敗";
 "Lifetime" = "永久";
 "Monthly" = "每月";

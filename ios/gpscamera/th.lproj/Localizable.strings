@@ -11,7 +11,7 @@
 "About" = "เกี่ยวกับ";
 "Version" = "เวอร์ชัน";
 "Terms of Service" = "ข้อกำหนดการให้บริการ";
-"Legal Notices" = "ประกาศทางกฎหมาย";
+"Privacy Policy" = "นโยบายความเป็นส่วนตัว";
 "Permission is off" = "สิทธิ์ถูกปิดอยู่";
 "Close" = "ปิด";
 "Go to Settings" = "ไปที่การตั้งค่า";
@@ -106,7 +106,7 @@
 "Continue" = "ดำเนินการต่อ";
 "Restore Purchase" = "คืนค่าการซื้อ";
 "Terms" = "ข้อกำหนด";
-"Legal" = "กฎหมาย";
+"Privacy" = "ความเป็นส่วนตัว";
 "Purchase failed" = "การซื้อล้มเหลว";
 "Lifetime" = "ตลอดชีพ";
 "Monthly" = "รายเดือน";

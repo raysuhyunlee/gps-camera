@@ -11,7 +11,7 @@
 "About" = "Про застосунок";
 "Version" = "Версія";
 "Terms of Service" = "Умови користування";
-"Legal Notices" = "Правова інформація";
+"Privacy Policy" = "Політика конфіденційності";
 "Permission is off" = "Дозвіл вимкнено";
 "Close" = "Закрити";
 "Go to Settings" = "Перейти до налаштувань";
@@ -106,7 +106,7 @@
 "Continue" = "Продовжити";
 "Restore Purchase" = "Відновити покупку";
 "Terms" = "Умови";
-"Legal" = "Правові";
+"Privacy" = "Конфіденційність";
 "Purchase failed" = "Помилка покупки";
 "Lifetime" = "Назавжди";
 "Monthly" = "Щомісяця";

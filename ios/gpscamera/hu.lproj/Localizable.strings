@@ -11,7 +11,7 @@
 "About" = "Névjegy";
 "Version" = "Verzió";
 "Terms of Service" = "Felhasználási feltételek";
-"Legal Notices" = "Jogi nyilatkozatok";
+"Privacy Policy" = "Adatvédelmi szabályzat";
 "Permission is off" = "Az engedély ki van kapcsolva";
 "Close" = "Bezárás";
 "Go to Settings" = "Ugrás a beállításokhoz";
@@ -106,7 +106,7 @@
 "Continue" = "Folytatás";
 "Restore Purchase" = "Vásárlás visszaállítása";
 "Terms" = "Feltételek";
-"Legal" = "Jogi";
+"Privacy" = "Adatvédelem";
 "Purchase failed" = "Sikertelen vásárlás";
 "Lifetime" = "Élethosszig";
 "Monthly" = "Havonta";

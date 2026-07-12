@@ -11,7 +11,7 @@
 "About" = "बारे में";
 "Version" = "संस्करण";
 "Terms of Service" = "सेवा की शर्तें";
-"Legal Notices" = "कानूनी सूचनाएं";
+"Privacy Policy" = "गोपनीयता नीति";
 "Permission is off" = "अनुमति बंद है";
 "Close" = "बंद करें";
 "Go to Settings" = "सेटिंग्स पर जाएं";
@@ -106,7 +106,7 @@
 "Continue" = "जारी रखें";
 "Restore Purchase" = "खरीद पुनर्स्थापित करें";
 "Terms" = "शर्तें";
-"Legal" = "कानूनी";
+"Privacy" = "गोपनीयता";
 "Purchase failed" = "खरीद विफल";
 "Lifetime" = "आजीवन";
 "Monthly" = "मासिक";

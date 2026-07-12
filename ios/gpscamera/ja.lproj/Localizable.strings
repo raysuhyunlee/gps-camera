@@ -11,7 +11,7 @@
 "About" = "このアプリについて";
 "Version" = "バージョン";
 "Terms of Service" = "利用規約";
-"Legal Notices" = "法的情報";
+"Privacy Policy" = "プライバシーポリシー";
 "Permission is off" = "権限がオフです";
 "Close" = "閉じる";
 "Go to Settings" = "設定へ移動";
@@ -106,7 +106,7 @@
 "Continue" = "続ける";
 "Restore Purchase" = "購入を復元";
 "Terms" = "利用規約";
-"Legal" = "法的情報";
+"Privacy" = "プライバシー";
 "Purchase failed" = "購入に失敗しました";
 "Lifetime" = "永続";
 "Monthly" = "月額";

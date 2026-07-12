@@ -11,7 +11,7 @@
 "About" = "Despre";
 "Version" = "Versiune";
 "Terms of Service" = "Termeni și condiții";
-"Legal Notices" = "Mențiuni legale";
+"Privacy Policy" = "Politica de confidențialitate";
 "Permission is off" = "Permisiunea este dezactivată";
 "Close" = "Închide";
 "Go to Settings" = "Mergi la setări";
@@ -106,7 +106,7 @@
 "Continue" = "Continuă";
 "Restore Purchase" = "Restaurează achiziția";
 "Terms" = "Termeni";
-"Legal" = "Legal";
+"Privacy" = "Confidențialitate";
 "Purchase failed" = "Achiziție eșuată";
 "Lifetime" = "Pe viață";
 "Monthly" = "Lunar";

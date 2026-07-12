@@ -11,7 +11,7 @@
 "About" = "O aplikaci";
 "Version" = "Verze";
 "Terms of Service" = "Podmínky služby";
-"Legal Notices" = "Právní informace";
+"Privacy Policy" = "Zásady ochrany osobních údajů";
 "Permission is off" = "Oprávnění je vypnuté";
 "Close" = "Zavřít";
 "Go to Settings" = "Přejít do nastavení";
@@ -106,7 +106,7 @@
 "Continue" = "Pokračovat";
 "Restore Purchase" = "Obnovit nákup";
 "Terms" = "Podmínky";
-"Legal" = "Právní";
+"Privacy" = "Soukromí";
 "Purchase failed" = "Nákup se nezdařil";
 "Lifetime" = "Doživotní";
 "Monthly" = "Měsíčně";

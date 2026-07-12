@@ -11,7 +11,7 @@
 "About" = "Over";
 "Version" = "Versie";
 "Terms of Service" = "Servicevoorwaarden";
-"Legal Notices" = "Juridische informatie";
+"Privacy Policy" = "Privacybeleid";
 "Permission is off" = "Toestemming is uitgeschakeld";
 "Close" = "Sluiten";
 "Go to Settings" = "Naar instellingen";
@@ -106,7 +106,7 @@
 "Continue" = "Doorgaan";
 "Restore Purchase" = "Aankoop herstellen";
 "Terms" = "Voorwaarden";
-"Legal" = "Juridisch";
+"Privacy" = "Privacy";
 "Purchase failed" = "Aankoop mislukt";
 "Lifetime" = "Levenslang";
 "Monthly" = "Maandelijks";

@@ -11,7 +11,7 @@
 "About" = "Tietoja";
 "Version" = "Versio";
 "Terms of Service" = "Käyttöehdot";
-"Legal Notices" = "Oikeudelliset tiedot";
+"Privacy Policy" = "Tietosuojakäytäntö";
 "Permission is off" = "Käyttöoikeus on pois päältä";
 "Close" = "Sulje";
 "Go to Settings" = "Siirry asetuksiin";
@@ -106,7 +106,7 @@
 "Continue" = "Jatka";
 "Restore Purchase" = "Palauta ostos";
 "Terms" = "Ehdot";
-"Legal" = "Juridiset";
+"Privacy" = "Tietosuoja";
 "Purchase failed" = "Osto epäonnistui";
 "Lifetime" = "Ikuinen";
 "Monthly" = "Kuukausittain";
