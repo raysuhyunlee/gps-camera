@@ -1,7 +1,6 @@
 ---
 name: quality-and-spec-check
-description: Use when checking whether a project's code or config follows general code quality rules and project-specific rules defined in a spec document. 
-Trigger on "quality check", "spec check", "compliance check", "does this follow the spec", or code review/PR checks that require comparing against a spec doc.
+description: Use when checking whether a project's code or config follows general code quality rules and project-specific rules defined in a spec document. Trigger on "quality check", "spec check", "compliance check", "does this follow the spec", or code review/PR checks that require comparing against a spec doc.
 ---
 
 # Spec Compliance Check

@@ -1,7 +1,6 @@
 ---
 name: release-ios
-description: Ship an iOS App Store release. Use when the user says "release ios", "ship it to App Store", or "publish to App Store". 
-Runs preflight checks, git tag version, then runs fastlane release.
+description: Ship an iOS App Store release. Use when the user says "release ios", "ship it to App Store", or "publish to App Store". Runs preflight checks, git tag version, then runs fastlane release.
 ---
 
 # Release
