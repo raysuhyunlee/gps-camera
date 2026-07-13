@@ -8,14 +8,13 @@ import Combine
 import Foundation
 import RevenueCat
 
-/// RevenueCat project config. Debug uses the Test Store key; release the
-/// Apple App Store key. TODO: replace with the gpscamera project's real keys.
+/// RevenueCat project config. Debug uses the Test Store key.
 private nonisolated enum RevenueCatConfig {
     static let entitlementID = "pro"
     #if DEBUG
     static let apiKey = "test_YQpNLSfXMOlOtohsDKmMllJcZHY"
     #else
-    static let apiKey = "appl_REPLACE_WITH_GPSCAMERA_KEY"
+    static let apiKey = "appl_hBImSZQjCfABAqavaQSCsUdVuHE"
     #endif
 }
 
