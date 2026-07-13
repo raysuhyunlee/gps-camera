@@ -30,9 +30,13 @@
 "Format" = "รูปแบบ";
 "Also save original" = "บันทึกต้นฉบับด้วย";
 "Keeps a copy without the overlay." = "เก็บสำเนาที่ไม่มีโอเวอร์เลย์";
-"Save to Camera Roll" = "บันทึกลงในคลังภาพ";
 "Microphone" = "ไมโครโฟน";
 "Off records silent video." = "หากปิด จะบันทึกวิดีโอแบบไม่มีเสียง";
+"Photo access needed" = "ต้องเปิดการเข้าถึงรูปภาพ";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera บันทึกรูปภาพและวิดีโอของคุณลงในคลังรูปภาพ เปิดการเข้าถึงรูปภาพเพื่อถ่ายภาพ";
+"Microphone is off" = "ไมโครโฟนถูกปิดอยู่";
+"Videos will record without sound. Turn on the microphone to record audio." = "วิดีโอจะถูกบันทึกแบบไม่มีเสียง เปิดไมโครโฟนเพื่อบันทึกเสียง";
+"Not now" = "ไม่ใช่ตอนนี้";
 "Camera access is off." = "การเข้าถึงกล้องถูกปิดอยู่";
 "Open Settings" = "เปิดการตั้งค่า";
 "GPS signal" = "สัญญาณ GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "แกลเลอรี";
 "No captures yet" = "ยังไม่มีภาพถ่าย";
-"Delete this item?" = "ลบรายการนี้?";
-"Delete" = "ลบ";
 "Select" = "เลือก";
 "Cancel" = "ยกเลิก";
 "Select Items" = "เลือกรายการ";
 "%d Selected" = "เลือกแล้ว %d รายการ";
-"Delete selected items?" = "ลบรายการที่เลือกหรือไม่?";
 
 /* Monetization */
 "Unlock every feature." = "ปลดล็อกทุกฟีเจอร์";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "หลักฐานที่เชื่อถือได้";
 "Drop it straight into your report" = "พร้อมใช้ในรายงานของคุณ";
 "Almost ready" = "เกือบพร้อมแล้ว";
-"Two permissions are required to stamp your photos." = "เราต้องการสองสิทธิ์เพื่อเพิ่มข้อมูลลงในภาพของคุณ";
 "Enable access to capture and stamp your photos." = "อนุญาตการเข้าถึงเพื่อถ่ายและประทับข้อมูลลงบนภาพของคุณ";
 "Location" = "ตำแหน่ง";
 "Stamp coordinates, altitude, and address onto each photo." = "เพิ่มพิกัด ระดับความสูง และที่อยู่ลงในทุกภาพ";
 "Camera" = "กล้อง";
 "Capture the photos and videos you'll stamp." = "ถ่ายภาพและวิดีโอที่คุณต้องการบันทึกข้อมูล";
-"Record sound with your videos." = "บันทึกเสียงไปพร้อมกับวิดีโอของคุณ";
+"Photos" = "รูปภาพ";
+"Save every capture to your photo library." = "บันทึกทุกการถ่ายภาพลงในคลังรูปภาพของคุณ";
 "Enable" = "เปิดใช้งาน";
 "Empire State Building, New York" = "ตึกเอ็มไพร์สเตต นิวยอร์ก";
 

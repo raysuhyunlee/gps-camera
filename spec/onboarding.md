@@ -2,6 +2,9 @@
 
 ## Status
 
+- 2026-07-13: Photos replaces the mic on the permissions page; Enable now
+  requests location -> camera -> photos. Photo access is required to capture at
+  all (camera.md "Storage"); the mic is requested on the first recording.
 - 2026-07-12: Permissions page adds a mic row; Enable now requests
   location -> camera -> mic. Mic is optional (silent video on deny).
 - 2026-07-10: Initial spec + iOS implementation. First-run flow (1 value screen
@@ -12,7 +15,7 @@
 
 - **Interests**
     - the first-run experience: sell the app's core value, then request the
-      camera + location permissions from within the app's own UI (priming)
+      camera + location + photo permissions from within the app's own UI (priming)
     - a persisted "completed" flag so the flow shows once
 - **Non-interests**
     - owning permissions or auth state (location + camera domains own those)
@@ -31,18 +34,21 @@ Universal, linear, shown once on first launch:
 ```
 1. Value        sample stamped photo + "Prove where you were." + 3 proof bullets
                 (burn location/time, holds up as evidence, drop into your report)
-2. Permissions  three rationales + Enable -> requests location, then camera, then mic
+2. Permissions  three rationales + Enable -> requests location, then camera, then photos
 3. -> Main
 ```
 
 - One "Enable" button on the permissions page fires `location.requestPermission()`
-  then `CameraAuthorization.request` then `MicrophoneAuthorization.request` (the
+  then `CameraAuthorization.request` then `PhotoLibraryAuthorization.request` (the
   OS serializes the dialogs).
 - Non-blocking: after the dialogs resolve, advance to Main regardless of
   grant/deny. A denied camera lands on Main's existing denied state; a denied
-  location is handled per the permission-coupled policy (foundation.md); a denied
-  mic just records silent video (camera.md "Audio"). Mic is optional - primed
-  here so first video use has no cold prompt.
+  location is handled per the permission-coupled policy (foundation.md); denied
+  photos leaves the shutter nudging to iOS Settings, since a capture has nowhere
+  to go (camera.md "Permissions").
+- The **mic is not asked here**: it belongs to the first recording, not to a
+  first-run page most users answer before ever opening video mode (camera.md
+  "Audio").
 - No notifications (the app has no push use case today), no paywall.
 
 ### Completed flag
@@ -59,16 +65,16 @@ Universal, linear, shown once on first launch:
   permission prompts) does not mount until onboarding completes. Returning
   launches go straight to Main.
 - `RootView.onOnboarded` fires when the flow finishes (or at once for returning
-  launches); the root uses it to start ATT after the camera/location prompts, so
-  the ATT dialog never stacks on the onboarding page (monetization.md "ATT").
+  launches); the root uses it to start ATT after the onboarding prompts, so the
+  ATT dialog never stacks on the onboarding page (monetization.md "ATT").
 - Onboarding is a leaf: consumed by nobody, so it publishes no seam. It consumes
-  `LocationProviding` (permission), the camera + mic auth requests, `SettingsStore`
-  (flag), and `EventTracking` (events), all injected by the root.
+  `LocationProviding` (permission), the camera + photo-library auth requests,
+  `SettingsStore` (flag), and `EventTracking` (events), all injected by the root.
 
 ### Analytics
 
 - `onboarding_started`, `onboarding_completed`,
-  `onboarding_permission` (params: `type` location|camera|mic, `granted`).
+  `onboarding_permission` (params: `type` location|camera|photos, `granted`).
   Defined in the event catalog (event.md).
 
 ## Implementation
@@ -93,6 +99,7 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-13: Photos replaces the mic on the permissions page + Enable sequence.
 - 2026-07-12: Mic added to the permissions page + Enable sequence.
 - 2026-07-10: Initial onboarding spec + iOS implementation.
 

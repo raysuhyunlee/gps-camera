@@ -30,9 +30,13 @@
 "Format" = "Muoto";
 "Also save original" = "Tallenna myös alkuperäinen";
 "Keeps a copy without the overlay." = "Säilyttää kopion ilman peittokuvaa.";
-"Save to Camera Roll" = "Tallenna kuviin";
 "Microphone" = "Mikrofoni";
 "Off records silent video." = "Pois päältä tallentaa äänettömän videon.";
+"Photo access needed" = "Kuvien käyttöoikeus tarvitaan";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera tallentaa kuvat ja videot Kuviin. Ota kuvien käyttöoikeus käyttöön, jotta voit kuvata.";
+"Microphone is off" = "Mikrofoni on pois päältä";
+"Videos will record without sound. Turn on the microphone to record audio." = "Videot tallentuvat ilman ääntä. Ota mikrofoni käyttöön, jotta voit tallentaa ääntä.";
+"Not now" = "Ei nyt";
 "Camera access is off." = "Kameran käyttöoikeus on pois päältä.";
 "Open Settings" = "Avaa asetukset";
 "GPS signal" = "GPS-signaali";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galleria";
 "No captures yet" = "Ei kuvauksia vielä";
-"Delete this item?" = "Poistetaanko tämä kohde?";
-"Delete" = "Poista";
 "Select" = "Valitse";
 "Cancel" = "Kumoa";
 "Select Items" = "Valitse kohteita";
 "%d Selected" = "%d valittu";
-"Delete selected items?" = "Poistetaanko valitut kohteet?";
 
 /* Monetization */
 "Unlock every feature." = "Avaa kaikki ominaisuudet.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Luotettava todiste";
 "Drop it straight into your report" = "Valmiina raporttiisi";
 "Almost ready" = "Melkein valmis";
-"Two permissions are required to stamp your photos." = "Tarvitsemme kaksi lupaa lisätäksemme tiedot kuviisi.";
 "Enable access to capture and stamp your photos." = "Salli käyttöoikeudet, jotta voit ottaa ja leimata kuvia.";
 "Location" = "Sijainti";
 "Stamp coordinates, altitude, and address onto each photo." = "Lisää jokaiseen kuvaan koordinaatit, korkeuden ja osoitteen.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Ota kuvat ja videot, jotka haluat merkitä.";
-"Record sound with your videos." = "Tallenna ääni videoidesi kanssa.";
+"Photos" = "Kuvat";
+"Save every capture to your photo library." = "Tallenna jokainen kuvaus Kuviin.";
 "Enable" = "Ota käyttöön";
 "Empire State Building, New York" = "Empire State Building, New York";
 

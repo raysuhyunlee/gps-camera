@@ -30,9 +30,13 @@
 "Format" = "Formát";
 "Also save original" = "Uložit také originál";
 "Keeps a copy without the overlay." = "Uchová kopii bez překryvu.";
-"Save to Camera Roll" = "Uložit do Fotoaparátu";
 "Microphone" = "Mikrofon";
 "Off records silent video." = "Při vypnutí se nahrává video bez zvuku.";
+"Photo access needed" = "Přístup k fotkám je potřeba";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera ukládá vaše fotky a videa do knihovny Fotek. Pro snímání zapněte přístup k fotkám.";
+"Microphone is off" = "Mikrofon je vypnutý";
+"Videos will record without sound. Turn on the microphone to record audio." = "Videa se nahrají bez zvuku. Chcete-li nahrávat zvuk, zapněte mikrofon.";
+"Not now" = "Teď ne";
 "Camera access is off." = "Přístup k fotoaparátu je vypnutý.";
 "Open Settings" = "Otevřít nastavení";
 "GPS signal" = "Signál GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galerie";
 "No captures yet" = "Žádné záznamy";
-"Delete this item?" = "Smazat tuto položku?";
-"Delete" = "Smazat";
 "Select" = "Vybrat";
 "Cancel" = "Zrušit";
 "Select Items" = "Vybrat položky";
 "%d Selected" = "Vybráno: %d";
-"Delete selected items?" = "Smazat vybrané položky?";
 
 /* Monetization */
 "Unlock every feature." = "Odemkněte všechny funkce.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Spolehlivý záznam";
 "Drop it straight into your report" = "Připraveno do vaší zprávy";
 "Almost ready" = "Téměř hotovo";
-"Two permissions are required to stamp your photos." = "Potřebujeme dvě oprávnění, abychom mohli přidat údaje k vašim fotkám.";
 "Enable access to capture and stamp your photos." = "Povolte přístup, abyste mohli fotit a opatřit fotky razítkem.";
 "Location" = "Poloha";
 "Stamp coordinates, altitude, and address onto each photo." = "Přidává ke každé fotce souřadnice, nadmořskou výšku a adresu.";
 "Camera" = "Fotoaparát";
 "Capture the photos and videos you'll stamp." = "Pořiďte fotky a videa, která chcete označit.";
-"Record sound with your videos." = "Nahrávejte zvuk spolu s videem.";
+"Photos" = "Fotky";
+"Save every capture to your photo library." = "Uloží každý záznam do knihovny Fotek.";
 "Enable" = "Povolit";
 "Empire State Building, New York" = "Empire State Building, New York";
 

@@ -15,27 +15,27 @@ nonisolated enum ISO6709 {
 
 /// The video capture pipeline (camera.md "Capture pipeline"), the movie
 /// counterpart of `PhotoCaptureService`. Records to a temp file, then names +
-/// persists into the shared `CaptureStore`.
+/// persists into the Photos library through the shared `PhotoLibraryStore`.
 /// `nonisolated`: the recording delegate fires on the capture session queue.
 nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecordingDelegate {
     /// Settings snapshot for one recording, resolved by the controller at
     /// record start (permission-coupled values already effective).
     struct Options {
         var exifLocation = true   // camera.exif.location (effective)
-        var saveToPhotos = true   // camera.saveToPhotos (effective)
     }
 
     private let filename: FilenameProviding
-    private let store = CaptureStore()
+    private let store: PhotoLibraryStore
     private let ext = "mov"
     private var options = Options()
     private var pendingSnapshot: LocationSnapshot?
     private var pendingOverlay: RenderedOverlay?
     private var onStopped: (() -> Void)?
-    private var completion: ((Result<URL, Error>) -> Void)?
+    private var completion: ((Result<Void, Error>) -> Void)?
 
-    init(filename: FilenameProviding) {
+    init(filename: FilenameProviding, store: PhotoLibraryStore) {
         self.filename = filename
+        self.store = store
     }
 
     /// `snapshot` is captured by the caller at record start (nil = no fix / EXIF off).
@@ -48,7 +48,7 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
                         overlayLayer: RenderedOverlay? = nil,
                         options: Options = Options(),
                         onStopped: @escaping () -> Void,
-                        completion: @escaping (Result<URL, Error>) -> Void) {
+                        completion: @escaping (Result<Void, Error>) -> Void) {
         self.options = options
         self.pendingSnapshot = snapshot
         self.pendingOverlay = overlayLayer
@@ -109,24 +109,18 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
         }
     }
 
-    /// 4. Name + 5. persist (app-private, atomic move); 6. Camera Roll copy.
+    /// 4. Name + 5. persist into the Photos library (the temp clip is moved in).
     private func persist(_ fileURL: URL) {
-        let name = filename.makeName(for: Date(), snapshot: pendingSnapshot) {
+        let date = Date()
+        let name = filename.makeName(for: date, snapshot: pendingSnapshot) {
             store.existingBaseNames().contains($0)
         }
-        let url: URL
-        do {
-            url = try store.moveIn(from: fileURL, name: name, ext: ext)
-        } catch {
-            return finish(.failure(error))
+        store.save(video: fileURL, name: name, ext: ext, date: date) { [self] result in
+            finish(result)
         }
-
-        if options.saveToPhotos { CameraRoll.copy(url, as: .video) }
-
-        finish(.success(url))
     }
 
-    private func finish(_ result: Result<URL, Error>) {
+    private func finish(_ result: Result<Void, Error>) {
         let completion = completion
         self.completion = nil
         DispatchQueue.main.async { completion?(result) }

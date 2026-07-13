@@ -4,65 +4,10 @@ import Photos
 import UIKit
 import UniformTypeIdentifiers
 
-/// App-private capture store - the gallery's source of truth (camera.md
-/// "Storage"). Lives under Application Support; never touches the system library.
-/// Gallery reads it through the `CaptureStoreBrowsing` seam.
-nonisolated struct CaptureStore: Sendable {
-    let directory: URL
-
-    init() {
-        let base = FileManager.default.urls(for: .applicationSupportDirectory,
-                                            in: .userDomainMask)[0]
-        directory = base.appendingPathComponent("Captures", isDirectory: true)
-        try? FileManager.default.createDirectory(at: directory,
-                                                 withIntermediateDirectories: true)
-    }
-
-    /// Base names already in the store (extension stripped) - for auto-number.
-    func existingBaseNames() -> Set<String> {
-        let urls = (try? FileManager.default.contentsOfDirectory(
-            at: directory, includingPropertiesForKeys: nil)) ?? []
-        return Set(urls.map { $0.deletingPathExtension().lastPathComponent })
-    }
-
-    /// Atomic write (camera.md "Durability").
-    func write(_ data: Data, name: String, ext: String) throws -> URL {
-        let url = directory.appendingPathComponent("\(name).\(ext)")
-        try data.write(to: url, options: .atomic)
-        NotificationCenter.default.post(name: .captureStoreDidChange, object: nil)
-        return url
-    }
-
-    /// Move a recorded file (e.g. a video temp) into the store under `name`.
-    func moveIn(from tempURL: URL, name: String, ext: String) throws -> URL {
-        let url = directory.appendingPathComponent("\(name).\(ext)")
-        try? FileManager.default.removeItem(at: url)
-        try FileManager.default.moveItem(at: tempURL, to: url)
-        NotificationCenter.default.post(name: .captureStoreDidChange, object: nil)
-        return url
-    }
-}
-
-/// Add-only Camera Roll copy shared by photo + video capture. Revocation/denial
-/// skips silently; the capture already succeeded app-private (foundation
-/// permission-coupled policy).
-nonisolated enum CameraRoll {
-    static func copy(_ url: URL, as type: PHAssetResourceType) {
-        PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
-            guard status == .authorized else { return }
-            PHPhotoLibrary.shared().performChanges {
-                let request = PHAssetCreationRequest.forAsset()
-                request.addResource(with: type, fileURL: url, options: nil)
-            }
-        }
-    }
-}
-
 /// Settings snapshot for one capture, resolved by the controller at shutter
 /// time (permission-coupled values already effective - foundation.md).
 nonisolated struct PhotoCaptureOptions {
     var exifLocation = true                        // camera.exif.location (effective)
-    var saveToPhotos = true                        // camera.saveToPhotos (effective)
     var saveOriginal = true                        // camera.photo.saveOriginal
     var format = CameraSettings.PhotoFormat.jpg    // camera.photo.format
     var shutterSound = true                        // camera.shutterSound
@@ -73,14 +18,15 @@ nonisolated struct PhotoCaptureOptions {
 /// `nonisolated`: the photo delegate fires on the capture session queue.
 nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDelegate {
     private let filename: FilenameProviding
-    private let store = CaptureStore()
+    private let store: PhotoLibraryStore
     private var options = PhotoCaptureOptions()
     private var pendingSnapshot: LocationSnapshot?
     private var pendingOverlay: RenderedOverlay?
-    private var completion: ((Result<URL, Error>) -> Void)?
+    private var completion: ((Result<Void, Error>) -> Void)?
 
-    init(filename: FilenameProviding) {
+    init(filename: FilenameProviding, store: PhotoLibraryStore) {
         self.filename = filename
+        self.store = store
     }
 
     /// `snapshot` is captured by the caller at shutter time (nil = no fix / EXIF off).
@@ -89,7 +35,7 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
                  snapshot: LocationSnapshot?,
                  overlayLayer: RenderedOverlay? = nil,
                  options: PhotoCaptureOptions = PhotoCaptureOptions(),
-                 completion: @escaping (Result<URL, Error>) -> Void) {
+                 completion: @escaping (Result<Void, Error>) -> Void) {
         self.pendingSnapshot = snapshot
         self.pendingOverlay = overlayLayer
         self.options = options
@@ -121,30 +67,23 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
             original = original.map { merge(gps: gps, into: $0) }
         }
 
-        // 4. Name + 5. persist (app-private, atomic). The `_original` marker is
+        // 4. Name + 5. persist into the Photos library. The `_original` marker is
         // fixed, distinct from the user's filename.suffix (camera.md step 5);
         // the copy is best-effort and never fails the capture.
         let ext = fileExtension(of: data)
-        let name = filename.makeName(for: Date(), snapshot: pendingSnapshot) {
+        let date = Date()
+        let name = filename.makeName(for: date, snapshot: pendingSnapshot) {
             store.existingBaseNames().contains($0)
         }
-        let url: URL
-        do {
-            url = try store.write(data, name: name, ext: ext)
-        } catch {
-            return finish(.failure(error))
-        }
         if let original {
-            try? store.write(original, name: name + "_original", ext: ext)
+            store.save(photo: original, name: name + "_original", ext: ext, date: date) { _ in }
         }
-
-        // 6. Copy to Camera Roll (add-only) when enabled.
-        if options.saveToPhotos { CameraRoll.copy(url, as: .photo) }
-
-        finish(.success(url))
+        store.save(photo: data, name: name, ext: ext, date: date) { [self] result in
+            finish(result)
+        }
     }
 
-    private func finish(_ result: Result<URL, Error>) {
+    private func finish(_ result: Result<Void, Error>) {
         let completion = completion
         self.completion = nil
         DispatchQueue.main.async { completion?(result) }

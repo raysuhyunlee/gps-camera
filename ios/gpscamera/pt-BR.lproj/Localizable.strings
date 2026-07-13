@@ -30,9 +30,13 @@
 "Format" = "Formato";
 "Also save original" = "Salvar também o original";
 "Keeps a copy without the overlay." = "Mantém uma cópia sem a sobreposição.";
-"Save to Camera Roll" = "Salvar no Rolo da Câmera";
 "Microphone" = "Microfone";
 "Off records silent video." = "Desativado, grava vídeo sem som.";
+"Photo access needed" = "Acesso às fotos necessário";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera salva suas fotos e vídeos na sua fototeca. Ative o acesso às fotos para capturar.";
+"Microphone is off" = "O microfone está desativado";
+"Videos will record without sound. Turn on the microphone to record audio." = "Os vídeos serão gravados sem som. Ative o microfone para gravar áudio.";
+"Not now" = "Agora não";
 "Camera access is off." = "O acesso à câmera está desativado.";
 "Open Settings" = "Abrir Ajustes";
 "GPS signal" = "Sinal de GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galeria";
 "No captures yet" = "Nenhuma captura ainda";
-"Delete this item?" = "Excluir este item?";
-"Delete" = "Excluir";
 "Select" = "Selecionar";
 "Cancel" = "Cancelar";
 "Select Items" = "Selecionar itens";
 "%d Selected" = "%d selecionados";
-"Delete selected items?" = "Excluir os itens selecionados?";
 
 /* Monetization */
 "Unlock every feature." = "Desbloqueie todos os recursos.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Um registro em que confiar";
 "Drop it straight into your report" = "Prontas para o seu relatório";
 "Almost ready" = "Quase pronto";
-"Two permissions are required to stamp your photos." = "Precisamos de duas permissões para adicionar os dados às suas fotos.";
 "Enable access to capture and stamp your photos." = "Permita o acesso para capturar e carimbar suas fotos.";
 "Location" = "Localização";
 "Stamp coordinates, altitude, and address onto each photo." = "Adiciona coordenadas, altitude e endereço a cada foto.";
 "Camera" = "Câmera";
 "Capture the photos and videos you'll stamp." = "Faça as fotos e vídeos que você vai marcar.";
-"Record sound with your videos." = "Grave som junto com seus vídeos.";
+"Photos" = "Fotos";
+"Save every capture to your photo library." = "Salva cada captura na sua fototeca.";
 "Enable" = "Ativar";
 "Empire State Building, New York" = "Empire State Building, Nova York";
 

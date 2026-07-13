@@ -30,9 +30,13 @@
 "Format" = "格式";
 "Also save original" = "同時儲存原始檔";
 "Keeps a copy without the overlay." = "保留不含疊加層的副本。";
-"Save to Camera Roll" = "儲存到相機膠卷";
 "Microphone" = "麥克風";
 "Off records silent video." = "關閉後將錄製無聲影片。";
+"Photo access needed" = "需要照片圖庫存取權限";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera 會將你的照片和影片儲存到你的照片圖庫。開啟照片圖庫存取權限才能拍攝。";
+"Microphone is off" = "麥克風已關閉";
+"Videos will record without sound. Turn on the microphone to record audio." = "影片將不含聲音。開啟麥克風即可錄製聲音。";
+"Not now" = "以後再說";
 "Camera access is off." = "相機存取已關閉。";
 "Open Settings" = "開啟設定";
 "GPS signal" = "GPS 訊號";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "相簿";
 "No captures yet" = "尚無捕捉";
-"Delete this item?" = "刪除此項目？";
-"Delete" = "刪除";
 "Select" = "選擇";
 "Cancel" = "取消";
 "Select Items" = "選擇項目";
 "%d Selected" = "已選擇 %d 個項目";
-"Delete selected items?" = "刪除所選項目?";
 
 /* Monetization */
 "Unlock every feature." = "解鎖所有功能。";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "值得信賴的紀錄";
 "Drop it straight into your report" = "可直接用於你的報告";
 "Almost ready" = "就快好了";
-"Two permissions are required to stamp your photos." = "需要兩項權限，才能為照片加上資訊。";
 "Enable access to capture and stamp your photos." = "允許存取以拍攝照片並加上資訊戳記。";
 "Location" = "位置";
 "Stamp coordinates, altitude, and address onto each photo." = "為每張照片記錄座標、海拔和地址。";
 "Camera" = "相機";
 "Capture the photos and videos you'll stamp." = "拍攝需要標記的照片和影片。";
-"Record sound with your videos." = "錄影時同時錄音。";
+"Photos" = "照片";
+"Save every capture to your photo library." = "將每次拍攝儲存到你的照片圖庫。";
 "Enable" = "啟用";
 "Empire State Building, New York" = "帝國大廈，紐約";
 

@@ -80,9 +80,9 @@ struct OnboardingView: View {
                 permissionRow(icon: "camera.fill", title: L("Camera"),
                               detail: L("Capture the photos and videos you'll stamp."),
                               granted: model.cameraGranted)
-                permissionRow(icon: "mic.fill", title: L("Microphone"),
-                              detail: L("Record sound with your videos."),
-                              granted: model.micGranted)
+                permissionRow(icon: "photo.fill", title: L("Photos"),
+                              detail: L("Save every capture to your photo library."),
+                              granted: model.photosGranted)
             }
             Spacer()
             continueButton(L("Enable"), busy: model.requesting,

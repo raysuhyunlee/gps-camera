@@ -7,18 +7,18 @@ import SwiftUI
 struct GalleryDetailView: View {
     @ObservedObject var model: GalleryModel
     @Environment(\.dismiss) private var dismiss
-    @State private var currentID: URL?
-    @State private var confirmDelete = false
+    @State private var currentID: String?
+    @State private var currentURL: URL?
     @State private var showFullTitle = false
     @State private var pagerWidth: CGFloat = 0
 
     init(model: GalleryModel, current: GalleryItem) {
         self.model = model
-        _currentID = State(initialValue: current.url)
+        _currentID = State(initialValue: current.id)
     }
 
     private var current: GalleryItem? {
-        model.items.first { $0.url == currentID } ?? model.items.first
+        model.items.first { $0.id == currentID } ?? model.items.first
     }
 
     var body: some View {
@@ -26,7 +26,7 @@ struct GalleryDetailView: View {
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 0) {
                     ForEach(model.items) { item in
-                        page(for: item)
+                        MediaPage(model: model, item: item)
                             .containerRelativeFrame(.horizontal)
                     }
                 }
@@ -41,71 +41,95 @@ struct GalleryDetailView: View {
                 pagerWidth = $0
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button { dismiss() } label: { Image(systemName: "xmark") }
-                }
-                // Explicit principal item: a plain navigationTitle renders
-                // black-on-black over the transparent bar in light mode.
-                // Tap shows the untruncated name.
-                ToolbarItem(placement: .principal) {
-                    Button { showFullTitle = true } label: {
-                        Text(current?.url.lastPathComponent ?? "")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundStyle(.white)
-                            .lineLimit(1)
-                            // Cap the width so long names truncate instead of
-                            // overlapping the bar buttons: 45% of the screen
-                            // leaves room for the 3 buttons on any device.
-                            // Middle keeps the distinct tail visible; the full
-                            // name is in the popover.
-                            .truncationMode(.middle)
-                            .frame(maxWidth: max(120, pagerWidth * 0.45))
-                    }
-                    .popover(isPresented: $showFullTitle) {
-                        Text(current?.url.lastPathComponent ?? "")
-                            .font(.caption)
-                            .padding(8)
-                            .presentationCompactAdaptation(.popover)
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    if let current {
-                        ShareLink(item: current.url) {
-                            Image(systemName: "square.and.arrow.up")
-                        }
-                        // ShareLink has no action hook; the tap that opens the
-                        // share sheet is the tracked moment.
-                        .simultaneousGesture(TapGesture().onEnded {
-                            model.events.track(.shared)
-                        })
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(role: .destructive) { confirmDelete = true } label: {
-                        Image(systemName: "trash")
-                    }
-                }
-            }
-            .confirmationDialog(L("Delete this item?"), isPresented: $confirmDelete,
-                                titleVisibility: .visible) {
-                Button(L("Delete"), role: .destructive) { deleteCurrent() }
+            .toolbar { toolbar }
+            // Share needs the file exported out of the Photos library first.
+            .task(id: currentID) {
+                currentURL = nil
+                guard let current else { return }
+                currentURL = await model.fileURL(for: current)
             }
         }
     }
 
-    @ViewBuilder private func page(for item: GalleryItem) -> some View {
-        switch item.kind {
-        case .photo: PhotoPage(url: item.url)
-        case .video: VideoPage(url: item.url)
+    @ToolbarContentBuilder private var toolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Button { dismiss() } label: { Image(systemName: "xmark") }
+        }
+        // Explicit principal item: a plain navigationTitle renders
+        // black-on-black over the transparent bar in light mode.
+        // Tap shows the untruncated name.
+        ToolbarItem(placement: .principal) {
+            Button { showFullTitle = true } label: {
+                Text(current?.name ?? "")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    // Cap the width so long names truncate instead of
+                    // overlapping the bar buttons: 45% of the screen leaves
+                    // room for the 3 buttons on any device. Middle keeps the
+                    // distinct tail visible; the full name is in the popover.
+                    .truncationMode(.middle)
+                    .frame(maxWidth: max(120, pagerWidth * 0.45))
+            }
+            .popover(isPresented: $showFullTitle) {
+                Text(current?.name ?? "")
+                    .font(.caption)
+                    .padding(8)
+                    .presentationCompactAdaptation(.popover)
+            }
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            if let currentURL {
+                ShareLink(item: currentURL) {
+                    Image(systemName: "square.and.arrow.up")
+                }
+                // ShareLink has no action hook; the tap that opens the
+                // share sheet is the tracked moment.
+                .simultaneousGesture(TapGesture().onEnded {
+                    model.events.track(.shared)
+                })
+            } else {
+                ProgressView().tint(.white)
+            }
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(role: .destructive) { deleteCurrent() } label: {
+                Image(systemName: "trash")
+            }
         }
     }
 
+    /// No in-app confirmation: Photos runs its own before removing the asset.
     private func deleteCurrent() {
         guard let current else { return }
         let next = model.items.nextSelection(afterDeleting: current)
-        model.delete(current)
-        if let next { currentID = next.url } else { dismiss() }
+        Task {
+            await model.delete(current)
+            guard !model.items.contains(current) else { return }   // Photos cancelled
+            if let next { currentID = next.id } else { dismiss() }
+        }
+    }
+}
+
+/// One full-screen page: the media file exported out of the Photos library.
+private struct MediaPage: View {
+    let model: GalleryModel
+    let item: GalleryItem
+    @State private var url: URL?
+
+    var body: some View {
+        Group {
+            if let url {
+                switch item.kind {
+                case .photo: PhotoPage(url: url)
+                case .video: VideoPage(url: url)
+                }
+            } else {
+                ProgressView().tint(.white)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .task(id: item.id) { url = await model.fileURL(for: item) }
     }
 }
 
@@ -122,8 +146,7 @@ private struct PhotoPage: View {
                 ProgressView().tint(.white)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .task {
+        .task(id: url) {
             image = await Task.detached { UIImage(contentsOfFile: url.path) }.value
         }
     }

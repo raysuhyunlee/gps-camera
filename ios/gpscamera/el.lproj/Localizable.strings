@@ -30,9 +30,13 @@
 "Format" = "Μορφή";
 "Also save original" = "Αποθήκευση και του πρωτοτύπου";
 "Keeps a copy without the overlay." = "Διατηρεί ένα αντίγραφο χωρίς την επικάλυψη.";
-"Save to Camera Roll" = "Αποθήκευση στο Άλμπουμ κάμερας";
 "Microphone" = "Μικρόφωνο";
 "Off records silent video." = "Απενεργοποιημένο, καταγράφει βίντεο χωρίς ήχο.";
+"Photo access needed" = "Απαιτείται πρόσβαση στις φωτογραφίες";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "Το GPS Camera αποθηκεύει τις φωτογραφίες και τα βίντεό σας στη βιβλιοθήκη φωτογραφιών σας. Ενεργοποιήστε την πρόσβαση σε φωτογραφίες για λήψη.";
+"Microphone is off" = "Το μικρόφωνο είναι απενεργοποιημένο";
+"Videos will record without sound. Turn on the microphone to record audio." = "Τα βίντεο θα καταγράφονται χωρίς ήχο. Ενεργοποιήστε το μικρόφωνο για εγγραφή ήχου.";
+"Not now" = "Όχι τώρα";
 "Camera access is off." = "Η πρόσβαση στην κάμερα είναι απενεργοποιημένη.";
 "Open Settings" = "Άνοιγμα ρυθμίσεων";
 "GPS signal" = "Σήμα GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Συλλογή";
 "No captures yet" = "Δεν υπάρχουν λήψεις";
-"Delete this item?" = "Διαγραφή αυτού του στοιχείου;";
-"Delete" = "Διαγραφή";
 "Select" = "Επιλογή";
 "Cancel" = "Ακύρωση";
 "Select Items" = "Επιλογή στοιχείων";
 "%d Selected" = "Επιλέχθηκαν %d";
-"Delete selected items?" = "Διαγραφή επιλεγμένων στοιχείων;";
 
 /* Monetization */
 "Unlock every feature." = "Ξεκλείδωμα κάθε λειτουργίας.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Ένα αξιόπιστο τεκμήριο";
 "Drop it straight into your report" = "Έτοιμες για την αναφορά σας";
 "Almost ready" = "Σχεδόν έτοιμο";
-"Two permissions are required to stamp your photos." = "Χρειαζόμαστε δύο άδειες για να προσθέσουμε τα στοιχεία στις φωτογραφίες σας.";
 "Enable access to capture and stamp your photos." = "Ενεργοποιήστε την πρόσβαση για λήψη και σφράγιση των φωτογραφιών σας.";
 "Location" = "Τοποθεσία";
 "Stamp coordinates, altitude, and address onto each photo." = "Προσθέτει συντεταγμένες, υψόμετρο και διεύθυνση σε κάθε φωτογραφία.";
 "Camera" = "Κάμερα";
 "Capture the photos and videos you'll stamp." = "Τραβήξτε τις φωτογραφίες και τα βίντεο που θέλετε να σημειώσετε.";
-"Record sound with your videos." = "Ηχογραφήστε ήχο μαζί με τα βίντεό σας.";
+"Photos" = "Φωτογραφίες";
+"Save every capture to your photo library." = "Αποθηκεύει κάθε λήψη στη βιβλιοθήκη φωτογραφιών σας.";
 "Enable" = "Ενεργοποίηση";
 "Empire State Building, New York" = "Empire State Building, Νέα Υόρκη";
 

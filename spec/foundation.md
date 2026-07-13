@@ -56,7 +56,7 @@
   (camera surface, overlay layer, main pro banner). Sheets rebuild on present.
 - `L10n.locale` - the selected language as a `Locale`, for domains that format
   data rather than resolve strings (geocoded address, overlay timestamp).
-- 29 language lproj bundles ship with the app (113 strings each); English ships
+- 29 language lproj bundles ship with the app (140 strings each); English ships
   none - the keys ARE its strings, so it resolves to no bundle at all. English
   must NOT fall back to `Bundle.main`: that resolves in the *system* language, so
   a Korean phone picking English would stay Korean.
@@ -111,7 +111,7 @@ SettingItem {
     visibleWhen?         // predicate over another setting's value; hides the row
     enabledWhen?         // predicate; false greys the row out but keeps it
                          //   visible (e.g. a master switch is off)
-    requiresPermission?  // OS permission the item depends on (add-only photo, location, …)
+    requiresPermission?  // OS permission the item depends on (location, ...)
 }
 
 SettingsSection {
@@ -232,10 +232,10 @@ ios/gpscamera/Foundation/
     ├── SettingValue.swift        - typed value (bool/string/number/stringList) <-> UserDefaults
     ├── SettingsStore.swift       - thread-safe store; permission-coupled effective reads + mismatch notification
     ├── SettingsRegistry.swift    - collects providers, root-assigned ordering, deep-link paths
-    ├── SettingsPermissions.swift - SettingPermission status/request (location, add-only photos)
+    ├── SettingsPermissions.swift - SettingPermission status/request (location)
     ├── SettingsView.swift        - generic SettingsScreen renderer (controls, pro lock, highlight)
     └── ColorHex.swift            - Color <-> #RRGGBBAA for Control.color
-ios/gpscamera/{lang}.lproj/Localizable.strings  - 29 languages, 113 strings each
+ios/gpscamera/{lang}.lproj/Localizable.strings  - 29 languages, 140 strings each
 ios/gpscamera/Resources/Fonts/                  - bundled OFL fonts + Licenses/*.txt
 ios/gpscameraTests/
 └── SettingsValueTests.swift      - store/registry/deep-link + bundled-font tests

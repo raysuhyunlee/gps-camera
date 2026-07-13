@@ -30,9 +30,13 @@
 "Format" = "형식";
 "Also save original" = "원본도 저장";
 "Keeps a copy without the overlay." = "오버레이가 없는 사본을 보관합니다.";
-"Save to Camera Roll" = "카메라 롤에 저장";
 "Microphone" = "마이크";
 "Off records silent video." = "끄면 소리 없이 녹화됩니다.";
+"Photo access needed" = "사진 접근 권한 필요";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera는 촬영한 사진과 동영상을 사진 보관함에 저장합니다. 촬영하려면 사진 접근을 허용해 주세요.";
+"Microphone is off" = "마이크가 꺼져 있음";
+"Videos will record without sound. Turn on the microphone to record audio." = "동영상이 소리 없이 녹화됩니다. 소리를 녹음하려면 마이크 접근을 허용해 주세요.";
+"Not now" = "나중에";
 "Camera access is off." = "카메라 접근이 꺼져 있습니다.";
 "Open Settings" = "설정 열기";
 "GPS signal" = "GPS 신호";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "갤러리";
 "No captures yet" = "캡처가 없습니다";
-"Delete this item?" = "이 항목을 삭제하시겠습니까?";
-"Delete" = "삭제";
 "Select" = "선택";
 "Cancel" = "취소";
 "Select Items" = "항목 선택";
 "%d Selected" = "%d개 선택됨";
-"Delete selected items?" = "선택한 항목을 삭제하시겠습니까?";
 
 /* Monetization */
 "Unlock every feature." = "모든 기능 잠금 해제";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "사진으로 증빙하세요";
 "Drop it straight into your report" = "보고서에 바로 활용하세요";
 "Almost ready" = "거의 다 됐어요";
-"Two permissions are required to stamp your photos." = "사진에 정보를 기록하려면 두 가지 권한이 필요해요.";
 "Enable access to capture and stamp your photos." = "사진을 촬영하고 정보를 새기려면 권한을 허용하세요.";
 "Location" = "위치";
 "Stamp coordinates, altitude, and address onto each photo." = "각 사진에 좌표, 고도, 주소를 기록해요.";
 "Camera" = "카메라";
 "Capture the photos and videos you'll stamp." = "기록할 사진과 동영상을 촬영해요.";
-"Record sound with your videos." = "동영상과 함께 소리를 녹음합니다.";
+"Photos" = "사진";
+"Save every capture to your photo library." = "촬영한 모든 사진과 동영상을 사진 보관함에 저장해요.";
 "Enable" = "사용 설정";
 "Empire State Building, New York" = "엠파이어 스테이트 빌딩, 뉴욕";
 

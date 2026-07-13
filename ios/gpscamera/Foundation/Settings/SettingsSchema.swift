@@ -13,7 +13,7 @@ typealias L10nKey = String
 nonisolated enum SettingGate { case free, pro }
 
 /// OS permission a setting depends on (foundation.md "Permission-coupled settings").
-nonisolated enum SettingPermission { case location, photoAddOnly }
+nonisolated enum SettingPermission { case location }
 
 nonisolated struct SelectOption: Identifiable {
     let value: String

@@ -30,9 +30,13 @@
 "Format" = "Format";
 "Also save original" = "Spara även originalet";
 "Keeps a copy without the overlay." = "Behåller en kopia utan överlägget.";
-"Save to Camera Roll" = "Spara till kamerarullen";
 "Microphone" = "Mikrofon";
 "Off records silent video." = "Av spelar in video utan ljud.";
+"Photo access needed" = "Fotoåtkomst behövs";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera sparar dina foton och videor i bildbiblioteket. Aktivera fotoåtkomst för att kunna ta bilder.";
+"Microphone is off" = "Mikrofonen är avstängd";
+"Videos will record without sound. Turn on the microphone to record audio." = "Videor spelas in utan ljud. Aktivera mikrofonen för att spela in ljud.";
+"Not now" = "Inte nu";
 "Camera access is off." = "Kameraåtkomst är avstängd.";
 "Open Settings" = "Öppna inställningar";
 "GPS signal" = "GPS-signal";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galleri";
 "No captures yet" = "Inga tagningar ännu";
-"Delete this item?" = "Radera det här objektet?";
-"Delete" = "Radera";
 "Select" = "Välj";
 "Cancel" = "Avbryt";
 "Select Items" = "Välj objekt";
 "%d Selected" = "%d valda";
-"Delete selected items?" = "Radera valda objekt?";
 
 /* Monetization */
 "Unlock every feature." = "Lås upp alla funktioner.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Ett tillförlitligt underlag";
 "Drop it straight into your report" = "Redo för din rapport";
 "Almost ready" = "Nästan klart";
-"Two permissions are required to stamp your photos." = "Vi behöver två behörigheter för att lägga till uppgifterna på dina foton.";
 "Enable access to capture and stamp your photos." = "Ge åtkomst för att ta och stämpla dina foton.";
 "Location" = "Plats";
 "Stamp coordinates, altitude, and address onto each photo." = "Lägger till koordinater, höjd och adress på varje foto.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Ta bilderna och videorna du vill märka.";
-"Record sound with your videos." = "Spela in ljud tillsammans med dina videor.";
+"Photos" = "Bilder";
+"Save every capture to your photo library." = "Spara varje tagning i ditt bildbibliotek.";
 "Enable" = "Aktivera";
 "Empire State Building, New York" = "Empire State Building, New York";
 

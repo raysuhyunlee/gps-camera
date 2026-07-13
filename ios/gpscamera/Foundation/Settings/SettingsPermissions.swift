@@ -5,7 +5,6 @@
 //
 
 import CoreLocation
-import Photos
 
 nonisolated enum SettingsPermissions {
     static func status(_ permission: SettingPermission) -> PermissionStatus {
@@ -13,12 +12,6 @@ nonisolated enum SettingsPermissions {
         case .location:
             switch CLLocationManager().authorizationStatus {
             case .authorizedWhenInUse, .authorizedAlways: return .authorized
-            case .notDetermined: return .notDetermined
-            default: return .denied
-            }
-        case .photoAddOnly:
-            switch PHPhotoLibrary.authorizationStatus(for: .addOnly) {
-            case .authorized, .limited: return .authorized
             case .notDetermined: return .notDetermined
             default: return .denied
             }
@@ -32,10 +25,6 @@ nonisolated enum SettingsPermissions {
         switch permission {
         case .location:
             LocationPermissionRequest.begin(completion)
-        case .photoAddOnly:
-            PHPhotoLibrary.requestAuthorization(for: .addOnly) { _ in
-                DispatchQueue.main.async { completion(status(.photoAddOnly)) }
-            }
         }
     }
 }

@@ -30,9 +30,13 @@
 "Format" = "Format";
 "Also save original" = "Gem også originalen";
 "Keeps a copy without the overlay." = "Beholder en kopi uden overlayet.";
-"Save to Camera Roll" = "Gem til kamerarulle";
 "Microphone" = "Mikrofon";
 "Off records silent video." = "Slået fra optager video uden lyd.";
+"Photo access needed" = "Adgang til Fotos påkrævet";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera gemmer dine fotos og videoer i dit fotobibliotek. Slå adgang til Fotos til for at optage.";
+"Microphone is off" = "Mikrofonen er slået fra";
+"Videos will record without sound. Turn on the microphone to record audio." = "Videoer optages uden lyd. Slå mikrofonen til for at optage lyd.";
+"Not now" = "Ikke nu";
 "Camera access is off." = "Kameraadgang er slået fra.";
 "Open Settings" = "Åbn indstillinger";
 "GPS signal" = "GPS-signal";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galleri";
 "No captures yet" = "Ingen optagelser endnu";
-"Delete this item?" = "Slet dette element?";
-"Delete" = "Slet";
 "Select" = "Vælg";
 "Cancel" = "Annuller";
 "Select Items" = "Vælg emner";
 "%d Selected" = "%d valgt";
-"Delete selected items?" = "Slet valgte emner?";
 
 /* Monetization */
 "Unlock every feature." = "Lås alle funktioner op.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Et pålideligt bevis";
 "Drop it straight into your report" = "Klar til din rapport";
 "Almost ready" = "Næsten klar";
-"Two permissions are required to stamp your photos." = "Vi skal bruge to tilladelser for at føje oplysningerne til dine fotos.";
 "Enable access to capture and stamp your photos." = "Giv adgang for at tage og stemple dine billeder.";
 "Location" = "Placering";
 "Stamp coordinates, altitude, and address onto each photo." = "Føjer koordinater, højde og adresse til hvert foto.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Tag de fotos og videoer, du vil mærke.";
-"Record sound with your videos." = "Optag lyd sammen med dine videoer.";
+"Photos" = "Fotos";
+"Save every capture to your photo library." = "Gemmer hver optagelse i dit fotobibliotek.";
 "Enable" = "Aktivér";
 "Empire State Building, New York" = "Empire State Building, New York";
 

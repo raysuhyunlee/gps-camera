@@ -30,9 +30,13 @@
 "Format" = "Формат";
 "Also save original" = "Також зберігати оригінал";
 "Keeps a copy without the overlay." = "Зберігає копію без накладання.";
-"Save to Camera Roll" = "Зберігати у фотоплівку";
 "Microphone" = "Мікрофон";
 "Off records silent video." = "Якщо вимкнено, відео записується без звуку.";
+"Photo access needed" = "Потрібен доступ до фото";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera зберігає фото та відео у вашій медіатеці. Надайте доступ до фото, щоб знімати.";
+"Microphone is off" = "Мікрофон вимкнено";
+"Videos will record without sound. Turn on the microphone to record audio." = "Відео записуватимуться без звуку. Надайте доступ до мікрофона, щоб записувати звук.";
+"Not now" = "Не зараз";
 "Camera access is off." = "Доступ до камери вимкнено.";
 "Open Settings" = "Відкрити налаштування";
 "GPS signal" = "Сигнал GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Галерея";
 "No captures yet" = "Немає записів";
-"Delete this item?" = "Видалити цей елемент?";
-"Delete" = "Видалити";
 "Select" = "Вибрати";
 "Cancel" = "Скасувати";
 "Select Items" = "Вибрати об'єкти";
 "%d Selected" = "Вибрано: %d";
-"Delete selected items?" = "Видалити вибрані об'єкти?";
 
 /* Monetization */
 "Unlock every feature." = "Відкрийте всі функції.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Надійне підтвердження";
 "Drop it straight into your report" = "Готово для вашого звіту";
 "Almost ready" = "Майже готово";
-"Two permissions are required to stamp your photos." = "Нам потрібні два дозволи, щоб додавати дані до фото.";
 "Enable access to capture and stamp your photos." = "Надайте доступ, щоб знімати та позначати фотографії.";
 "Location" = "Місцезнаходження";
 "Stamp coordinates, altitude, and address onto each photo." = "Додає до кожного фото координати, висоту й адресу.";
 "Camera" = "Камера";
 "Capture the photos and videos you'll stamp." = "Знімайте фото та відео, до яких додаватимуться дані.";
-"Record sound with your videos." = "Записуйте звук разом із відео.";
+"Photos" = "Фото";
+"Save every capture to your photo library." = "Зберігає кожну зйомку у вашій медіатеці.";
 "Enable" = "Дозволити";
 "Empire State Building, New York" = "Емпайр-Стейт-Білдінг, Нью-Йорк";
 

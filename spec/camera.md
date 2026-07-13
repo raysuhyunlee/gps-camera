@@ -2,6 +2,11 @@
 
 ## Status
 
+- 2026-07-13: Captures now go straight to the Photos library; the app-private
+  store and the `camera.saveToPhotos` backup toggle are gone. Photo-library
+  access is required to capture, requested in onboarding, and the shutter nudges
+  to iOS Settings without it. The mic moved out of onboarding: it is requested on
+  the first recording and nudges once if denied.
 - 2026-07-13: Location prompt no longer swallowed on Main. It was raised while
   the camera prompt was still up (iOS drops it), leaving location
   `notDetermined` with no way to request it but toggling `camera.exif.location`
@@ -11,8 +16,7 @@
   so `CameraCapabilities.canSuppressShutterSound` now gates it and drives the
   shutter-sound footnote (closes the JP/KR warning TODO; iOS 17 shares it).
 - 2026-07-12: Video settings gains a `camera.video.mic` status row
-  (`MicPermissionRow`); mic is now primed in onboarding, lazy request kept as
-  fallback.
+  (`MicPermissionRow`).
 - 2026-07-11: `#if DEBUG` screenshot demo mode: `CameraView` renders a
   pre-arranged scene image instead of `CameraPreview` (the live feed is black in
   the simulator) and `CameraController` forces `.authorized` + skips the session.
@@ -31,7 +35,7 @@
   (list newest-first, delete) and posts `captureStoreDidChange` on write/delete.
 - 2026-07-05: Capture settings wired to the settings framework (no more
   hardcoded defaults): shutter sound, orientation lock, photo resolution +
-  format (JPG/HEIC), save original, save to Camera Roll, video resolution +
+  format (JPG/HEIC), save original, video resolution +
   fps, EXIF location. Settings gear added to the top-right control group;
   permission mismatch popup surfaces on Main. Still TODO: usage-metrics
   publish (monetization), JP/KR shutter-sound warning.
@@ -159,16 +163,24 @@ semi-transparent black bar so the preview shows through behind.
 
 ### Storage
 
-The capture store is the gallery's source of truth. Its shape varies by platform:
+Every capture lands in the system photo library as a single copy - no
+app-private copy, no backup toggle. Both platforms show captures in the system
+gallery, and the app's own gallery reads the same media back.
 
-- **Android** - single copy in `MediaStore` (DCIM/Pictures)
-	- they show in the system gallery
-	- The app reads back its own entries with no permission
-- **iOS** - app-private store is the source of truth
-	* When `camera.saveToPhotos` is on, media is copied to the Camera Roll
-		* Use 2x storage. Sort of back-up.
-
-Neither platform ever requests full photo-library **read** access.
+- **Android** - own entries in `MediaStore` (DCIM/Pictures); read back with no
+  permission.
+- **iOS** - own assets in the Photos library, plus a local **capture index**
+  (asset id + name + extension + date).
+	- The index, not an album, is what scopes the gallery to the app's own
+	  captures: album fetches return nothing under limited access, and a full
+	  grant would otherwise list the user's whole library.
+	- Assets the app creates are added to a limited-access selection
+	  automatically, so limited and full access both show every capture.
+	- The user can delete captures from the Photos app; the index prunes entries
+	  whose asset is gone on every read.
+	- The name goes on the asset resource (`originalFilename`), so an exported or
+	  shared file carries it. The Photos app still labels the asset `IMG_xxxx` in
+	  its own UI.
 
 - **Durability**: each capture is written atomically
 	- a burst is never buffered whole in memory
@@ -176,9 +188,14 @@ Neither platform ever requests full photo-library **read** access.
 
 ### Audio
 
-- The microphone is attached **only in video mode**. Its permission is primed in
-  onboarding (onboarding.md); the camera also requests it lazily on first video
-  use as a fallback when still undetermined. A denied mic records silent video.
+- The microphone is attached **only in video mode**, and requested on the **first
+  recording** - not on the mode switch and not in onboarding, so the prompt lands
+  at the moment audio is actually needed. A grant reaches the session graph
+  before the clip starts.
+- A **denied** mic nudges once (alert + route to iOS Settings) and skips that
+  recording; every recording after that is silent video, no further nudge
+  (`camera.video.micNudged`). Denying at the OS prompt itself records silent
+  straight away - the user just answered.
 - Photo capture never configures the audio session
 	- the user's music/podcast keeps playing.
 - `camera.shutterSound` gates capture sounds: the photo shutter and the video
@@ -194,11 +211,13 @@ Neither platform ever requests full photo-library **read** access.
 
 ### Permissions
 
-- Photo library
-	- iOS: requests **add-only** only when `camera.saveToPhotos` is on
-	* Android needs none (own `MediaStore` entries)
-- Microphone: video mode only; primed in onboarding, status + re-enable via the
-  `camera.video.mic` row.
+- Photo library - **required to capture**: there is nowhere else to save.
+	- iOS: full access (`NSPhotoLibraryUsageDescription`), requested in
+	  onboarding. Limited counts as granted. Denied: the shutter saves nothing
+	  and nudges to iOS Settings.
+	- Android: none needed (own `MediaStore` entries).
+- Microphone: video mode only; requested on the first recording, nudged once on
+  denial (see "Audio"). Status + re-enable via the `camera.video.mic` row.
 - Location: provided by the location domain (foreground).
 	- Main requests it only once the camera prompt has resolved: iOS drops an
 	  authorization request raised while another permission alert is on screen.
@@ -237,16 +256,14 @@ Neither platform ever requests full photo-library **read** access.
 
 ### Photo
 
-| key                         | title                          | control | default | gate | requiresPermission   |
-| --------------------------- | ------------------------------ | ------- | ------- | ---- | -------------------- |
-| `camera.photo.resolution`   | Resolution                     | select  | highest | free | -                    |
-| `camera.photo.format`       | Format                         | select  | JPG     | free | -                    |
-| `camera.photo.saveOriginal` | Also save original             | toggle  | off     | free | -                    |
-| `camera.saveToPhotos`       | Save to Camera Roll (iOS only) | toggle  | off     | free | add-only photo (iOS) |
+| key                         | title              | control | default | gate | requiresPermission |
+| --------------------------- | ------------------ | ------- | ------- | ---- | ------------------ |
+| `camera.photo.resolution`   | Resolution         | select  | highest | free | -                  |
+| `camera.photo.format`       | Format             | select  | JPG     | free | -                  |
+| `camera.photo.saveOriginal` | Also save original | toggle  | off     | free | -                  |
 
-- `camera.saveToPhotos` is iOS-only (hidden on Android). Revocation skips the
-  Camera Roll copy (capture still succeeds app-private) and resumes on re-grant -
-  per the permission-coupled policy in foundation.md.
+- `camera.photo.saveOriginal` writes the un-overlaid copy to the photo library
+  too, as a second asset (`_original`), sharing the capture's timestamp.
 
 ### Video
 
@@ -262,8 +279,10 @@ Neither platform ever requests full photo-library **read** access.
   capture, the session clamps to what the active format supports.
 - `camera.video.mic` is a status row (not a stored setting): shows the mic
   authorization; tap requests it when undetermined, else opens iOS Settings.
-  Footnote "Off records silent video." Mic is primed in onboarding
-  (onboarding.md); denial records silent video.
+  Footnote "Off records silent video." The mic is requested on the first
+  recording (see "Audio"); this row is how the user changes it afterwards.
+- `camera.video.micNudged` is state, not a row: set once the denied-mic nudge
+  has been shown.
 
 ## Implementation
 
@@ -272,16 +291,19 @@ Neither platform ever requests full photo-library **read** access.
 ```
 ios/gpscamera/Domains/Camera/
 ├── CameraSettings.swift          - setting keys, typed read, CaptureQuality, SettingsProviding sections
-├── CameraView.swift              - Main screen: preview, GPS indicator, photo/video controls, settings sheet + mismatch popup
+├── CameraView.swift              - Main screen: preview, GPS indicator, photo/video controls, settings sheet + mismatch popup + nudge alert
 ├── CameraController.swift        - ObservableObject; session + permissions + shutter/record
 ├── CameraSession.swift           - AVCaptureSession wrapper (facing, lens, flash, mode, photo + movie + frame output)
 ├── CameraPreview.swift           - AVCaptureVideoPreviewLayer host + freeze-blur transition
 ├── CameraOrientation.swift       - device orientation -> control angle, capture rotation, anchor alignment
 ├── CameraAuthorization.swift     - camera permission -> PermissionStatus
 ├── MicrophoneAuthorization.swift - mic permission -> PermissionStatus (video only)
+├── PhotoLibraryAuthorization.swift - photo-library permission -> PermissionStatus (limited = authorized)
+├── CameraNudge.swift             - missing-permission alert copy (photo library, mic)
 ├── MicPermissionRow.swift        - Video-section status row: mic auth + open iOS Settings
-├── CaptureStoreBrowsing.swift    - seam consumed by gallery: browse/delete + change notification
-├── PhotoCaptureService.swift     - photo pipeline + CaptureStore + CameraRoll (add-only copy)
+├── PhotoLibraryStore.swift       - the capture store: writes assets to Photos + CaptureIndex (id/name/ext/date)
+├── CaptureStoreBrowsing.swift    - seam consumed by gallery: entries/thumbnail/fileURL/delete + change notification
+├── PhotoCaptureService.swift     - photo pipeline (burn, EXIF, name, save to Photos + `_original`)
 ├── VideoCaptureService.swift     - video pipeline (movie output, ISO6709 GPS metadata, overlay burn)
 ├── VideoOverlayCompositor.swift  - burns the overlay onto a recorded clip (AVVideoComposition)
 └── GPSMetadata.swift             - LocationSnapshot -> EXIF GPS dictionary
@@ -293,6 +315,9 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-13: Captures saved straight to the Photos library (app-private store +
+  `camera.saveToPhotos` removed); photo-library access required to capture; mic
+  requested on the first recording with a one-time nudge.
 - 2026-07-13: Location request on Main deferred until the camera prompt
   resolves; retried on foreground.
 - 2026-07-13: Shutter-sound suppression gated behind

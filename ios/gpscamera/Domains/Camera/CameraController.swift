@@ -26,6 +26,9 @@ final class CameraController: ObservableObject {
     /// when `camera.orientationLock` is on or while recording (camera.md
     /// "Device Orientation").
     @Published private(set) var captureOrientation: UIDeviceOrientation = .portrait
+    /// A permission the user has to resolve in iOS Settings; `CameraView` shows
+    /// it as an alert (camera.md "Permissions").
+    @Published var nudge: CameraNudge?
 
     let session = CameraSession()
     private let store: SettingsStore
@@ -42,6 +45,7 @@ final class CameraController: ObservableObject {
     init(location: LocationProviding,
          overlay: OverlayRendering,
          filename: FilenameProviding,
+         captures: PhotoLibraryStore,
          store: SettingsStore,
          events: EventTracking,
          metrics: UsageMetrics) {
@@ -50,8 +54,8 @@ final class CameraController: ObservableObject {
         self.store = store
         self.events = events
         self.metrics = metrics
-        photo = PhotoCaptureService(filename: filename)
-        video = VideoCaptureService(filename: filename)
+        photo = PhotoCaptureService(filename: filename, store: captures)
+        video = VideoCaptureService(filename: filename, store: captures)
         authorization = CameraAuthorization.status
         #if DEBUG
         // Screenshot demo mode renders a static scene (no session); treat the
@@ -136,23 +140,9 @@ final class CameraController: ObservableObject {
 
     func setMode(_ mode: CameraMode) {
         guard !isRecording, mode != self.mode else { return }
-        if mode == .video { ensureMicPermission() }
         self.mode = mode
         beginPreviewTransition()
         session.setMode(mode) { [weak self] in self?.endPreviewTransition() }
-    }
-
-    /// Requests the mic lazily on first video use; re-configures to attach the
-    /// input once granted. Denial still records silent video (camera.md "Audio").
-    private func ensureMicPermission() {
-        guard MicrophoneAuthorization.status == .notDetermined else { return }
-        MicrophoneAuthorization.request { [weak self] _ in
-            DispatchQueue.main.async {
-                guard let self, self.mode == .video else { return }
-                self.beginPreviewTransition()
-                self.session.setMode(.video) { [weak self] in self?.endPreviewTransition() }
-            }
-        }
     }
 
     /// Freeze the last frame (view blurs it) until the new graph delivers.
@@ -171,6 +161,11 @@ final class CameraController: ObservableObject {
     }
 
     func shutter() {
+        if mode == .video, isRecording { return stopRecording() }
+        // Captures go straight to the Photos library, so without it there is
+        // nowhere to save (camera.md "Storage").
+        guard ensurePhotoLibrary() else { return }
+
         switch mode {
         case .photo:
             guard !isCapturing else { return }
@@ -181,7 +176,6 @@ final class CameraController: ObservableObject {
             let settings = settings
             let options = PhotoCaptureOptions(
                 exifLocation: CameraSettings.effectiveExifLocation(store),
-                saveToPhotos: CameraSettings.effectiveSaveToPhotos(store),
                 saveOriginal: settings.saveOriginal,
                 format: settings.photoFormat,
                 shutterSound: settings.shutterSound)
@@ -192,7 +186,62 @@ final class CameraController: ObservableObject {
                 self?.captureFinished(.photo, result: result)
             }
         case .video:
-            isRecording ? stopRecording() : startRecording()
+            ensureMicThenRecord()
+        }
+    }
+
+    /// False when the capture cannot be saved: nudges the user to iOS Settings
+    /// (denied), or raises the prompt (undetermined - onboarding normally asks,
+    /// so this only covers a reset) and drops this tap.
+    private func ensurePhotoLibrary() -> Bool {
+        switch PhotoLibraryAuthorization.status {
+        case .authorized:
+            return true
+        case .denied:
+            nudge = .photoLibrary
+            return false
+        case .notDetermined:
+            PhotoLibraryAuthorization.request { [weak self] status in
+                DispatchQueue.main.async {
+                    guard status != .authorized else { return }
+                    self?.nudge = .photoLibrary
+                }
+            }
+            return false
+        }
+    }
+
+    /// The mic is requested on the first recording, not on the mode switch: the
+    /// prompt belongs to the moment audio is actually needed (camera.md "Audio").
+    /// A denied mic nudges once, then records silent video from then on.
+    private func ensureMicThenRecord() {
+        switch MicrophoneAuthorization.status {
+        case .authorized:
+            startRecording()
+        case .notDetermined:
+            MicrophoneAuthorization.request { [weak self] status in
+                DispatchQueue.main.async {
+                    guard let self else { return }
+                    guard self.mode == .video, !self.isRecording else { return }
+                    // A grant has to reach the session graph before the clip
+                    // starts, or the recording is silent anyway.
+                    guard status == .authorized else { return self.startRecording() }
+                    self.beginPreviewTransition()
+                    self.session.setMode(.video) { [weak self] in
+                        DispatchQueue.main.async {
+                            self?.endPreviewTransition()
+                            self?.startRecording()
+                        }
+                    }
+                }
+            }
+        case .denied:
+            guard store.bool(CameraSettingKey.micNudged) else {
+                store.set(.bool(true), for: CameraSettingKey.micNudged)
+                nudge = .microphone
+                return
+            }
+            startRecording()   // silent video (camera.md "Audio")
         }
     }
 
@@ -201,8 +250,7 @@ final class CameraController: ObservableObject {
         if shutterSound { AudioServicesPlaySystemSound(RecordingSound.begin) }
         isRecording = true
         let options = VideoCaptureService.Options(
-            exifLocation: CameraSettings.effectiveExifLocation(store),
-            saveToPhotos: CameraSettings.effectiveSaveToPhotos(store))
+            exifLocation: CameraSettings.effectiveExifLocation(store))
         // Overlay data locked at record start (like the photo burn + GPS
         // metadata); the live preview reads this too, so it matches the clip.
         let snapshot = location.snapshot
@@ -223,7 +271,7 @@ final class CameraController: ObservableObject {
     }
 
     /// Analytics + usage counters for a finished capture (event.md).
-    private func captureFinished(_ kind: Event.CaptureKind, result: Result<URL, Error>) {
+    private func captureFinished(_ kind: Event.CaptureKind, result: Result<Void, Error>) {
         switch result {
         case .success:
             events.track(.captureCompleted(kind: kind))

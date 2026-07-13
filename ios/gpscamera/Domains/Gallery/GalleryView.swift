@@ -9,8 +9,9 @@ struct GalleryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var selected: GalleryItem?
     @State private var isSelecting = false
-    @State private var selection: Set<URL> = []
-    @State private var confirmDelete = false
+    @State private var selection: Set<String> = []
+    @State private var share: SharePayload?
+    @State private var isSharing = false
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 2), count: 3)
 
@@ -28,7 +29,7 @@ struct GalleryView: View {
                             ForEach(model.items) { item in
                                 GalleryCell(model: model, item: item,
                                             isSelected: isSelecting
-                                                ? selection.contains(item.url) : nil)
+                                                ? selection.contains(item.id) : nil)
                                     // Gestures, not a Button: a Button fires its
                                     // action on release, so the long press would
                                     // select the item and the release toggle it
@@ -48,24 +49,23 @@ struct GalleryView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbar }
             .toolbar(isSelecting ? .visible : .hidden, for: .bottomBar)
-            .confirmationDialog(L("Delete selected items?"), isPresented: $confirmDelete,
-                                titleVisibility: .visible) {
-                Button(L("Delete"), role: .destructive) { deleteSelection() }
-            }
         }
         .fullScreenCover(item: $selected) { item in
             GalleryDetailView(model: model, current: item)
         }
-        .onAppear {
-            model.refresh()
+        .sheet(item: $share) { ShareSheet(urls: $0.urls) }
+        .task {
+            await model.refresh()
             model.events.track(.galleryOpened)
         }
         .onReceive(NotificationCenter.default
             .publisher(for: .captureStoreDidChange)
-            .receive(on: DispatchQueue.main)) { _ in model.refresh() }
+            .receive(on: DispatchQueue.main)) { _ in
+            Task { await model.refresh() }
+        }
         // Items deleted elsewhere must not linger in the selection.
         .onChange(of: model.items) { _, items in
-            selection.formIntersection(items.map(\.url))
+            selection.formIntersection(items.map(\.id))
         }
     }
 
@@ -90,28 +90,51 @@ struct GalleryView: View {
             }
         }
         ToolbarItem(placement: .bottomBar) {
-            ShareLink(items: selectedItems.map(\.url)) {
-                Image(systemName: "square.and.arrow.up")
+            // Not a ShareLink: the files have to be exported out of the Photos
+            // library first, so the URLs only exist once the tap resolves them.
+            Button(action: shareSelection) {
+                if isSharing {
+                    ProgressView()
+                } else {
+                    Image(systemName: "square.and.arrow.up")
+                }
             }
-            // ShareLink has no action hook; the tap that opens the share sheet
-            // is the tracked moment.
-            .simultaneousGesture(TapGesture().onEnded { model.events.track(.shared) })
-            .disabled(selection.isEmpty)
+            .disabled(selection.isEmpty || isSharing)
         }
         ToolbarItem(placement: .bottomBar) {
-            Button(role: .destructive) { confirmDelete = true } label: {
+            Button(role: .destructive) {
+                Task {
+                    await model.delete(selectedItems)   // Photos confirms
+                    endSelecting()
+                }
+            } label: {
                 Image(systemName: "trash")
             }
             .disabled(selection.isEmpty)
         }
     }
 
+    private func shareSelection() {
+        let items = selectedItems
+        isSharing = true
+        Task {
+            var urls: [URL] = []
+            for item in items {
+                if let url = await model.fileURL(for: item) { urls.append(url) }
+            }
+            isSharing = false
+            guard !urls.isEmpty else { return }
+            model.events.track(.shared)
+            share = SharePayload(urls: urls)
+        }
+    }
+
     private func tap(_ item: GalleryItem) {
         guard isSelecting else { return selected = item }
-        if selection.contains(item.url) {
-            selection.remove(item.url)
+        if selection.contains(item.id) {
+            selection.remove(item.id)
         } else {
-            selection.insert(item.url)
+            selection.insert(item.id)
         }
     }
 
@@ -120,18 +143,30 @@ struct GalleryView: View {
     private func longPress(_ item: GalleryItem) {
         guard !isSelecting else { return tap(item) }
         isSelecting = true
-        selection = [item.url]
-    }
-
-    private func deleteSelection() {
-        model.delete(selectedItems)
-        endSelecting()
+        selection = [item.id]
     }
 
     private func endSelecting() {
         isSelecting = false
         selection = []
     }
+}
+
+/// The exported files behind one share-sheet presentation.
+struct SharePayload: Identifiable {
+    let urls: [URL]
+    var id: String { urls.map(\.path).joined() }
+}
+
+/// UIActivityViewController host - the share sheet for a set of exported files.
+struct ShareSheet: UIViewControllerRepresentable {
+    let urls: [URL]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: urls, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ controller: UIActivityViewController, context: Context) {}
 }
 
 /// Square thumbnail cell; videos carry a corner badge. `isSelected` is nil
@@ -174,7 +209,7 @@ private struct GalleryCell: View {
                 }
             }
             .contentShape(Rectangle())
-            .task(id: item.url) { image = await model.thumbnail(for: item) }
+            .task(id: item.id) { image = await model.thumbnail(for: item) }
     }
 }
 
@@ -201,11 +236,13 @@ struct GalleryThumbnailButton: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }
         .fullScreenCover(isPresented: $showGallery) { GalleryView(model: model) }
-        .onAppear { model.refresh() }
+        .task { await model.refresh() }
         .onReceive(NotificationCenter.default
             .publisher(for: .captureStoreDidChange)
-            .receive(on: DispatchQueue.main)) { _ in model.refresh() }
-        .task(id: model.latest?.url) {
+            .receive(on: DispatchQueue.main)) { _ in
+            Task { await model.refresh() }
+        }
+        .task(id: model.latest?.id) {
             guard let latest = model.latest else { return image = nil }
             image = await model.thumbnail(for: latest)
         }

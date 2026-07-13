@@ -30,9 +30,13 @@
 "Format" = "格式";
 "Also save original" = "同时保存原图";
 "Keeps a copy without the overlay." = "保留不带叠加层的副本。";
-"Save to Camera Roll" = "保存到相册";
 "Microphone" = "麦克风";
 "Off records silent video." = "关闭后将录制无声视频。";
+"Photo access needed" = "需要访问照片";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera 会将你的照片和视频保存到照片图库。开启照片访问权限即可拍摄。";
+"Microphone is off" = "麦克风已关闭";
+"Videos will record without sound. Turn on the microphone to record audio." = "录制的视频将没有声音。开启麦克风即可录制音频。";
+"Not now" = "以后再说";
 "Camera access is off." = "相机访问已关闭。";
 "Open Settings" = "打开设置";
 "GPS signal" = "GPS 信号";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "相册";
 "No captures yet" = "尚无捕获";
-"Delete this item?" = "删除此项目？";
-"Delete" = "删除";
 "Select" = "选择";
 "Cancel" = "取消";
 "Select Items" = "选择项目";
 "%d Selected" = "已选择 %d 项";
-"Delete selected items?" = "删除所选项目?";
 
 /* Monetization */
 "Unlock every feature." = "解锁所有功能。";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "值得信赖的记录";
 "Drop it straight into your report" = "可直接用于你的报告";
 "Almost ready" = "就快好了";
-"Two permissions are required to stamp your photos." = "需要两项权限，才能为照片添加信息。";
 "Enable access to capture and stamp your photos." = "允许访问以拍摄照片并添加信息戳。";
 "Location" = "位置";
 "Stamp coordinates, altitude, and address onto each photo." = "为每张照片记录坐标、海拔和地址。";
 "Camera" = "相机";
 "Capture the photos and videos you'll stamp." = "拍摄需要标记的照片和视频。";
-"Record sound with your videos." = "在录制视频时同时录音。";
+"Photos" = "照片";
+"Save every capture to your photo library." = "将每次拍摄保存到你的照片图库。";
 "Enable" = "启用";
 "Empire State Building, New York" = "帝国大厦，纽约";
 

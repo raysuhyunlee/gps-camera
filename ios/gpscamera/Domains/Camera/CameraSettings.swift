@@ -13,10 +13,21 @@ nonisolated enum CameraSettingKey {
     static let photoResolution = "camera.photo.resolution"
     static let photoFormat = "camera.photo.format"
     static let saveOriginal = "camera.photo.saveOriginal"
-    static let saveToPhotos = "camera.saveToPhotos"
     static let videoResolution = "camera.video.resolution"
     static let videoFPS = "camera.video.fps"
     static let exifLocation = "camera.exif.location"
+    /// Set once the denied-mic nudge has been shown; after that a denied mic
+    /// just records silent video (camera.md "Audio").
+    static let micNudged = "camera.video.micNudged"
+}
+
+nonisolated enum Camera {
+    /// `micNudged` is state, not a Settings row, so it has no provider item to
+    /// carry its default (the store asserts on unregistered keys). Called at the
+    /// root, like `Onboarding.registerDefaults`.
+    static func registerDefaults(_ store: SettingsStore) {
+        store.register([CameraSettingKey.micNudged: .bool(false)])
+    }
 }
 
 /// Concrete capture capabilities of the back wide camera - the source of the
@@ -99,10 +110,6 @@ nonisolated struct CameraSettings {
     static func effectiveExifLocation(_ store: SettingsStore) -> Bool {
         store.effectiveBool(CameraSettingKey.exifLocation, permission: .location)
     }
-
-    static func effectiveSaveToPhotos(_ store: SettingsStore) -> Bool {
-        store.effectiveBool(CameraSettingKey.saveToPhotos, permission: .photoAddOnly)
-    }
 }
 
 /// Session quality knobs derived from the resolution/fps settings.
@@ -175,9 +182,6 @@ nonisolated struct CameraSettingsProvider: SettingsProviding {
             SettingItem(key: CameraSettingKey.saveOriginal, titleKey: "Also save original",
                         footnoteKey: "Keeps a copy without the overlay.",
                         control: .toggle, defaultValue: .bool(false)),
-            SettingItem(key: CameraSettingKey.saveToPhotos, titleKey: "Save to Camera Roll",
-                        control: .toggle, defaultValue: .bool(false),
-                        requiresPermission: .photoAddOnly),
         ]),
         SettingsSection(id: "camera.video", titleKey: "Video", items: [
             SettingItem(key: CameraSettingKey.videoResolution, titleKey: "Resolution",

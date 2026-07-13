@@ -118,7 +118,7 @@ to its display type by pixel size. Optional AI polish (`enhance.mjs`, OpenAI
 ```
 ios/gpscamera/Screenshot/
 ├── ScreenshotDemo.swift        - launch-arg switch: active, scene, forcePro, locale, curated snapshot + localized addresses
-├── ScreenshotSeed.swift        - seeds Captures/ with bundled demo photos
+├── DemoCaptureStore.swift      - CaptureStoreBrowsing over bundled demo photos (no photo-library grant needed)
 └── Assets/                     - user-supplied scenes/ + gallery/ (bundled, DEBUG)
 ios/gpscameraScreenshots/       - UI test target (shared scheme)
 ├── ScreenshotUITests.swift     - drives Main/Gallery/Settings; picks scene per store; calls snapshot()

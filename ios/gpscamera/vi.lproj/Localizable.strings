@@ -30,9 +30,13 @@
 "Format" = "Định dạng";
 "Also save original" = "Lưu cả bản gốc";
 "Keeps a copy without the overlay." = "Giữ một bản sao không có lớp phủ.";
-"Save to Camera Roll" = "Lưu vào Cuộn camera";
 "Microphone" = "Micrô";
 "Off records silent video." = "Khi tắt, video được quay không có âm thanh.";
+"Photo access needed" = "Cần quyền truy cập ảnh";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera lưu ảnh và video vào thư viện ảnh của bạn. Bật quyền truy cập ảnh để chụp.";
+"Microphone is off" = "Micrô đang tắt";
+"Videos will record without sound. Turn on the microphone to record audio." = "Video sẽ được quay không có âm thanh. Bật micrô để ghi âm thanh.";
+"Not now" = "Không phải bây giờ";
 "Camera access is off." = "Quyền truy cập camera đang tắt.";
 "Open Settings" = "Mở cài đặt";
 "GPS signal" = "Tín hiệu GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Bộ sưu tập";
 "No captures yet" = "Chưa có ảnh chụp nào";
-"Delete this item?" = "Xóa mục này?";
-"Delete" = "Xóa";
 "Select" = "Chọn";
 "Cancel" = "Hủy";
 "Select Items" = "Chọn mục";
 "%d Selected" = "Đã chọn %d";
-"Delete selected items?" = "Xóa các mục đã chọn?";
 
 /* Monetization */
 "Unlock every feature." = "Mở khóa mọi tính năng.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Bằng chứng đáng tin cậy";
 "Drop it straight into your report" = "Sẵn sàng cho báo cáo của bạn";
 "Almost ready" = "Gần xong rồi";
-"Two permissions are required to stamp your photos." = "Chúng tôi cần hai quyền để thêm thông tin vào ảnh của bạn.";
 "Enable access to capture and stamp your photos." = "Cho phép truy cập để chụp và đóng dấu ảnh của bạn.";
 "Location" = "Vị trí";
 "Stamp coordinates, altitude, and address onto each photo." = "Thêm tọa độ, độ cao và địa chỉ vào mỗi ảnh.";
 "Camera" = "Máy ảnh";
 "Capture the photos and videos you'll stamp." = "Chụp ảnh và quay video bạn muốn ghi dấu.";
-"Record sound with your videos." = "Ghi âm thanh cùng với video của bạn.";
+"Photos" = "Ảnh";
+"Save every capture to your photo library." = "Lưu mọi ảnh và video bạn chụp vào thư viện ảnh của bạn.";
 "Enable" = "Bật";
 "Empire State Building, New York" = "Empire State Building, New York";
 

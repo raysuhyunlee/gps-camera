@@ -30,9 +30,13 @@
 "Format" = "Formaat";
 "Also save original" = "Origineel ook bewaren";
 "Keeps a copy without the overlay." = "Bewaart een kopie zonder de overlay.";
-"Save to Camera Roll" = "Bewaren in filmrol";
 "Microphone" = "Microfoon";
 "Off records silent video." = "Uit neemt video zonder geluid op.";
+"Photo access needed" = "Fototoegang nodig";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera slaat je foto's en video's op in je fotobibliotheek. Zet fototoegang aan om te kunnen opnemen.";
+"Microphone is off" = "Microfoon staat uit";
+"Videos will record without sound. Turn on the microphone to record audio." = "Video's worden zonder geluid opgenomen. Zet de microfoon aan om geluid op te nemen.";
+"Not now" = "Niet nu";
 "Camera access is off." = "Cameratoegang is uitgeschakeld.";
 "Open Settings" = "Instellingen openen";
 "GPS signal" = "GPS-signaal";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galerij";
 "No captures yet" = "Nog geen opnamen";
-"Delete this item?" = "Dit item verwijderen?";
-"Delete" = "Verwijderen";
 "Select" = "Selecteer";
 "Cancel" = "Annuleer";
 "Select Items" = "Selecteer onderdelen";
 "%d Selected" = "%d geselecteerd";
-"Delete selected items?" = "Geselecteerde onderdelen verwijderen?";
 
 /* Monetization */
 "Unlock every feature." = "Alle functies ontgrendelen.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Een betrouwbaar bewijs";
 "Drop it straight into your report" = "Klaar voor je rapport";
 "Almost ready" = "Bijna klaar";
-"Two permissions are required to stamp your photos." = "We hebben twee toestemmingen nodig om je foto's van gegevens te voorzien.";
 "Enable access to capture and stamp your photos." = "Geef toegang om je foto's te maken en te voorzien van een stempel.";
 "Location" = "Locatie";
 "Stamp coordinates, altitude, and address onto each photo." = "Voegt coördinaten, hoogte en adres toe aan elke foto.";
 "Camera" = "Camera";
 "Capture the photos and videos you'll stamp." = "Maak de foto's en video's die je van gegevens wilt voorzien.";
-"Record sound with your videos." = "Neem geluid op bij je video's.";
+"Photos" = "Foto's";
+"Save every capture to your photo library." = "Bewaar elke opname in je fotobibliotheek.";
 "Enable" = "Inschakelen";
 "Empire State Building, New York" = "Empire State Building, New York";
 

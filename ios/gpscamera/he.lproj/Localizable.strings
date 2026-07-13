@@ -30,9 +30,13 @@
 "Format" = "פורמט";
 "Also save original" = "שמור גם את המקור";
 "Keeps a copy without the overlay." = "שומר עותק ללא שכבת-העל.";
-"Save to Camera Roll" = "שמירה לגליל הצילום";
 "Microphone" = "מיקרופון";
 "Off records silent video." = "כשההגדרה כבויה, הווידאו מוקלט ללא קול.";
+"Photo access needed" = "נדרשת גישה לתמונות";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera שומרת את התמונות והסרטונים שלך בספריית התמונות. הפעילו גישה לתמונות כדי לצלם.";
+"Microphone is off" = "המיקרופון כבוי";
+"Videos will record without sound. Turn on the microphone to record audio." = "הסרטונים יוקלטו ללא קול. הפעילו את המיקרופון כדי להקליט קול.";
+"Not now" = "לא עכשיו";
 "Camera access is off." = "הגישה למצלמה כבויה.";
 "Open Settings" = "פתיחת הגדרות";
 "GPS signal" = "אות GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "גלריה";
 "No captures yet" = "אין לקיחות עדיין";
-"Delete this item?" = "למחוק פריט זה?";
-"Delete" = "מחיקה";
 "Select" = "בחר";
 "Cancel" = "ביטול";
 "Select Items" = "בחירת פריטים";
 "%d Selected" = "%d נבחרו";
-"Delete selected items?" = "למחוק את הפריטים שנבחרו?";
 
 /* Monetization */
 "Unlock every feature." = "פתח את נעילת כל התכונות.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "תיעוד אמין";
 "Drop it straight into your report" = "מוכנות לדוח שלך";
 "Almost ready" = "כמעט מוכן";
-"Two permissions are required to stamp your photos." = "אנחנו צריכים שתי הרשאות כדי להוסיף את הפרטים לתמונות שלך.";
 "Enable access to capture and stamp your photos." = "אפשרו גישה כדי לצלם ולהטביע חותמת על התמונות שלכם.";
 "Location" = "מיקום";
 "Stamp coordinates, altitude, and address onto each photo." = "מוסיף לכל תמונה קואורדינטות, גובה וכתובת.";
 "Camera" = "מצלמה";
 "Capture the photos and videos you'll stamp." = "צלם את התמונות והסרטונים שתרצה לתעד.";
-"Record sound with your videos." = "הקליטו קול יחד עם הסרטונים שלכם.";
+"Photos" = "תמונות";
+"Save every capture to your photo library." = "שומר כל צילום בספריית התמונות שלך.";
 "Enable" = "הפעלה";
 "Empire State Building, New York" = "אמפייר סטייט בילדינג, ניו יורק";
 

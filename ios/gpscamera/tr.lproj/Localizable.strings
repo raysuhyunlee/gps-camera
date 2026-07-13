@@ -30,9 +30,13 @@
 "Format" = "Biçim";
 "Also save original" = "Orijinali de kaydet";
 "Keeps a copy without the overlay." = "Kaplama olmadan bir kopya saklar.";
-"Save to Camera Roll" = "Film Rulosuna kaydet";
 "Microphone" = "Mikrofon";
 "Off records silent video." = "Kapalıyken video sessiz kaydedilir.";
+"Photo access needed" = "Fotoğraf erişimi gerekli";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera, fotoğraflarınızı ve videolarınızı fotoğraf kitaplığınıza kaydeder. Çekim yapabilmek için fotoğraf erişimine izin verin.";
+"Microphone is off" = "Mikrofon kapalı";
+"Videos will record without sound. Turn on the microphone to record audio." = "Videolar sessiz kaydedilir. Ses kaydetmek için mikrofona izin verin.";
+"Not now" = "Şimdi değil";
 "Camera access is off." = "Kamera erişimi kapalı.";
 "Open Settings" = "Ayarları aç";
 "GPS signal" = "GPS sinyali";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galeri";
 "No captures yet" = "Henüz çekim yok";
-"Delete this item?" = "Bu öğe silinsin mi?";
-"Delete" = "Sil";
 "Select" = "Seç";
 "Cancel" = "Vazgeç";
 "Select Items" = "Öğeleri seç";
 "%d Selected" = "%d seçildi";
-"Delete selected items?" = "Seçilen öğeler silinsin mi?";
 
 /* Monetization */
 "Unlock every feature." = "Tüm özelliklerin kilidini aç.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Güvenilir bir kayıt";
 "Drop it straight into your report" = "Raporunuza hazır";
 "Almost ready" = "Neredeyse hazır";
-"Two permissions are required to stamp your photos." = "Fotoğraflarınıza bilgi eklemek için iki izne ihtiyacımız var.";
 "Enable access to capture and stamp your photos." = "Fotoğraflarınızı çekmek ve damgalamak için erişime izin verin.";
 "Location" = "Konum";
 "Stamp coordinates, altitude, and address onto each photo." = "Her fotoğrafa konum, rakım ve adres ekler.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "İşaretleyeceğiniz fotoğraf ve videoları çekin.";
-"Record sound with your videos." = "Videolarınızla birlikte ses kaydedin.";
+"Photos" = "Fotoğraflar";
+"Save every capture to your photo library." = "Her çekimi fotoğraf kitaplığınıza kaydeder.";
 "Enable" = "Etkinleştir";
 "Empire State Building, New York" = "Empire State Binası, New York";
 

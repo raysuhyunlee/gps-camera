@@ -119,6 +119,20 @@ struct CameraView: View {
         } message: {
             Text(L("A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it."))
         }
+        // A permission the capture path needs (camera.md "Permissions"): photo
+        // access blocks the capture, a denied mic only warns once.
+        .alert(L(controller.nudge?.title ?? ""), isPresented: .init(
+            get: { controller.nudge != nil }, set: { if !$0 { controller.nudge = nil } }),
+            presenting: controller.nudge) { _ in
+            Button(L("Not now"), role: .cancel) {}
+            Button(L("Open Settings")) {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(url)
+                }
+            }
+        } message: { nudge in
+            Text(L(nudge.message))
+        }
     }
 
     /// iOS silently drops a location request raised while another permission
@@ -400,13 +414,15 @@ private extension View {
     let location = LocationProvider()
     let overlay = OverlayRenderer(store: store)
     let pro = ProStore()
+    let captures = PhotoLibraryStore()
     return CameraView(controller: CameraController(location: location, overlay: overlay,
                                                    filename: DefaultFilenameProvider(store: store),
+                                                   captures: captures,
                                                    store: store,
                                                    events: NoopTracker(),
                                                    metrics: UsageMetrics()),
                       location: location, overlay: overlay,
-                      gallery: Gallery(store: CaptureStore(), events: NoopTracker()),
+                      gallery: Gallery(store: captures, events: NoopTracker()),
                       settings: store, registry: registry,
                       entitlement: FixedEntitlement(), paywall: pro, banner: pro)
 }

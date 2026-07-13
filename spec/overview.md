@@ -125,8 +125,9 @@ Only these cross-domain seams exist. Everything else is internal.
 - **onboarding**
 	- the first-run flow; presented by the root on first launch, gating Main
 	  behind the `onboarding.completed` flag (in `SettingsStore`)
-	- consumes `LocationProviding` (permission request), the camera auth request
-	  (`CameraAuthorization`), and `EventTracking`
+	- consumes `LocationProviding` (permission request), the camera +
+	  photo-library auth requests (`CameraAuthorization`,
+	  `PhotoLibraryAuthorization`), and `EventTracking`
 	- leaf: consumed by nobody, so it publishes no seam.
 
 Seams are narrow protocols (DIP), e.g. `LocationProviding`, `OverlayRendering`,

@@ -30,9 +30,13 @@
 "Format" = "التنسيق";
 "Also save original" = "حفظ النسخة الأصلية أيضًا";
 "Keeps a copy without the overlay." = "يحتفظ بنسخة بدون الطبقة.";
-"Save to Camera Roll" = "الحفظ في ألبوم الكاميرا";
 "Microphone" = "الميكروفون";
 "Off records silent video." = "عند الإيقاف، يتم تسجيل فيديو صامت.";
+"Photo access needed" = "الوصول إلى الصور مطلوب";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "يحفظ GPS Camera صورك ومقاطع الفيديو في مكتبة صورك. فعّل الوصول إلى الصور للالتقاط.";
+"Microphone is off" = "الميكروفون معطّل";
+"Videos will record without sound. Turn on the microphone to record audio." = "ستُسجَّل مقاطع الفيديو بدون صوت. فعّل الميكروفون لتسجيل الصوت.";
+"Not now" = "ليس الآن";
 "Camera access is off." = "الوصول إلى الكاميرا معطّل.";
 "Open Settings" = "فتح الإعدادات";
 "GPS signal" = "إشارة GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "المعرض";
 "No captures yet" = "لا توجد لقطات بعد";
-"Delete this item?" = "هل تريد حذف هذا العنصر؟";
-"Delete" = "حذف";
 "Select" = "تحديد";
 "Cancel" = "إلغاء";
 "Select Items" = "تحديد العناصر";
 "%d Selected" = "تم تحديد %d";
-"Delete selected items?" = "حذف العناصر المحددة؟";
 
 /* Monetization */
 "Unlock every feature." = "افتح كل الميزات.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "سجل موثوق";
 "Drop it straight into your report" = "جاهزة لتقريرك";
 "Almost ready" = "أوشكنا على الانتهاء";
-"Two permissions are required to stamp your photos." = "نحتاج إلى إذنين لإضافة البيانات إلى صورك.";
 "Enable access to capture and stamp your photos." = "فعّل الأذونات لالتقاط صورك وختمها.";
 "Location" = "الموقع";
 "Stamp coordinates, altitude, and address onto each photo." = "يضيف الإحداثيات والارتفاع والعنوان إلى كل صورة.";
 "Camera" = "الكاميرا";
 "Capture the photos and videos you'll stamp." = "التقط الصور ومقاطع الفيديو التي تريد توثيقها.";
-"Record sound with your videos." = "سجّل الصوت مع مقاطع الفيديو.";
+"Photos" = "الصور";
+"Save every capture to your photo library." = "احفظ كل لقطة في مكتبة صورك.";
 "Enable" = "تفعيل";
 "Empire State Building, New York" = "مبنى إمباير ستيت، نيويورك";
 

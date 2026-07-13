@@ -30,9 +30,13 @@
 "Format" = "Format";
 "Also save original" = "Simpan juga yang asli";
 "Keeps a copy without the overlay." = "Menyimpan salinan tanpa overlay.";
-"Save to Camera Roll" = "Simpan ke Rol Kamera";
 "Microphone" = "Mikrofon";
 "Off records silent video." = "Jika mati, video direkam tanpa suara.";
+"Photo access needed" = "Akses foto diperlukan";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera menyimpan foto dan video Anda ke pustaka foto. Aktifkan akses foto untuk mengambil gambar.";
+"Microphone is off" = "Mikrofon dimatikan";
+"Videos will record without sound. Turn on the microphone to record audio." = "Video akan direkam tanpa suara. Aktifkan mikrofon untuk merekam audio.";
+"Not now" = "Nanti Saja";
 "Camera access is off." = "Akses kamera dimatikan.";
 "Open Settings" = "Buka Pengaturan";
 "GPS signal" = "Sinyal GPS";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galeri";
 "No captures yet" = "Belum ada tangkapan";
-"Delete this item?" = "Hapus item ini?";
-"Delete" = "Hapus";
 "Select" = "Pilih";
 "Cancel" = "Batal";
 "Select Items" = "Pilih Item";
 "%d Selected" = "%d dipilih";
-"Delete selected items?" = "Hapus item yang dipilih?";
 
 /* Monetization */
 "Unlock every feature." = "Buka semua fitur.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Catatan yang bisa diandalkan";
 "Drop it straight into your report" = "Siap untuk laporan Anda";
 "Almost ready" = "Hampir siap";
-"Two permissions are required to stamp your photos." = "Kami memerlukan dua izin untuk menambahkan data ke foto Anda.";
 "Enable access to capture and stamp your photos." = "Aktifkan akses untuk mengambil dan menandai foto Anda.";
 "Location" = "Lokasi";
 "Stamp coordinates, altitude, and address onto each photo." = "Menambahkan koordinat, ketinggian, dan alamat ke setiap foto.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Ambil foto dan video yang ingin Anda tandai.";
-"Record sound with your videos." = "Rekam suara bersama video Anda.";
+"Photos" = "Foto";
+"Save every capture to your photo library." = "Menyimpan setiap tangkapan ke pustaka foto Anda.";
 "Enable" = "Aktifkan";
 "Empire State Building, New York" = "Empire State Building, New York";
 

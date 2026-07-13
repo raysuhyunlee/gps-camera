@@ -30,9 +30,13 @@
 "Format" = "Formátum";
 "Also save original" = "Az eredeti mentése is";
 "Keeps a copy without the overlay." = "Másolatot őriz meg a rávetítés nélkül.";
-"Save to Camera Roll" = "Mentés a Filmtekercsre";
 "Microphone" = "Mikrofon";
 "Off records silent video." = "Kikapcsolva néma videót rögzít.";
+"Photo access needed" = "A fotó-hozzáférés szükséges";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "A GPS Camera a fényképtárba menti a fotókat és videókat. Kapcsolja be a fotó-hozzáférést a rögzítéshez.";
+"Microphone is off" = "A mikrofon ki van kapcsolva";
+"Videos will record without sound. Turn on the microphone to record audio." = "A videók hang nélkül készülnek. Kapcsolja be a mikrofont a hang rögzítéséhez.";
+"Not now" = "Most nem";
 "Camera access is off." = "A kamera-hozzáférés ki van kapcsolva.";
 "Open Settings" = "Beállítások megnyitása";
 "GPS signal" = "GPS-jel";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "Galéria";
 "No captures yet" = "Még nincs felvétel";
-"Delete this item?" = "Törli ezt az elemet?";
-"Delete" = "Törlés";
 "Select" = "Kijelölés";
 "Cancel" = "Mégse";
 "Select Items" = "Elemek kijelölése";
 "%d Selected" = "%d kijelölve";
-"Delete selected items?" = "Törli a kijelölt elemeket?";
 
 /* Monetization */
 "Unlock every feature." = "Oldja fel az összes funkciót.";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "Megbízható dokumentáció";
 "Drop it straight into your report" = "Készen a jelentésedhez";
 "Almost ready" = "Majdnem kész";
-"Two permissions are required to stamp your photos." = "Két engedélyre van szükségünk, hogy adatokat adjunk a fotóidhoz.";
 "Enable access to capture and stamp your photos." = "Engedélyezze a hozzáférést a fényképek készítéséhez és bélyegzéséhez.";
 "Location" = "Helyzet";
 "Stamp coordinates, altitude, and address onto each photo." = "Koordinátákat, magasságot és címet ad minden fotóhoz.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Készítsd el a fotókat és videókat, amelyeket meg szeretnél jelölni.";
-"Record sound with your videos." = "Rögzítsen hangot a videóihoz.";
+"Photos" = "Fotók";
+"Save every capture to your photo library." = "Minden felvételt elment a fényképtárba.";
 "Enable" = "Engedélyezés";
 "Empire State Building, New York" = "Empire State Building, New York";
 

@@ -30,9 +30,13 @@
 "Format" = "फ़ॉर्मेट";
 "Also save original" = "मूल फ़ोटो भी सहेजें";
 "Keeps a copy without the overlay." = "ओवरले के बिना एक प्रति रखता है।";
-"Save to Camera Roll" = "कैमरा रोल में सहेजें";
 "Microphone" = "माइक्रोफ़ोन";
 "Off records silent video." = "बंद होने पर वीडियो बिना आवाज़ के रिकॉर्ड होता है।";
+"Photo access needed" = "फ़ोटो एक्सेस चाहिए";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Camera आपकी फ़ोटो और वीडियो को आपकी फ़ोटो लाइब्रेरी में सहेजता है। कैप्चर करने के लिए फ़ोटो एक्सेस चालू करें।";
+"Microphone is off" = "माइक्रोफ़ोन बंद है";
+"Videos will record without sound. Turn on the microphone to record audio." = "वीडियो बिना आवाज़ के रिकॉर्ड होंगे। ऑडियो रिकॉर्ड करने के लिए माइक्रोफ़ोन चालू करें।";
+"Not now" = "अभी नहीं";
 "Camera access is off." = "कैमरा एक्सेस बंद है।";
 "Open Settings" = "सेटिंग्स खोलें";
 "GPS signal" = "GPS सिग्नल";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "गैलरी";
 "No captures yet" = "अभी तक कोई कैप्चर नहीं";
-"Delete this item?" = "इस आइटम को हटाएं?";
-"Delete" = "हटाएं";
 "Select" = "चुनें";
 "Cancel" = "रद्द करें";
 "Select Items" = "आइटम चुनें";
 "%d Selected" = "%d चुने गए";
-"Delete selected items?" = "चयनित आइटम हटाएं?";
 
 /* Monetization */
 "Unlock every feature." = "हर सुविधा अनलॉक करें।";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "भरोसेमंद रिकॉर्ड";
 "Drop it straight into your report" = "आपकी रिपोर्ट के लिए तैयार";
 "Almost ready" = "लगभग तैयार";
-"Two permissions are required to stamp your photos." = "आपकी तस्वीरों में जानकारी जोड़ने के लिए हमें दो अनुमतियाँ चाहिए।";
 "Enable access to capture and stamp your photos." = "अपनी फ़ोटो खींचने और उन पर स्टैम्प लगाने के लिए ऐक्सेस चालू करें।";
 "Location" = "स्थान";
 "Stamp coordinates, altitude, and address onto each photo." = "हर फ़ोटो में निर्देशांक, ऊँचाई और पता जोड़ता है।";
 "Camera" = "कैमरा";
 "Capture the photos and videos you'll stamp." = "वे फ़ोटो और वीडियो लें जिन्हें आप चिह्नित करना चाहते हैं।";
-"Record sound with your videos." = "अपने वीडियो के साथ आवाज़ रिकॉर्ड करें।";
+"Photos" = "फ़ोटो";
+"Save every capture to your photo library." = "हर कैप्चर को आपकी फ़ोटो लाइब्रेरी में सहेजता है।";
 "Enable" = "चालू करें";
 "Empire State Building, New York" = "एम्पायर स्टेट बिल्डिंग, न्यूयॉर्क";
 

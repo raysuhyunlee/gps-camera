@@ -517,7 +517,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "GPS Camera uses the camera to take photos.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPS Camera uses your location to stamp photos and videos with GPS coordinates.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "GPS Camera uses the microphone to record audio with your videos.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "GPS Camera saves the photos it takes to your Camera Roll.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "GPS Camera saves the photos and videos it takes to your photo library, and shows them in its gallery.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This lets us show ads that are more relevant to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -556,7 +556,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "GPS Camera uses the camera to take photos.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "GPS Camera uses your location to stamp photos and videos with GPS coordinates.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "GPS Camera uses the microphone to record audio with your videos.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "GPS Camera saves the photos it takes to your Camera Roll.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "GPS Camera saves the photos and videos it takes to your photo library, and shows them in its gallery.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This lets us show ads that are more relevant to you.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

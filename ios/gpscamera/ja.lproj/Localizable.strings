@@ -30,9 +30,13 @@
 "Format" = "フォーマット";
 "Also save original" = "オリジナルも保存";
 "Keeps a copy without the overlay." = "オーバーレイなしのコピーを保存します。";
-"Save to Camera Roll" = "カメラロールに保存";
 "Microphone" = "マイク";
 "Off records silent video." = "オフにすると音声なしで録画します。";
+"Photo access needed" = "写真へのアクセスが必要です";
+"GPS Camera saves your photos and videos to your photo library. Turn on photo access to capture." = "GPS Cameraは写真や動画を写真ライブラリに保存します。撮影するには、写真へのアクセスをオンにしてください。";
+"Microphone is off" = "マイクがオフです";
+"Videos will record without sound. Turn on the microphone to record audio." = "動画は音声なしで録画されます。音声を録音するには、マイクをオンにしてください。";
+"Not now" = "今はしない";
 "Camera access is off." = "カメラへのアクセスがオフです。";
 "Open Settings" = "設定を開く";
 "GPS signal" = "GPS信号";
@@ -89,13 +93,10 @@
 /* Gallery */
 "Gallery" = "ギャラリー";
 "No captures yet" = "キャプチャがありません";
-"Delete this item?" = "このアイテムを削除しますか?";
-"Delete" = "削除";
 "Select" = "選択";
 "Cancel" = "キャンセル";
 "Select Items" = "項目を選択";
 "%d Selected" = "%d件選択中";
-"Delete selected items?" = "選択した項目を削除しますか?";
 
 /* Monetization */
 "Unlock every feature." = "すべての機能を解放する";
@@ -140,13 +141,13 @@
 "Your photos hold up as evidence" = "信頼できる記録として";
 "Drop it straight into your report" = "そのまま報告書に使える";
 "Almost ready" = "あと少しです";
-"Two permissions are required to stamp your photos." = "写真に情報を記録するには、2つの許可が必要です。";
 "Enable access to capture and stamp your photos." = "写真の撮影とスタンプの記録を行うには、アクセスを許可してください。";
 "Location" = "位置情報";
 "Stamp coordinates, altitude, and address onto each photo." = "各写真に座標・高度・住所を記録します。";
 "Camera" = "カメラ";
 "Capture the photos and videos you'll stamp." = "記録する写真や動画を撮影します。";
-"Record sound with your videos." = "動画と一緒に音声を録音します。";
+"Photos" = "写真";
+"Save every capture to your photo library." = "撮影した写真や動画を写真ライブラリに保存します。";
 "Enable" = "許可する";
 "Empire State Building, New York" = "エンパイア・ステート・ビル、ニューヨーク";
 

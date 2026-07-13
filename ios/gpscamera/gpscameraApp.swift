@@ -67,17 +67,23 @@ struct gpscameraApp: App {
                     "monetization.restore": 90, "foundation.feedback": 91,
                     "foundation.about": 92],
             store: store)
-        Onboarding.registerDefaults(store)   // no Settings section; register here
+        // Keys with no Settings row to carry their default; register here.
+        Onboarding.registerDefaults(store)
+        Camera.registerDefaults(store)
+        // Captures land in the Photos library; the store indexes the app's own
+        // assets, and the gallery browses that index (camera.md "Storage").
+        let library = PhotoLibraryStore()
+        var captures: CaptureStoreBrowsing = library
         #if DEBUG
-        // Screenshot demo mode: skip onboarding + seed the gallery so the
-        // simulator renders finished screens (screenshots.md). Entitlement is
+        // Screenshot demo mode: skip onboarding + browse bundled demo captures so
+        // the simulator renders finished screens (screenshots.md). Entitlement is
         // forced inside ProStore; the scene/location are read where used.
         if ScreenshotDemo.current.isActive {
             store.set(.bool(true), for: Onboarding.completedKey)
             if let locale = ScreenshotDemo.current.locale {
                 store.set(.string(locale), for: L10n.settingKey)   // fires L10n via onSet
             }
-            ScreenshotSeed.seedCaptures()
+            captures = DemoCaptureStore()
         }
         #endif
         let overlay = OverlayRenderer(store: store, entitlement: pro)
@@ -88,13 +94,13 @@ struct gpscameraApp: App {
         self.pro = pro
         self.ads = ads
         self.metrics = metrics
-        // Gallery browses the same app-private store the capture services write.
-        self.gallery = Gallery(store: CaptureStore(), events: events)
+        // Gallery browses the same captures the capture services write.
+        self.gallery = Gallery(store: captures, events: events)
         _location = StateObject(wrappedValue: location)
         _camera = StateObject(wrappedValue: CameraController(
             location: location, overlay: overlay,
-            filename: DefaultFilenameProvider(store: store), store: store,
-            events: events, metrics: metrics))
+            filename: DefaultFilenameProvider(store: store), captures: library,
+            store: store, events: events, metrics: metrics))
     }
 
     var body: some Scene {
