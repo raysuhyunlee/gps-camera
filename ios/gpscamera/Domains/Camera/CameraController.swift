@@ -250,7 +250,8 @@ final class CameraController: ObservableObject {
         if shutterSound { AudioServicesPlaySystemSound(RecordingSound.begin) }
         isRecording = true
         let options = VideoCaptureService.Options(
-            exifLocation: CameraSettings.effectiveExifLocation(store))
+            exifLocation: CameraSettings.effectiveExifLocation(store),
+            saveOriginal: settings.saveOriginal)
         // Overlay data locked at record start (like the photo burn + GPS
         // metadata); the live preview reads this too, so it matches the clip.
         let snapshot = location.snapshot

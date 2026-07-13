@@ -46,23 +46,36 @@ private func makeStore() -> SettingsStore {
     return store
 }
 
+@MainActor
+private func requestPermissionsAndWait(_ model: OnboardingModel) async {
+    await withCheckedContinuation { continuation in
+        model.onComplete = { continuation.resume() }
+        model.requestPermissions()
+    }
+}
+
 struct OnboardingModelTests {
     @Test @MainActor func permissionPromptsWaitForPreviousChoice() async {
         let location = ControlledLocation()
         var cameraCompletion: ((PermissionStatus) -> Void)?
         var photosCompletion: ((PermissionStatus) -> Void)?
-        let model = OnboardingModel(
-            location: location,
-            requestCamera: { cameraCompletion = $0 },
-            requestPhotos: { photosCompletion = $0 },
-            store: makeStore(), events: NoopTracker())
+        var model: OnboardingModel!
 
-        model.requestPermissions()
-        #expect(cameraCompletion == nil)
-        #expect(photosCompletion == nil)
+        await withCheckedContinuation { cameraRequested in
+            model = OnboardingModel(
+                location: location,
+                requestCamera: {
+                    cameraCompletion = $0
+                    cameraRequested.resume()
+                },
+                requestPhotos: { photosCompletion = $0 },
+                store: makeStore(), events: NoopTracker())
 
-        location.resolve(.authorized)
-        await Task.yield()
+            model.requestPermissions()
+            #expect(cameraCompletion == nil)
+            #expect(photosCompletion == nil)
+            location.resolve(.authorized)
+        }
         #expect(cameraCompletion != nil)
         #expect(photosCompletion == nil)
 
@@ -83,18 +96,14 @@ struct OnboardingModelTests {
     @Test @MainActor func grantingAllCompletesAndSetsFlag() async {
         let store = makeStore()
         let loc = FakeLocation()   // grants location
-        var completed = false
         let model = OnboardingModel(location: loc,
                                     requestCamera: { $0(.authorized) },
                                     requestPhotos: { $0(.authorized) },
                                     store: store, events: NoopTracker())
-        model.onComplete = { completed = true }
-        model.requestPermissions()
-        try? await Task.sleep(for: .milliseconds(20))
+        await requestPermissionsAndWait(model)
 
         #expect(loc.requested)
         #expect(store.bool(Onboarding.completedKey))
-        #expect(completed)
         #expect(model.locationGranted == true)
         #expect(model.cameraGranted == true)
         #expect(model.photosGranted == true)
@@ -103,17 +112,13 @@ struct OnboardingModelTests {
     @Test @MainActor func denyingStillCompletes() async {
         let store = makeStore()
         let loc = FakeLocation(); loc.grantResult = .denied
-        var completed = false
         let model = OnboardingModel(location: loc,
                                     requestCamera: { $0(.denied) },
                                     requestPhotos: { $0(.denied) },
                                     store: store, events: NoopTracker())
-        model.onComplete = { completed = true }
-        model.requestPermissions()
-        try? await Task.sleep(for: .milliseconds(20))
+        await requestPermissionsAndWait(model)
 
         #expect(store.bool(Onboarding.completedKey))   // non-blocking: still done
-        #expect(completed)
         #expect(model.locationGranted == false)
         #expect(model.cameraGranted == false)
         #expect(model.photosGranted == false)

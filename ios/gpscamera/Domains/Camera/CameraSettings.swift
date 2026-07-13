@@ -12,6 +12,8 @@ nonisolated enum CameraSettingKey {
     static let orientationLock = "camera.orientationLock"
     static let photoResolution = "camera.photo.resolution"
     static let photoFormat = "camera.photo.format"
+    // Kept for stored-setting compatibility. The row and behavior are shared
+    // by photo and video.
     static let saveOriginal = "camera.photo.saveOriginal"
     static let videoResolution = "camera.video.resolution"
     static let videoFPS = "camera.video.fps"
@@ -160,6 +162,9 @@ nonisolated struct CameraSettingsProvider: SettingsProviding {
                         control: .toggle, defaultValue: .bool(true)),
             SettingItem(key: CameraSettingKey.orientationLock, titleKey: "Orientation lock",
                         control: .toggle, defaultValue: .bool(false)),
+            SettingItem(key: CameraSettingKey.saveOriginal, titleKey: "Also save original",
+                        footnoteKey: "Keeps a copy without the overlay.",
+                        control: .toggle, defaultValue: .bool(false)),
             SettingItem(key: CameraSettingKey.exifLocation, titleKey: "Include EXIF location",
                         footnoteKey: "Includes location data in the photo file.",
                         control: .toggle, defaultValue: .bool(true),
@@ -179,9 +184,6 @@ nonisolated struct CameraSettingsProvider: SettingsProviding {
                         control: .select([SelectOption(value: "jpg", titleKey: "JPG"),
                                           SelectOption(value: "heic", titleKey: "HEIC")]),
                         defaultValue: .string("jpg")),
-            SettingItem(key: CameraSettingKey.saveOriginal, titleKey: "Also save original",
-                        footnoteKey: "Keeps a copy without the overlay.",
-                        control: .toggle, defaultValue: .bool(false)),
         ]),
         SettingsSection(id: "camera.video", titleKey: "Video", items: [
             SettingItem(key: CameraSettingKey.videoResolution, titleKey: "Resolution",

@@ -22,6 +22,7 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
     /// record start (permission-coupled values already effective).
     struct Options {
         var exifLocation = true   // camera.exif.location (effective)
+        var saveOriginal = false  // camera.photo.saveOriginal (shared)
     }
 
     private let filename: FilenameProviding
@@ -81,6 +82,13 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
                     didFinishRecordingTo outputFileURL: URL,
                     from connections: [AVCaptureConnection],
                     error: Error?) {
+        // Detach this recording's state before the UI can start another one.
+        let snapshot = pendingSnapshot
+        let overlay = pendingOverlay
+        let saveOriginal = options.saveOriginal
+        let completion = completion
+        self.completion = nil
+
         // Recording is done: leave the UI recording state now, before the
         // (potentially slow) burn + persist run in the background.
         let onStopped = onStopped
@@ -89,40 +97,52 @@ nonisolated final class VideoCaptureService: NSObject, AVCaptureFileOutputRecord
 
         if let error {
             try? FileManager.default.removeItem(at: outputFileURL)
-            return finish(.failure(error))
+            return finish(.failure(error), completion: completion)
         }
 
         // 2. Overlay burn: composite onto the finished clip, then persist the
         // burned copy. A composite failure falls back to the raw clip so the
         // recording is never lost (like the photo burn's encode fallback).
-        guard let overlay = pendingOverlay else { return persist(outputFileURL) }
+        guard let overlay else {
+            return persist(outputFileURL, snapshot: snapshot, completion: completion)
+        }
         let burned = outputFileURL.deletingPathExtension()
             .appendingPathExtension("burned").appendingPathExtension(ext)
         VideoOverlayCompositor.burn(overlay, from: outputFileURL, to: burned) { [self] result in
             switch result {
             case .success(let composited):
-                try? FileManager.default.removeItem(at: outputFileURL)
-                persist(composited)
+                if saveOriginal {
+                    persist(composited, snapshot: snapshot,
+                            originalFileURL: outputFileURL, completion: completion)
+                } else {
+                    try? FileManager.default.removeItem(at: outputFileURL)
+                    persist(composited, snapshot: snapshot, completion: completion)
+                }
             case .failure:
-                persist(outputFileURL)
+                persist(outputFileURL, snapshot: snapshot, completion: completion)
             }
         }
     }
 
     /// 4. Name + 5. persist into the Photos library (the temp clip is moved in).
-    private func persist(_ fileURL: URL) {
+    private func persist(_ fileURL: URL, snapshot: LocationSnapshot?,
+                         originalFileURL: URL? = nil,
+                         completion: ((Result<Void, Error>) -> Void)?) {
         let date = Date()
-        let name = filename.makeName(for: date, snapshot: pendingSnapshot) {
+        let name = filename.makeName(for: date, snapshot: snapshot) {
             store.existingBaseNames().contains($0)
         }
+        if let originalFileURL {
+            store.save(video: originalFileURL, name: name + "_original", ext: ext,
+                       date: date) { _ in }
+        }
         store.save(video: fileURL, name: name, ext: ext, date: date) { [self] result in
-            finish(result)
+            finish(result, completion: completion)
         }
     }
 
-    private func finish(_ result: Result<Void, Error>) {
-        let completion = completion
-        self.completion = nil
+    private func finish(_ result: Result<Void, Error>,
+                        completion: ((Result<Void, Error>) -> Void)?) {
         DispatchQueue.main.async { completion?(result) }
     }
 }

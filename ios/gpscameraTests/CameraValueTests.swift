@@ -85,6 +85,17 @@ struct ISO6709Tests {
     }
 }
 
+struct CameraSettingsSchemaTests {
+    @Test func saveOriginalIsTopLevelAndNotPhotoOnly() {
+        let sections = CameraSettingsProvider().settingsSections
+        let capture = sections.first { $0.id == "camera.capture" }
+        let photo = sections.first { $0.id == "camera.photo" }
+
+        #expect(capture?.items.contains { $0.key == CameraSettingKey.saveOriginal } == true)
+        #expect(photo?.items.contains { $0.key == CameraSettingKey.saveOriginal } == false)
+    }
+}
+
 struct CameraOrientationTests {
     @Test func controlAngleCounterRotatesControls() {
         #expect(CameraOrientation.controlAngle(for: .portrait) == .degrees(0))

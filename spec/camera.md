@@ -2,6 +2,8 @@
 
 ## Status
 
+- 2026-07-13: Also save original moved to Capture and now applies to photos and
+  videos. An overlaid video saves the raw clip with the `_original` suffix.
 - 2026-07-13: Captures now go straight to the Photos library; the app-private
   store and the `camera.saveToPhotos` backup toggle are gone. Photo-library
   access is required to capture, requested in onboarding, and the shutter nudges
@@ -156,16 +158,16 @@ semi-transparent black bar so the preview shows through behind.
 3. If `camera.exif.location`, write `LocationSnapshot` into EXIF.
 4. Name the output via `filename`.
 5. Persist (see **Storage** below). If `camera.photo.saveOriginal`, also save the
-   un-overlaid original under the same name with a fixed `_original` suffix
+   un-overlaid photo or video under the same name with a fixed `_original` suffix
    (e.g. `IMG_001` -> `IMG_001_original`). This marker is fixed and is distinct
    from the user's `filename.suffix` setting.
-6. Notify usage metrics (photo count) → `monetization` may present an interstitial.
+6. Notify usage metrics for the completed photo or video capture.
 
 ### Storage
 
-Every capture lands in the system photo library as a single copy - no
-app-private copy, no backup toggle. Both platforms show captures in the system
-gallery, and the app's own gallery reads the same media back.
+Every capture lands in the system photo library - no app-private copy or backup
+toggle. Also save original may add a second asset. Both platforms show captures
+in the system gallery, and the app's own gallery reads the same media back.
 
 - **Android** - own entries in `MediaStore` (DCIM/Pictures); read back with no
   permission.
@@ -236,7 +238,7 @@ gallery, and the app's own gallery reads the same media back.
 	- `GalleryProviding` (recent-thumbnail control hosted on Main)
 - publishes
 	- `CaptureStoreBrowsing` (gallery reads + deletes store entries)
-	- usage-metrics (photo count)
+	- usage metrics (photo and video counts)
 
 ## Settings
 
@@ -245,6 +247,7 @@ gallery, and the app's own gallery reads the same media back.
 | ----------------------- | --------------------- | ------- | ------- | ---- | ------------------ |
 | `camera.shutterSound`   | Shutter sound         | toggle  | on      | free | -                  |
 | `camera.orientationLock`| Orientation lock      | toggle  | off     | free | -                  |
+| `camera.photo.saveOriginal` | Also save original | toggle  | off     | free | -                  |
 | `camera.exif.location`  | Include EXIF location | toggle  | on      | free | location           |
 
 - `camera.shutterSound` gains a footnote only where the photo shutter cannot be
@@ -253,6 +256,9 @@ gallery, and the app's own gallery reads the same media back.
   sub-section). Footnote: "Includes location data in the photo file." If
   location is denied/revoked, EXIF location is skipped and capture still
   succeeds - per the permission-coupled policy in foundation.md.
+- `camera.photo.saveOriginal` remains the stable stored key, but is a shared
+  photo/video setting. It saves the un-overlaid media as a second asset with
+  the `_original` suffix and the same capture timestamp.
 
 ### Photo
 
@@ -260,10 +266,6 @@ gallery, and the app's own gallery reads the same media back.
 | --------------------------- | ------------------ | ------- | ------- | ---- | ------------------ |
 | `camera.photo.resolution`   | Resolution         | select  | highest | free | -                  |
 | `camera.photo.format`       | Format             | select  | JPG     | free | -                  |
-| `camera.photo.saveOriginal` | Also save original | toggle  | off     | free | -                  |
-
-- `camera.photo.saveOriginal` writes the un-overlaid copy to the photo library
-  too, as a second asset (`_original`), sharing the capture's timestamp.
 
 ### Video
 
@@ -304,7 +306,7 @@ ios/gpscamera/Domains/Camera/
 ├── PhotoLibraryStore.swift       - the capture store: writes assets to Photos + CaptureIndex (id/name/ext/date)
 ├── CaptureStoreBrowsing.swift    - seam consumed by gallery: entries/thumbnail/fileURL/delete + change notification
 ├── PhotoCaptureService.swift     - photo pipeline (burn, EXIF, name, save to Photos + `_original`)
-├── VideoCaptureService.swift     - video pipeline (movie output, ISO6709 GPS metadata, overlay burn)
+├── VideoCaptureService.swift     - video pipeline (movie output, GPS metadata, overlay burn + `_original`)
 ├── VideoOverlayCompositor.swift  - burns the overlay onto a recorded clip (AVVideoComposition)
 └── GPSMetadata.swift             - LocationSnapshot -> EXIF GPS dictionary
 ios/gpscameraTests/
@@ -315,6 +317,7 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-13: Move Also save original to Capture and apply it to photos and videos.
 - 2026-07-13: Captures saved straight to the Photos library (app-private store +
   `camera.saveToPhotos` removed); photo-library access required to capture; mic
   requested on the first recording with a one-time nudge.

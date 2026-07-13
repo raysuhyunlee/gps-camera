@@ -8,7 +8,7 @@ import UniformTypeIdentifiers
 /// time (permission-coupled values already effective - foundation.md).
 nonisolated struct PhotoCaptureOptions {
     var exifLocation = true                        // camera.exif.location (effective)
-    var saveOriginal = true                        // camera.photo.saveOriginal
+    var saveOriginal = true                        // camera.photo.saveOriginal (shared)
     var format = CameraSettings.PhotoFormat.jpg    // camera.photo.format
     var shutterSound = true                        // camera.shutterSound
 }
@@ -53,7 +53,7 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
             return finish(.failure(CaptureError.noData))
         }
 
-        // 2. Overlay burn; the pre-burn copy backs camera.photo.saveOriginal.
+        // 2. Overlay burn; the pre-burn copy backs the shared save-original setting.
         var original: Data?
         if let layer = pendingOverlay {
             if options.saveOriginal { original = data }
