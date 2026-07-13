@@ -1,8 +1,8 @@
 //
 //  RootView.swift
 //  Composition-root gate (onboarding.md): the first-run flow on first launch,
-//  then Main. Onboarding requests camera + location before Main mounts, so the
-//  OS prompts never appear cold. `onOnboarded` fires once those prompts have
+//  then Main. Onboarding requests location, camera, and photos before Main
+//  mounts, so the OS prompts never appear cold. `onOnboarded` fires after they
 //  resolved (or immediately for returning launches) so ATT lands after them.
 //
 
@@ -36,7 +36,7 @@ struct RootView<Main: View>: View {
         .onAppear {
             onboarding.onComplete = {
                 withAnimation { onboarded = true }
-                onOnboarded()   // after camera + location prompts resolved
+                onOnboarded()   // after onboarding permission prompts resolved
             }
             if onboarded { onOnboarded() }   // returning launch: nothing to wait on
         }

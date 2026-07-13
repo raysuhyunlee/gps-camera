@@ -38,9 +38,8 @@ Universal, linear, shown once on first launch:
 3. -> Main
 ```
 
-- One "Enable" button on the permissions page fires `location.requestPermission()`
-  then `CameraAuthorization.request` then `PhotoLibraryAuthorization.request` (the
-  OS serializes the dialogs).
+- One "Enable" button requests location, camera, then photos. Each request starts
+  only after the previous authorization callback resolves.
 - Non-blocking: after the dialogs resolve, advance to Main regardless of
   grant/deny. A denied camera lands on Main's existing denied state; a denied
   location is handled per the permission-coupled policy (foundation.md); denied
@@ -89,7 +88,7 @@ ios/gpscamera/Domains/Onboarding/
                             value-page hero is a decoupled SwiftUI mock stamp
 ios/gpscamera/RootView.swift - composition-root gate: onboarding vs CameraView
 ios/gpscameraTests/
-└── OnboardingTests.swift - complete() sets the flag; permissions advance
+└── OnboardingTests.swift - completion flag + sequential permission requests
 ```
 
 - Copy uses `L()`; English is the key (foundation.md), other languages fall back
@@ -102,4 +101,3 @@ Android: planned.
 - 2026-07-13: Photos replaces the mic on the permissions page + Enable sequence.
 - 2026-07-12: Mic added to the permissions page + Enable sequence.
 - 2026-07-10: Initial onboarding spec + iOS implementation.
-

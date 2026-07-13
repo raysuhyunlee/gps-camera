@@ -18,6 +18,7 @@ final class LocationProvider: NSObject, ObservableObject, LocationProviding {
     private var lastHeading: Heading?
     private var lastAddress: String?
     private var lastGeocodedAt: Date?
+    private var permissionCompletions: [(PermissionStatus) -> Void] = []
 
     override init() {
         super.init()
@@ -55,10 +56,20 @@ final class LocationProvider: NSObject, ObservableObject, LocationProviding {
             self, name: UIDevice.orientationDidChangeNotification, object: nil)
     }
 
-    func requestPermission() {
+    func requestPermission(_ completion: @escaping (PermissionStatus) -> Void) {
         #if DEBUG
-        if ScreenshotDemo.current.isActive { return }
+        if ScreenshotDemo.current.isActive {
+            completion(.authorized)
+            return
+        }
         #endif
+
+        let status = Self.map(manager.authorizationStatus)
+        guard status == .notDetermined else {
+            completion(status)
+            return
+        }
+        permissionCompletions.append(completion)
         manager.requestWhenInUseAuthorization()
     }
 
@@ -119,7 +130,13 @@ final class LocationProvider: NSObject, ObservableObject, LocationProviding {
 
 extension LocationProvider: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        authorization = Self.map(manager.authorizationStatus)
+        let status = Self.map(manager.authorizationStatus)
+        authorization = status
+        guard status != .notDetermined else { return }
+
+        let completions = permissionCompletions
+        permissionCompletions.removeAll()
+        completions.forEach { $0(status) }
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {

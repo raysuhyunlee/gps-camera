@@ -15,7 +15,28 @@ private final class FakeLocation: LocationProviding {
     var snapshot: LocationSnapshot? { nil }
     func start() {}
     func stop() {}
-    func requestPermission() { requested = true; authorization = grantResult }
+    func requestPermission(_ completion: @escaping (PermissionStatus) -> Void) {
+        requested = true
+        authorization = grantResult
+        completion(grantResult)
+    }
+}
+
+private final class ControlledLocation: LocationProviding {
+    var authorization: PermissionStatus = .notDetermined
+    var snapshot: LocationSnapshot? { nil }
+    private var completion: ((PermissionStatus) -> Void)?
+
+    func start() {}
+    func stop() {}
+    func requestPermission(_ completion: @escaping (PermissionStatus) -> Void) {
+        self.completion = completion
+    }
+    func resolve(_ status: PermissionStatus) {
+        authorization = status
+        completion?(status)
+        completion = nil
+    }
 }
 
 @MainActor
@@ -26,6 +47,29 @@ private func makeStore() -> SettingsStore {
 }
 
 struct OnboardingModelTests {
+    @Test @MainActor func permissionPromptsWaitForPreviousChoice() async {
+        let location = ControlledLocation()
+        var cameraCompletion: ((PermissionStatus) -> Void)?
+        var photosCompletion: ((PermissionStatus) -> Void)?
+        let model = OnboardingModel(
+            location: location,
+            requestCamera: { cameraCompletion = $0 },
+            requestPhotos: { photosCompletion = $0 },
+            store: makeStore(), events: NoopTracker())
+
+        model.requestPermissions()
+        #expect(cameraCompletion == nil)
+        #expect(photosCompletion == nil)
+
+        location.resolve(.authorized)
+        await Task.yield()
+        #expect(cameraCompletion != nil)
+        #expect(photosCompletion == nil)
+
+        cameraCompletion?(.authorized)
+        #expect(photosCompletion != nil)
+    }
+
     @Test @MainActor func valuePageAdvancesThenStopsAtPermissions() {
         let model = OnboardingModel(location: FakeLocation(),
                                     requestCamera: { $0(.authorized) },

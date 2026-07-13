@@ -57,25 +57,31 @@ final class OnboardingModel: ObservableObject {
         }
     }
 
-    /// Permissions page "Enable": request location, then camera, then photos. The
-    /// OS serializes the dialogs; when the last resolves the earlier choices have
-    /// already landed. Non-blocking - advances to Main either way. The mic is not
-    /// asked here: it is requested on the first recording (camera.md "Audio").
+    /// Permissions page "Enable": request location, then camera, then photos.
+    /// Each request starts only after the previous choice resolves. Non-blocking
+    /// - advances to Main either way. The mic is requested on first recording.
     func requestPermissions() {
         guard !requesting else { return }
         requesting = true
-        if location.authorization == .notDetermined { location.requestPermission() }
-        requestCamera { [weak self] cameraStatus in
-            self?.requestPhotos { photosStatus in
-                Task { @MainActor in
-                    self?.finish(cameraStatus: cameraStatus, photosStatus: photosStatus)
+        location.requestPermission { [weak self] locationStatus in
+            Task { @MainActor in
+                guard let self else { return }
+                self.requestCamera { [weak self] cameraStatus in
+                    self?.requestPhotos { photosStatus in
+                        Task { @MainActor in
+                            self?.finish(locationStatus: locationStatus,
+                                         cameraStatus: cameraStatus,
+                                         photosStatus: photosStatus)
+                        }
+                    }
                 }
             }
         }
     }
 
-    private func finish(cameraStatus: PermissionStatus, photosStatus: PermissionStatus) {
-        locationGranted = location.authorization == .authorized
+    private func finish(locationStatus: PermissionStatus, cameraStatus: PermissionStatus,
+                        photosStatus: PermissionStatus) {
+        locationGranted = locationStatus == .authorized
         cameraGranted = cameraStatus == .authorized
         photosGranted = photosStatus == .authorized
         events.track(.onboardingPermission(type: .location, granted: locationGranted ?? false))

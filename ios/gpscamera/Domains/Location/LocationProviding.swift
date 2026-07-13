@@ -7,5 +7,11 @@ protocol LocationProviding: AnyObject {
 
     func start()
     func stop()
-    func requestPermission()
+    func requestPermission(_ completion: @escaping (PermissionStatus) -> Void)
+}
+
+extension LocationProviding {
+    func requestPermission() {
+        requestPermission { _ in }
+    }
 }

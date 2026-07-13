@@ -190,5 +190,7 @@ private final class PreviewLocation: LocationProviding {
     var authorization: PermissionStatus { .notDetermined }
     func start() {}
     func stop() {}
-    func requestPermission() {}
+    func requestPermission(_ completion: @escaping (PermissionStatus) -> Void) {
+        completion(.notDetermined)
+    }
 }
