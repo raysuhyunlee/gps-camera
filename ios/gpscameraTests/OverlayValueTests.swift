@@ -46,6 +46,38 @@ struct OverlayFormatterTests {
     }
 }
 
+struct OverlayLayerMetricsTests {
+    @Test func usesActualPictureWidth() {
+        let portrait = CGSize(width: 1170, height: 2532)
+        let landscape = CGSize(width: 2532, height: 1170)
+
+        #expect(OverlayLayerMetrics.mediaScale(for: portrait) == 3)
+        #expect(abs(OverlayLayerMetrics.mediaScale(for: landscape) - 6.4923) < 0.0001)
+        #expect(OverlayLayerMetrics.mediaMargin(for: portrait) == 48)
+        #expect(abs(OverlayLayerMetrics.mediaMargin(for: landscape) - 103.8769) < 0.0001)
+    }
+
+    @Test func maximumReferenceLayerFitsBetweenMediaMargins() {
+        let media = CGSize(width: 1170, height: 2532)
+        let reference = CGSize(width: OverlayLayerMetrics.maximumWidth, height: 100)
+        let result = OverlayLayerMetrics.mediaLayerSize(reference, in: media)
+
+        #expect(result.width == 1074)
+        #expect(result.height == 300)
+        #expect(result.width + 2 * OverlayLayerMetrics.mediaMargin(for: media)
+                == media.width)
+    }
+
+    @Test func oversizedLayerIsClampedToActualMediaWidth() {
+        let media = CGSize(width: 1170, height: 2532)
+        let result = OverlayLayerMetrics.mediaLayerSize(
+            CGSize(width: 500, height: 100), in: media)
+
+        #expect(result.width == 1074)
+        #expect(abs(result.height - 214.8) < 0.001)
+    }
+}
+
 /// overlay.md "Settings": free cannot disable the watermark; pro can.
 /// Revocation flips the stored toggle back on so Settings shows the real state.
 @MainActor struct OverlayGatingTests {

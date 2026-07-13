@@ -93,10 +93,8 @@ nonisolated enum VideoOverlayCompositor {
     /// the Core Animation tool renders in.
     private static func overlayLayer(_ overlay: RenderedOverlay,
                                      in renderSize: CGSize) -> CALayer {
-        let scale = renderSize.width / OverlayLayerMetrics.designWidth
-        let size = CGSize(width: overlay.image.size.width * scale,
-                          height: overlay.image.size.height * scale)
-        let margin = OverlayLayerMetrics.margin * scale
+        let size = OverlayLayerMetrics.mediaLayerSize(overlay.image.size, in: renderSize)
+        let margin = OverlayLayerMetrics.mediaMargin(for: renderSize)
         let anchor = overlay.anchor.unit   // x right, y down (top = 0)
         let x = margin + anchor.x * (renderSize.width - size.width - 2 * margin)
         let yTop = margin + anchor.y * (renderSize.height - size.height - 2 * margin)

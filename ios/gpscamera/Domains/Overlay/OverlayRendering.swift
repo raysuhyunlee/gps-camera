@@ -23,10 +23,10 @@ nonisolated struct RenderedOverlay {
 
 /// Placement contract for compositors of the rendered layer.
 nonisolated enum OverlayLayerMetrics {
-    /// Width (pt) the layer is laid out against. Compositors scale the layer by
-    /// (capture display width / designWidth) so burns match the live preview.
+    /// Width (pt) of the reference picture. Live and media renderers scale every
+    /// layout value by (actual picture width / designWidth).
     static let designWidth: CGFloat = 390
-    /// Bottom-leading inset (pt, design space).
+    /// Edge inset (pt, reference space).
     static let margin: CGFloat = 16
     /// Map item box side (pt, design space); sits left of the info card.
     static let mapSide: CGFloat = 96
@@ -35,4 +35,28 @@ nonisolated enum OverlayLayerMetrics {
     /// Point size the map snapshot is rendered at (4x mapSide) so it stays crisp
     /// when the layer is scaled up at burn time.
     static let mapRenderSide: Double = 384
+
+    /// Maximum layer width in reference space.
+    static let maximumWidth = designWidth - 2 * margin
+
+    /// Reference points to media pixels.
+    static func mediaScale(for mediaSize: CGSize) -> CGFloat {
+        mediaSize.width / designWidth
+    }
+
+    static func mediaMargin(for mediaSize: CGSize) -> CGFloat {
+        margin * mediaScale(for: mediaSize)
+    }
+
+    /// Scales a reference-space layer into media pixels and enforces the actual
+    /// media width after its scaled left and right margins are removed.
+    static func mediaLayerSize(_ referenceSize: CGSize,
+                               in mediaSize: CGSize) -> CGSize {
+        guard referenceSize.width > 0, referenceSize.height > 0 else { return .zero }
+        let scale = mediaScale(for: mediaSize)
+        let maximumMediaWidth = max(0, mediaSize.width - 2 * mediaMargin(for: mediaSize))
+        let fittedScale = min(scale, maximumMediaWidth / referenceSize.width)
+        return CGSize(width: referenceSize.width * fittedScale,
+                      height: referenceSize.height * fittedScale)
+    }
 }

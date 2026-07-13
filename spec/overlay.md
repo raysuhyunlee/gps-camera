@@ -2,6 +2,9 @@
 
 ## Status
 
+- 2026-07-13: Overlay sizing uses the upright picture width against a 390 pt
+  reference canvas. The live overlay expands on wider pictures, including iPad;
+  media burns use actual photo/video pixel width.
 - 2026-07-11: Watermark redesigned as a separate badge (app logo + "GPS Camera")
   above the map + info card, aligned to the layer's right edge, part of the one
   draggable layer (moves with it, like the map). No longer a text row inside the
@@ -19,7 +22,7 @@
   cannot composite live, so the overlay (rasterized at record start, like the
   photo burn) is exported onto the finished clip via an `AVVideoComposition`
   Core Animation layer (`VideoOverlayCompositor`, camera domain). Same
-  world-space anchor + design-width scaling as the photo burn.
+  world-space anchor and sizing as the photo burn.
 - 2026-07-06: Watermark auto-off on purchase: the free -> pro transition
   writes the stored toggle off once; it stays user-editable afterwards.
 - 2026-07-06: Watermark force-on for free implemented: `OverlayRenderer` reads
@@ -100,6 +103,13 @@ Supported items:
   produces the overlay layer.
 - Reused three ways: live on Main, burned into captures by camera, and as the
   settings preview (a `Control.custom`).
+- Layout uses a 390 pt reference canvas. Font size, content, padding, map, and
+  gaps are measured in reference points.
+- Live scale is `preview picture width / 390`. Photo/video scale is
+  `upright media pixel width / 390`. Reference values, including the 16 pt
+  margin, use the same scale.
+- Overlay width is deterministic in reference space and capped so its width plus
+  the scaled left and right margins never exceeds the upright media width.
 
 ### Styling
 
@@ -154,13 +164,15 @@ ios/gpscamera/Domains/Overlay/
 ├── OverlayRendering.swift - seam protocol, RenderedOverlay, placement metrics
 └── OverlayRenderer.swift  - ImageRenderer-backed live + rasterized layer
 ios/gpscameraTests/
-└── OverlayValueTests.swift - formatter + anchor tests
+└── OverlayValueTests.swift - formatter, anchor, and media sizing tests
 ```
 
 Android: planned.
 
 ## Revision History
 
+- 2026-07-13: Made overlay size proportional to picture width with reference
+  scaling and media-width margin enforcement.
 - 2026-07-11: Watermark redesigned as a right-aligned badge (app logo + "GPS
   Camera") above the map + info card; `AppLogo` imageset added.
 - 2026-07-09: Map scale setting (`overlay.map.scale`) sets the snapshot zoom

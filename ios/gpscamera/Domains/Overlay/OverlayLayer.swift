@@ -9,6 +9,8 @@ struct OverlayLayer: View {
     let settings: OverlaySettings
     /// The map image (map item); nil while it is off or not yet rendered.
     var mapImage: UIImage? = nil
+    /// Width available to the whole layer in reference-space points.
+    var maximumWidth = OverlayLayerMetrics.maximumWidth
 
     /// Re-renders the live overlay when the language changes: none of the inputs
     /// above move, so SwiftUI would otherwise keep the old language's strings.
@@ -64,8 +66,9 @@ struct OverlayLayer: View {
         .foregroundStyle(settings.style.textColor)
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
-        // Fixed card width so every item fits on one line, identically live and
-        // burned; the map (fixed side + gap) eats into it when shown.
+        // Keep a deterministic reference-space width so Grid does not collapse
+        // to its minimum content width. The whole layer is still capped to the
+        // live/media width through `maximumWidth`.
         .frame(width: cardWidth, alignment: .leading)
         .background(settings.style.bgColor.opacity(settings.style.bgOpacity),
                     in: RoundedRectangle(cornerRadius: 8))
@@ -93,8 +96,10 @@ struct OverlayLayer: View {
     }
 
     private var cardWidth: CGFloat {
-        let full = OverlayLayerMetrics.designWidth - 2 * OverlayLayerMetrics.margin
-        return showMap ? full - OverlayLayerMetrics.mapSide - OverlayLayerMetrics.mapGap : full
+        let mapWidth = showMap
+            ? OverlayLayerMetrics.mapSide + OverlayLayerMetrics.mapGap
+            : 0
+        return max(0, maximumWidth - mapWidth)
     }
 
     /// Empty when there is nothing to show (no fix and the watermark off).

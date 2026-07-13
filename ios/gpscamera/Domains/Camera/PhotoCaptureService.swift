@@ -101,14 +101,12 @@ nonisolated final class PhotoCaptureService: NSObject, AVCapturePhotoCaptureDele
     }
 
     /// Draw the rendered overlay layer at its world-space anchor on the (already
-    /// upright) photo, scaled by (photo width / designWidth) so it matches the
-    /// live preview, then carry the capture's metadata onto the re-encoded pixels.
+    /// upright) photo, scaled from its picture width, then carry the capture's
+    /// metadata onto the re-encoded pixels.
     private func burn(_ overlay: RenderedOverlay, into data: Data) -> Data {
         guard let image = UIImage(data: data) else { return data }
-        let scale = image.size.width / OverlayLayerMetrics.designWidth
-        let layer = CGSize(width: overlay.image.size.width * scale,
-                           height: overlay.image.size.height * scale)
-        let margin = OverlayLayerMetrics.margin * scale
+        let layer = OverlayLayerMetrics.mediaLayerSize(overlay.image.size, in: image.size)
+        let margin = OverlayLayerMetrics.mediaMargin(for: image.size)
         let anchor = overlay.anchor.unit
         let format = UIGraphicsImageRendererFormat()
         format.scale = 1
