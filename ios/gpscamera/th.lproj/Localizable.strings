@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "การถ่ายภาพ";
 "Shutter sound" = "เสียงชัตเตอร์";
-"This device always plays the photo shutter sound." = "อุปกรณ์นี้จะเล่นเสียงชัตเตอร์เสมอ";
+"This device always plays the photo shutter sound, so this setting only affects video." = "อุปกรณ์นี้จะเล่นเสียงชัตเตอร์เสมอ การตั้งค่านี้จึงมีผลกับวิดีโอเท่านั้น";
 "Orientation lock" = "ล็อกการหมุน";
 "Include EXIF location" = "รวมตำแหน่ง EXIF";
 "Includes location data in the photo file." = "รวมข้อมูลตำแหน่งไว้ในไฟล์ภาพถ่าย";
@@ -31,6 +31,8 @@
 "Also save original" = "บันทึกต้นฉบับด้วย";
 "Keeps a copy without the overlay." = "เก็บสำเนาที่ไม่มีโอเวอร์เลย์";
 "Save to Camera Roll" = "บันทึกลงในคลังภาพ";
+"Microphone" = "ไมโครโฟน";
+"Off records silent video." = "หากปิด จะบันทึกวิดีโอแบบไม่มีเสียง";
 "Camera access is off." = "การเข้าถึงกล้องถูกปิดอยู่";
 "Open Settings" = "เปิดการตั้งค่า";
 "GPS signal" = "สัญญาณ GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "พร้อมใช้ในรายงานของคุณ";
 "Almost ready" = "เกือบพร้อมแล้ว";
 "Two permissions are required to stamp your photos." = "เราต้องการสองสิทธิ์เพื่อเพิ่มข้อมูลลงในภาพของคุณ";
+"Enable access to capture and stamp your photos." = "อนุญาตการเข้าถึงเพื่อถ่ายและประทับข้อมูลลงบนภาพของคุณ";
 "Location" = "ตำแหน่ง";
 "Stamp coordinates, altitude, and address onto each photo." = "เพิ่มพิกัด ระดับความสูง และที่อยู่ลงในทุกภาพ";
 "Camera" = "กล้อง";
 "Capture the photos and videos you'll stamp." = "ถ่ายภาพและวิดีโอที่คุณต้องการบันทึกข้อมูล";
+"Record sound with your videos." = "บันทึกเสียงไปพร้อมกับวิดีโอของคุณ";
 "Enable" = "เปิดใช้งาน";
 "Empire State Building, New York" = "ตึกเอ็มไพร์สเตต นิวยอร์ก";
 

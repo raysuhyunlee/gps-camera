@@ -2,6 +2,11 @@
 
 ## Status
 
+- 2026-07-13: Location prompt no longer swallowed on Main. It was raised while
+  the camera prompt was still up (iOS drops it), leaving location
+  `notDetermined` with no way to request it but toggling `camera.exif.location`
+  off and on. Now deferred until the camera prompt resolves, and retried on
+  foreground.
 - 2026-07-13: Minimum iOS lowered to 17. Shutter-sound suppression is iOS 18+,
   so `CameraCapabilities.canSuppressShutterSound` now gates it and drives the
   shutter-sound footnote (closes the JP/KR warning TODO; iOS 17 shares it).
@@ -183,8 +188,9 @@ Neither platform ever requests full photo-library **read** access.
 		- regions that force the sound at the OS level (e.g. JP/KR)
 		- iOS 17, which has no public suppression API
 	- Where unavailable, the row keeps a footnote: "This device always plays the
-	  photo shutter sound." The toggle stays live - it still gates the video
-	  record start/stop sounds, which the app plays itself.
+	  photo shutter sound, so this setting only affects video." The toggle stays
+	  live - it still gates the video record start/stop sounds, which the app
+	  plays itself.
 
 ### Permissions
 
@@ -194,6 +200,10 @@ Neither platform ever requests full photo-library **read** access.
 - Microphone: video mode only; primed in onboarding, status + re-enable via the
   `camera.video.mic` row.
 - Location: provided by the location domain (foreground).
+	- Main requests it only once the camera prompt has resolved: iOS drops an
+	  authorization request raised while another permission alert is on screen.
+	  Retried when the app returns to the foreground, so a request that never
+	  reached the screen (or a grant made in iOS Settings) still lands.
 
 ### Seams
 
@@ -283,6 +293,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-13: Location request on Main deferred until the camera prompt
+  resolves; retried on foreground.
 - 2026-07-13: Shutter-sound suppression gated behind
   `CameraCapabilities.canSuppressShutterSound` (iOS 18+ and non-JP/KR); footnote
   shown where unavailable.

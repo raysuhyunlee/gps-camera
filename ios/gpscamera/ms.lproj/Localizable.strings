@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Tangkapan";
 "Shutter sound" = "Bunyi pengatup";
-"This device always plays the photo shutter sound." = "Peranti ini sentiasa memainkan bunyi pengatup.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Peranti ini sentiasa memainkan bunyi pengatup, jadi tetapan ini hanya memberi kesan pada video.";
 "Orientation lock" = "Kunci orientasi";
 "Include EXIF location" = "Sertakan lokasi EXIF";
 "Includes location data in the photo file." = "Menyertakan data lokasi dalam fail foto.";
@@ -31,6 +31,8 @@
 "Also save original" = "Simpan juga yang asal";
 "Keeps a copy without the overlay." = "Menyimpan salinan tanpa tindanan.";
 "Save to Camera Roll" = "Simpan ke Gulungan Kamera";
+"Microphone" = "Mikrofon";
+"Off records silent video." = "Jika dimatikan, video dirakam tanpa bunyi.";
 "Camera access is off." = "Akses kamera dimatikan.";
 "Open Settings" = "Buka Tetapan";
 "GPS signal" = "Isyarat GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Sedia untuk laporan anda";
 "Almost ready" = "Hampir siap";
 "Two permissions are required to stamp your photos." = "Kami memerlukan dua kebenaran untuk menambah maklumat pada foto anda.";
+"Enable access to capture and stamp your photos." = "Benarkan akses untuk menangkap dan menera foto anda.";
 "Location" = "Lokasi";
 "Stamp coordinates, altitude, and address onto each photo." = "Menambah koordinat, ketinggian dan alamat pada setiap foto.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Rakam foto dan video yang ingin anda tandakan.";
+"Record sound with your videos." = "Rakam bunyi bersama video anda.";
 "Enable" = "Dayakan";
 "Empire State Building, New York" = "Empire State Building, New York";
 

@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "الالتقاط";
 "Shutter sound" = "صوت الغالق";
-"This device always plays the photo shutter sound." = "يشغّل هذا الجهاز صوت غالق الكاميرا دائمًا.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "يشغّل هذا الجهاز صوت غالق الكاميرا دائمًا، لذا يؤثر هذا الإعداد على الفيديو فقط.";
 "Orientation lock" = "قفل الاتجاه";
 "Include EXIF location" = "تضمين موقع EXIF";
 "Includes location data in the photo file." = "يضمّن بيانات الموقع في ملف الصورة.";
@@ -31,6 +31,8 @@
 "Also save original" = "حفظ النسخة الأصلية أيضًا";
 "Keeps a copy without the overlay." = "يحتفظ بنسخة بدون الطبقة.";
 "Save to Camera Roll" = "الحفظ في ألبوم الكاميرا";
+"Microphone" = "الميكروفون";
+"Off records silent video." = "عند الإيقاف، يتم تسجيل فيديو صامت.";
 "Camera access is off." = "الوصول إلى الكاميرا معطّل.";
 "Open Settings" = "فتح الإعدادات";
 "GPS signal" = "إشارة GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "جاهزة لتقريرك";
 "Almost ready" = "أوشكنا على الانتهاء";
 "Two permissions are required to stamp your photos." = "نحتاج إلى إذنين لإضافة البيانات إلى صورك.";
+"Enable access to capture and stamp your photos." = "فعّل الأذونات لالتقاط صورك وختمها.";
 "Location" = "الموقع";
 "Stamp coordinates, altitude, and address onto each photo." = "يضيف الإحداثيات والارتفاع والعنوان إلى كل صورة.";
 "Camera" = "الكاميرا";
 "Capture the photos and videos you'll stamp." = "التقط الصور ومقاطع الفيديو التي تريد توثيقها.";
+"Record sound with your videos." = "سجّل الصوت مع مقاطع الفيديو.";
 "Enable" = "تفعيل";
 "Empire State Building, New York" = "مبنى إمباير ستيت، نيويورك";
 

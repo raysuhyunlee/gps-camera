@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "צילום";
 "Shutter sound" = "צליל צמצם";
-"This device always plays the photo shutter sound." = "מכשיר זה תמיד משמיע את צליל הצמצם.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "מכשיר זה תמיד משמיע את צליל הצמצם, ולכן הגדרה זו משפיעה על וידאו בלבד.";
 "Orientation lock" = "נעילת כיוון";
 "Include EXIF location" = "כלול מיקום EXIF";
 "Includes location data in the photo file." = "כולל נתוני מיקום בקובץ התמונה.";
@@ -31,6 +31,8 @@
 "Also save original" = "שמור גם את המקור";
 "Keeps a copy without the overlay." = "שומר עותק ללא שכבת-העל.";
 "Save to Camera Roll" = "שמירה לגליל הצילום";
+"Microphone" = "מיקרופון";
+"Off records silent video." = "כשההגדרה כבויה, הווידאו מוקלט ללא קול.";
 "Camera access is off." = "הגישה למצלמה כבויה.";
 "Open Settings" = "פתיחת הגדרות";
 "GPS signal" = "אות GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "מוכנות לדוח שלך";
 "Almost ready" = "כמעט מוכן";
 "Two permissions are required to stamp your photos." = "אנחנו צריכים שתי הרשאות כדי להוסיף את הפרטים לתמונות שלך.";
+"Enable access to capture and stamp your photos." = "אפשרו גישה כדי לצלם ולהטביע חותמת על התמונות שלכם.";
 "Location" = "מיקום";
 "Stamp coordinates, altitude, and address onto each photo." = "מוסיף לכל תמונה קואורדינטות, גובה וכתובת.";
 "Camera" = "מצלמה";
 "Capture the photos and videos you'll stamp." = "צלם את התמונות והסרטונים שתרצה לתעד.";
+"Record sound with your videos." = "הקליטו קול יחד עם הסרטונים שלכם.";
 "Enable" = "הפעלה";
 "Empire State Building, New York" = "אמפייר סטייט בילדינג, ניו יורק";
 

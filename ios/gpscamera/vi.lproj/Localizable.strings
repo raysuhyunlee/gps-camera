@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Chụp";
 "Shutter sound" = "Âm màn trập";
-"This device always plays the photo shutter sound." = "Thiết bị này luôn phát âm thanh màn trập.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Thiết bị này luôn phát âm thanh màn trập, nên cài đặt này chỉ ảnh hưởng đến video.";
 "Orientation lock" = "Khóa hướng";
 "Include EXIF location" = "Bao gồm vị trí EXIF";
 "Includes location data in the photo file." = "Bao gồm dữ liệu vị trí trong tệp ảnh.";
@@ -31,6 +31,8 @@
 "Also save original" = "Lưu cả bản gốc";
 "Keeps a copy without the overlay." = "Giữ một bản sao không có lớp phủ.";
 "Save to Camera Roll" = "Lưu vào Cuộn camera";
+"Microphone" = "Micrô";
+"Off records silent video." = "Khi tắt, video được quay không có âm thanh.";
 "Camera access is off." = "Quyền truy cập camera đang tắt.";
 "Open Settings" = "Mở cài đặt";
 "GPS signal" = "Tín hiệu GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Sẵn sàng cho báo cáo của bạn";
 "Almost ready" = "Gần xong rồi";
 "Two permissions are required to stamp your photos." = "Chúng tôi cần hai quyền để thêm thông tin vào ảnh của bạn.";
+"Enable access to capture and stamp your photos." = "Cho phép truy cập để chụp và đóng dấu ảnh của bạn.";
 "Location" = "Vị trí";
 "Stamp coordinates, altitude, and address onto each photo." = "Thêm tọa độ, độ cao và địa chỉ vào mỗi ảnh.";
 "Camera" = "Máy ảnh";
 "Capture the photos and videos you'll stamp." = "Chụp ảnh và quay video bạn muốn ghi dấu.";
+"Record sound with your videos." = "Ghi âm thanh cùng với video của bạn.";
 "Enable" = "Bật";
 "Empire State Building, New York" = "Empire State Building, New York";
 

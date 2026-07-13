@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Çekim";
 "Shutter sound" = "Deklanşör sesi";
-"This device always plays the photo shutter sound." = "Bu cihaz her zaman deklanşör sesini çalar.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Bu cihaz her zaman deklanşör sesini çalar, bu nedenle bu ayar yalnızca videoyu etkiler.";
 "Orientation lock" = "Yön kilidi";
 "Include EXIF location" = "EXIF konumunu ekle";
 "Includes location data in the photo file." = "Konum verilerini fotoğraf dosyasına ekler.";
@@ -31,6 +31,8 @@
 "Also save original" = "Orijinali de kaydet";
 "Keeps a copy without the overlay." = "Kaplama olmadan bir kopya saklar.";
 "Save to Camera Roll" = "Film Rulosuna kaydet";
+"Microphone" = "Mikrofon";
+"Off records silent video." = "Kapalıyken video sessiz kaydedilir.";
 "Camera access is off." = "Kamera erişimi kapalı.";
 "Open Settings" = "Ayarları aç";
 "GPS signal" = "GPS sinyali";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Raporunuza hazır";
 "Almost ready" = "Neredeyse hazır";
 "Two permissions are required to stamp your photos." = "Fotoğraflarınıza bilgi eklemek için iki izne ihtiyacımız var.";
+"Enable access to capture and stamp your photos." = "Fotoğraflarınızı çekmek ve damgalamak için erişime izin verin.";
 "Location" = "Konum";
 "Stamp coordinates, altitude, and address onto each photo." = "Her fotoğrafa konum, rakım ve adres ekler.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "İşaretleyeceğiniz fotoğraf ve videoları çekin.";
+"Record sound with your videos." = "Videolarınızla birlikte ses kaydedin.";
 "Enable" = "Etkinleştir";
 "Empire State Building, New York" = "Empire State Binası, New York";
 

@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Съёмка";
 "Shutter sound" = "Звук затвора";
-"This device always plays the photo shutter sound." = "Это устройство всегда воспроизводит звук затвора.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Это устройство всегда воспроизводит звук затвора, поэтому эта настройка влияет только на видео.";
 "Orientation lock" = "Блокировка ориентации";
 "Include EXIF location" = "Включать геоданные EXIF";
 "Includes location data in the photo file." = "Добавляет данные о местоположении в файл фото.";
@@ -31,6 +31,8 @@
 "Also save original" = "Также сохранять оригинал";
 "Keeps a copy without the overlay." = "Сохраняет копию без наложения.";
 "Save to Camera Roll" = "Сохранять в галерею";
+"Microphone" = "Микрофон";
+"Off records silent video." = "Если выключено, видео записывается без звука.";
 "Camera access is off." = "Доступ к камере отключён.";
 "Open Settings" = "Открыть настройки";
 "GPS signal" = "Сигнал GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Готово для вашего отчёта";
 "Almost ready" = "Почти готово";
 "Two permissions are required to stamp your photos." = "Нужны два разрешения, чтобы добавлять данные к фото.";
+"Enable access to capture and stamp your photos." = "Разрешите доступ, чтобы снимать и отмечать фотографии.";
 "Location" = "Геопозиция";
 "Stamp coordinates, altitude, and address onto each photo." = "Добавляет к каждому фото координаты, высоту и адрес.";
 "Camera" = "Камера";
 "Capture the photos and videos you'll stamp." = "Снимайте фото и видео, к которым добавятся данные.";
+"Record sound with your videos." = "Записывайте звук вместе с видео.";
 "Enable" = "Разрешить";
 "Empire State Building, New York" = "Эмпайр-Стейт-Билдинг, Нью-Йорк";
 

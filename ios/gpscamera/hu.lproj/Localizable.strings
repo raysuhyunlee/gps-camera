@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Rögzítés";
 "Shutter sound" = "Zárhang";
-"This device always plays the photo shutter sound." = "Ez az eszköz mindig lejátssza a zárhangot.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Ez az eszköz mindig lejátssza a zárhangot, ezért ez a beállítás csak a videóra van hatással.";
 "Orientation lock" = "Tájolászár";
 "Include EXIF location" = "EXIF-helyadatok beágyazása";
 "Includes location data in the photo file." = "Helyadatokat ágyaz a fotófájlba.";
@@ -31,6 +31,8 @@
 "Also save original" = "Az eredeti mentése is";
 "Keeps a copy without the overlay." = "Másolatot őriz meg a rávetítés nélkül.";
 "Save to Camera Roll" = "Mentés a Filmtekercsre";
+"Microphone" = "Mikrofon";
+"Off records silent video." = "Kikapcsolva néma videót rögzít.";
 "Camera access is off." = "A kamera-hozzáférés ki van kapcsolva.";
 "Open Settings" = "Beállítások megnyitása";
 "GPS signal" = "GPS-jel";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Készen a jelentésedhez";
 "Almost ready" = "Majdnem kész";
 "Two permissions are required to stamp your photos." = "Két engedélyre van szükségünk, hogy adatokat adjunk a fotóidhoz.";
+"Enable access to capture and stamp your photos." = "Engedélyezze a hozzáférést a fényképek készítéséhez és bélyegzéséhez.";
 "Location" = "Helyzet";
 "Stamp coordinates, altitude, and address onto each photo." = "Koordinátákat, magasságot és címet ad minden fotóhoz.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Készítsd el a fotókat és videókat, amelyeket meg szeretnél jelölni.";
+"Record sound with your videos." = "Rögzítsen hangot a videóihoz.";
 "Enable" = "Engedélyezés";
 "Empire State Building, New York" = "Empire State Building, New York";
 

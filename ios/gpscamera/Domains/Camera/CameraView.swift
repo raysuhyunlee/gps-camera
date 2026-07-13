@@ -21,6 +21,7 @@ struct CameraView: View {
 
     /// Main stays alive across a language change; observing re-renders it.
     @ObservedObject private var l10n = L10n.shared
+    @Environment(\.scenePhase) private var scenePhase
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false
     @State private var showSettings = false
@@ -69,8 +70,17 @@ struct CameraView: View {
             // the rotatable controls in place (camera.md "Device Orientation").
             UIDevice.current.beginGeneratingDeviceOrientationNotifications()
             controller.onAppear()
-            location.requestPermission()
+            requestLocationWhenFree()
             location.start()
+        }
+        .onChange(of: controller.authorization) { _, _ in
+            // The camera prompt has resolved; the location prompt can go up now.
+            requestLocationWhenFree()
+        }
+        .onChange(of: scenePhase) { _, phase in
+            // Covers a prompt that never made it on screen, and a grant made in
+            // iOS Settings while we were backgrounded.
+            if phase == .active { requestLocationWhenFree() }
         }
         .onDisappear {
             controller.onDisappear()
@@ -109,6 +119,15 @@ struct CameraView: View {
         } message: {
             Text(L("A setting that needs a permission stayed on, but the permission was revoked. The capture continued without it."))
         }
+    }
+
+    /// iOS silently drops a location request raised while another permission
+    /// alert is on screen, so hold it back until the camera prompt resolves.
+    /// A no-op once location is determined; safe to call repeatedly.
+    private func requestLocationWhenFree() {
+        guard controller.authorization != .notDetermined,
+              location.authorization == .notDetermined else { return }
+        location.requestPermission()
     }
 
     // MARK: - Layout

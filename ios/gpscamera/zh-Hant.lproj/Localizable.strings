@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "拍攝";
 "Shutter sound" = "快門聲";
-"This device always plays the photo shutter sound." = "此裝置一律播放拍照快門音。";
+"This device always plays the photo shutter sound, so this setting only affects video." = "此裝置一律播放拍照快門音，因此此設定僅影響影片。";
 "Orientation lock" = "方向鎖定";
 "Include EXIF location" = "包含 EXIF 位置資訊";
 "Includes location data in the photo file." = "在照片檔案中包含位置資料。";
@@ -31,6 +31,8 @@
 "Also save original" = "同時儲存原始檔";
 "Keeps a copy without the overlay." = "保留不含疊加層的副本。";
 "Save to Camera Roll" = "儲存到相機膠卷";
+"Microphone" = "麥克風";
+"Off records silent video." = "關閉後將錄製無聲影片。";
 "Camera access is off." = "相機存取已關閉。";
 "Open Settings" = "開啟設定";
 "GPS signal" = "GPS 訊號";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "可直接用於你的報告";
 "Almost ready" = "就快好了";
 "Two permissions are required to stamp your photos." = "需要兩項權限，才能為照片加上資訊。";
+"Enable access to capture and stamp your photos." = "允許存取以拍攝照片並加上資訊戳記。";
 "Location" = "位置";
 "Stamp coordinates, altitude, and address onto each photo." = "為每張照片記錄座標、海拔和地址。";
 "Camera" = "相機";
 "Capture the photos and videos you'll stamp." = "拍攝需要標記的照片和影片。";
+"Record sound with your videos." = "錄影時同時錄音。";
 "Enable" = "啟用";
 "Empire State Building, New York" = "帝國大廈，紐約";
 

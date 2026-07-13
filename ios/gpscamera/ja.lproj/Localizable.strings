@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "撮影";
 "Shutter sound" = "シャッター音";
-"This device always plays the photo shutter sound." = "このデバイスでは常にシャッター音が鳴ります。";
+"This device always plays the photo shutter sound, so this setting only affects video." = "このデバイスでは常にシャッター音が鳴るため、この設定は動画にのみ適用されます。";
 "Orientation lock" = "画面の向きをロック";
 "Include EXIF location" = "EXIF位置情報を含める";
 "Includes location data in the photo file." = "写真ファイルに位置データを含めます。";
@@ -31,6 +31,8 @@
 "Also save original" = "オリジナルも保存";
 "Keeps a copy without the overlay." = "オーバーレイなしのコピーを保存します。";
 "Save to Camera Roll" = "カメラロールに保存";
+"Microphone" = "マイク";
+"Off records silent video." = "オフにすると音声なしで録画します。";
 "Camera access is off." = "カメラへのアクセスがオフです。";
 "Open Settings" = "設定を開く";
 "GPS signal" = "GPS信号";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "そのまま報告書に使える";
 "Almost ready" = "あと少しです";
 "Two permissions are required to stamp your photos." = "写真に情報を記録するには、2つの許可が必要です。";
+"Enable access to capture and stamp your photos." = "写真の撮影とスタンプの記録を行うには、アクセスを許可してください。";
 "Location" = "位置情報";
 "Stamp coordinates, altitude, and address onto each photo." = "各写真に座標・高度・住所を記録します。";
 "Camera" = "カメラ";
 "Capture the photos and videos you'll stamp." = "記録する写真や動画を撮影します。";
+"Record sound with your videos." = "動画と一緒に音声を録音します。";
 "Enable" = "許可する";
 "Empire State Building, New York" = "エンパイア・ステート・ビル、ニューヨーク";
 

@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Capture";
 "Shutter sound" = "Son de l'obturateur";
-"This device always plays the photo shutter sound." = "Cet appareil émet toujours le son de l'obturateur.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Cet appareil émet toujours le son de l'obturateur ; ce réglage n'affecte donc que la vidéo.";
 "Orientation lock" = "Verrouillage de l'orientation";
 "Include EXIF location" = "Inclure la position EXIF";
 "Includes location data in the photo file." = "Inclut les données de position dans le fichier photo.";
@@ -31,6 +31,8 @@
 "Also save original" = "Enregistrer aussi l'original";
 "Keeps a copy without the overlay." = "Conserve une copie sans l'incrustation.";
 "Save to Camera Roll" = "Enregistrer dans la pellicule";
+"Microphone" = "Microphone";
+"Off records silent video." = "Désactivé, enregistre une vidéo muette.";
 "Camera access is off." = "L'accès à l'appareil photo est désactivé.";
 "Open Settings" = "Ouvrir les réglages";
 "GPS signal" = "Signal GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Prêtes pour votre rapport";
 "Almost ready" = "Presque prêt";
 "Two permissions are required to stamp your photos." = "Deux autorisations sont nécessaires pour ajouter ces infos à vos photos.";
+"Enable access to capture and stamp your photos." = "Autorisez l'accès pour capturer et horodater vos photos.";
 "Location" = "Localisation";
 "Stamp coordinates, altitude, and address onto each photo." = "Ajoute coordonnées, altitude et adresse à chaque photo.";
 "Camera" = "Appareil photo";
 "Capture the photos and videos you'll stamp." = "Prenez les photos et vidéos à annoter.";
+"Record sound with your videos." = "Enregistrez le son avec vos vidéos.";
 "Enable" = "Activer";
 "Empire State Building, New York" = "Empire State Building, New York";
 

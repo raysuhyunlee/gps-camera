@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Snímání";
 "Shutter sound" = "Zvuk závěrky";
-"This device always plays the photo shutter sound." = "Toto zařízení vždy přehraje zvuk spouště.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Toto zařízení vždy přehraje zvuk spouště, takže toto nastavení ovlivňuje pouze video.";
 "Orientation lock" = "Zámek orientace";
 "Include EXIF location" = "Vložit polohu EXIF";
 "Includes location data in the photo file." = "Vloží údaje o poloze do souboru fotografie.";
@@ -31,6 +31,8 @@
 "Also save original" = "Uložit také originál";
 "Keeps a copy without the overlay." = "Uchová kopii bez překryvu.";
 "Save to Camera Roll" = "Uložit do Fotoaparátu";
+"Microphone" = "Mikrofon";
+"Off records silent video." = "Při vypnutí se nahrává video bez zvuku.";
 "Camera access is off." = "Přístup k fotoaparátu je vypnutý.";
 "Open Settings" = "Otevřít nastavení";
 "GPS signal" = "Signál GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Připraveno do vaší zprávy";
 "Almost ready" = "Téměř hotovo";
 "Two permissions are required to stamp your photos." = "Potřebujeme dvě oprávnění, abychom mohli přidat údaje k vašim fotkám.";
+"Enable access to capture and stamp your photos." = "Povolte přístup, abyste mohli fotit a opatřit fotky razítkem.";
 "Location" = "Poloha";
 "Stamp coordinates, altitude, and address onto each photo." = "Přidává ke každé fotce souřadnice, nadmořskou výšku a adresu.";
 "Camera" = "Fotoaparát";
 "Capture the photos and videos you'll stamp." = "Pořiďte fotky a videa, která chcete označit.";
+"Record sound with your videos." = "Nahrávejte zvuk spolu s videem.";
 "Enable" = "Povolit";
 "Empire State Building, New York" = "Empire State Building, New York";
 

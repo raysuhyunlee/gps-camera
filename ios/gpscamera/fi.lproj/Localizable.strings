@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Kuvaus";
 "Shutter sound" = "Suljinääni";
-"This device always plays the photo shutter sound." = "Tämä laite toistaa aina suljinäänen.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Tämä laite toistaa aina suljinäänen, joten tämä asetus vaikuttaa vain videoon.";
 "Orientation lock" = "Suunnan lukitus";
 "Include EXIF location" = "Sisällytä EXIF-sijainti";
 "Includes location data in the photo file." = "Sisällyttää sijaintitiedot kuvatiedostoon.";
@@ -31,6 +31,8 @@
 "Also save original" = "Tallenna myös alkuperäinen";
 "Keeps a copy without the overlay." = "Säilyttää kopion ilman peittokuvaa.";
 "Save to Camera Roll" = "Tallenna kuviin";
+"Microphone" = "Mikrofoni";
+"Off records silent video." = "Pois päältä tallentaa äänettömän videon.";
 "Camera access is off." = "Kameran käyttöoikeus on pois päältä.";
 "Open Settings" = "Avaa asetukset";
 "GPS signal" = "GPS-signaali";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Valmiina raporttiisi";
 "Almost ready" = "Melkein valmis";
 "Two permissions are required to stamp your photos." = "Tarvitsemme kaksi lupaa lisätäksemme tiedot kuviisi.";
+"Enable access to capture and stamp your photos." = "Salli käyttöoikeudet, jotta voit ottaa ja leimata kuvia.";
 "Location" = "Sijainti";
 "Stamp coordinates, altitude, and address onto each photo." = "Lisää jokaiseen kuvaan koordinaatit, korkeuden ja osoitteen.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Ota kuvat ja videot, jotka haluat merkitä.";
+"Record sound with your videos." = "Tallenna ääni videoidesi kanssa.";
 "Enable" = "Ota käyttöön";
 "Empire State Building, New York" = "Empire State Building, New York";
 

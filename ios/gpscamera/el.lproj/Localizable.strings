@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Λήψη";
 "Shutter sound" = "Ήχος κλείστρου";
-"This device always plays the photo shutter sound." = "Αυτή η συσκευή αναπαράγει πάντα τον ήχο του κλείστρου.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Αυτή η συσκευή αναπαράγει πάντα τον ήχο του κλείστρου, οπότε αυτή η ρύθμιση επηρεάζει μόνο το βίντεο.";
 "Orientation lock" = "Κλείδωμα προσανατολισμού";
 "Include EXIF location" = "Συμπερίληψη τοποθεσίας EXIF";
 "Includes location data in the photo file." = "Περιλαμβάνει δεδομένα τοποθεσίας στο αρχείο φωτογραφίας.";
@@ -31,6 +31,8 @@
 "Also save original" = "Αποθήκευση και του πρωτοτύπου";
 "Keeps a copy without the overlay." = "Διατηρεί ένα αντίγραφο χωρίς την επικάλυψη.";
 "Save to Camera Roll" = "Αποθήκευση στο Άλμπουμ κάμερας";
+"Microphone" = "Μικρόφωνο";
+"Off records silent video." = "Απενεργοποιημένο, καταγράφει βίντεο χωρίς ήχο.";
 "Camera access is off." = "Η πρόσβαση στην κάμερα είναι απενεργοποιημένη.";
 "Open Settings" = "Άνοιγμα ρυθμίσεων";
 "GPS signal" = "Σήμα GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Έτοιμες για την αναφορά σας";
 "Almost ready" = "Σχεδόν έτοιμο";
 "Two permissions are required to stamp your photos." = "Χρειαζόμαστε δύο άδειες για να προσθέσουμε τα στοιχεία στις φωτογραφίες σας.";
+"Enable access to capture and stamp your photos." = "Ενεργοποιήστε την πρόσβαση για λήψη και σφράγιση των φωτογραφιών σας.";
 "Location" = "Τοποθεσία";
 "Stamp coordinates, altitude, and address onto each photo." = "Προσθέτει συντεταγμένες, υψόμετρο και διεύθυνση σε κάθε φωτογραφία.";
 "Camera" = "Κάμερα";
 "Capture the photos and videos you'll stamp." = "Τραβήξτε τις φωτογραφίες και τα βίντεο που θέλετε να σημειώσετε.";
+"Record sound with your videos." = "Ηχογραφήστε ήχο μαζί με τα βίντεό σας.";
 "Enable" = "Ενεργοποίηση";
 "Empire State Building, New York" = "Empire State Building, Νέα Υόρκη";
 

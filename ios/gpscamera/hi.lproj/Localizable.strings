@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "कैप्चर";
 "Shutter sound" = "शटर ध्वनि";
-"This device always plays the photo shutter sound." = "यह डिवाइस हमेशा शटर की आवाज़ चलाता है।";
+"This device always plays the photo shutter sound, so this setting only affects video." = "यह डिवाइस हमेशा शटर की आवाज़ चलाता है, इसलिए यह सेटिंग केवल वीडियो पर लागू होती है।";
 "Orientation lock" = "ओरिएंटेशन लॉक";
 "Include EXIF location" = "EXIF स्थान शामिल करें";
 "Includes location data in the photo file." = "फ़ोटो फ़ाइल में स्थान डेटा शामिल करता है।";
@@ -31,6 +31,8 @@
 "Also save original" = "मूल फ़ोटो भी सहेजें";
 "Keeps a copy without the overlay." = "ओवरले के बिना एक प्रति रखता है।";
 "Save to Camera Roll" = "कैमरा रोल में सहेजें";
+"Microphone" = "माइक्रोफ़ोन";
+"Off records silent video." = "बंद होने पर वीडियो बिना आवाज़ के रिकॉर्ड होता है।";
 "Camera access is off." = "कैमरा एक्सेस बंद है।";
 "Open Settings" = "सेटिंग्स खोलें";
 "GPS signal" = "GPS सिग्नल";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "आपकी रिपोर्ट के लिए तैयार";
 "Almost ready" = "लगभग तैयार";
 "Two permissions are required to stamp your photos." = "आपकी तस्वीरों में जानकारी जोड़ने के लिए हमें दो अनुमतियाँ चाहिए।";
+"Enable access to capture and stamp your photos." = "अपनी फ़ोटो खींचने और उन पर स्टैम्प लगाने के लिए ऐक्सेस चालू करें।";
 "Location" = "स्थान";
 "Stamp coordinates, altitude, and address onto each photo." = "हर फ़ोटो में निर्देशांक, ऊँचाई और पता जोड़ता है।";
 "Camera" = "कैमरा";
 "Capture the photos and videos you'll stamp." = "वे फ़ोटो और वीडियो लें जिन्हें आप चिह्नित करना चाहते हैं।";
+"Record sound with your videos." = "अपने वीडियो के साथ आवाज़ रिकॉर्ड करें।";
 "Enable" = "चालू करें";
 "Empire State Building, New York" = "एम्पायर स्टेट बिल्डिंग, न्यूयॉर्क";
 

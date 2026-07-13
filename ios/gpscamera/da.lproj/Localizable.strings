@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Optagelse";
 "Shutter sound" = "Lukkerlyd";
-"This device always plays the photo shutter sound." = "Denne enhed afspiller altid lukkerlyden.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Denne enhed afspiller altid lukkerlyden, så denne indstilling påvirker kun video.";
 "Orientation lock" = "Retningslås";
 "Include EXIF location" = "Inkluder EXIF-placering";
 "Includes location data in the photo file." = "Inkluderer placeringsdata i fotofilen.";
@@ -31,6 +31,8 @@
 "Also save original" = "Gem også originalen";
 "Keeps a copy without the overlay." = "Beholder en kopi uden overlayet.";
 "Save to Camera Roll" = "Gem til kamerarulle";
+"Microphone" = "Mikrofon";
+"Off records silent video." = "Slået fra optager video uden lyd.";
 "Camera access is off." = "Kameraadgang er slået fra.";
 "Open Settings" = "Åbn indstillinger";
 "GPS signal" = "GPS-signal";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Klar til din rapport";
 "Almost ready" = "Næsten klar";
 "Two permissions are required to stamp your photos." = "Vi skal bruge to tilladelser for at føje oplysningerne til dine fotos.";
+"Enable access to capture and stamp your photos." = "Giv adgang for at tage og stemple dine billeder.";
 "Location" = "Placering";
 "Stamp coordinates, altitude, and address onto each photo." = "Føjer koordinater, højde og adresse til hvert foto.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Tag de fotos og videoer, du vil mærke.";
+"Record sound with your videos." = "Optag lyd sammen med dine videoer.";
 "Enable" = "Aktivér";
 "Empire State Building, New York" = "Empire State Building, New York";
 

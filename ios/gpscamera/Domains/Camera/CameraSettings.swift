@@ -148,8 +148,8 @@ nonisolated struct CameraSettingsProvider: SettingsProviding {
             // The toggle stays live where the sound is forced: it still drives the
             // video start/stop sounds, which the app plays itself.
             SettingItem(key: CameraSettingKey.shutterSound, titleKey: "Shutter sound",
-                        footnoteKey: CameraCapabilities.canSuppressShutterSound
-                            ? nil : "This device always plays the photo shutter sound.",
+                        footnoteKey: CameraCapabilities.canSuppressShutterSound ? nil
+                            : "This device always plays the photo shutter sound, so this setting only affects video.",
                         control: .toggle, defaultValue: .bool(true)),
             SettingItem(key: CameraSettingKey.orientationLock, titleKey: "Orientation lock",
                         control: .toggle, defaultValue: .bool(false)),

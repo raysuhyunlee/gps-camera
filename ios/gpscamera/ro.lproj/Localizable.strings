@@ -20,7 +20,7 @@
 /* Camera */
 "Capture" = "Captură";
 "Shutter sound" = "Sunet obturator";
-"This device always plays the photo shutter sound." = "Acest dispozitiv redă întotdeauna sunetul declanșatorului.";
+"This device always plays the photo shutter sound, so this setting only affects video." = "Acest dispozitiv redă întotdeauna sunetul declanșatorului, așa că această setare afectează doar videoclipurile.";
 "Orientation lock" = "Blocare orientare";
 "Include EXIF location" = "Include locația EXIF";
 "Includes location data in the photo file." = "Include date de localizare în fișierul foto.";
@@ -31,6 +31,8 @@
 "Also save original" = "Salvează și originalul";
 "Keeps a copy without the overlay." = "Păstrează o copie fără suprapunere.";
 "Save to Camera Roll" = "Salvează în Rola camerei";
+"Microphone" = "Microfon";
+"Off records silent video." = "Dezactivat, înregistrează videoclipuri fără sunet.";
 "Camera access is off." = "Accesul la cameră este dezactivat.";
 "Open Settings" = "Deschide setările";
 "GPS signal" = "Semnal GPS";
@@ -139,10 +141,12 @@
 "Drop it straight into your report" = "Gata pentru raportul tău";
 "Almost ready" = "Aproape gata";
 "Two permissions are required to stamp your photos." = "Avem nevoie de două permisiuni pentru a adăuga datele pe fotografiile tale.";
+"Enable access to capture and stamp your photos." = "Permite accesul pentru a fotografia și a marca imaginile.";
 "Location" = "Locație";
 "Stamp coordinates, altitude, and address onto each photo." = "Adaugă coordonate, altitudine și adresă pe fiecare fotografie.";
 "Camera" = "Cameră";
 "Capture the photos and videos you'll stamp." = "Fotografiază și filmează ce vrei să marchezi.";
+"Record sound with your videos." = "Înregistrează sunetul împreună cu videoclipurile tale.";
 "Enable" = "Activează";
 "Empire State Building, New York" = "Empire State Building, New York";
 
