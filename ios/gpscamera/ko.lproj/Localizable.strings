@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "촬영";
 "Shutter sound" = "셔터음";
+"This device always plays the photo shutter sound." = "이 기기에서는 항상 셔터음이 재생됩니다.";
 "Orientation lock" = "방향 잠금";
 "Include EXIF location" = "EXIF 위치 정보 포함";
 "Includes location data in the photo file." = "사진 파일에 위치 데이터를 포함합니다.";

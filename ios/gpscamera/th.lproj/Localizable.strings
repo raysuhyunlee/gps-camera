@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "การถ่ายภาพ";
 "Shutter sound" = "เสียงชัตเตอร์";
+"This device always plays the photo shutter sound." = "อุปกรณ์นี้จะเล่นเสียงชัตเตอร์เสมอ";
 "Orientation lock" = "ล็อกการหมุน";
 "Include EXIF location" = "รวมตำแหน่ง EXIF";
 "Includes location data in the photo file." = "รวมข้อมูลตำแหน่งไว้ในไฟล์ภาพถ่าย";

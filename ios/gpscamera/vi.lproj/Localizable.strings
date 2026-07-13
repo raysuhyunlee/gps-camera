@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Chụp";
 "Shutter sound" = "Âm màn trập";
+"This device always plays the photo shutter sound." = "Thiết bị này luôn phát âm thanh màn trập.";
 "Orientation lock" = "Khóa hướng";
 "Include EXIF location" = "Bao gồm vị trí EXIF";
 "Includes location data in the photo file." = "Bao gồm dữ liệu vị trí trong tệp ảnh.";

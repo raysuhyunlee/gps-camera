@@ -2,6 +2,9 @@
 
 ## Status
 
+- 2026-07-13: Minimum iOS lowered to 17. Shutter-sound suppression is iOS 18+,
+  so `CameraCapabilities.canSuppressShutterSound` now gates it and drives the
+  shutter-sound footnote (closes the JP/KR warning TODO; iOS 17 shares it).
 - 2026-07-12: Video settings gains a `camera.video.mic` status row
   (`MicPermissionRow`); mic is now primed in onboarding, lazy request kept as
   fallback.
@@ -175,9 +178,13 @@ Neither platform ever requests full photo-library **read** access.
 	- the user's music/podcast keeps playing.
 - `camera.shutterSound` gates capture sounds: the photo shutter and the video
   record start/stop sounds (system sounds, like the native camera).
-	- Photo shutter suppression is best-effort: some regions (e.g. JP/KR)
-	  force the sound at the OS level.
-	- TODO) Display a warning message under shutter sound setting item when the setting is off in this regions.
+	- Photo shutter suppression is best-effort. It is unavailable when
+	  `CameraCapabilities.canSuppressShutterSound` is false:
+		- regions that force the sound at the OS level (e.g. JP/KR)
+		- iOS 17, which has no public suppression API
+	- Where unavailable, the row keeps a footnote: "This device always plays the
+	  photo shutter sound." The toggle stays live - it still gates the video
+	  record start/stop sounds, which the app plays itself.
 
 ### Permissions
 
@@ -211,6 +218,8 @@ Neither platform ever requests full photo-library **read** access.
 | `camera.orientationLock`| Orientation lock      | toggle  | off     | free | -                  |
 | `camera.exif.location`  | Include EXIF location | toggle  | on      | free | location           |
 
+- `camera.shutterSound` gains a footnote only where the photo shutter cannot be
+  silenced (JP/KR, iOS 17). See "Audio".
 - `camera.exif.location` sits at the top level of the Capture section (not in a
   sub-section). Footnote: "Includes location data in the photo file." If
   location is denied/revoked, EXIF location is skipped and capture still
@@ -274,6 +283,9 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-13: Shutter-sound suppression gated behind
+  `CameraCapabilities.canSuppressShutterSound` (iOS 18+ and non-JP/KR); footnote
+  shown where unavailable.
 - 2026-07-09: Lock overlay data at record start (preview matches the burned
   clip); split video capture into `onStopped` + `completion`.
 - 2026-07-08: Video overlay burn (pipeline step 2 for video) via

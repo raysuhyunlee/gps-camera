@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Captură";
 "Shutter sound" = "Sunet obturator";
+"This device always plays the photo shutter sound." = "Acest dispozitiv redă întotdeauna sunetul declanșatorului.";
 "Orientation lock" = "Blocare orientare";
 "Include EXIF location" = "Include locația EXIF";
 "Includes location data in the photo file." = "Include date de localizare în fișierul foto.";

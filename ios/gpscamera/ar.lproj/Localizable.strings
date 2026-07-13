@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "الالتقاط";
 "Shutter sound" = "صوت الغالق";
+"This device always plays the photo shutter sound." = "يشغّل هذا الجهاز صوت غالق الكاميرا دائمًا.";
 "Orientation lock" = "قفل الاتجاه";
 "Include EXIF location" = "تضمين موقع EXIF";
 "Includes location data in the photo file." = "يضمّن بيانات الموقع في ملف الصورة.";

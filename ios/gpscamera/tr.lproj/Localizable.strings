@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Çekim";
 "Shutter sound" = "Deklanşör sesi";
+"This device always plays the photo shutter sound." = "Bu cihaz her zaman deklanşör sesini çalar.";
 "Orientation lock" = "Yön kilidi";
 "Include EXIF location" = "EXIF konumunu ekle";
 "Includes location data in the photo file." = "Konum verilerini fotoğraf dosyasına ekler.";

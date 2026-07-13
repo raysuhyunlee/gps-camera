@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Opname";
 "Shutter sound" = "Sluitergeluid";
+"This device always plays the photo shutter sound." = "Dit apparaat speelt altijd het sluitergeluid af.";
 "Orientation lock" = "Oriëntatievergrendeling";
 "Include EXIF location" = "EXIF-locatie opnemen";
 "Includes location data in the photo file." = "Neemt locatiegegevens op in het fotobestand.";

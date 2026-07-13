@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Rögzítés";
 "Shutter sound" = "Zárhang";
+"This device always plays the photo shutter sound." = "Ez az eszköz mindig lejátssza a zárhangot.";
 "Orientation lock" = "Tájolászár";
 "Include EXIF location" = "EXIF-helyadatok beágyazása";
 "Includes location data in the photo file." = "Helyadatokat ágyaz a fotófájlba.";

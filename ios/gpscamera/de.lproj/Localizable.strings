@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Aufnahme";
 "Shutter sound" = "Auslöserton";
+"This device always plays the photo shutter sound." = "Dieses Gerät spielt den Auslöserton immer ab.";
 "Orientation lock" = "Ausrichtungssperre";
 "Include EXIF location" = "EXIF-Standort einbetten";
 "Includes location data in the photo file." = "Bettet Standortdaten in die Fotodatei ein.";

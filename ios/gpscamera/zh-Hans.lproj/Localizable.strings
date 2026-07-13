@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "拍摄";
 "Shutter sound" = "快门声";
+"This device always plays the photo shutter sound." = "此设备始终播放拍照快门声。";
 "Orientation lock" = "方向锁定";
 "Include EXIF location" = "包含 EXIF 位置信息";
 "Includes location data in the photo file." = "在照片文件中包含位置数据。";

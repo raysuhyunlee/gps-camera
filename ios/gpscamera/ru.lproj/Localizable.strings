@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Съёмка";
 "Shutter sound" = "Звук затвора";
+"This device always plays the photo shutter sound." = "Это устройство всегда воспроизводит звук затвора.";
 "Orientation lock" = "Блокировка ориентации";
 "Include EXIF location" = "Включать геоданные EXIF";
 "Includes location data in the photo file." = "Добавляет данные о местоположении в файл фото.";

@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Optagelse";
 "Shutter sound" = "Lukkerlyd";
+"This device always plays the photo shutter sound." = "Denne enhed afspiller altid lukkerlyden.";
 "Orientation lock" = "Retningslås";
 "Include EXIF location" = "Inkluder EXIF-placering";
 "Includes location data in the photo file." = "Inkluderer placeringsdata i fotofilen.";

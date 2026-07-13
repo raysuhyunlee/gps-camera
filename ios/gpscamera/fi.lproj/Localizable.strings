@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Kuvaus";
 "Shutter sound" = "Suljinääni";
+"This device always plays the photo shutter sound." = "Tämä laite toistaa aina suljinäänen.";
 "Orientation lock" = "Suunnan lukitus";
 "Include EXIF location" = "Sisällytä EXIF-sijainti";
 "Includes location data in the photo file." = "Sisällyttää sijaintitiedot kuvatiedostoon.";

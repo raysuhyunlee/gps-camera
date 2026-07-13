@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Λήψη";
 "Shutter sound" = "Ήχος κλείστρου";
+"This device always plays the photo shutter sound." = "Αυτή η συσκευή αναπαράγει πάντα τον ήχο του κλείστρου.";
 "Orientation lock" = "Κλείδωμα προσανατολισμού";
 "Include EXIF location" = "Συμπερίληψη τοποθεσίας EXIF";
 "Includes location data in the photo file." = "Περιλαμβάνει δεδομένα τοποθεσίας στο αρχείο φωτογραφίας.";

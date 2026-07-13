@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Snímání";
 "Shutter sound" = "Zvuk závěrky";
+"This device always plays the photo shutter sound." = "Toto zařízení vždy přehraje zvuk spouště.";
 "Orientation lock" = "Zámek orientace";
 "Include EXIF location" = "Vložit polohu EXIF";
 "Includes location data in the photo file." = "Vloží údaje o poloze do souboru fotografie.";

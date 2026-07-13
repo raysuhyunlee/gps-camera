@@ -5,6 +5,8 @@
 
 ## Status
 
+- 2026-07-13: Minimum iOS lowered from 26.5 to 17 (no iOS 18/26-only API in the
+  app; all SDKs clear iOS 15). Shutter-sound suppression degrades on iOS 17.
 - 2026-07-11: Screenshot automation live on iOS: `#if DEBUG` demo mode
   synthesizes an authentic Main screen (pre-arranged scene + curated overlay)
   for App Store captures, framed by a Node compose stage (screenshots.md).
@@ -39,8 +41,11 @@
 ## Product
 
 - App name: GPS Camera
-- Platforms: iOS (SwiftUI), Android (planned)
+- Platforms: iOS 17+ (SwiftUI), Android (planned)
 - One-liner: a camera that burns GPS + location metadata into photos/videos.
+
+Features that need a newer OS degrade rather than gate the app; the only one
+today is photo shutter-sound suppression (iOS 18+, see camera.md "Audio").
 
 ### Business Model
 
@@ -156,6 +161,7 @@ never import each other's UI.
 
 ## Revision History
 
+- 2026-07-13: Minimum iOS set to 17 (was 26.5).
 - 2026-07-10: Onboarding domain added (first-run value priming + permission
   requests); `RootView` gates onboarding vs Main at the root (onboarding.md).
 - 2026-07-08: `L10n.shared.setLanguage` wired in `SettingsStore.onSet` at the

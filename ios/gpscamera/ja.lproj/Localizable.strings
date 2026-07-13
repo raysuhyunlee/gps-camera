@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "撮影";
 "Shutter sound" = "シャッター音";
+"This device always plays the photo shutter sound." = "このデバイスでは常にシャッター音が鳴ります。";
 "Orientation lock" = "画面の向きをロック";
 "Include EXIF location" = "EXIF位置情報を含める";
 "Includes location data in the photo file." = "写真ファイルに位置データを含めます。";

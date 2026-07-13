@@ -143,7 +143,9 @@ nonisolated final class CameraSession {
             if photoOutput.supportedFlashModes.contains(flashMode) {
                 settings.flashMode = flashMode
             }
-            if !shutterSound, photoOutput.isShutterSoundSuppressionSupported {
+            // iOS 17 has no public shutter-sound suppression; the setting is a no-op there.
+            if #available(iOS 18.0, *),
+               !shutterSound, photoOutput.isShutterSoundSuppressionSupported {
                 settings.isShutterSoundSuppressionEnabled = true
             }
             photoOutput.capturePhoto(with: settings, delegate: delegate)

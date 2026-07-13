@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "कैप्चर";
 "Shutter sound" = "शटर ध्वनि";
+"This device always plays the photo shutter sound." = "यह डिवाइस हमेशा शटर की आवाज़ चलाता है।";
 "Orientation lock" = "ओरिएंटेशन लॉक";
 "Include EXIF location" = "EXIF स्थान शामिल करें";
 "Includes location data in the photo file." = "फ़ोटो फ़ाइल में स्थान डेटा शामिल करता है।";

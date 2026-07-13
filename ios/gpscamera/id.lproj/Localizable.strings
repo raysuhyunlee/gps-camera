@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Pengambilan";
 "Shutter sound" = "Suara rana";
+"This device always plays the photo shutter sound." = "Perangkat ini selalu memutar suara rana.";
 "Orientation lock" = "Kunci orientasi";
 "Include EXIF location" = "Sertakan lokasi EXIF";
 "Includes location data in the photo file." = "Menyertakan data lokasi dalam file foto.";

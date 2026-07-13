@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Rejestrowanie";
 "Shutter sound" = "Dźwięk migawki";
+"This device always plays the photo shutter sound." = "To urządzenie zawsze odtwarza dźwięk migawki.";
 "Orientation lock" = "Blokada orientacji";
 "Include EXIF location" = "Dołącz lokalizację EXIF";
 "Includes location data in the photo file." = "Dołącza dane lokalizacji do pliku zdjęcia.";

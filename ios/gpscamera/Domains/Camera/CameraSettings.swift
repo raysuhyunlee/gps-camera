@@ -42,6 +42,15 @@ nonisolated enum CameraCapabilities {
         return dims.isEmpty ? [CaptureQuality.Dimensions(width: 4032, height: 3024)] : dims
     }
 
+    /// False when the photo shutter sound cannot be silenced: iOS 17 has no
+    /// public API for it, and regions that mandate the sound (e.g. JP/KR) report
+    /// it unsupported. Drives the Settings notice; the capture path checks its
+    /// own live output.
+    static var canSuppressShutterSound: Bool {
+        guard #available(iOS 18.0, *) else { return false }
+        return AVCapturePhotoOutput().isShutterSoundSuppressionSupported
+    }
+
     /// Video presets the hardware supports, highest first.
     static func videoOptions() -> [(value: String, title: L10nKey, preset: AVCaptureSession.Preset)] {
         let all: [(String, L10nKey, AVCaptureSession.Preset)] = [
@@ -136,7 +145,11 @@ nonisolated struct CameraSettingsProvider: SettingsProviding {
         let photoDims = CameraCapabilities.photoDimensions()
         let videoOptions = CameraCapabilities.videoOptions()
         return [SettingsSection(id: "camera.capture", titleKey: "Capture", items: [
+            // The toggle stays live where the sound is forced: it still drives the
+            // video start/stop sounds, which the app plays itself.
             SettingItem(key: CameraSettingKey.shutterSound, titleKey: "Shutter sound",
+                        footnoteKey: CameraCapabilities.canSuppressShutterSound
+                            ? nil : "This device always plays the photo shutter sound.",
                         control: .toggle, defaultValue: .bool(true)),
             SettingItem(key: CameraSettingKey.orientationLock, titleKey: "Orientation lock",
                         control: .toggle, defaultValue: .bool(false)),

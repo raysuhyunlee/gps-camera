@@ -20,6 +20,7 @@
 /* Camera */
 "Capture" = "Captura";
 "Shutter sound" = "Som do obturador";
+"This device always plays the photo shutter sound." = "Este dispositivo sempre reproduz o som do obturador.";
 "Orientation lock" = "Bloqueio de orientação";
 "Include EXIF location" = "Incluir localização EXIF";
 "Includes location data in the photo file." = "Inclui dados de localização no arquivo da foto.";
