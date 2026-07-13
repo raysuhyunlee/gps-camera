@@ -30,38 +30,40 @@ struct CameraView: View {
     @State private var showPaywall = false
 
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
+        GeometryReader { geometry in
+            ZStack {
+                Color.black.ignoresSafeArea()
 
-            switch controller.authorization {
-            case .authorized:
-                #if DEBUG
-                // Screenshot demo mode: a pre-arranged scene behind the real
-                // chrome + overlay (the live preview is black in the simulator).
-                if let scene = ScreenshotDemo.current.sceneImage {
-                    // Fill like `Color.black.ignoresSafeArea()` (a flexible
-                    // fill), not a rigid maxHeight frame - the latter expands the
-                    // ZStack past the safe area and drags `controls` up under the
-                    // status bar / off the bottom edge.
-                    Color.black
-                        .overlay { Image(uiImage: scene).resizable().scaledToFill() }
-                        .clipped().ignoresSafeArea()
-                } else {
+                switch controller.authorization {
+                case .authorized:
+                    #if DEBUG
+                    // Screenshot demo mode: a pre-arranged scene behind the real
+                    // chrome + overlay (the live preview is black in the simulator).
+                    if let scene = ScreenshotDemo.current.sceneImage {
+                        // Fill like `Color.black.ignoresSafeArea()` (a flexible
+                        // fill), not a rigid maxHeight frame - the latter expands the
+                        // ZStack past the safe area and drags `controls` up under the
+                        // status bar / off the bottom edge.
+                        Color.black
+                            .overlay { Image(uiImage: scene).resizable().scaledToFill() }
+                            .clipped().ignoresSafeArea()
+                    } else {
+                        CameraPreview(session: controller.previewSession,
+                                      freezeFrame: controller.freezeFrame)
+                            .ignoresSafeArea()
+                    }
+                    #else
                     CameraPreview(session: controller.previewSession,
                                   freezeFrame: controller.freezeFrame)
                         .ignoresSafeArea()
+                    #endif
+                    controls(bottomPadding: geometry.safeAreaInsets.bottom == 0 ? 16 : 0)
+                    if controller.isRecording { recordingIndicator }
+                case .notDetermined:
+                    ProgressView().tint(.white)
+                case .denied:
+                    deniedState
                 }
-                #else
-                CameraPreview(session: controller.previewSession,
-                              freezeFrame: controller.freezeFrame)
-                    .ignoresSafeArea()
-                #endif
-                controls
-                if controller.isRecording { recordingIndicator }
-            case .notDetermined:
-                ProgressView().tint(.white)
-            case .denied:
-                deniedState
             }
         }
         .onAppear {
@@ -146,7 +148,7 @@ struct CameraView: View {
 
     // MARK: - Layout
 
-    private var controls: some View {
+    private func controls(bottomPadding: CGFloat) -> some View {
         VStack(spacing: 0) {
             topSection
             // Pro banner - hosted, not owned (monetization domain): a thin
@@ -170,7 +172,7 @@ struct CameraView: View {
             if controller.availableLenses.count > 1 {
                 lensSelector.padding(.bottom, 12)   // floats over the preview
             }
-            bottomSection
+            bottomSection(bottomPadding: bottomPadding)
         }
     }
 
@@ -186,7 +188,7 @@ struct CameraView: View {
         .background(.black.opacity(0.4), ignoresSafeAreaEdges: .top)
     }
 
-    private var bottomSection: some View {
+    private func bottomSection(bottomPadding: CGFloat) -> some View {
         VStack(spacing: 14) {
             HStack {
                 galleryButton
@@ -199,6 +201,7 @@ struct CameraView: View {
         }
         .padding(.horizontal, 24)
         .padding(.top, 16)
+        .padding(.bottom, bottomPadding)
         .frame(maxWidth: .infinity)
         .background(.black.opacity(0.4), ignoresSafeAreaEdges: .bottom)
     }
