@@ -22,6 +22,14 @@ final class FirebaseTracker: EventTracking {
             FirebaseApp.configure()
         }
         configured = FirebaseApp.app() != nil
+        guard configured else { return }
+        #if DEBUG
+        Analytics.setAnalyticsCollectionEnabled(false)
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(false)
+        #else
+        Analytics.setAnalyticsCollectionEnabled(true)
+        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+        #endif
     }
 
     func track(_ event: Event) {

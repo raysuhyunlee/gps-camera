@@ -2,6 +2,7 @@
 
 ## Status
 
+- 2026-07-14: AdMob SKAdNetwork IDs synced to Google's current list.
 - 2026-07-07: Nudge orchestrator + in-app review implemented on iOS
   (`NudgeOrchestrator`): paywall nudge at lifetime-capture milestones, review
   attempt on the first capture of a session from session 3; at most one nudge
@@ -17,9 +18,7 @@
   (`Control.custom` row).
 - 2026-07-06: iOS paywall + IAP implemented on RevenueCat: `ProStore`
   (offerings, purchase, restore, live entitlement + offline cache) and
-  `PaywallView`; locked pro settings rows open the paywall. TODO: create the
-  gpscamera RevenueCat project and replace the placeholder API keys in
-  `ProStore.swift`.
+  `PaywallView`; locked pro settings rows open the paywall.
 - 2026-07-05: `Entitlement` + `EntitlementProviding` seam added;
   `FixedEntitlement` stub kept for previews/tests.
 - 2026-06-30: Initial spec.
@@ -46,9 +45,8 @@
   (same setup as Travel English) on both platforms.
 - RevenueCat config: entitlement `pro`; current offering carries the monthly +
   lifetime packages; debug builds use the Test Store key, release the platform
-  key (placeholders in `ProStore.swift` until the project is created).
-- Store product IDs: `com.raysuhyunlee.gpscamera.pro.monthly`,
-  `com.raysuhyunlee.gpscamera.pro.lifetime`.
+  key.
+- Store product IDs: `gps_camera_monthly_subscription`, `gpscamera_lifetime`.
 - Reference: competitor one-time ₩15,000.
 - **Restore purchase**: re-validates entitlement via RevenueCat. Reachable
   from the paywall link row and the Settings restore row (result alert:
@@ -99,8 +97,9 @@ hosts stay monetization-unaware:
   then SDK init + preload. Sequenced via `RootView.onOnboarded` so ATT never
   stacks on the onboarding page. One interstitial stays preloaded; dismissing
   loads the next. No fill / offline = the ad is silently skipped, never awaited.
-- **IDs**: debug builds use Google's sample IDs; the release unit ID and
-  `GADApplicationIdentifier` are placeholders until the AdMob app is created.
+- **IDs**: debug builds use Google's sample ID. Release uses the production
+  interstitial ID bundled in the app. `GADApplicationIdentifier` is the
+  production app ID.
 - **Format**: only standard, always-dismissible interstitials. No deceptive,
   fake-system, or unclosable creatives - enforced via ad-network/format choice.
 
@@ -160,6 +159,7 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-14: AdMob SKAdNetwork IDs synced.
 - 2026-07-07: Photo/video nudge paths merged (`captureCompleted`, single
   `onCapture` hook); paywall milestones count lifetime captures.
 - 2026-07-07: Ad cadence counts photos + videos, read from the `UsageMetrics`

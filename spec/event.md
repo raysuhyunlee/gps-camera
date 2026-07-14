@@ -2,6 +2,8 @@
 
 ## Status
 
+- 2026-07-14: Firebase Analytics and Crashlytics collection disabled in debug
+  builds and enabled in release builds.
 - 2026-07-07: `review_requested` added; `paywall_shown` gains the `nudge`
   source (monetization nudge orchestrator).
 - 2026-07-07: `ad_shown` added (monetization interstitial).
@@ -41,27 +43,28 @@ Event = enum, one case per event, typed parameters
 ### Backend
 
 - Firebase Analytics + Crashlytics
+- Collection is disabled in debug builds and enabled in release builds.
 - No IDFA / ATT prompt; default SDK config only.
 - The adapter configures Firebase only when `GoogleService-Info.plist` is in
   the bundle; otherwise every call is a no-op (builds and tests need no plist).
 
 ### Event Catalog
 
-| Event                | When                         | Params          |
-| -------------------- | ---------------------------- | --------------- |
-| `capture_completed`  | photo/video capture succeeds | kind            |
-| `capture_failed`     | capture errors               | kind, reason    |
-| `gallery_opened`     | gallery screen shown         | -               |
-| `shared`             | shared media                 | -               |
-| `paywall_shown`      | paywall presented            | source: main_banner, settings_banner, locked_setting, nudge |
-| `purchase_completed` | IAP purchase succeeds        | product         |
-| `purchase_failed`    | IAP purchase errors          | product, reason |
-| `settings_changed`   | a setting value changes      | key, value      |
-| `ad_shown`           | interstitial ad presented    | -               |
-| `review_requested`   | in-app review attempt (OS may not show a prompt) | - |
-| `onboarding_started` | first-run flow appears       | -               |
-| `onboarding_completed` | first-run flow finishes    | -               |
-| `onboarding_permission` | a permission dialog resolves in onboarding | type: location, camera, photos; granted |
+| Event                   | When                                             | Params                                                      |
+| ----------------------- | ------------------------------------------------ | ----------------------------------------------------------- |
+| `capture_completed`     | photo/video capture succeeds                     | kind                                                        |
+| `capture_failed`        | capture errors                                   | kind, reason                                                |
+| `gallery_opened`        | gallery screen shown                             | -                                                           |
+| `shared`                | shared media                                     | -                                                           |
+| `paywall_shown`         | paywall presented                                | source: main_banner, settings_banner, locked_setting, nudge |
+| `purchase_completed`    | IAP purchase succeeds                            | product                                                     |
+| `purchase_failed`       | IAP purchase errors                              | product, reason                                             |
+| `settings_changed`      | a setting value changes                          | key, value                                                  |
+| `ad_shown`              | interstitial ad presented                        | -                                                           |
+| `review_requested`      | in-app review attempt (OS may not show a prompt) | -                                                           |
+| `onboarding_started`    | first-run flow appears                           | -                                                           |
+| `onboarding_completed`  | first-run flow finishes                          | -                                                           |
+| `onboarding_permission` | a permission dialog resolves in onboarding       | type: location, camera, photos; granted                     |
 
 Global params (included in all events, provided by foundation)
 ```
@@ -108,6 +111,7 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-14: Analytics and Crashlytics collection made release-only.
 - 2026-07-10: `onboarding_started` / `onboarding_completed` /
   `onboarding_permission` events (onboarding.md).
 - 2026-07-07: `review_requested` event + `nudge` paywall source (nudge
