@@ -1,1 +1,1 @@
-Thanks for using GPS Camera! This release includes bug fixes and improvements.
+GPS Camera is now available!

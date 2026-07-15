@@ -6,3 +6,6 @@ FEATURES
 - Live overlay: coordinates, address, compass, date and time
 - Drag the overlay anywhere; customize style, size, and fields
 - Auto-name files with location, date, and custom text
+
+Terms of Use (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacy Policy: https://www.raysuhyunlee.com/apps/gps-camera/privacy

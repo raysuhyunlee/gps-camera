@@ -12,7 +12,7 @@ platform :ios do
   end
 
   desc "Build and upload a release build to App Store Connect"
-  lane :release do
+  lane :release do |options|
     app_store_connect_api_key(
       key_id: ENV.fetch("ASC_KEY_ID"),
       issuer_id: ENV.fetch("ASC_ISSUER_ID"),
@@ -31,6 +31,7 @@ platform :ios do
     # Upload composed screenshots only when the compose stage has produced them
     # (screenshots.md); otherwise leave the store listing's screenshots untouched.
     has_screenshots = !Dir.glob("fastlane/screenshots/*/*.png").empty?
+    skip_screenshots = options[:skip_screenshots].to_s == "true"
 
     upload_to_app_store(
       precheck_include_in_app_purchases: false,
@@ -39,7 +40,7 @@ platform :ios do
       force: true,
       # metadata/ holds en-US only, so the listing is English on every storefront.
       skip_metadata: false,
-      skip_screenshots: !has_screenshots
+      skip_screenshots: skip_screenshots || !has_screenshots
     )
   end
 end
