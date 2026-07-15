@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "值得信赖的记录";
 "Drop it straight into your report" = "可直接用于你的报告";
 "Almost ready" = "就快好了";
-"Enable access to capture and stamp your photos." = "允许访问以拍摄照片并添加信息戳。";
+"The following permissions are required for the app to work properly." = "此 App 需要以下权限才能正常运行。";
 "Location" = "位置";
 "Stamp coordinates, altitude, and address onto each photo." = "为每张照片记录坐标、海拔和地址。";
 "Camera" = "相机";
 "Capture the photos and videos you'll stamp." = "拍摄需要标记的照片和视频。";
 "Photos" = "照片";
 "Save every capture to your photo library." = "将每次拍摄保存到你的照片图库。";
-"Enable" = "启用";
 "Empire State Building, New York" = "帝国大厦，纽约";
 
 /* Camera */
 "Mode" = "模式";
-

@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "Ένα αξιόπιστο τεκμήριο";
 "Drop it straight into your report" = "Έτοιμες για την αναφορά σας";
 "Almost ready" = "Σχεδόν έτοιμο";
-"Enable access to capture and stamp your photos." = "Ενεργοποιήστε την πρόσβαση για λήψη και σφράγιση των φωτογραφιών σας.";
+"The following permissions are required for the app to work properly." = "Απαιτούνται οι ακόλουθες άδειες για τη σωστή λειτουργία της εφαρμογής.";
 "Location" = "Τοποθεσία";
 "Stamp coordinates, altitude, and address onto each photo." = "Προσθέτει συντεταγμένες, υψόμετρο και διεύθυνση σε κάθε φωτογραφία.";
 "Camera" = "Κάμερα";
 "Capture the photos and videos you'll stamp." = "Τραβήξτε τις φωτογραφίες και τα βίντεο που θέλετε να σημειώσετε.";
 "Photos" = "Φωτογραφίες";
 "Save every capture to your photo library." = "Αποθηκεύει κάθε λήψη στη βιβλιοθήκη φωτογραφιών σας.";
-"Enable" = "Ενεργοποίηση";
 "Empire State Building, New York" = "Empire State Building, Νέα Υόρκη";
 
 /* Camera */
 "Mode" = "Λειτουργία";
-

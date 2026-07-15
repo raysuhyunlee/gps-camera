@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "Megbízható dokumentáció";
 "Drop it straight into your report" = "Készen a jelentésedhez";
 "Almost ready" = "Majdnem kész";
-"Enable access to capture and stamp your photos." = "Engedélyezze a hozzáférést a fényképek készítéséhez és bélyegzéséhez.";
+"The following permissions are required for the app to work properly." = "Az alkalmazás megfelelő működéséhez a következő engedélyek szükségesek.";
 "Location" = "Helyzet";
 "Stamp coordinates, altitude, and address onto each photo." = "Koordinátákat, magasságot és címet ad minden fotóhoz.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Készítsd el a fotókat és videókat, amelyeket meg szeretnél jelölni.";
 "Photos" = "Fotók";
 "Save every capture to your photo library." = "Minden felvételt elment a fényképtárba.";
-"Enable" = "Engedélyezés";
 "Empire State Building, New York" = "Empire State Building, New York";
 
 /* Camera */
 "Mode" = "Mód";
-

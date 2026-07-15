@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "Güvenilir bir kayıt";
 "Drop it straight into your report" = "Raporunuza hazır";
 "Almost ready" = "Neredeyse hazır";
-"Enable access to capture and stamp your photos." = "Fotoğraflarınızı çekmek ve damgalamak için erişime izin verin.";
+"The following permissions are required for the app to work properly." = "Uygulamanın düzgün çalışması için aşağıdaki izinler gereklidir.";
 "Location" = "Konum";
 "Stamp coordinates, altitude, and address onto each photo." = "Her fotoğrafa konum, rakım ve adres ekler.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "İşaretleyeceğiniz fotoğraf ve videoları çekin.";
 "Photos" = "Fotoğraflar";
 "Save every capture to your photo library." = "Her çekimi fotoğraf kitaplığınıza kaydeder.";
-"Enable" = "Etkinleştir";
 "Empire State Building, New York" = "Empire State Binası, New York";
 
 /* Camera */
 "Mode" = "Mod";
-

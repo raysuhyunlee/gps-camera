@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "Bằng chứng đáng tin cậy";
 "Drop it straight into your report" = "Sẵn sàng cho báo cáo của bạn";
 "Almost ready" = "Gần xong rồi";
-"Enable access to capture and stamp your photos." = "Cho phép truy cập để chụp và đóng dấu ảnh của bạn.";
+"The following permissions are required for the app to work properly." = "Ứng dụng cần các quyền sau để hoạt động bình thường.";
 "Location" = "Vị trí";
 "Stamp coordinates, altitude, and address onto each photo." = "Thêm tọa độ, độ cao và địa chỉ vào mỗi ảnh.";
 "Camera" = "Máy ảnh";
 "Capture the photos and videos you'll stamp." = "Chụp ảnh và quay video bạn muốn ghi dấu.";
 "Photos" = "Ảnh";
 "Save every capture to your photo library." = "Lưu mọi ảnh và video bạn chụp vào thư viện ảnh của bạn.";
-"Enable" = "Bật";
 "Empire State Building, New York" = "Empire State Building, New York";
 
 /* Camera */
 "Mode" = "Chế độ";
-

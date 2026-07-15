@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "Spolehlivý záznam";
 "Drop it straight into your report" = "Připraveno do vaší zprávy";
 "Almost ready" = "Téměř hotovo";
-"Enable access to capture and stamp your photos." = "Povolte přístup, abyste mohli fotit a opatřit fotky razítkem.";
+"The following permissions are required for the app to work properly." = "Pro správné fungování aplikace jsou vyžadována následující oprávnění.";
 "Location" = "Poloha";
 "Stamp coordinates, altitude, and address onto each photo." = "Přidává ke každé fotce souřadnice, nadmořskou výšku a adresu.";
 "Camera" = "Fotoaparát";
 "Capture the photos and videos you'll stamp." = "Pořiďte fotky a videa, která chcete označit.";
 "Photos" = "Fotky";
 "Save every capture to your photo library." = "Uloží každý záznam do knihovny Fotek.";
-"Enable" = "Povolit";
 "Empire State Building, New York" = "Empire State Building, New York";
 
 /* Camera */
 "Mode" = "Režim";
-

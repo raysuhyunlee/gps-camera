@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "Catatan yang bisa diandalkan";
 "Drop it straight into your report" = "Siap untuk laporan Anda";
 "Almost ready" = "Hampir siap";
-"Enable access to capture and stamp your photos." = "Aktifkan akses untuk mengambil dan menandai foto Anda.";
+"The following permissions are required for the app to work properly." = "Izin berikut diperlukan agar aplikasi dapat berfungsi dengan baik.";
 "Location" = "Lokasi";
 "Stamp coordinates, altitude, and address onto each photo." = "Menambahkan koordinat, ketinggian, dan alamat ke setiap foto.";
 "Camera" = "Kamera";
 "Capture the photos and videos you'll stamp." = "Ambil foto dan video yang ingin Anda tandai.";
 "Photos" = "Foto";
 "Save every capture to your photo library." = "Menyimpan setiap tangkapan ke pustaka foto Anda.";
-"Enable" = "Aktifkan";
 "Empire State Building, New York" = "Empire State Building, New York";
 
 /* Camera */
 "Mode" = "Mode";
-

@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "사진으로 증빙하세요";
 "Drop it straight into your report" = "보고서에 바로 활용하세요";
 "Almost ready" = "거의 다 됐어요";
-"Enable access to capture and stamp your photos." = "사진을 촬영하고 정보를 새기려면 권한을 허용하세요.";
+"The following permissions are required for the app to work properly." = "이 앱이 올바르게 작동하려면 다음 권한이 필요합니다.";
 "Location" = "위치";
 "Stamp coordinates, altitude, and address onto each photo." = "각 사진에 좌표, 고도, 주소를 기록해요.";
 "Camera" = "카메라";
 "Capture the photos and videos you'll stamp." = "기록할 사진과 동영상을 촬영해요.";
 "Photos" = "사진";
 "Save every capture to your photo library." = "촬영한 모든 사진과 동영상을 사진 보관함에 저장해요.";
-"Enable" = "사용 설정";
 "Empire State Building, New York" = "엠파이어 스테이트 빌딩, 뉴욕";
 
 /* Camera */
 "Mode" = "모드";
-

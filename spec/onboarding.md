@@ -2,10 +2,12 @@
 
 ## Status
 
-- 2026-07-13: Photos replaces the mic on the permissions page; Enable now
+- 2026-07-15: Permission copy explains that access is required for the app to
+  work properly; the permission action is named Continue.
+- 2026-07-13: Photos replaces the mic on the permissions page; the action
   requests location -> camera -> photos. Photo access is required to capture at
   all (camera.md "Storage"); the mic is requested on the first recording.
-- 2026-07-12: Permissions page adds a mic row; Enable now requests
+- 2026-07-12: Permissions page adds a mic row; the action requests
   location -> camera -> mic. Mic is optional (silent video on deny).
 - 2026-07-10: Initial spec + iOS implementation. First-run flow (1 value screen
   + 1 permissions page) gated at the composition root; completed flag in the
@@ -34,11 +36,11 @@ Universal, linear, shown once on first launch:
 ```
 1. Value        sample stamped photo + "Prove where you were." + 3 proof bullets
                 (burn location/time, holds up as evidence, drop into your report)
-2. Permissions  three rationales + Enable -> requests location, then camera, then photos
+2. Permissions  three rationales + Continue -> requests location, then camera, then photos
 3. -> Main
 ```
 
-- One "Enable" button requests location, camera, then photos. Each request starts
+- One "Continue" button requests location, camera, then photos. Each request starts
   only after the previous authorization callback resolves.
 - Non-blocking: after the dialogs resolve, advance to Main regardless of
   grant/deny. A denied camera lands on Main's existing denied state; a denied
@@ -98,6 +100,7 @@ Android: planned.
 
 ## Revision History
 
-- 2026-07-13: Photos replaces the mic on the permissions page + Enable sequence.
-- 2026-07-12: Mic added to the permissions page + Enable sequence.
+- 2026-07-15: Permission rationale updated + action renamed Continue.
+- 2026-07-13: Photos replaces the mic on the permissions page + request sequence.
+- 2026-07-12: Mic added to the permissions page + request sequence.
 - 2026-07-10: Initial onboarding spec + iOS implementation.

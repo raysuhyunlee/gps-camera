@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "Надёжное подтверждение";
 "Drop it straight into your report" = "Готово для вашего отчёта";
 "Almost ready" = "Почти готово";
-"Enable access to capture and stamp your photos." = "Разрешите доступ, чтобы снимать и отмечать фотографии.";
+"The following permissions are required for the app to work properly." = "Для правильной работы приложения необходимы следующие разрешения.";
 "Location" = "Геопозиция";
 "Stamp coordinates, altitude, and address onto each photo." = "Добавляет к каждому фото координаты, высоту и адрес.";
 "Camera" = "Камера";
 "Capture the photos and videos you'll stamp." = "Снимайте фото и видео, к которым добавятся данные.";
 "Photos" = "Фото";
 "Save every capture to your photo library." = "Сохраняет каждый снимок в медиатеку.";
-"Enable" = "Разрешить";
 "Empire State Building, New York" = "Эмпайр-Стейт-Билдинг, Нью-Йорк";
 
 /* Camera */
 "Mode" = "Режим";
-

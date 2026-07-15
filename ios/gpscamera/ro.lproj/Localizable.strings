@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "O dovadă de încredere";
 "Drop it straight into your report" = "Gata pentru raportul tău";
 "Almost ready" = "Aproape gata";
-"Enable access to capture and stamp your photos." = "Permite accesul pentru a fotografia și a marca imaginile.";
+"The following permissions are required for the app to work properly." = "Următoarele permisiuni sunt necesare pentru ca aplicația să funcționeze corect.";
 "Location" = "Locație";
 "Stamp coordinates, altitude, and address onto each photo." = "Adaugă coordonate, altitudine și adresă pe fiecare fotografie.";
 "Camera" = "Cameră";
 "Capture the photos and videos you'll stamp." = "Fotografiază și filmează ce vrei să marchezi.";
 "Photos" = "Poze";
 "Save every capture to your photo library." = "Salvează fiecare captură în biblioteca foto.";
-"Enable" = "Activează";
 "Empire State Building, New York" = "Empire State Building, New York";
 
 /* Camera */
 "Mode" = "Mod";
-

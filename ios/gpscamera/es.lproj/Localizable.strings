@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "Un registro en el que confiar";
 "Drop it straight into your report" = "Listas para tu informe";
 "Almost ready" = "Casi listo";
-"Enable access to capture and stamp your photos." = "Permite el acceso para capturar y sellar tus fotos.";
+"The following permissions are required for the app to work properly." = "Se necesitan los siguientes permisos para que la app funcione correctamente.";
 "Location" = "Ubicación";
 "Stamp coordinates, altitude, and address onto each photo." = "Añade coordenadas, altitud y dirección a cada foto.";
 "Camera" = "Cámara";
 "Capture the photos and videos you'll stamp." = "Haz las fotos y vídeos que vas a marcar.";
 "Photos" = "Fotos";
 "Save every capture to your photo library." = "Guarda cada captura en tu fototeca.";
-"Enable" = "Activar";
 "Empire State Building, New York" = "Empire State Building, Nueva York";
 
 /* Camera */
 "Mode" = "Modo";
-

@@ -141,16 +141,14 @@
 "Your photos hold up as evidence" = "信頼できる記録として";
 "Drop it straight into your report" = "そのまま報告書に使える";
 "Almost ready" = "あと少しです";
-"Enable access to capture and stamp your photos." = "写真の撮影とスタンプの記録を行うには、アクセスを許可してください。";
+"The following permissions are required for the app to work properly." = "このアプリが正しく動作するには、次の権限が必要です。";
 "Location" = "位置情報";
 "Stamp coordinates, altitude, and address onto each photo." = "各写真に座標・高度・住所を記録します。";
 "Camera" = "カメラ";
 "Capture the photos and videos you'll stamp." = "記録する写真や動画を撮影します。";
 "Photos" = "写真";
 "Save every capture to your photo library." = "撮影した写真や動画を写真ライブラリに保存します。";
-"Enable" = "許可する";
 "Empire State Building, New York" = "エンパイア・ステート・ビル、ニューヨーク";
 
 /* Camera */
 "Mode" = "モード";
-
