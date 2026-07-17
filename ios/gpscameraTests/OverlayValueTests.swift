@@ -39,10 +39,10 @@ struct OverlayFormatterTests {
         let date = Date(timeIntervalSince1970: 0)
         #expect(OverlayFormatter.time(date, locale: Locale(identifier: "en_GB"),
                                       timeZone: .gmt)
-                == "01/01/1970, 0:00:00")
+                == "01/01/1970, 00:00:00")
         #expect(OverlayFormatter.time(date, locale: Locale(identifier: "de_DE"),
                                       timeZone: .gmt)
-                == "1.1.1970, 0:00:00")
+                == "1.1.1970, 00:00:00")
     }
 }
 
