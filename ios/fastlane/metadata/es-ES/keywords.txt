@@ -1,0 +1,1 @@
+marca de tiempo,geolocalización,coordenadas,latitud,longitud,altitud,exif,brújula,topografía

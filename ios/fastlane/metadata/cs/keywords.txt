@@ -1,0 +1,1 @@
+časové razítko,souřadnice,šířka,délka,výška,EXIF,geolokace,GIS,datum,kompas,geodézie,adresa,kontrola

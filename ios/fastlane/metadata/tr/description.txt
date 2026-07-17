@@ -1,0 +1,11 @@
+Fotoğraflarınızın nerede çekildiğini kaydedin.
+
+GPS Camera, çekim sırasında anlık koordinatları, adresi, yüksekliği, pusula yönünü ve saati fotoğraf ve videolarınıza işler. Kaplama görüntüye kalıcı olarak işlenir ve EXIF meta verilerine yazılır; böylece bir çekimin nerede ve ne zaman yapıldığını kanıtlayabilirsiniz. Şantiye kayıtları, denetimler, arazi ölçümleri, emlak çalışmaları ve sigorta talepleri için tasarlanmıştır.
+
+ÖZELLİKLER
+- Canlı kaplama: koordinatlar, adres, pusula, tarih ve saat
+- Kaplamayı istediğiniz yere sürükleyin; stilini, boyutunu ve alanlarını özelleştirin
+- Dosyaları konum, tarih ve özel metinle otomatik adlandırın
+
+Kullanım Koşulları (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Gizlilik Politikası: https://www.raysuhyunlee.com/apps/gps-camera/privacy

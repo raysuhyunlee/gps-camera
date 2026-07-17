@@ -1,0 +1,11 @@
+Leg vast waar uw foto's zijn gemaakt.
+
+GPS Camera plaatst tijdens het maken actuele coördinaten, het adres, de hoogte, kompasrichting en tijd op uw foto's en video's. De overlay wordt permanent in het beeld vastgelegd en in de EXIF-metagegevens geschreven. Zo kunt u aantonen waar en wanneer een opname is gemaakt. Geschikt voor bouwplaatsregistratie, inspecties, landmetingen, vastgoed en verzekeringsclaims.
+
+FUNCTIES
+- Live-overlay: coördinaten, adres, kompas, datum en tijd
+- Sleep de overlay naar elke gewenste plek en pas stijl, grootte en velden aan
+- Geef bestanden automatisch een naam met locatie, datum en eigen tekst
+
+Gebruiksvoorwaarden (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privacybeleid: https://www.raysuhyunlee.com/apps/gps-camera/privacy

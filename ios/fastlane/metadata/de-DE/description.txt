@@ -1,0 +1,11 @@
+Behalten Sie im Blick, wo Ihre Fotos aufgenommen wurden.
+
+GPS Camera versieht Ihre Fotos und Videos bereits bei der Aufnahme mit aktuellen Koordinaten, Adresse, Höhe, Kompassrichtung und Uhrzeit. Die Einblendung wird fest im Bild gespeichert und in die EXIF-Metadaten geschrieben. So können Sie nachweisen, wann und wo eine Aufnahme entstanden ist. Ideal für Baustellendokumentation, Inspektionen, Landvermessung, Immobilien und Versicherungsfälle.
+
+FUNKTIONEN
+- Live-Einblendung: Koordinaten, Adresse, Kompass, Datum und Uhrzeit
+- Platzieren Sie die Einblendung frei und passen Sie Stil, Größe und Felder an
+- Automatische Dateinamen aus Standort, Datum und eigenem Text
+
+Nutzungsbedingungen (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Datenschutzrichtlinie: https://www.raysuhyunlee.com/apps/gps-camera/privacy

@@ -38,8 +38,12 @@ nonisolated enum OverlayFormatter {
     /// overlay.style.dateFormat (pro) once the settings framework lands.
     static func time(_ date: Date, locale: Locale = .current,
                      timeZone: TimeZone = .current) -> String {
-        date.formatted(Date.FormatStyle(date: .numeric, time: .standard,
-                                        locale: locale, timeZone: timeZone))
+        let formatter = DateFormatter()
+        formatter.locale = locale
+        formatter.timeZone = timeZone
+        formatter.dateFormat = DateFormatter.dateFormat(
+            fromTemplate: "yMdHms", options: 0, locale: locale)
+        return formatter.string(from: date)
     }
 
     private static func dms(_ degrees: Double, positive: String, negative: String) -> String {

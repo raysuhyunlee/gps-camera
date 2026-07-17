@@ -1,0 +1,11 @@
+Saiba exatamente onde suas fotos foram tiradas.
+
+O GPS Camera adiciona coordenadas em tempo real, endereço, altitude, bússola e horário às suas fotos e aos seus vídeos no momento da captura. A sobreposição fica gravada na imagem e também nos metadados EXIF, permitindo comprovar onde e quando cada registro foi feito. Ideal para diários de obra, inspeções, levantamentos topográficos, imóveis e sinistros de seguros.
+
+RECURSOS
+- Sobreposição em tempo real: coordenadas, endereço, bússola, data e hora
+- Arraste a sobreposição para qualquer posição e personalize o estilo, o tamanho e os campos
+- Nomeie arquivos automaticamente usando localização, data e texto personalizado
+
+Termos de Uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Política de Privacidade: https://www.raysuhyunlee.com/apps/gps-camera/privacy

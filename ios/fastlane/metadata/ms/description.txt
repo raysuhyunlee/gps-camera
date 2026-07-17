@@ -1,0 +1,11 @@
+Simpan rekod lokasi setiap foto anda.
+
+GPS Camera mencap koordinat langsung, alamat, ketinggian, arah kompas dan masa pada foto dan video semasa anda merakam. Tindanan dibenamkan ke dalam imej dan lokasi ditulis pada metadata EXIF, supaya anda dapat membuktikan tempat dan masa rakaman dibuat. Dibina untuk log tapak kerja, pemeriksaan, ukur tanah, urusan hartanah dan tuntutan insurans.
+
+CIRI-CIRI
+- Tindanan langsung: koordinat, alamat, kompas, tarikh dan masa
+- Alihkan tindanan ke mana-mana dan sesuaikan gaya, saiz serta medan
+- Namakan fail secara automatik menggunakan lokasi, tarikh dan teks tersuai
+
+Terma Penggunaan (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Dasar Privasi: https://www.raysuhyunlee.com/apps/gps-camera/privacy

@@ -24,7 +24,16 @@ struct OverlayLiveView: View {
                                       margin: OverlayLayerMetrics.margin * scale)
             OverlayLayer(snapshot: snapshot, settings: renderer.settings,
                          mapImage: renderer.mapImage)
-                .onGeometryChange(for: CGSize.self, of: \.size) { layerSize = $0 }
+                // Round + only write on change. `layerSize` feeds `footprint`,
+                // which sizes the frame below and re-proposes to this same layer.
+                // Some scripts (e.g. the address in Korean/Thai/Arabic) measure a
+                // hair differently each pass, so an un-guarded write oscillates
+                // forever - the body loops and no frame ever renders (white screen).
+                .onGeometryChange(for: CGSize.self, of: \.size) { size in
+                    let rounded = CGSize(width: size.width.rounded(),
+                                         height: size.height.rounded())
+                    if rounded != layerSize { layerSize = rounded }
+                }
                 .scaleEffect(scale)
                 .rotationEffect(OverlayAnchor.angle(for: orientation))
                 // The rotated layer's screen-space bounding box, so quarter

@@ -13,6 +13,12 @@
 import UIKit
 
 struct ScreenshotDemo {
+    enum Screen: String {
+        case main
+        case settings
+        case gallery
+    }
+
     /// Active when launched with `-ScreenshotDemo 1` (UITest or `simctl --args`).
     let isActive: Bool
     /// Scene id from `-Scene <id>`; loads `screenshot-scene-<id>.jpg` from the bundle.
@@ -20,6 +26,12 @@ struct ScreenshotDemo {
     /// `-ScreenshotPro 1` (default) forces `.pro` for clean shots; `0` keeps
     /// `.free` so the paywall + banner render for their own screenshots.
     let forcePro: Bool
+    /// Store locale requested by the direct-capture pipeline. This avoids
+    /// simulator foreground failures while rapidly switching writing systems.
+    let requestedLocale: String?
+    /// Direct-capture pose. This bypasses flaky UI-test navigation while still
+    /// rendering the real product screens.
+    let screen: Screen
 
     static let current = ScreenshotDemo()
 
@@ -32,6 +44,8 @@ struct ScreenshotDemo {
         isActive = flag("-ScreenshotDemo") == "1"
         scene = flag("-Scene")
         forcePro = flag("-ScreenshotPro") != "0"
+        requestedLocale = flag("-ScreenshotLocale")
+        screen = Screen(rawValue: flag("-ScreenshotScreen") ?? "main") ?? .main
     }
 
     /// The scene photo drawn behind the camera feed; nil falls back to the real
@@ -63,7 +77,9 @@ struct ScreenshotDemo {
     /// The app-language code (L10n) for this run, derived from the standard
     /// `-AppleLanguages` fastlane snapshot injects. nil = leave the app default.
     var locale: String? {
-        guard isActive, let pref = Locale.preferredLanguages.first else { return nil }
+        guard isActive,
+              let pref = requestedLocale ?? Locale.preferredLanguages.first
+        else { return nil }
         let codes = L10n.languages.map(\.code)
         if codes.contains(pref) { return pref }                 // exact
         if let scripted = codes.first(where: { pref.hasPrefix($0) }) {
@@ -72,6 +88,11 @@ struct ScreenshotDemo {
         var base = pref.split(separator: "-").first.map(String.init) ?? pref
         base = Self.localeAliases[base] ?? base                 // store "no" -> L10n "nb"
         return codes.first { $0 == base || $0.hasPrefix(base + "-") }
+    }
+
+    var isRightToLeft: Bool {
+        guard let locale else { return false }
+        return locale == "ar" || locale == "he"
     }
 
     /// App Store storefront codes whose base differs from the L10n code.

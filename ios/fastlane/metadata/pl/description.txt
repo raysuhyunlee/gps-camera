@@ -1,0 +1,11 @@
+Dokładne miejsce wykonania każdego zdjęcia zawsze pod ręką.
+
+GPS Camera umieszcza bieżące współrzędne, adres, wysokość, kierunek kompasu i czas na zdjęciach oraz filmach już w chwili rejestrowania. Dane są trwale nanoszone na obraz i zapisywane w metadanych EXIF, co pozwala potwierdzić miejsce i czas wykonania ujęcia. Aplikacja sprawdzi się w dokumentacji placu budowy, inspekcjach, pomiarach geodezyjnych, obrocie nieruchomościami i zgłoszeniach ubezpieczeniowych.
+
+FUNKCJE
+- Nakładka na żywo: współrzędne, adres, kompas, data i godzina
+- Swobodne przenoszenie nakładki oraz dostosowywanie stylu, rozmiaru i pól
+- Automatyczne nazwy plików z lokalizacją, datą i własnym tekstem
+
+Warunki użytkowania (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Polityka prywatności: https://www.raysuhyunlee.com/apps/gps-camera/privacy

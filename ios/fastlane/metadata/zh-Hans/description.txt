@@ -1,0 +1,11 @@
+轻松记录每张照片的拍摄地点。
+
+GPS Camera 可在拍摄照片和视频时，将实时坐标、地址、海拔、指南针方向和时间直接添加到画面中。位置信息不仅会清晰显示在图像上，还会写入 EXIF 元数据，便于核实照片的拍摄地点和时间。适用于工地日志、现场巡检、土地测量、房地产记录和保险理赔等场景。
+
+主要功能
+- 实时信息叠加：坐标、地址、指南针、日期和时间
+- 可将信息拖动到任意位置，并自定义样式、大小和显示字段
+- 根据位置、日期和自定义文字自动命名文件
+
+使用条款 (EULA)：https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+隐私政策：https://www.raysuhyunlee.com/apps/gps-camera/privacy

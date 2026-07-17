@@ -1,0 +1,1 @@
+tijdstempel,geotag,locatie,coördinaten,breedtegraad,lengtegraad,hoogte,kompas,exif,landmeting

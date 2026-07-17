@@ -1,0 +1,1 @@
+carimbo,hora,coordenadas,latitude,longitude,altitude,EXIF,localização,bússola,topografia,vistoria

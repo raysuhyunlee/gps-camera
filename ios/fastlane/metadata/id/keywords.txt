@@ -1,0 +1,1 @@
+stempel waktu,geotag,lokasi,koordinat,lintang,bujur,ketinggian,kompas,exif,metadata,survei

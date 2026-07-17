@@ -1,0 +1,1 @@
+tidsstempel,koordinater,breddegrad,længdegrad,højde,EXIF,geodata,GIS,dato,kompas,landmåling,adresse

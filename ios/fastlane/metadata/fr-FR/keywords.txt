@@ -1,0 +1,1 @@
+gps,photo,date,heure,lieu,coordonnées,latitude,longitude,altitude,boussole,exif,géolocalisation

@@ -1,0 +1,11 @@
+Hold oversikt over hvor bildene dine ble tatt.
+
+GPS Camera stempler sanntidskoordinater, adresse, høyde, kompassretning og klokkeslett på bildene og videoene dine idet du tar dem. Overlayet brennes inn i bildet og skrives til EXIF-metadataene, slik at du kan dokumentere hvor og når opptaket ble gjort. Utviklet for byggeplasslogger, inspeksjoner, landmåling, eiendom og forsikringskrav.
+
+FUNKSJONER
+- Live-overlay: koordinater, adresse, kompass, dato og klokkeslett
+- Flytt overlayet hvor som helst, og tilpass stil, størrelse og felt
+- Gi filer automatiske navn med posisjon, dato og egendefinert tekst
+
+Bruksvilkår (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Personvernerklæring: https://www.raysuhyunlee.com/apps/gps-camera/privacy

@@ -1,0 +1,1 @@
+dấu thời gian,tọa độ,vĩ độ,kinh độ,độ cao,EXIF,định vị,GIS,ngày,la bàn,khảo sát,địa chỉ,hiện trường

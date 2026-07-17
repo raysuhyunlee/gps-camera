@@ -105,7 +105,7 @@ private struct HighlightingForm<Content: View>: View {
     var body: some View {
         ScrollViewReader { proxy in
             Form { content }
-                .task {
+                .task(id: highlight) {
                     guard let highlight else { return }
                     try? await Task.sleep(for: .milliseconds(400))
                     withAnimation { proxy.scrollTo(highlight, anchor: .center) }

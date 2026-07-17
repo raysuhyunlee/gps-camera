@@ -1,0 +1,1 @@
+timestamp,geotag,coordinate,latitudine,longitudine,altitudine,exif,geolocalizzazione,bussola

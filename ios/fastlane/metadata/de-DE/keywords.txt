@@ -1,0 +1,1 @@
+zeitstempel,geotag,standort,koordinaten,breitengrad,längengrad,höhe,kompass,exif,vermessung

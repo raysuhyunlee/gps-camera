@@ -1,0 +1,11 @@
+Aflați mereu unde au fost realizate fotografiile.
+
+GPS Camera aplică pe fotografii și videoclipuri coordonatele în timp real, adresa, altitudinea, direcția busolei și ora chiar în momentul capturii. Suprapunerea este imprimată permanent în imagine, iar datele de localizare sunt scrise și în metadatele EXIF, astfel încât puteți dovedi unde și când a fost realizată captura. Aplicația este concepută pentru jurnale de șantier, inspecții, măsurători topografice, imobiliare și cereri de despăgubire.
+
+FUNCȚII
+- Suprapunere în timp real: coordonate, adresă, busolă, dată și oră
+- Mutați suprapunerea oriunde și personalizați stilul, dimensiunea și câmpurile
+- Denumiți automat fișierele folosind locația, data și textul personalizat
+
+Termeni de utilizare (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Politica de confidențialitate: https://www.raysuhyunlee.com/apps/gps-camera/privacy

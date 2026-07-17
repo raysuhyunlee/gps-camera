@@ -1,0 +1,1 @@
+marcaj temporal,coordonate,latitudine,longitudine,altitudine,EXIF,geolocație,dată,busolă,topografie

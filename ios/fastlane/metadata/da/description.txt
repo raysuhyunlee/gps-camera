@@ -1,0 +1,11 @@
+Hold styr på, hvor dine fotos blev taget.
+
+GPS Camera føjer aktuelle koordinater, adresse, højde, kompasretning og tid til dine fotos og videoer, mens du optager. Overlejringen gemmes permanent i billedet og skrives i EXIF-metadata, så du kan dokumentere, hvor og hvornår en optagelse blev foretaget. Udviklet til byggepladsjournaler, inspektioner, landmåling, ejendomme og forsikringssager.
+
+FUNKTIONER
+- Liveoverlejring: koordinater, adresse, kompas, dato og klokkeslæt
+- Flyt overlejringen frit, og tilpas stil, størrelse og felter
+- Navngiv automatisk filer med placering, dato og egen tekst
+
+Brugsbetingelser (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Privatlivspolitik: https://www.raysuhyunlee.com/apps/gps-camera/privacy

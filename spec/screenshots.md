@@ -2,6 +2,9 @@
 
 ## Status
 
+- 2026-07-17: Direct host-side capture added for stable multi-locale batches.
+  `-ScreenshotScreen` poses Main, Settings, or Gallery at launch; `simctl io`
+  writes PNGs without the flaky fastlane/XCTest screenshot cache.
 - 2026-07-11: Initial. App Store screenshot automation live on iOS. Two stages:
   in-app demo mode (capture) + Node compose (frame). AI polish step present but
   needs `OPENAI_API_KEY`. Gallery photos are user-supplied. The camera-feed scene
@@ -27,7 +30,7 @@
     - Framing raw captures with device bezel + caption at store dimensions
 - **Non-interests**
     - Product UI itself (owned by each domain; demo mode only swaps inputs)
-    - Release upload flow (monetization/release-ios skill owns `fastlane release`)
+    - Release upload flow (owned by the `fastlane release` workflow)
     - Localizing overlay *values* the renderer formats (e.g. the compass letter
       `S`) - that is a live-overlay change (overlay domain), not screenshot-only.
       Demo mode only localizes inputs it injects, like the address.
@@ -60,8 +63,11 @@ Overlay section, and Gallery is put in multi-select with two items picked (to
 show batch share/delete).
 
 Launch args (read by `ScreenshotDemo`): `-ScreenshotDemo 1 -Scene <id>
-[-ScreenshotPro 0|1]`. Language follows the standard `-AppleLanguages` fastlane
-injects, mapped to the app's L10n codes (`ScreenshotDemo.locale`; store `no` ->
+[-ScreenshotPro 0|1] [-ScreenshotScreen main|settings|gallery]
+[-ScreenshotLocale <store-locale>]`. Fastlane language follows its standard
+`-AppleLanguages` argument. Direct capture uses `-ScreenshotLocale` to avoid
+simulator foreground failures while switching writing systems. Both map to the
+app's L10n codes (`ScreenshotDemo.locale`; store `no` ->
 L10n `nb`). The UI test picks `<id>` per storefront
 via `sceneForStore(Snapshot.deviceLanguage)` (defaults every store to `new-york`);
 `SCREENSHOT_SCENE`/`SCREENSHOT_PRO` env override it for manual runs.
@@ -78,6 +84,8 @@ Each recipe runs both stages (raw capture + compose):
 
 - `just screenshot-test <lang>` - one language only (e.g. `just screenshot-test ko`)
 - `just screenshots` - every language in the Snapfile
+- `just screenshots-direct` - every language via stable host-side `simctl io`
+  capture; use this for full batches when XCTest screenshot caching is unstable
 
 ### Stage 2: frame (Node compose)
 
@@ -118,6 +126,7 @@ to its display type by pixel size. Optional AI polish (`enhance.mjs`, OpenAI
 ```
 ios/gpscamera/Screenshot/
 ├── ScreenshotDemo.swift        - launch-arg switch: active, scene, forcePro, locale, curated snapshot + localized addresses
+├── ScreenshotPoseHost.swift    - presents the requested real screen at launch for direct capture
 ├── DemoCaptureStore.swift      - CaptureStoreBrowsing over bundled demo photos (no photo-library grant needed)
 └── Assets/                     - user-supplied scenes/ + gallery/ (bundled, DEBUG)
 ios/gpscameraScreenshots/       - UI test target (shared scheme)
@@ -138,6 +147,7 @@ ios/fastlane/
 
 ```
 screenshots/
+├── capture-direct.sh - build once; pose/capture all locales with simctl
 ├── compose.mjs        - frame one capture via Playwright; device + locale-typography profiles
 ├── build.mjs          - frame every raw capture using captions/<locale>.json
 ├── enhance.mjs        - optional OpenAI gpt-image-1 polish (needs OPENAI_API_KEY)
@@ -147,6 +157,15 @@ screenshots/
 
 ## Revision history
 
+- 2026-07-18: Fix white captures for non-Latin stores (ko/zh/ru/ar/he/th/hi/el/
+  uk). Root cause was a layout feedback loop in `OverlayLiveView`: the measured
+  `layerSize` fed the footprint frame that re-proposed to the same layer, and
+  some scripts' address text measured a hair differently each pass, so the body
+  looped forever and no frame rendered. The geometry write now rounds and only
+  fires on change. Also a live-app hang risk for those locales, not screenshot-only.
+- 2026-07-17: Add direct host-side multi-locale capture to avoid incomplete
+  fastlane/XCTest cache results; launch arguments pose each real screen.
+- 2026-07-15: Remove the deleted local release skill reference.
 - 2026-07-11: Initial screenshot automation (demo mode + compose pipeline + skill).
 - 2026-07-11: Fix demo captures - scene fill keeps controls in the safe area
   (was overlapping the status bar / cropping the bottom), seed the lens set, and

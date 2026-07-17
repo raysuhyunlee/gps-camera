@@ -1,0 +1,11 @@
+Tartsa számon, hol készültek a fotói.
+
+A GPS Camera fényképezés közben élő koordinátákat, címet, magasságot, iránytűadatot és időpontot helyez a fotókra és videókra. Az átfedés a képbe kerül, a helyadatok pedig az EXIF-metaadatokba is beíródnak, így igazolható, hol és mikor készült a felvétel. Helyszíni naplókhoz, ellenőrzésekhez, földméréshez, ingatlanügyekhez és biztosítási kárigényekhez készült.
+
+FUNKCIÓK
+- Élő átfedés: koordináták, cím, iránytű, dátum és idő
+- Helyezze át bárhová az átfedést, és szabja személyre a stílust, a méretet és a mezőket
+- Nevezze el automatikusan a fájlokat hely, dátum és egyéni szöveg alapján
+
+Használati feltételek (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Adatvédelmi szabályzat: https://www.raysuhyunlee.com/apps/gps-camera/privacy

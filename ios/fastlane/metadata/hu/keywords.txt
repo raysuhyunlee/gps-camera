@@ -1,0 +1,1 @@
+időbélyeg,geocímke,koordináta,szélesség,hosszúság,magasság,exif,helymeghatározás,iránytű,földmérés

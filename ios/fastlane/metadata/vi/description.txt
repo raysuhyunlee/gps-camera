@@ -1,0 +1,11 @@
+Luôn biết ảnh của bạn được chụp ở đâu.
+
+GPS Camera đóng dấu tọa độ theo thời gian thực, địa chỉ, độ cao, hướng la bàn và thời gian lên ảnh và video ngay khi bạn chụp. Lớp phủ được ghi cố định vào hình ảnh, đồng thời thông tin vị trí được lưu trong dữ liệu EXIF, giúp bạn xác minh địa điểm và thời gian chụp. Phù hợp cho nhật ký công trường, kiểm tra hiện trường, khảo sát đất đai, bất động sản và yêu cầu bồi thường bảo hiểm.
+
+TÍNH NĂNG
+- Lớp phủ trực tiếp: tọa độ, địa chỉ, la bàn, ngày và giờ
+- Kéo lớp phủ đến bất kỳ vị trí nào; tùy chỉnh kiểu, kích thước và trường thông tin
+- Tự động đặt tên tệp theo vị trí, ngày và nội dung tùy chỉnh
+
+Điều khoản sử dụng (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Chính sách quyền riêng tư: https://www.raysuhyunlee.com/apps/gps-camera/privacy

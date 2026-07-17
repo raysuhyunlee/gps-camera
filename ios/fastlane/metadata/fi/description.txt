@@ -1,0 +1,11 @@
+Pidä tallessa tieto siitä, missä kuvasi on otettu.
+
+GPS Camera lisää reaaliaikaiset koordinaatit, osoitteen, korkeuden, kompassisuunnan ja ajan kuviin ja videoihin jo kuvaushetkellä. Tietokerros upotetaan kuvaan ja sijainti tallennetaan EXIF-metatietoihin, joten voit osoittaa, missä ja milloin kuva on otettu. Suunniteltu työmaapäiväkirjoihin, tarkastuksiin, maanmittaukseen, kiinteistöalalle ja vakuutuskorvausten dokumentointiin.
+
+OMINAISUUDET
+- Reaaliaikainen tietokerros: koordinaatit, osoite, kompassi, päivämäärä ja aika
+- Siirrä tietokerros haluamaasi paikkaan ja mukauta sen tyyliä, kokoa ja kenttiä
+- Nimeä tiedostot automaattisesti sijainnin, päivämäärän ja oman tekstin avulla
+
+Käyttöehdot (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Tietosuojakäytäntö: https://www.raysuhyunlee.com/apps/gps-camera/privacy

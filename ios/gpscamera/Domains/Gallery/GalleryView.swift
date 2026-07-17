@@ -6,6 +6,7 @@ import SwiftUI
 /// same tap toggles the item and the bottom bar shares or deletes the set.
 struct GalleryView: View {
     @ObservedObject var model: GalleryModel
+    private let initialSelectionCount: Int
     @Environment(\.dismiss) private var dismiss
     @State private var selected: GalleryItem?
     @State private var isSelecting = false
@@ -14,6 +15,11 @@ struct GalleryView: View {
     @State private var isSharing = false
 
     private let columns = Array(repeating: GridItem(.flexible(), spacing: 2), count: 3)
+
+    init(model: GalleryModel, initialSelectionCount: Int = 0) {
+        self.model = model
+        self.initialSelectionCount = initialSelectionCount
+    }
 
     private var selectedItems: [GalleryItem] { model.items.selected(selection) }
 
@@ -56,6 +62,10 @@ struct GalleryView: View {
         .sheet(item: $share) { ShareSheet(urls: $0.urls) }
         .task {
             await model.refresh()
+            if initialSelectionCount > 0 {
+                isSelecting = true
+                selection = Set(model.items.prefix(initialSelectionCount).map(\.id))
+            }
             model.events.track(.galleryOpened)
         }
         .onReceive(NotificationCenter.default

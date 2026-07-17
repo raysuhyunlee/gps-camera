@@ -1,0 +1,1 @@
+aikaleima,geotunniste,koordinaatit,leveysaste,pituusaste,korkeus,exif,metatiedot,paikannus,kompassi

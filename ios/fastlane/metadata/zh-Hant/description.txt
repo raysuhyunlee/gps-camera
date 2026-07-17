@@ -1,0 +1,11 @@
+清楚記錄每張照片的拍攝地點。
+
+GPS相機可在拍攝時將即時座標、地址、海拔、指南針方向與時間標示在照片和影片上。疊加資訊會直接寫入影像與 EXIF 中繼資料，讓你清楚證明照片是在何時何地拍攝。適合工地紀錄、巡檢、土地測量、房地產與保險理賠使用。
+
+主要功能
+- 即時疊加資訊：座標、地址、指南針、日期與時間
+- 可將疊加資訊拖曳至任意位置，並自訂樣式、大小與顯示欄位
+- 使用位置、日期與自訂文字自動命名檔案
+
+使用條款 (EULA)：https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+隱私權政策：https://www.raysuhyunlee.com/apps/gps-camera/privacy

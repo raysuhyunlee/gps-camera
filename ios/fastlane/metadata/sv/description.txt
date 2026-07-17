@@ -1,0 +1,11 @@
+Håll reda på var dina foton togs.
+
+GPS Camera stämplar koordinater, adress, höjd, kompassriktning och tid i realtid på dina foton och videor när du tar dem. Överlagringen bäddas in i bilden och platsen sparas i EXIF-metadata, så att du kan verifiera var och när en bild togs. Utformad för arbetsplatsloggar, inspektioner, markmätning, fastighetsarbete och försäkringsärenden.
+
+FUNKTIONER
+- Överlagring i realtid: koordinater, adress, kompass, datum och tid
+- Flytta överlagringen fritt och anpassa stil, storlek och fält
+- Namnge filer automatiskt med plats, datum och egen text
+
+Användarvillkor (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Integritetspolicy: https://www.raysuhyunlee.com/apps/gps-camera/privacy

@@ -12,7 +12,7 @@ struct gpscameraApp: App {
     @StateObject private var location: LocationProvider
     @StateObject private var camera: CameraController
     private let overlay: OverlayRenderer
-    private let gallery: GalleryProviding
+    private let gallery: Gallery
     private let store: SettingsStore
     private let registry: SettingsRegistry
     /// Live entitlement + paywall + banners (monetization).
@@ -105,13 +105,39 @@ struct gpscameraApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootView(store: store, location: location, events: events,
-                     onOnboarded: { Task { await ads.start() } }) {
-                CameraView(controller: camera, location: location, overlay: overlay,
-                           gallery: gallery, settings: store, registry: registry,
-                           entitlement: pro, paywall: pro, banner: pro, ads: ads,
-                           metrics: metrics)
+            #if DEBUG
+            if ScreenshotDemo.current.isActive {
+                ScreenshotPoseHost(
+                    screen: ScreenshotDemo.current.screen,
+                    main: cameraView,
+                    settings: {
+                        AnyView(SettingsScreen(
+                            registry: registry, store: store,
+                            entitled: { pro.entitlement == .pro },
+                            onProLock: { _ in },
+                            highlightKey: OverlaySettingKey.enabled))
+                    },
+                    gallery: { gallery.screenshotScreen() })
+            } else {
+                rootView
             }
+            #else
+            rootView
+            #endif
         }
+    }
+
+    private var rootView: some View {
+        RootView(store: store, location: location, events: events,
+                 onOnboarded: { Task { await ads.start() } }) {
+            cameraView
+        }
+    }
+
+    private var cameraView: some View {
+        CameraView(controller: camera, location: location, overlay: overlay,
+                   gallery: gallery, settings: store, registry: registry,
+                   entitlement: pro, paywall: pro, banner: pro, ads: ads,
+                   metrics: metrics)
     }
 }

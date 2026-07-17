@@ -1,0 +1,1 @@
+cap masa,geoteg,koordinat,latitud,longitud,ketinggian,exif,metadata,geolokasi,gis,tarikh,kompas,ukur

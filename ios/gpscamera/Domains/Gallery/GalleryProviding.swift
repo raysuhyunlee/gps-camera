@@ -17,4 +17,10 @@ final class Gallery: GalleryProviding {
     func thumbnailButton() -> AnyView {
         AnyView(GalleryThumbnailButton(model: model))
     }
+
+    #if DEBUG
+    func screenshotScreen() -> AnyView {
+        AnyView(GalleryView(model: model, initialSelectionCount: 2))
+    }
+    #endif
 }

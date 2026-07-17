@@ -1,0 +1,11 @@
+Mějte vždy přehled o tom, kde byly vaše snímky pořízeny.
+
+GPS Camera v okamžiku pořízení vkládá do fotografií a videí aktuální souřadnice, adresu, nadmořskou výšku, směr kompasu a čas. Překryv je trvale vložen do obrazu a údaje o poloze se zapisují také do metadat EXIF, takže můžete doložit, kde a kdy byl snímek pořízen. Aplikace je určena pro stavební deníky, kontroly, geodetická měření, správu nemovitostí a pojistné události.
+
+FUNKCE
+- Živý překryv: souřadnice, adresa, kompas, datum a čas
+- Přesuňte překryv kamkoli a upravte jeho styl, velikost a pole
+- Automaticky pojmenujte soubory podle polohy, data a vlastního textu
+
+Podmínky použití (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Zásady ochrany osobních údajů: https://www.raysuhyunlee.com/apps/gps-camera/privacy

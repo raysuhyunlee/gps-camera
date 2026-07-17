@@ -1,0 +1,11 @@
+Sepa siempre dónde tomó sus fotos.
+
+GPS Camera añade las coordenadas, la dirección, la altitud, la orientación y la hora en tiempo real a sus fotos y vídeos mientras los captura. La superposición queda integrada en la imagen y la ubicación se guarda en los metadatos EXIF, para que pueda demostrar dónde y cuándo se realizó cada captura. Diseñada para registros de obra, inspecciones, levantamientos topográficos, operaciones inmobiliarias y reclamaciones de seguros.
+
+FUNCIONES
+- Superposición en tiempo real: coordenadas, dirección, brújula, fecha y hora
+- Coloque la superposición donde quiera y personalice el estilo, el tamaño y los campos
+- Asigne nombres automáticamente con la ubicación, la fecha y texto personalizado
+
+Condiciones de uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Política de privacidad: https://www.raysuhyunlee.com/apps/gps-camera/privacy

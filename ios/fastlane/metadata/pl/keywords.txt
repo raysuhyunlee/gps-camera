@@ -1,0 +1,1 @@
+znacznik,czas,współrzędne,szerokość,długość,wysokość,EXIF,geolokalizacja,GIS,data,kompas,geodezja

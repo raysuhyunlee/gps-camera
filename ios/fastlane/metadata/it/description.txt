@@ -1,0 +1,11 @@
+Scopra sempre dove sono state scattate le Sue foto.
+
+GPS Camera imprime coordinate, indirizzo, altitudine, direzione e ora in tempo reale su foto e video durante la ripresa. La sovrapposizione viene incorporata nell'immagine e la posizione salvata nei metadati EXIF, così può dimostrare dove e quando è stato realizzato ogni scatto. Ideale per registri di cantiere, ispezioni, rilievi topografici, attività immobiliari e richieste di risarcimento assicurativo.
+
+FUNZIONALITÀ
+- Sovrapposizione in tempo reale: coordinate, indirizzo, bussola, data e ora
+- Sposti liberamente la sovrapposizione e ne personalizzi stile, dimensioni e campi
+- Assegni automaticamente i nomi ai file usando posizione, data e testo personalizzato
+
+Condizioni d'uso (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Informativa sulla privacy: https://www.raysuhyunlee.com/apps/gps-camera/privacy

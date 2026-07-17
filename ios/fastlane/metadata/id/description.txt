@@ -1,0 +1,11 @@
+Catat lokasi pengambilan foto Anda.
+
+GPS Camera menambahkan koordinat langsung, alamat, ketinggian, arah kompas, dan waktu ke foto dan video saat Anda mengambilnya. Overlay disematkan secara permanen ke gambar dan ditulis ke metadata EXIF, sehingga Anda dapat membuktikan lokasi dan waktu pengambilan. Dirancang untuk dokumentasi lapangan, inspeksi, survei tanah, properti, dan klaim asuransi.
+
+FITUR
+- Overlay langsung: koordinat, alamat, kompas, tanggal, dan waktu
+- Geser overlay ke mana saja; sesuaikan gaya, ukuran, dan kolom
+- Beri nama file otomatis dengan lokasi, tanggal, dan teks khusus
+
+Ketentuan Penggunaan (EULA): https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Kebijakan Privasi: https://www.raysuhyunlee.com/apps/gps-camera/privacy

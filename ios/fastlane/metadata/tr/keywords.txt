@@ -1,0 +1,1 @@
+zaman damgası,coğrafi etiket,konum,koordinat,enlem,boylam,rakım,pusula,exif,meta veri,ölçüm
