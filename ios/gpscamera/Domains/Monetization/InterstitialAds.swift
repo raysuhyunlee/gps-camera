@@ -18,11 +18,20 @@ private nonisolated enum AdMobConfig {
     #endif
     /// One interstitial per this many session captures, photos + videos
     /// (UsageMetrics session counters).
-    static let capturesPerAd = 10
+    static let capturesPerAd = 5
+}
+
+extension InterstitialAds {
+    /// The ad cadence predicate: an interstitial is earned on every
+    /// `capturesPerAd`-th session capture (never on zero). Pure so the cadence
+    /// is unit-testable without the SDK.
+    static func adEarned(sessionCaptures: Int) -> Bool {
+        sessionCaptures > 0 && sessionCaptures % AdMobConfig.capturesPerAd == 0
+    }
 }
 
 /// Free users only: requests ATT, initializes the SDK, keeps one interstitial
-/// preloaded, and shows it on every 10th saved capture. The trigger runs after
+/// preloaded, and shows it on every Nth saved capture (`capturesPerAd`). The trigger runs after
 /// the capture has saved (reached via the nudge orchestrator), so an ad never
 /// blocks an in-progress capture. ObservableObject only for the debug surface
 /// (live loaded/error state).
@@ -76,15 +85,15 @@ final class InterstitialAds: NSObject, ObservableObject {
         preload()
     }
 
-    /// The ad trigger: every 10th saved capture (photo or video), free users
-    /// only. Reached via the nudge orchestrator after the capture has saved;
+    /// The ad trigger: every `capturesPerAd`-th saved capture (photo or video),
+    /// free users only. Reached via the nudge orchestrator after the capture has saved;
     /// suppressed when a paywall nudge fired on the same capture (paywall
     /// precedes ad).
     func captureSaved(suppressingAd: Bool = false) {
         guard entitlement.entitlement == .free else { return }
         if !started { Task { await start() } }   // entitlement expired mid-session
         let captures = metrics.sessionPhotoCount + metrics.sessionVideoCount
-        guard captures % AdMobConfig.capturesPerAd == 0, !suppressingAd
+        guard Self.adEarned(sessionCaptures: captures), !suppressingAd
         else { return }
         show()
     }
@@ -136,7 +145,7 @@ extension InterstitialAds: FullScreenContentDelegate {
     }
 
     func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
-        preload()   // the next one is ready before the next 10th photo
+        preload()   // the next one is ready before the next ad-cadence capture
     }
 
     func ad(_ ad: FullScreenPresentingAd,

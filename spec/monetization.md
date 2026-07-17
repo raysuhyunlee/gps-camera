@@ -2,6 +2,11 @@
 
 ## Status
 
+- 2026-07-18: Paywall nudge now fires once per session, after the first capture
+  (was lifetime milestones 25/50/100). Interstitial cadence tightened to every
+  5th session capture (was 10th). Cadence predicates
+  (`NudgeRules.paywallEarned`, `InterstitialAds.adEarned`) extracted and
+  unit-tested (`MonetizationValueTests`).
 - 2026-07-14: AdMob SKAdNetwork IDs synced to Google's current list.
 - 2026-07-07: Nudge orchestrator + in-app review implemented on iOS
   (`NudgeOrchestrator`): paywall nudge at lifetime-capture milestones, review
@@ -159,6 +164,9 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-18: Paywall trigger changed to first-capture-per-session (was lifetime
+  milestones); ad cadence 5 (was 10). Pure predicates `NudgeRules.paywallEarned`
+  and `InterstitialAds.adEarned` added, covered by `MonetizationValueTests`.
 - 2026-07-14: AdMob SKAdNetwork IDs synced.
 - 2026-07-07: Photo/video nudge paths merged (`captureCompleted`, single
   `onCapture` hook); paywall milestones count lifetime captures.

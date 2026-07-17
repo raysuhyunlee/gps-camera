@@ -11,12 +11,19 @@ import SwiftUI
 /// The rule set. Edit values here; call sites never change. Rules never
 /// distinguish photos from videos - a capture is a capture.
 struct NudgeRules {
-    /// Lifetime capture counts (photos + videos) that earn a paywall nudge
-    /// (free users only).
-    var paywallCaptureMilestones: Set<Int> = [25, 50, 100]
+    /// Session capture index (photos + videos) that earns a paywall nudge -
+    /// the paywall shows once per session, after this many captures (free users
+    /// only). 1 = after the first capture of every session.
+    var paywallSessionCapture = 1
     /// In-app review: attempted on the first capture of a session, from this
     /// session on. The OS decides whether the prompt actually shows.
     var reviewMinSession = 3
+
+    /// Whether a finished capture at this session index earns the paywall nudge.
+    /// Pure so the cadence is unit-testable without presenting UI.
+    func paywallEarned(sessionCaptures: Int) -> Bool {
+        sessionCaptures == paywallSessionCapture
+    }
 }
 
 /// Bound to `UsageMetrics.onCapture` at the root, so nudges run after a
@@ -47,12 +54,13 @@ final class NudgeOrchestrator {
         if !paywallShown { requestReviewIfEarned() }
     }
 
-    /// Lifetime-capture milestones, free users only. The lifetime count passes
-    /// each milestone once, so fired milestones need no persistence.
+    /// First capture of the session, free users only. The session count (reset
+    /// each launch) hits the trigger index exactly once per session, so it
+    /// needs no persistence and fires at most once per session.
     private func showPaywallIfEarned() -> Bool {
-        let captures = metrics.photoCaptureCount + metrics.videoCaptureCount
+        let sessionCaptures = metrics.sessionPhotoCount + metrics.sessionVideoCount
         guard store.entitlement == .free,
-              rules.paywallCaptureMilestones.contains(captures),
+              rules.paywallEarned(sessionCaptures: sessionCaptures),
               let top = InterstitialAds.topViewController()
         else { return false }
         top.present(UIHostingController(

@@ -18,9 +18,10 @@
 - 2026-07-07: Nudges live on iOS: `NudgeOrchestrator` owns the
   `UsageMetrics.onCapture` hook at the root and dispatches paywall nudge /
   review attempt / ad (monetization.md "Nudge orchestrator").
-- 2026-07-07: Ads live on iOS: AdMob interstitial every 10th photo for free
-  users, triggered through foundation's `UsageMetrics.onPhotoCapture` hook
-  bound at the root (monetization.md "Ads").
+- 2026-07-07: Ads live on iOS: AdMob interstitial on a fixed session-capture
+  cadence (see monetization.md for the current value) for free users, triggered
+  through foundation's `UsageMetrics.onPhotoCapture` hook bound at the root
+  (monetization.md "Ads").
 - 2026-07-06: Restore purchase row live in Settings (order 90); overlay
   enforces watermark force-on for free (entitlement wired into
   `OverlayRenderer` at the root).
