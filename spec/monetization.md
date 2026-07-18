@@ -2,10 +2,13 @@
 
 ## Status
 
+- 2026-07-18: Paywall and review nudges made mutually exclusive by session:
+  power-of-three sessions (3, 9, 27, ...) get the review attempt on their first
+  capture, all other sessions get the paywall (`NudgeRules.nudge`, unit-tested
+  in `MonetizationValueTests`).
 - 2026-07-18: Paywall nudge now fires once per session, after the first capture
   (was lifetime milestones 25/50/100). Interstitial cadence tightened to every
-  5th session capture (was 10th). Cadence predicates
-  (`NudgeRules.paywallEarned`, `InterstitialAds.adEarned`) extracted and
+  5th session capture (was 10th). Cadence predicates extracted and
   unit-tested (`MonetizationValueTests`).
 - 2026-07-14: AdMob SKAdNetwork IDs synced to Google's current list.
 - 2026-07-07: Nudge orchestrator + in-app review implemented on iOS
@@ -110,9 +113,10 @@ hosts stay monetization-unaware:
 
 ### In-App Review
 
-- Attempted after the first photo or video of the session, from the third
-  session on; every qualifying session attempts. The OS decides whether a
-  prompt actually shows (throttled by the platform, max 3/year on iOS).
+- Attempted after the first photo or video of sessions whose ordinal is a
+  power of three (3, 9, 27, ...); those sessions show no paywall nudge, so the
+  two never compete. The OS decides whether a prompt actually shows (throttled
+  by the platform, max 3/year on iOS).
 - Fired by the nudge orchestrator (`review_requested` event on attempt).
 
 ### Nudge orchestrator
@@ -123,11 +127,12 @@ hosts stay monetization-unaware:
 - Rules are data-driven (`NudgeRules`, one place) and easy to edit without
   touching call sites. Rules never separate photos from videos - a capture is
   a capture. Current rules:
-	- Paywall nudge: lifetime capture count hits 25, 50, or 100; free users only.
-	- Review: see "In-App Review" above.
-- At most one nudge per capture. Paywall precedes ad (that capture's ad is
-  suppressed, not deferred) and review (the review attempt moves to the next
-  capture of the session).
+	- One nudge per session, on its first capture: review attempt if the session
+	  ordinal is a power of three (3, 9, 27, ...), paywall nudge otherwise
+	  (free users only). Paywall and review are mutually exclusive by session,
+	  never competing on the same capture.
+- At most one nudge per capture. A shown paywall suppresses that capture's ad
+  (not deferred).
 - Bound to the usage-metrics `onCapture` hook at the root: nudges run after a
   capture has saved, never during one.
 
@@ -164,6 +169,10 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-18: Session-exclusive nudges: `NudgeRules.nudge(sessionCaptures:sessionCount:)`
+  replaces `paywallEarned` + the review min-session rule - review on
+  power-of-three sessions, paywall otherwise, both on the session's first
+  capture only.
 - 2026-07-18: Paywall trigger changed to first-capture-per-session (was lifetime
   milestones); ad cadence 5 (was 10). Pure predicates `NudgeRules.paywallEarned`
   and `InterstitialAds.adEarned` added, covered by `MonetizationValueTests`.

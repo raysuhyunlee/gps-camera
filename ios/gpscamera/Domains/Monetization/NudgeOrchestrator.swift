@@ -2,7 +2,7 @@
 //  NudgeOrchestrator.swift
 //  Monetization - data-driven nudge rules over usage metrics (monetization.md
 //  "Nudge orchestrator"). Decides what a finished capture earns: paywall
-//  nudge, review prompt, or ad - at most one per capture, paywall first.
+//  nudge, review prompt, or ad - at most one per capture.
 //
 
 import StoreKit
@@ -11,18 +11,28 @@ import SwiftUI
 /// The rule set. Edit values here; call sites never change. Rules never
 /// distinguish photos from videos - a capture is a capture.
 struct NudgeRules {
-    /// Session capture index (photos + videos) that earns a paywall nudge -
-    /// the paywall shows once per session, after this many captures (free users
-    /// only). 1 = after the first capture of every session.
-    var paywallSessionCapture = 1
-    /// In-app review: attempted on the first capture of a session, from this
-    /// session on. The OS decides whether the prompt actually shows.
-    var reviewMinSession = 3
+    /// Session capture index (photos + videos) that earns the session's one
+    /// nudge. 1 = the first capture of every session.
+    var nudgeSessionCapture = 1
 
-    /// Whether a finished capture at this session index earns the paywall nudge.
-    /// Pure so the cadence is unit-testable without presenting UI.
-    func paywallEarned(sessionCaptures: Int) -> Bool {
-        sessionCaptures == paywallSessionCapture
+    enum Nudge { case paywall, review }
+
+    /// What the capture at this session index earns, if anything. Sessions
+    /// whose ordinal is a power of three (3, 9, 27, ...) earn the review
+    /// attempt; every other session earns the paywall nudge (free users only -
+    /// entitlement is the caller's concern). Mutually exclusive so the review
+    /// prompt never competes with the paywall in the same session. Pure so
+    /// the cadence is unit-testable without presenting UI.
+    func nudge(sessionCaptures: Int, sessionCount: Int) -> Nudge? {
+        guard sessionCaptures == nudgeSessionCapture else { return nil }
+        return isPowerOfThree(sessionCount) ? .review : .paywall
+    }
+
+    private func isPowerOfThree(_ n: Int) -> Bool {
+        var n = n
+        guard n >= 3 else { return false }
+        while n.isMultiple(of: 3) { n /= 3 }
+        return n == 1
     }
 }
 
@@ -35,8 +45,6 @@ final class NudgeOrchestrator {
     private let store: ProStore
     private let ads: InterstitialAds
     private let events: EventTracking
-    /// The review attempt fires at most once per session.
-    private var reviewRequested = false
 
     init(rules: NudgeRules = NudgeRules(), metrics: UsageMetrics,
          store: ProStore, ads: InterstitialAds,
@@ -49,18 +57,22 @@ final class NudgeOrchestrator {
     }
 
     func captureCompleted() {
-        let paywallShown = showPaywallIfEarned()
+        let sessionCaptures = metrics.sessionPhotoCount + metrics.sessionVideoCount
+        var paywallShown = false
+        switch rules.nudge(sessionCaptures: sessionCaptures,
+                           sessionCount: metrics.sessionCount) {
+        case .paywall: paywallShown = showPaywall()
+        case .review: requestReview()
+        case nil: break
+        }
         ads.captureSaved(suppressingAd: paywallShown)
-        if !paywallShown { requestReviewIfEarned() }
     }
 
-    /// First capture of the session, free users only. The session count (reset
-    /// each launch) hits the trigger index exactly once per session, so it
-    /// needs no persistence and fires at most once per session.
-    private func showPaywallIfEarned() -> Bool {
-        let sessionCaptures = metrics.sessionPhotoCount + metrics.sessionVideoCount
+    /// Free users only. The session capture count (reset each launch) hits the
+    /// trigger index exactly once per session, so this needs no persistence
+    /// and fires at most once per session.
+    private func showPaywall() -> Bool {
         guard store.entitlement == .free,
-              rules.paywallEarned(sessionCaptures: sessionCaptures),
               let top = InterstitialAds.topViewController()
         else { return false }
         top.present(UIHostingController(
@@ -68,15 +80,12 @@ final class NudgeOrchestrator {
         return true
     }
 
-    /// First capture of the session, from the reviewMinSession-th session on.
-    /// A capture that showed the paywall defers the attempt to the next one.
-    private func requestReviewIfEarned() {
-        guard !reviewRequested, metrics.sessionCount >= rules.reviewMinSession,
-              let scene = UIApplication.shared.connectedScenes
-                  .compactMap({ $0 as? UIWindowScene })
-                  .first(where: { $0.activationState == .foregroundActive })
+    /// The OS decides whether the prompt actually shows.
+    private func requestReview() {
+        guard let scene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first(where: { $0.activationState == .foregroundActive })
         else { return }
-        reviewRequested = true
         AppStore.requestReview(in: scene)
         events.track(.reviewRequested)
     }

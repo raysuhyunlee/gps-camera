@@ -7,21 +7,34 @@ import Testing
 @testable import gpscamera
 
 struct MonetizationRuleTests {
-    // MARK: Paywall - once per session, after the first capture.
+    // MARK: Nudge - once per session, on the first capture. Power-of-three
+    // sessions (3, 9, 27, ...) earn the review attempt; the rest the paywall.
 
-    @Test func paywallEarnedOnFirstSessionCaptureOnly() {
+    @Test func nudgeOnFirstSessionCaptureOnly() {
         let rules = NudgeRules()
-        #expect(!rules.paywallEarned(sessionCaptures: 0))
-        #expect(rules.paywallEarned(sessionCaptures: 1))
-        #expect(!rules.paywallEarned(sessionCaptures: 2))
-        #expect(!rules.paywallEarned(sessionCaptures: 5))
+        #expect(rules.nudge(sessionCaptures: 0, sessionCount: 1) == nil)
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 1) != nil)
+        #expect(rules.nudge(sessionCaptures: 2, sessionCount: 1) == nil)
+        #expect(rules.nudge(sessionCaptures: 5, sessionCount: 3) == nil)
     }
 
-    @Test func paywallSessionCaptureIsConfigurable() {
+    @Test func powerOfThreeSessionsEarnReviewOthersPaywall() {
+        let rules = NudgeRules()
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 1) == .paywall)
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 2) == .paywall)
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 3) == .review)
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 4) == .paywall)
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 6) == .paywall)
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 9) == .review)
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 27) == .review)
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 81) == .review)
+    }
+
+    @Test func nudgeSessionCaptureIsConfigurable() {
         var rules = NudgeRules()
-        rules.paywallSessionCapture = 3
-        #expect(!rules.paywallEarned(sessionCaptures: 1))
-        #expect(rules.paywallEarned(sessionCaptures: 3))
+        rules.nudgeSessionCapture = 3
+        #expect(rules.nudge(sessionCaptures: 1, sessionCount: 1) == nil)
+        #expect(rules.nudge(sessionCaptures: 3, sessionCount: 1) == .paywall)
     }
 
     // MARK: Interstitial ads - every 5th session capture, never on zero.
