@@ -68,7 +68,7 @@ Screens are assemblies of domains. A domain is never split across docs.
 | ---------- | ------------------------------------------------------------------------------------------------------------- |
 | Onboarding | `onboarding` (shown once on first launch, before Main; requests camera + location)                            |
 | Main       | `camera` + `location` + `overlay` + `monetization` (pro banner)                                               |
-| Settings | `monetization` (pro banner, restore) + per-domain `SettingsSection`s + foundation (language, feedback, about); opened from Main's settings gear |
+| Settings | `monetization` (pro banner, restore) + per-domain `SettingsSection`s + foundation (feedback, about); opened from Main's settings gear |
 | Gallery  | `gallery`                                                                                                     |
 | Paywall  | `monetization`                                                                                                |
 
@@ -153,7 +153,6 @@ never import each other's UI.
 | order | Section                        | Owner          |
 | ----- | ------------------------------ | -------------- |
 | 0     | Pro banner                     | `monetization` |
-| 10    | General → Language             | `foundation`   |
 | 20    | Capture → Photo / Video        | `camera`       |
 | 30    | Overlay                        | `overlay`      |
 | 40    | Filename                       | `filename`     |
@@ -163,6 +162,8 @@ never import each other's UI.
 
 ## Revision History
 
+- 2026-07-18: In-app language setting removed (iOS per-app language covers it);
+  General section gone from Settings (foundation.md).
 - 2026-07-13: Minimum iOS set to 17 (was 26.5).
 - 2026-07-10: Onboarding domain added (first-run value priming + permission
   requests); `RootView` gates onboarding vs Main at the root (onboarding.md).

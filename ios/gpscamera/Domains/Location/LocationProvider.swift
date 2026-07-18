@@ -97,14 +97,6 @@ final class LocationProvider: NSObject, ObservableObject, LocationProviding {
             weather: nil)
     }
 
-    /// Re-geocodes the last fix, e.g. after `preferredLocale` changed. Clears the
-    /// throttle: the language moved, not the place.
-    func refreshAddress() {
-        guard let loc = lastLocation else { return }
-        lastGeocodedAt = nil
-        reverseGeocode(loc)
-    }
-
     private func reverseGeocode(_ loc: CLLocation) {
         let now = Date()
         if let last = lastGeocodedAt, now.timeIntervalSince(last) < 15 { return }

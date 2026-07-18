@@ -19,8 +19,6 @@ struct CameraView: View {
     var ads: InterstitialAds? = nil
     var metrics: UsageMetrics? = nil
 
-    /// Main stays alive across a language change; observing re-renders it.
-    @ObservedObject private var l10n = L10n.shared
     @Environment(\.scenePhase) private var scenePhase
     @State private var recordStart: Date?
     @State private var showGPSTooltip = false

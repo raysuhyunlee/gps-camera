@@ -80,7 +80,7 @@ struct ScreenshotDemo {
         guard isActive,
               let pref = requestedLocale ?? Locale.preferredLanguages.first
         else { return nil }
-        let codes = L10n.languages.map(\.code)
+        let codes = L10n.languages
         if codes.contains(pref) { return pref }                 // exact
         if let scripted = codes.first(where: { pref.hasPrefix($0) }) {
             return scripted                                     // zh-Hans-CN -> zh-Hans

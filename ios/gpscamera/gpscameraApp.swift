@@ -34,17 +34,11 @@ struct gpscameraApp: App {
         // Registry before consumers: it registers every setting's default.
         // Section placement is owned here (overview.md "Settings").
         let store = SettingsStore()
-        // Before `onSet`: the language write below re-geocodes through it.
         let location = LocationProvider()
+        // Addresses come back from the geocoder in the app language.
         location.preferredLocale = L10n.shared.locale
         store.onSet = { key, value in
             events.track(.settingsChanged(key: key, value: "\(value.primitive)"))
-            if key == L10n.settingKey {
-                L10n.shared.setLanguage(value.stringValue)
-                // Addresses come back from the geocoder in the app language.
-                location.preferredLocale = L10n.shared.locale
-                location.refreshAddress()
-            }
         }
         let pro = ProStore(events: events)
         metrics.isPro = { pro.entitlement == .pro }
@@ -62,7 +56,7 @@ struct gpscameraApp: App {
                         FoundationSettingsProvider(),
                         CameraSettingsProvider(), OverlaySettingsProvider(),
                         FilenameSettingsProvider()],
-            order: ["monetization": 0, "foundation.general": 10,
+            order: ["monetization": 0,
                     "camera.capture": 20, "overlay": 30, "filename": 40,
                     "monetization.restore": 90, "foundation.feedback": 91,
                     "foundation.about": 92],
@@ -81,7 +75,8 @@ struct gpscameraApp: App {
         if ScreenshotDemo.current.isActive {
             store.set(.bool(true), for: Onboarding.completedKey)
             if let locale = ScreenshotDemo.current.locale {
-                store.set(.string(locale), for: L10n.settingKey)   // fires L10n via onSet
+                L10n.shared.setLanguage(locale)
+                location.preferredLocale = L10n.shared.locale
             }
             captures = DemoCaptureStore()
         }

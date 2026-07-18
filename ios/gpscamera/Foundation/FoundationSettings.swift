@@ -1,7 +1,7 @@
 //
 //  FoundationSettings.swift
 //  Foundation - the foundation-owned Settings sections (foundation.md):
-//  General (language), Send feedback, About (version, ToS, privacy).
+//  Send feedback, About (version, ToS, privacy).
 //
 
 import SwiftUI
@@ -33,19 +33,10 @@ nonisolated enum FoundationURL {
     static let privacy = URL(string: "https://www.raysuhyunlee.com/apps/gps-camera/privacy")!
 }
 
-/// General / feedback / about sections (placement from overview.md).
+/// Feedback / about sections (placement from overview.md).
 nonisolated struct FoundationSettingsProvider: SettingsProviding {
     var settingsSections: [SettingsSection] {
-        [SettingsSection(id: "foundation.general", titleKey: "General", items: [
-            SettingItem(key: L10n.settingKey, titleKey: "Language",
-                        control: .select(
-                            [SelectOption(value: "", titleKey: "System default")]
-                            + L10n.languages.map {
-                                SelectOption(value: $0.code, titleKey: $0.endonym)
-                            }),
-                        defaultValue: .string("")),
-        ]),
-        SettingsSection(id: "foundation.feedback", titleKey: "", items: [
+        [SettingsSection(id: "foundation.feedback", titleKey: "", items: [
             SettingItem(key: "foundation.feedback", titleKey: "Send Feedback",
                         control: .action(perform: {
                             await UIApplication.shared.open(FoundationURL.feedback)

@@ -2,6 +2,10 @@
 
 ## Status
 
+- 2026-07-18: In-app language picker removed: iOS's per-app language setting
+  (Settings > Apps > GPS Camera > Language) covers it. `L()` now resolves
+  through `Bundle.main` / `Locale.current`; `setLanguage` remains only as the
+  DEBUG screenshot-pipeline override. `general.language` setting gone.
 - 2026-07-12: Language switching fixed: picking English resolved to
   `Bundle.main` (the system language) instead of the keys; long-lived views
   (overlay layer, main pro banner) kept the old language because SwiftUI skipped
@@ -47,20 +51,19 @@
 
 - `L10nKey = String` — the English text IS the key; no separate key namespace.
 - `L(_ key:) -> String` global resolver calls `L10n.shared.string(_:)`.
-- `L10n`: `ObservableObject` singleton; NSLock thread safety (overlay rasterization runs off-main).
-- Language override stored in `SettingsStore` under `"general.language"` (default `""` = follow system).
-- On language change: `SettingsStore.onSet` hook calls `L10n.shared.setLanguage()`, swapping the lproj bundle.
-- Views that need live re-render hold `@ObservedObject private var l10n = L10n.shared`.
-  Required for any view that stays on screen across the change: SwiftUI skips a
-  view whose inputs did not move, so its `L()` calls would keep the old language
-  (camera surface, overlay layer, main pro banner). Sheets rebuild on present.
-- `L10n.locale` - the selected language as a `Locale`, for domains that format
+- `L10n`: plain singleton; NSLock thread safety (overlay rasterization runs off-main).
+- Language selection is owned by iOS (Settings > Apps > GPS Camera > Language);
+  there is NO in-app picker or `general.language` setting. `L()` resolves via
+  `Bundle.main`, which already follows the per-app language, and a change
+  relaunches the app - so no live re-render machinery is needed.
+- `L10n.setLanguage()` exists only for the DEBUG screenshot pipeline
+  (screenshots.md): it forces one shipped language per run before any UI
+  renders, swapping the lproj bundle. English -> no bundle (the keys ARE its
+  strings; `Bundle.main` would resolve in the *simulator's* language).
+- `L10n.locale` - the app language as a `Locale`, for domains that format
   data rather than resolve strings (geocoded address, overlay timestamp).
-- 29 language lproj bundles ship with the app (140 strings each); English ships
-  none - the keys ARE its strings, so it resolves to no bundle at all. English
-  must NOT fall back to `Bundle.main`: that resolves in the *system* language, so
-  a Korean phone picking English would stay Korean.
-- Language is selectable in Settings → General; defaults to the system locale.
+- 29 language lproj bundles ship with the app (136 strings each); English ships
+  none - the keys ARE its strings.
 
 ### Theme
 
@@ -225,8 +228,8 @@ ios/gpscamera/Foundation/
 ├── PermissionStatus.swift    - shared authorization enum
 ├── BundledFonts.swift        - runtime registration of Resources/Fonts
 ├── UsageMetrics.swift        - persisted usage counters; isPro bound by the root
-├── L10n.swift                - L() global + L10n singleton; lproj bundle swapping
-├── FoundationSettings.swift  - General/Language picker, Send Feedback, About sections
+├── L10n.swift                - L() global + L10n singleton; screenshot-run language override
+├── FoundationSettings.swift  - Send Feedback, About sections
 └── Settings/
     ├── SettingsSchema.swift      - Control, SettingItem, SettingsSection, SettingsProviding
     ├── SettingValue.swift        - typed value (bool/string/number/stringList) <-> UserDefaults
@@ -235,7 +238,7 @@ ios/gpscamera/Foundation/
     ├── SettingsPermissions.swift - SettingPermission status/request (location)
     ├── SettingsView.swift        - generic SettingsScreen renderer (controls, pro lock, highlight)
     └── ColorHex.swift            - Color <-> #RRGGBBAA for Control.color
-ios/gpscamera/{lang}.lproj/Localizable.strings  - 29 languages, 140 strings each
+ios/gpscamera/{lang}.lproj/Localizable.strings  - 29 languages, 136 strings each
 ios/gpscamera/Resources/Fonts/                  - bundled OFL fonts + Licenses/*.txt
 ios/gpscameraTests/
 └── SettingsValueTests.swift      - store/registry/deep-link + bundled-font tests
@@ -245,6 +248,8 @@ Android: planned.
 
 ## Revision History
 
+- 2026-07-18: In-app language picker + `general.language` setting removed;
+  iOS per-app language owns selection. `L10n` no longer `ObservableObject`.
 - 2026-07-12: L10n fixes (English -> no bundle; live re-render of long-lived
   views) + `L10n.locale` for data formatting (address, timestamp).
 - 2026-07-08: L10n framework + `FoundationSettings` (General/Language, feedback,

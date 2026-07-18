@@ -21,8 +21,6 @@ struct SettingsScreen: View {
     /// the title present it; intentionally undiscoverable. nil disables it.
     var debugScreen: (() -> AnyView)? = nil
 
-    /// Re-renders the open screen when the language setting changes.
-    @ObservedObject private var l10n = L10n.shared
     @Environment(\.dismiss) private var dismiss
     @State private var path: [String] = []
     @State private var highlight: String?

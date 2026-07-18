@@ -29,7 +29,7 @@
 | `heading`        | compass degrees + cardinal                                                                                                   |
 | `timestamp`      | capture time                                                                                                                 |
 | `weather`        | TODO (temp, pressure, wind, humidity)                                                                                        |
-| `address`        | reverse-geocoded in the app language (`preferredLocale`, bound by the root to foundation `L10n.locale`; re-geocodes on change) |
+| `address`        | reverse-geocoded in the app language (`preferredLocale`, bound by the root to foundation `L10n.locale` at launch)            |
 
 ### Accuracy classification
 
