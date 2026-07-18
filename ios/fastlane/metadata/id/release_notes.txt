@@ -1,1 +1,1 @@
-GPS Camera kini tersedia!
+Perbaikan bug dan peningkatan.

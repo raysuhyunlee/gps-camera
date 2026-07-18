@@ -1,1 +1,1 @@
-GPS Camera est maintenant disponible !
+Corrections de bugs et améliorations.
